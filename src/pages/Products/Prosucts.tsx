@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Container, FirstSection, SecondSection, ThirdSection} from './styles';
+import {Container, FirstSection, Loading, SecondSection, ThirdSection} from './styles';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 import Photo1 from '../../assets/foto1.png'
@@ -68,7 +68,17 @@ function FindByPhone({phone}: Props): JSX.Element {
 
 
     if (loading) {
-        return <p>Carregando...</p>;
+        return (
+            <Loading>
+                <div className={'loading-wrapper'}>
+                    <h1>Carregando ...</h1>
+                    <div className={'wrapper'}>
+                        <p>Desenvolvido Por:</p>
+                        <img src={LogoGaioMain} alt={'Logo Gaio'}/>
+                    </div>
+                </div>
+            </Loading>
+        );
     }
 
     if (!data) {

@@ -1,5 +1,48 @@
 import styled from 'styled-components';
 
+export const Loading = styled.section`
+  width: 100%;
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  & .loading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    gap: 2rem;
+  }
+  
+  & h1 {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 32px;
+  }
+  
+  & .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    
+    & p {
+      margin: 0;
+      font-size: 20px;
+      font-family: Raleway, sans-serif;
+    }
+    & img {
+      width: 150px;
+    }
+  }
+`
+
 export const Container = styled.div`
   height: 100%;
   width: 100%;
