@@ -16,6 +16,7 @@ interface Contact {
     products: string;
     call: string;
     history: string;
+    segunda: string;
 }
 
 interface Props {
@@ -25,28 +26,6 @@ interface Props {
 function FindByPhone({phone}: Props): JSX.Element {
     const [data, setData] = useState<Contact | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-
-    const color = 'rgb(5, 55, 124)';
-
-    const [store, setStore] = useState([{
-        backPhoto: '',
-        historyPhoto: '',
-        offerPhoto: '',
-        gallery: [{}],
-        segunda: '',
-        terca: '',
-        quarta: '',
-        quinta: '',
-        sexta: '',
-        sabado: '',
-        domingo: '',
-        street: '',
-        state: '',
-        city: '',
-        number: '',
-        complement: '',
-        link: ''
-    }])
 
     useEffect(() => {
         async function fetchData() {
@@ -99,7 +78,6 @@ function FindByPhone({phone}: Props): JSX.Element {
                     <img src={Photo1} alt={'foto-1'}/>
                     <button>VAMOS CONVERSAR!</button>
                 </div>
-
             </FirstSection>
             <SecondSection>
                 <div className={'second-wrapper'}>
@@ -117,8 +95,9 @@ function FindByPhone({phone}: Props): JSX.Element {
                     <button>FALE COM A GENTE</button>
                 </div>
             </ThirdSection>
+
             <p>Nome: {data.name}</p>
-            <p>q1: {data.quality1}</p>
+            <p>SEGUNDA: {data.segunda}</p>
             <p>q2: {data.quality2}</p>
             <p>q3: {data.quality3}</p>
             <p>prod: {data.products}</p>

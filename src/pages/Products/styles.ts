@@ -58,6 +58,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    
     .nav {
       width: 100%;
       height: 100%;
@@ -69,7 +70,7 @@ export const Container = styled.div`
       background-color: #eee;
 
       & img {
-        width: 100px;
+        width: 120px;
       }
     }
   }
