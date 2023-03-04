@@ -104,6 +104,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                     <h1>O que oferecemos</h1>
                     <p>{data.products}</p>
                     <img src={Photo3} alt={'foto-do-produto'}/>
+                    <button>FALE COM A GENTE</button>
                 </div>
             </ThirdSection>
             <p>Nome: {data.name}</p>

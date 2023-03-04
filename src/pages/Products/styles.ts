@@ -11,22 +11,27 @@ export const Container = styled.div`
   
   & header {
     width: 100%;
-  }
-
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .nav {
-      width: auto;
-      height: 60px;
+      width: 100%;
+      height: 100%;
       padding: 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background-color: #eee;
-      
+
       & img {
         width: 100px;
       }
     }
+  }
+
+  
 `;
 
 export const FirstSection = styled.div`
@@ -34,16 +39,22 @@ export const FirstSection = styled.div`
   height: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: rgb(5, 55, 124);
 
   & .first-wrapper {
-    width: 100%;
+    width: 50%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 5%;
+    padding: 4rem 2rem;
     gap: 2rem;
+
+    @media screen and (max-width: 800px){
+      width: 100%;
+      padding: 10% 5%;
+    }
 
     & h1 {
       margin: 0;
@@ -76,9 +87,10 @@ export const FirstSection = styled.div`
       max-height: 60vh;
       border-radius: 8px;
     }
-    
+
     & button {
-      background-color: rgb(41,182,10);
+      cursor: pointer;
+      background-color: rgb(41, 182, 10);
       box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
       border: 0;
@@ -106,13 +118,19 @@ export const SecondSection = styled.div`
   justify-content: center;
 
   & .second-wrapper {
-    width: 100%;
+    width: 50%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 5%;
+    padding: 4rem 2rem;
+    //padding: 10% 5%;
     gap: 2rem;
+
+    @media screen and (max-width: 800px){
+      width: 100%;
+      padding: 10% 5%;
+    }
 
     & h1 {
       margin: 0;
@@ -140,6 +158,7 @@ export const SecondSection = styled.div`
     }
 
     & button {
+      cursor: pointer;
       background-color: rgb(41,182,10);
       box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
@@ -162,16 +181,22 @@ export const ThirdSection = styled.div`
   height: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #eee;
 
   & .third-wrapper {
-    width: 100%;
+    width: 50%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 5%;
+    padding: 4rem 2rem;
     gap: 2rem;
+
+    @media screen and (max-width: 800px){
+      width: 100%;
+      padding: 10% 5%;
+    }
 
     & h1{
       margin: 0;
@@ -195,6 +220,23 @@ export const ThirdSection = styled.div`
     & img {
       max-width: 100%;
       max-height: 60vh;
+      border-radius: 8px;
+    }
+
+    & button {
+      cursor: pointer;
+      background-color: rgb(41,182,10);
+      box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      border: 0;
+
+      width: 100%;
+      height: 55px;
+
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
       border-radius: 8px;
     }
   }
