@@ -3,7 +3,10 @@ import axios from 'axios';
 
 interface Contact {
     name: string;
-    phone: string;
+    quality1: string,
+    quality2: string,
+    quality3: string,
+
 }
 
 interface Props {
@@ -18,8 +21,18 @@ function FindByPhone({phone}: Props): JSX.Element {
         async function fetchData() {
             setLoading(true);
             try {
+                const options = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Request-Headers": "*",
+                        "api-key":
+                            "GfSsPMSo7NITkzvywt2UyZpr8t8wBEVgg21BjkvbsuTHMnreDkXqWFXgBnpbGXU7",
+                    },
+                    mode: 'cors'
+                };
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByPhone/${phone}`
+                    `http://localhost:3000/findByPhone/${phone}`,
+                    options
                 );
                 setData(response.data);
             } catch (error) {
@@ -42,10 +55,13 @@ function FindByPhone({phone}: Props): JSX.Element {
     }
 
     return (
-            <div>
-                <p>Nome: {data.name}</p>
-                {/*<p>Telefone: {data.phone}</p>*/}
-            </div>
+        <div>
+            <p>Nome: {data.name}</p>
+            <p>Nome: {data.quality1}</p>
+            <p>Nome: {data.quality2}</p>
+            <p>Nome: {data.quality3}</p>
+            {/*<p>Telefone: {data.phone}</p>*/}
+        </div>
     );
 }
 
