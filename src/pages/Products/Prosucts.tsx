@@ -31,7 +31,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                     mode: 'cors'
                 };
                 const response = await axios.get<Contact>(
-                    `http://localhost:3000/findByPhone/${phone}`,
+                    `https://gaio-web-new-api-test.onrender.com/findByPhone/${phone}`,
                     options
                 );
                 setData(response.data);
