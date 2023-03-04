@@ -57,9 +57,6 @@ function FindByPhone({phone}: Props): JSX.Element {
     return (
         <div>
             <p>Nome: {data.name}</p>
-            <p>q1: {data.quality1}</p>
-            <p>q2: {data.quality2}</p>
-            <p>q3: {data.quality3}</p>
             {/*<p>Telefone: {data.phone}</p>*/}
         </div>
     );
