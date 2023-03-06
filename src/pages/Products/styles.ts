@@ -395,6 +395,11 @@ export const SixthSection = styled.div`
     @media screen and (max-width: 800px){
       padding: 10% 5%;
     }
+
+    @media screen and (min-width: 800px){
+      width: 100vw;
+    }
+
   }
 
   h1{

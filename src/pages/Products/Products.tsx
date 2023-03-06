@@ -19,6 +19,12 @@ interface Contact {
     call: string;
     history: string;
     segunda: string;
+    terca: string;
+    quarta: string;
+    quinta: string;
+    sexta: string;
+    sabado: string;
+    domingo: string;
 }
 
 interface Props {
@@ -248,7 +254,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3>teste</h3>
+                            <h3>{data.segunda}</h3>
                         </div>
                     </div>
 
@@ -257,7 +263,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             <h1> Terça feira:</h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.terca}</h3>
                         </div>
                     </div>
 
@@ -268,7 +274,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.quarta}</h3>
                         </div>
                     </div>
 
@@ -279,7 +285,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.quinta}</h3>
                         </div>
                     </div>
 
@@ -290,7 +296,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.sexta}</h3>
                         </div>
                     </div>
 
@@ -301,7 +307,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.sabado}</h3>
                         </div>
                     </div>
 
@@ -312,7 +318,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                             </h1>
                         </div>
                         <div className='value'>
-                            <h3></h3>
+                            <h3>{data.domingo}</h3>
                         </div>
                         </div>
                     </div>
