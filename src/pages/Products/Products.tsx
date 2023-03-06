@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection} from './styles';
+import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SixthSection} from './styles';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 import Photo1 from '../../assets/foto1.png'
@@ -231,6 +231,94 @@ function FindByPhone({phone}: Props): JSX.Element {
                     <button>CONVERSAR POR WHATSAPP</button>
                 </div>
             </FifthSection>
+
+            <SixthSection>
+                <div className='sixth-wrapper'>
+                    <h1 >Horário de funcionamento</h1>
+
+                    <div className='table'>
+                    <div className='header'>
+                       <h2>Horário de funcionamento</h2>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                                Segunda feira:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3>teste</h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1> Terça feira:</h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                                Quarta feira:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                            Quinta feira:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                            Sexta feira:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                            Sábado:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='value' style={{ borderRight: '1px solid #000' }}>
+                            <h1>
+                            Domingo:
+                            </h1>
+                        </div>
+                        <div className='value'>
+                            <h3></h3>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </SixthSection>
 
             <p>Nome: {data.name}</p>
             <p>SEGUNDA: {data.segunda}</p>
