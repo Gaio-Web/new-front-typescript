@@ -7,6 +7,8 @@ import Photo1 from '../../assets/foto1.png'
 import Photo2 from '../../assets/foto2.png'
 import Photo3 from '../../assets/foto3.png'
 
+import {Carousel} from './Carousel/Carousel'
+
 interface Contact {
     name: string;
     quality1: string;
@@ -215,9 +217,8 @@ function FindByPhone({phone}: Props): JSX.Element {
 
             <FourthSection>
                 <div className={'fourth-wrapper'}>
-                    <h1 className='sectionTitle'>Galeria de fotos</h1>
-                    <p>{data.products}</p>
-                    <img className='pgImg' src={Photo3} alt={'foto-do-produto'}/>
+                    <h1>Galeria de fotos</h1>
+                    <Carousel/>
                     <button>FALE COM A GENTE</button>
                 </div>
             </FourthSection>

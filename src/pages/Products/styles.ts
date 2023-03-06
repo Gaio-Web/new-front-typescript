@@ -53,6 +53,8 @@ export const Container = styled.div`
   justify-content: center;
   background-color: green;
   font-family: 'Montserrat', sans-serif;
+
+  overflow-x: hidden;
   
   & header {
     width: 100%;
@@ -75,8 +77,8 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       background-color: #eee;
-      position: fixed;
-
+      position: sticky;
+      z-index: 10;
 
       & img {
         width: 120px;
@@ -98,13 +100,15 @@ export const Container = styled.div`
       background-color: rgb(41,182,10);
       box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
+      font-family: 'Montserrat', sans-serif;
+
       border: 0;
 
       width: 100%;
       height: 55px;
 
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       font-weight: 600;
       text-transform: uppercase;
       border-radius: 16px;
@@ -197,6 +201,7 @@ export const SecondSection = styled.div`
       color: #05377C;
       text-align: center;
       line-height: 50px;
+      font-family: 'Montserrat', sans-serif;
     }
 
     & p{
@@ -205,6 +210,7 @@ export const SecondSection = styled.div`
       font-size: 20px;
       line-height: 1.5;
       text-align: center;
+      font-family: 'Montserrat', sans-serif;
     }
 
 
@@ -257,12 +263,10 @@ export const ThirdSection = styled.div`
       color: #05377C;
       text-align: center;
       line-height: 1.5;
-      font-family: Montserrat, sans-serif;
     }
 
     & p{
       margin: 0;
-      font-family: Ralewat, sans-serif;
       font-weight: 400;
       font-size: 16px;
       line-height: 1.5;
@@ -282,19 +286,21 @@ export const FourthSection = styled.div`
   align-items: center;
   justify-content: center;
 
+
   & .fourth-wrapper {
     width: 50%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 2rem;
-    //padding: 10% 5%;
+    justify-content: center;
+    //padding: 4rem 0;
     gap: 2rem;
 
     @media screen and (max-width: 800px){
-      width: 100%;
+      width: 80%;
       padding: 10% 5%;
+
     }
 
     & h1 {
@@ -303,24 +309,37 @@ export const FourthSection = styled.div`
       font-size: 42px;
       color: #05377C;
       text-align: center;
-      font-family: Montserrat, sans-serif;
+      margin-top: 2rem;
+
+      @media screen and (max-width: 800px){
+        margin-top: 0;
 
     }
 
-    & p {
-      margin: 0;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 1.5;
-      text-align: center;
-      font-family: Raleway, sans-serif;
+    }
+
+    & button {
+      cursor: pointer;
+      background-color: rgb(41,182,10);
+      box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      border: 0;
+
+      width: 100%;
+      height: 55px;
+
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 16px;
     }
   }
 `;
 
 //Nossa história
 export const FifthSection = styled.div`
-  background-color: #fafafa;
+  background-color: #f4f7fa;
   width: 100%;
   height: fit-content;
   display: flex;
@@ -334,7 +353,6 @@ export const FifthSection = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    //padding: 10% 5%;
     gap: 2rem;
 
     @media screen and (max-width: 800px){
@@ -348,7 +366,6 @@ export const FifthSection = styled.div`
       font-size: 42px;
       color: #05377C;
       text-align: center;
-      font-family: Montserrat, sans-serif;
     }
 
     & p {
@@ -357,14 +374,15 @@ export const FifthSection = styled.div`
       font-size: 20px;
       line-height: 1.5;
       text-align: center;
-      font-family: Raleway, sans-serif;
     }
 
   }
 `;
 
 //Horário de funcionamento
-
+export const SixthSection = styled.div`
+  
+`;
 
 //Endereço
 
