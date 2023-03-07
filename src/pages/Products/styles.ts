@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Loading = styled.section`
   width: 100%;
   height: 100vh;
-  background-color: #eee;
+  background-color: rgb(5, 55, 124);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +22,9 @@ export const Loading = styled.section`
   
   & h1 {
     margin: 0;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 32px;
+    color: white;
   }
   
   & .wrapper {
@@ -32,6 +33,12 @@ export const Loading = styled.section`
     justify-content: center;
     width: 100%;
     gap: 1rem;
+
+    background-color: white;
+    border-radius: 18px;
+
+
+    padding: 1rem 1.5rem;
     
     & p {
       margin: 0;

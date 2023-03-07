@@ -65,9 +65,8 @@ function FindByPhone({phone}: Props): JSX.Element {
         return (
             <Loading>
                 <div className={'loading-wrapper'}>
-                    <h1>Carregando ...</h1>
+                    <h1>Carregando...</h1>
                     <div className={'wrapper'}>
-                        <p>Desenvolvido Por:</p>
                         <img src={LogoGaioMain} alt={'Logo Gaio'}/>
                     </div>
                 </div>
