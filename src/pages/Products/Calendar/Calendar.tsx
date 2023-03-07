@@ -1,5 +1,5 @@
 
-import { CalendarStyles} from './styles'
+import { CalendarStyles } from './styles'
 
 interface ICalendar {
     //horário funcionamento
@@ -15,7 +15,8 @@ interface ICalendar {
 
 function Calendar({segunda, terca, quarta, quinta, sexta, sabado, domingo}: ICalendar){
     return(
-        <>
+
+        <CalendarStyles>
         <div className='sixth-wrapper'>
                     <h1 >Horário de funcionamento</h1>
 
@@ -100,7 +101,7 @@ function Calendar({segunda, terca, quarta, quinta, sexta, sabado, domingo}: ICal
                         </div>
                     </div>
                 </div>
-        </>
+        </CalendarStyles>
     )
 }
 

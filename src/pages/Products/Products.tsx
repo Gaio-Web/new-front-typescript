@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SixthSection, SeventhSection, FooterSection} from './styles';
+import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SeventhSection, FooterSection} from './styles';
 
 import { Calendar } from '../Products/Calendar/Calendar'
 
@@ -247,21 +247,15 @@ function FindByPhone({phone}: Props): JSX.Element {
                 </div>
             </FifthSection>
 
-            <SixthSection>
-                <div className='sixth-wrapper'>
-                    <Calendar
-                        segunda={`${data.segunda}`}
-                        terca={`${data.terca}`}
-                        quarta={`${data.quarta}`}
-                        quinta={`${data.quinta}`}
-                        sexta={`${data.sexta}`}
-                        sabado={`${data.sabado}`}
-                        domingo={`${data.domingo}`}
-                    />
-
-                </div>
-
-            </SixthSection>
+            <Calendar
+                segunda={`${data.segunda}`}
+                terca={`${data.terca}`}
+                quarta={`${data.quarta}`}
+                quinta={`${data.quinta}`}
+                sexta={`${data.sexta}`}
+                sabado={`${data.sabado}`}
+                domingo={`${data.domingo}`}
+            />
 
             <SeventhSection>
                 <div className='seventh-wrapper'>

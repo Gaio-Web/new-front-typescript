@@ -100,5 +100,4 @@ export const CalendarStyles = styled.section`
 
     }
 
-
 `;
