@@ -56,6 +56,7 @@ export const Container = styled.div`
 
   overflow-x: hidden;
   
+  
   & header {
     width: 100%;
     height: 5rem;
@@ -145,7 +146,7 @@ export const FirstSection = styled.div`
       color: white;
       line-height: 40px;
       text-align: center;
-      padding: 2rem 1.5 0;
+      padding: 2rem 1.5rem 0;
       font-family: 'Montserrat', sans-serif;
 
       @media screen and (max-width: 410px) {
