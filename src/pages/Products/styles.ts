@@ -153,7 +153,7 @@ export const FirstSection = styled.div`
       color: white;
       line-height: 40px;
       text-align: center;
-      padding: 2rem 1.5rem 0;
+      padding: 0 1.5rem 0;
       font-family: 'Montserrat', sans-serif;
 
       @media screen and (max-width: 410px) {
