@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SixthSection, SeventhSection, FooterSection} from './styles';
 
+import { Calendar } from '../Products/Calendar/Calendar'
+
 import LogoGaioMain from '../../assets/logoGaio.png'
 import Photo1 from '../../assets/foto1.png'
 import Photo2 from '../../assets/foto2.png'
@@ -247,88 +249,16 @@ function FindByPhone({phone}: Props): JSX.Element {
 
             <SixthSection>
                 <div className='sixth-wrapper'>
-                    <h1 >Horário de funcionamento</h1>
+                    <Calendar
+                        segunda={`${data.segunda}`}
+                        terca={`${data.terca}`}
+                        quarta={`${data.quarta}`}
+                        quinta={`${data.quinta}`}
+                        sexta={`${data.sexta}`}
+                        sabado={`${data.sabado}`}
+                        domingo={`${data.domingo}`}
+                    />
 
-                    <div className='table'>
-                    <div className='header'>
-                       <h2>Horário de funcionamento</h2>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                                Segunda feira:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.segunda}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1> Terça feira:</h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.terca}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                                Quarta feira:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.quarta}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                            Quinta feira:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.quinta}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                            Sexta feira:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.sexta}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                            Sábado:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.sabado}</h3>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                            Domingo:
-                            </h1>
-                        </div>
-                        <div className='value'>
-                            <h3>{data.domingo}</h3>
-                        </div>
-                        </div>
-                    </div>
                 </div>
 
             </SixthSection>
