@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SixthSection} from './styles';
+import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SixthSection, SeventhSection, FooterSection} from './styles';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 import Photo1 from '../../assets/foto1.png'
@@ -10,14 +10,21 @@ import Photo3 from '../../assets/foto3.png'
 import {Carousel} from './Carousel/Carousel'
 
 interface Contact {
+    //Nome
     name: string;
-    quality1: string;
-    quality2: string;
-    quality3: string;
+
+    //text content
     description: string;
     products: string;
     call: string;
     history: string;
+
+    //Qualidades
+    quality1: string;
+    quality2: string;
+    quality3: string;
+
+    //horário funcionamento
     segunda: string;
     terca: string;
     quarta: string;
@@ -79,6 +86,7 @@ function FindByPhone({phone}: Props): JSX.Element {
                     <img src={LogoGaioMain} alt={'logo-gaio'}/>
                 </div>
             </header>
+
             <FirstSection>
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
@@ -326,13 +334,41 @@ function FindByPhone({phone}: Props): JSX.Element {
 
             </SixthSection>
 
-            <p>Nome: {data.name}</p>
-            <p>SEGUNDA: {data.segunda}</p>
-            <p>q1: {data.quality1}</p>
-            <p>q2: {data.quality2}</p>
-            <p>q3: {data.quality3}</p>
-            <p>prod: {data.products}</p>
-            {/*<p>Telefone: {data.phone}</p>*/}
+            <SeventhSection>
+                <div className='seventh-wrapper'>
+                    <h1 className='sectionTitle'>Endereço</h1>
+                                
+                    <div className='adressWrapper'>
+                        <div className='userAdress'>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum odio voluptatem odit </p>
+                        </div>
+
+                        <button className='buttonCopy'>
+                            {/* onClick={() =>  navigator.clipboard.writeText(`${street}, ${number}, ${complement} ${city}, ${state}`)} */}
+
+                            <div>
+                                <span>
+                                    <p>Copiar endereço</p>
+                                </span>
+                            </div>
+
+                            <div>
+                                <span>
+                                <p>Endereço copiado!</p>
+                                </span>
+                            </div>
+                        </button>
+
+                    </div>
+                </div>
+
+            </SeventhSection>
+
+            <FooterSection>
+                <div className='footer-wrapper'>
+                    <h3>Copyright © 2022 - Todos os direitos reservados.</h3>
+                </div>
+            </FooterSection>
         </Container>
     );
 }
