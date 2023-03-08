@@ -1,15 +1,27 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Container, FirstSection, Loading, SecondSection, ThirdSection, FourthSection, FifthSection, SeventhSection, FooterSection} from './styles';
+import {
+    Container,
+    FifthSection,
+    FirstSection,
+    FooterSection,
+    FourthSection,
+    Loading,
+    SecondSection,
+    SeventhSection,
+    ThirdSection
+} from './styles';
 
-import { Calendar } from '../Products/Calendar/Calendar'
+import {Calendar} from './Components/Calendar/Calendar'
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 import Photo1 from '../../assets/foto1.png'
 import Photo2 from '../../assets/foto2.png'
 import Photo3 from '../../assets/foto3.png'
 
-import {Carousel} from './Carousel/Carousel'
+import {Carousel} from './Components/Carousel/Carousel'
+
+import {useParams} from 'react-router-dom';
 
 interface Contact {
     //Nome
@@ -40,7 +52,19 @@ interface Props {
     phone: string;
 }
 
-function FindByPhone({phone}: Props): JSX.Element {
+function FindByPhone(): JSX.Element {
+
+    const { id } = useParams()
+
+    const uniqueName = id!.replace(/-/g, " ")
+    document.title = uniqueName
+
+    // // @ts-ignore
+    // let id:string = useParams();
+    //
+    // const setNewString = id.replace(/-/g,"");
+    // document.title = setNewString
+
     const [data, setData] = useState<Contact | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -49,7 +73,7 @@ function FindByPhone({phone}: Props): JSX.Element {
             setLoading(true);
             try {
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByPhone/${phone}`
+                    `https://gaio-web-new-api-test.onrender.com/findByName/${id}`
                 );
                 setData(response.data);
             } catch (error) {
@@ -60,7 +84,7 @@ function FindByPhone({phone}: Props): JSX.Element {
         }
 
         fetchData().then(() => console.log("Data fetched successfully!")).catch((error) => console.error(error));
-    }, [phone]);
+    }, []);
 
 
     if (loading) {
@@ -91,12 +115,14 @@ function FindByPhone({phone}: Props): JSX.Element {
             <FirstSection>
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
-                    <p>{data.call}</p>
+                    {/*<p>{data.call}</p>*/}
+                    <p> testing </p>
+                    <p>{data.name.toLowerCase().trim().replace(/\s+/g, '-')}</p>
                     <img className='pgImg' src={Photo1} alt={'foto-1'}/>
                     <button>VAMOS CONVERSAR!</button>
                 </div>
             </FirstSection>
-                        
+
             <SecondSection>
                 <div className={'second-wrapper'}>
                     <h1 className='sectionTitle'>O que oferecemos</h1>
@@ -260,7 +286,7 @@ function FindByPhone({phone}: Props): JSX.Element {
             <SeventhSection>
                 <div className='seventh-wrapper'>
                     <h1 className='sectionTitle'>Endereço</h1>
-                                
+
                     <div className='adressWrapper'>
                         <div className='userAdress'>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum odio voluptatem odit </p>

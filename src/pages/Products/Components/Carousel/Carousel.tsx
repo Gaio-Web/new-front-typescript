@@ -13,9 +13,9 @@ import './styles.css';
 import { Pagination } from 'swiper';
 
 // import images
-import Photo1 from '../../../assets/foto1.png'
-import Photo2 from '../../../assets/foto2.png'
-import vertical from '../../../assets/capaSerena.png'
+import Photo1 from '../../../../assets/foto1.png'
+import Photo2 from '../../../../assets/foto2.png'
+import vertical from '../../../../assets/capaSerena.png'
 
 
 function Carousel() {
