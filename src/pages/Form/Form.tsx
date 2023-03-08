@@ -10,6 +10,7 @@ function Form(): JSX.Element {
                     <p>Agora, vamos finalizar seu site cadastrando suas fotos e horário de funcionamento.</p>
                 </div>
             </FirstSection>
+
             <SecondSection>
                 <div className={'second-wrapper'}>
                     <h1>Você tem uma logo que gostaria de usar no site?</h1>
@@ -20,6 +21,7 @@ function Form(): JSX.Element {
                     <p>Sua logo vai subsituir o nome da loja no cabeçalho do site</p>
                 </div>
             </SecondSection>
+
             <ThirdSectiond>
                 <div className={'third-wrapper'}>
                 <h1>Deseja editar a cor do site ou manter o azul original?</h1>
@@ -29,6 +31,7 @@ function Form(): JSX.Element {
                 </div>
                 </div>
             </ThirdSectiond>
+            
         </Container>
     )
 }

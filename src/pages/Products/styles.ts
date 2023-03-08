@@ -302,7 +302,7 @@ export const FourthSection = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    //padding: 4rem 0;
+    padding: 0 0 3rem;
     gap: 2rem;
 
     @media screen and (max-width: 800px){
