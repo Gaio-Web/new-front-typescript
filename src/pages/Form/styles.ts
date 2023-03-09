@@ -196,17 +196,20 @@ export const ThirdSection = styled.div`
   background-color: rgb(5, 55, 124);
 
   & .third-wrapper {
-    width: 80%;
+    width: 70%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 2rem;
+    //padding: 4rem 2rem;
+    padding: 0;
     gap: 1rem;
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 10% 5%;
+      max-width: 100vw;
+      //padding: 10% 5%;
+      padding: 0;
     }
 
     & h1 {
@@ -215,6 +218,7 @@ export const ThirdSection = styled.div`
       font-size: 28px;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
+      padding: 2rem;
 
       @media screen and (max-width: 410px) {
         font-size: 6vw;

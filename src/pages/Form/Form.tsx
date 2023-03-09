@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection} from "./styles";
 
-import { InputMask } from 'primereact/inputmask';
+import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 
@@ -106,11 +106,11 @@ function Form(): JSX.Element {
         const [ state, setState ] = useState('');
         const [ number, setNumber ] = useState('');
         const [ complement, setComplement ] = useState('');
+        const [neighborhood, setNeighborhood] = useState('');
         const [city, setCity] = useState('');
 
-        //NÃO ACHO QUE ESSE É O TIPO CORRETO, MAS NÃO ACHEI OUTRO MELHOR
-        const getAddress = async (e: React.ChangeEvent<HTMLInputElement>) => {
-            const cepvalid = e.target.value.replace(/[^0-9]/g, '');
+        const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
+            const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
         
             if (cepvalid?.length !== 8) {
               return;
@@ -120,9 +120,25 @@ function Form(): JSX.Element {
               .then((res) => res.json())
               .then((data) => {
                 setStreet(`${data.logradouro}`);
+                setNeighborhood(`${data.bairro}`);
                 setState(data.uf)
                 setCity(data.localidade)
+                console.log(data)
               });
+        }
+
+
+        //WHATSAPP
+        const [ changeWhatsapp, setChangeWhatsapp ] = useState(false);
+        const [ whatsApp, setWhatsapp ] = useState<string | undefined >('');
+
+        const getWhatsApp = (event: InputMaskChangeEvent) => {
+            const whatsAppValid = event?.target?.value;
+
+            if (whatsAppValid?.length !== 11){
+                setWhatsapp(`${whatsAppValid}`)
+                return;
+            }
         }
 
 
@@ -210,7 +226,7 @@ function Form(): JSX.Element {
                                 ))}
                             </div>
             
-                            <p>Não se esqueça que o texto dessa tela é branco.</p>
+                            <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
                     </div>
                         ) : (
                             <></>
@@ -228,10 +244,8 @@ function Form(): JSX.Element {
                         <div>
                             <label> Seu CEP:</label>
                             <InputMask
-                                // type="text" 
                                 mask={'99999-999'}
-                                onChange={() => getAddress}
-                                //ESSA FUNÇÃO TA ERRADA
+                                onChange={(e) => getAddress(e)}
                             />
                         </div>
                     </div>
@@ -240,7 +254,32 @@ function Form(): JSX.Element {
                         <label>Rua:</label>
                         <input
                             value={street}
-                            onChange={(text) => setStreet(text.target.value)}
+                            onChange={(e) => setStreet(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Número:</label>
+                        <input
+                            value={number}
+                            onChange={(text) => setNumber(text.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Complemento:</label>
+                        <input
+                            value={complement}
+                            onChange={(text) => setComplement(text.target.value)}
+                            placeholder={'Opcional'}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Cidade:</label>
+                        <input
+                            value={city}
+                            onChange={(text) => setCity(text.target.value)}
                         />
                     </div>
 
@@ -253,43 +292,41 @@ function Form(): JSX.Element {
                     </div>
 
                     <div>
-                        <label>Número:</label>
+                        <label>Bairro:</label>
                         <input
-                            value={number}
-                            onChange={(text) => setNumber(text.target.value)}
+                            value={neighborhood}
+                            onChange={(e) => setNeighborhood(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label>Complemento:</label>
-                        <input
-                            value={complement}
-                            onChange={(text) => setComplement(text.target.value)}
-                        />
-                    </div>
+
                 </div>
             </FourthSection>
 
             <FifthSection>
-            {/* <div className='back'>
-                <h1>Foto de capa</h1>
+                <div className='fifht-wrapper'>
+                    <h1>Gostaria de trocar o número de WhatsApp do site?</h1>
+                    <div className={'button-wrapper'}>
+                        <button onClick={() => setChangeWhatsapp(true)}>Trocar número de WhatsApp</button>
+                    </div>
 
-                <p>A foto que vem depois da descrição do seu negócio.</p>
+                    { changeWhatsapp === false ? (
+                        <></>
+                    ) : (
+                        <>
+                            <div className='changeWhatsApp'>
+                                <InputMask
+                                    mask={'(99)99999-9999'}
+                                    onChange={(e) => getWhatsApp(e)}
+                                />
+                            </div>
+                            <h1>{whatsApp}</h1>
 
-                {loading == true ?
-                    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                : 
-                <>
-                    {
-                </>
-                }
+                        </>
+                    )
 
-                <label className="custom-file-upload">
-                    <input
-                    type="file"
-                    onChange={handleFileBack}/>
-                    Fazer upload da foto de capa
-                </label>
-            </div> */}
+                    }
+
+                </div>
             </FifthSection>
 
         </Container>
