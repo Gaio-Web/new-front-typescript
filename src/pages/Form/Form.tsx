@@ -279,12 +279,11 @@ function Form(): JSX.Element {
                     <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
                 : 
                 <>
-                    {backPhoto === '' ? <img src={foto1}/> : <img src={backPhoto}/>}
+                    {
                 </>
                 }
 
                 <label className="custom-file-upload">
-                    <FiUpload color={'#fff'} size={24}/>
                     <input
                     type="file"
                     onChange={handleFileBack}/>
