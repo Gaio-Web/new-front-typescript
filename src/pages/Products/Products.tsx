@@ -24,28 +24,46 @@ import {Carousel} from './Components/Carousel/Carousel'
 import {useParams} from 'react-router-dom';
 
 interface Contact {
-    //Nome
-    name: string;
-
     //text content
     description: string;
     products: string;
     call: string;
     history: string;
 
-    //Qualidades
-    quality1: string;
-    quality2: string;
-    quality3: string;
+    //Images
+    logo: File;
+    backPhoto: string,
+    historyPhoto: string,
+    offerPhoto: string,
+    gallery: string,
 
-    //horário funcionamento
-    segunda: string;
-    terca: string;
-    quarta: string;
-    quinta: string;
-    sexta: string;
-    sabado: string;
-    domingo: string;
+    //calendar info
+    segunda: string,
+    terca: string,
+    quarta: string,
+    quinta: string,
+    sexta: string,
+    sabado: string,
+    domingo: string,
+
+    //?
+    name_quality1: string,
+    name_quality2: string,
+    name_quality3: string,
+
+    //qualities
+    qualities1: string,
+    qualities2: string,
+    qualities3: string,
+    qualitydescription1: string,
+    qualitydescription2: string,
+    qualitydescription3: string,
+
+    //client info
+    businessName: string,
+    phone: string,
+    name: string,
+    id: string,
 }
 
 interface Props {
@@ -170,8 +188,8 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality1}</h3>
-                        <p>{data.quality1}</p>
+                        <h3>{data.qualities1}</h3>
+                        <p>{data.qualitydescription1}</p>
                     </div>
 
                     <div className='difCards'>
@@ -209,8 +227,8 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality2}</h3>
-                        <p>{data.quality2}</p>
+                        <h3>{data.qualities2}</h3>
+                        <p>{data.qualitydescription2}</p>
                     </div>
 
                     <div className='difCards'>
@@ -249,8 +267,8 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality3}</h3>
-                        <p>{data.quality3}</p>
+                        <h3>{data.qualities3}</h3>
+                        <p>{data.qualitydescription1}</p>
                     </div>
 
                 </div>

@@ -376,3 +376,7 @@ export const PicsSection = styled.div`
 export const CoverPhotoSection = styled.div`
 
 `
+
+export const SixthSection = styled.div`
+
+`

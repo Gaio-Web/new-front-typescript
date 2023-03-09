@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
-import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection} from "./styles";
+import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection, SixthSection} from "./styles";
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
@@ -14,12 +14,52 @@ import ReactLoading from 'react-loading'
 
 import foto1 from '../../assets/foto1.png'
 
+import { Calendar } from '../Products/Components/Calendar/Calendar';
+
 
 interface Contact {
-    name: string;
-    phone: string;
+    //text content
+    description: string;
+    products: string;
+    call: string;
+    history: string;
+
+    //Images
     logo: File;
+    backPhoto: string,
+    historyPhoto: string,
+    offerPhoto: string,
+    gallery: string,
+
+    //calendar info
+    segunda: string,
+    terca: string,
+    quarta: string,
+    quinta: string,
+    sexta: string,
+    sabado: string,
+    domingo: string,
+
+    //?
+    name_quality1: string,
+    name_quality2: string,
+    name_quality3: string,
+
+    //qualities
+    qualities1: string,
+    qualities2: string,
+    qualities3: string,
+    qualitydescription1: string,
+    qualitydescription2: string,
+    qualitydescription3: string,
+
+    //client info
+    businessName: string,
+    phone: string,
+    name: string,
+    id: string,
 }
+
 
 
 function Form(): JSX.Element {
@@ -173,9 +213,10 @@ function Form(): JSX.Element {
               setBackPhoto(null);
             }
             setLoading2(false);
-          };
+        };
 
 
+        //CALENDAR
 
 
     if (loading) {
@@ -385,6 +426,12 @@ function Form(): JSX.Element {
                 </CoverPhotoSection>
 
             </PicsSection>
+
+            <SixthSection>
+                <div className='sixth-wrapper'>
+
+                </div>
+            </SixthSection>
 
         </Container>
     )
