@@ -10,7 +10,7 @@ export default function AnimatedRoutes() {
     return (
         <Routes location={location} key={location.pathname}>
             <Route path='/:id' element={<Products/>}/>
-            <Route path='/forms' element={<Form/>}/>
+            <Route path='/forms/:id' element={<Form/>}/>
         </Routes>
     )
 }
