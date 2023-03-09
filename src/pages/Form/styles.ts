@@ -270,7 +270,7 @@ export const FourthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(5, 55, 124);
+  background-color: #eee;
 
   & .fourth-wrapper {
     width: 80%;
@@ -315,5 +315,64 @@ export const FourthSection = styled.div`
 `;
 
 export const FifthSection = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(5, 55, 124);
 
+  & .fifth-wrapper {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    gap: 1rem;
+
+    @media screen and (max-width: 800px){
+      width: 100%;
+      padding: 10% 5%;
+    }
+
+    & h1 {
+      margin: 0;
+      color: white;
+      font-size: 28px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      @media screen and (max-width: 410px) {
+        font-size: 6vw;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px
+      }
+    }
+    
+    & p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 17px;
+      color: #F0F0F0;
+      font-family: 'Montserrat', sans-serif;
+
+      text-align: center;
+    }
+    
+  }
 `;
+
+//Engloba toda as section que tem fotos
+export const PicsSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  border: 1px solid black;
+`
+export const CoverPhotoSection = styled.div`
+
+`

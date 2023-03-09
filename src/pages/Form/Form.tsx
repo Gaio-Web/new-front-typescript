@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
-import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection} from "./styles";
+import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection} from "./styles";
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
@@ -12,19 +12,14 @@ import LogoGaioMain from '../../assets/logoGaio.png'
 
 import ReactLoading from 'react-loading'
 
+import foto1 from '../../assets/foto1.png'
+
+
 interface Contact {
     name: string;
     phone: string;
     logo: File;
 }
-
-//LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
-  const updateLogo = async (logo: File) => {
-    const formData = new FormData();
-    formData.append('image', logo);
-    const response = await axios.post('http://localhost:3000/newUpdateLogo', formData);
-    return response.data;
-  };
 
 
 function Form(): JSX.Element {
@@ -59,6 +54,7 @@ function Form(): JSX.Element {
 
 
     //Logo
+        const [selectLogo, setSelectLogo] = useState(false)
         const [isLoading1, setLoading1] = useState(false);
         const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
         const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
@@ -71,8 +67,14 @@ function Form(): JSX.Element {
                 setLoading1(false)
             }
           };
-       
-          const [selectLogo, setSelectLogo] = useState(false)
+
+          //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
+        const updateLogo = async (logo: File) => {
+            const formData = new FormData();
+            formData.append('image', logo);
+            const response = await axios.post('http://localhost:3000/newUpdateLogo', formData);
+            return response.data;
+        };
 
         // NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
           const handleClick = async () => {
@@ -140,6 +142,40 @@ function Form(): JSX.Element {
                 return;
             }
         }
+
+
+
+        //FOTOS
+        const [ backPhoto, setBackPhoto ] = useState<File | null>(null);
+        const [ loading2, setLoading2] = useState(false)
+
+        const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+            const image = event.target.files;
+
+            setLoading2(true)
+            if (image && image.length > 0) {
+                setBackPhoto(image[0]);
+                setLoading1(false)
+            }
+        }
+
+        const updateBackPhoto = async (backPhoto: File) => {
+            const formData = new FormData();
+            formData.append('image', backPhoto);
+            const response = await axios.post('/getName', formData);
+            return response.data;
+        };
+
+        const handleSendImage = async () => {
+            setLoading2(true);
+            if (backPhoto !== null) {
+              await updateBackPhoto(backPhoto);
+              setBackPhoto(null);
+            }
+            setLoading2(false);
+          };
+
+
 
 
     if (loading) {
@@ -328,6 +364,27 @@ function Form(): JSX.Element {
 
                 </div>
             </FifthSection>
+
+            <PicsSection>
+                <CoverPhotoSection>
+                    <div className='cover-photo-section-wrapper'>
+                        <h1>Foto de capa</h1>
+                        <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                        {loading2 == true ? 
+                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                        : 
+                        <>
+                            {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/> }
+                        </>
+                        }
+
+                        <input type="file" accept="image/*" onChange={handleBackPhoto} />
+                        <button onClick={handleSendImage}>Atualizar foto de capa</button>
+                    </div>
+                </CoverPhotoSection>
+
+            </PicsSection>
 
         </Container>
     )
