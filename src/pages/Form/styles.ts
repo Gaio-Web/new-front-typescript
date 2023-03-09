@@ -309,3 +309,7 @@ export const FourthSection = styled.div`
     
   }
 `;
+
+export const FifthSection = styled.div`
+
+`;

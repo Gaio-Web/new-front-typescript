@@ -4,7 +4,9 @@ import {useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
-import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection} from "./styles";
+import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection} from "./styles";
+
+import { InputMask } from 'primereact/inputmask';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 
@@ -23,8 +25,6 @@ interface Contact {
     const response = await axios.post('http://localhost:3000/newUpdateLogo', formData);
     return response.data;
   };
-
-
 
 
 function Form(): JSX.Element {
@@ -81,7 +81,7 @@ function Form(): JSX.Element {
           };
 
 
-          //CORES
+        //CORES
         const [colorized, setColorized] = useState(false);
         const [color, setColor] = useState('rgb(5, 55, 124)');
 
@@ -99,7 +99,32 @@ function Form(): JSX.Element {
             {color: "#25D8A7", title: "Turquesa"},
             {color: "#6D6D6D", title: "Cinza"}
         ])
-    
+
+
+        //ENDERECO
+        const [ street, setStreet ] = useState('');
+        const [ state, setState ] = useState('');
+        const [ number, setNumber ] = useState('');
+        const [ complement, setComplement ] = useState('');
+        const [city, setCity] = useState('');
+
+        //NÃO ACHO QUE ESSE É O TIPO CORRETO, MAS NÃO ACHEI OUTRO MELHOR
+        const getAddress = async (e: React.ChangeEvent<HTMLInputElement>) => {
+            const cepvalid = e.target.value.replace(/[^0-9]/g, '');
+        
+            if (cepvalid?.length !== 8) {
+              return;
+            }  
+        
+            await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
+              .then((res) => res.json())
+              .then((data) => {
+                setStreet(`${data.logradouro}`);
+                setState(data.uf)
+                setCity(data.localidade)
+              });
+        }
+
 
     if (loading) {
         return (
@@ -196,10 +221,77 @@ function Form(): JSX.Element {
             </ThirdSection>
 
             <FourthSection>
-                <div className=''>
+                <div className='fourth-wrapper'>
+                    <h1>Vamos editar seu endereço</h1>
 
+                    <div className='adress-wrapper'>
+                        <div>
+                            <label> Seu CEP:</label>
+                            <InputMask
+                                // type="text" 
+                                mask={'99999-999'}
+                                onChange={() => getAddress}
+                                //ESSA FUNÇÃO TA ERRADA
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Rua:</label>
+                        <input
+                            value={street}
+                            onChange={(text) => setStreet(text.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Estado:</label>
+                        <input
+                            value={state}
+                            onChange={(text) => setState(text.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Número:</label>
+                        <input
+                            value={number}
+                            onChange={(text) => setNumber(text.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Complemento:</label>
+                        <input
+                            value={complement}
+                            onChange={(text) => setComplement(text.target.value)}
+                        />
+                    </div>
                 </div>
             </FourthSection>
+
+            <FifthSection>
+            {/* <div className='back'>
+                <h1>Foto de capa</h1>
+
+                <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                {loading == true ?
+                    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                : 
+                <>
+                    {backPhoto === '' ? <img src={foto1}/> : <img src={backPhoto}/>}
+                </>
+                }
+
+                <label className="custom-file-upload">
+                    <FiUpload color={'#fff'} size={24}/>
+                    <input
+                    type="file"
+                    onChange={handleFileBack}/>
+                    Fazer upload da foto de capa
+                </label>
+            </div> */}
+            </FifthSection>
 
         </Container>
     )
