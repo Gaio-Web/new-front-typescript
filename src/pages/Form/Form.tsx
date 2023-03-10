@@ -245,6 +245,7 @@ function Form(): JSX.Element {
         function handlesegundafec(){
             if(segunda === 'Fechado'){
                 setSegunda('')
+                setDisabledSeg(false)
             }else{
                 setSegunda('Fechado');
                 setDisabledSeg(true)
@@ -252,8 +253,9 @@ function Form(): JSX.Element {
         }
     
         function handlesegunda24(){
-            if(segunda === '24hrs'){
+            if(segunda === '24 horas'){
                 setSegunda('')
+                setDisabledSeg(false)
             }else{
                 setSegunda('24 horas');
                 setDisabledSeg(true)
@@ -266,8 +268,9 @@ function Form(): JSX.Element {
         }
     
         function handletercfec(){
-            if(terca === 'fechado'){
+            if(terca === 'Fechado'){
                 setTerca('')
+                setDisabledTer(false)
             }else{
                 setTerca('Fechado');
                 setDisabledTer(true)
@@ -275,8 +278,9 @@ function Form(): JSX.Element {
         }
     
         function handleterc24(){
-            if(terca === '24hrs'){
+            if(terca === '24 horas'){
                 setTerca('')
+                setDisabledTer(false)
             }else{
                 setTerca('24 horas');
                 setDisabledTer(true)
@@ -289,8 +293,9 @@ function Form(): JSX.Element {
         }
 
         function handlequartafec(){
-            if(quarta === 'fechado'){
+            if(quarta === 'Fechado'){
                 setQuarta('')
+                setDisabledQuar(false)
             }else{
                 setQuarta('Fechado');
                 setDisabledQuar(true)
@@ -298,8 +303,9 @@ function Form(): JSX.Element {
         }
     
         function handlequarta24(){
-            if(quarta === '24hrs'){
+            if(quarta === '24 horas'){
                 setQuarta('')
+                setDisabledQuar(false)
             }else{
                 setQuarta('24 horas');
                 setDisabledQuar(true)
@@ -312,8 +318,9 @@ function Form(): JSX.Element {
         }
 
         function handlequintafec(){
-            if(quinta === 'fechado'){
+            if(quinta === 'Fechado'){
                 setQuinta('')
+                setDisabledQuin(false)
             }else{
                 setQuinta('Fechado');
                 setDisabledQuin(true)
@@ -321,8 +328,9 @@ function Form(): JSX.Element {
         }
     
         function handlequinta24(){
-            if(quinta === '24hrs'){
+            if(quinta === '24 horas'){
                 setQuinta('')
+                setDisabledQuin(false)
             }else{
                 setQuinta('24 horas');
                 setDisabledQuin(true)
@@ -335,8 +343,9 @@ function Form(): JSX.Element {
         }
 
         function handlesextafec(){
-            if(sexta === 'fechado'){
+            if(sexta === 'Fechado'){
                 setSexta('')
+                setDisabledSex(false)
             }else{
                 setSexta('Fechado');
                 setDisabledSex(true)
@@ -344,8 +353,9 @@ function Form(): JSX.Element {
         }
     
         function handlesexta24(){
-            if(sexta === '24hrs'){
+            if(sexta === '24 horas'){
                 setSexta('')
+                setDisabledSex(false)
             }else{
                 setSexta('24 horas');
                 setDisabledSex(true)
@@ -358,8 +368,9 @@ function Form(): JSX.Element {
         }
 
         function handlesabadofec(){
-            if(sabado === 'fechado'){
+            if(sabado === 'Fechado'){
                 setSabado('')
+                setDisabledSab(false)
             }else{
                 setSabado('Fechado');
                 setDisabledSab(true)
@@ -367,8 +378,9 @@ function Form(): JSX.Element {
         }
     
         function handlesabado24(){
-            if(sabado === '24hrs'){
+            if(sabado === '24 horas'){
                 setSabado('')
+                setDisabledSab(false)
             }else{
                 setSabado('24 horas');
                 setDisabledSab(true)
@@ -381,8 +393,9 @@ function Form(): JSX.Element {
         }
 
         function handledomingofec(){
-            if(domingo === 'fechado'){
+            if(domingo === 'Fechado'){
                 setDomingo('')
+                setDisabledDom(false)
             }else{
                 setDomingo('Fechado');
                 setDisabledDom(true)
@@ -390,8 +403,9 @@ function Form(): JSX.Element {
         }
     
         function handledomingo24(){
-            if(domingo === '24hrs'){
+            if(domingo === '24 horas'){
                 setDomingo('')
+                setDisabledDom(false)
             }else{
                 setDomingo('24 horas');
                 setDisabledDom(true)
@@ -770,7 +784,7 @@ function Form(): JSX.Element {
                     <div className='optionsWrapper'>
                     <div className='checkboxWrapper' id='segunda'>
                         <label>
-                            <input type="checkbox" onClick={handlesegunda24}></input>
+                            <input type="checkbox" onInput={handlesegunda24}></input>
                             <span className='checkbox'></span>
                         </label>
                         <label>
