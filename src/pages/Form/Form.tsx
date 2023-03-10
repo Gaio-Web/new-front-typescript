@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
-import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection, SixthSection} from "./styles";
+import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection, SixthSection, SeventhSection, HistoryPhotoSection, ProductsPhotoSection} from "./styles";
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
@@ -13,8 +13,8 @@ import LogoGaioMain from '../../assets/logoGaio.png'
 import ReactLoading from 'react-loading'
 
 import foto1 from '../../assets/foto1.png'
-
-import { Calendar } from '../Products/Components/Calendar/Calendar';
+import foto2 from '../../assets/foto2.png'
+import foto3 from '../../assets/foto3.png'
 
 
 interface Contact {
@@ -147,6 +147,7 @@ function Form(): JSX.Element {
 
 
         //ENDERECO
+        const [ disableAdress, setDisableAdress ] = useState(false)
         const [ street, setStreet ] = useState('');
         const [ state, setState ] = useState('');
         const [ number, setNumber ] = useState('');
@@ -172,7 +173,6 @@ function Form(): JSX.Element {
               });
         }
 
-
         //WHATSAPP
         const [ changeWhatsapp, setChangeWhatsapp ] = useState(false);
         const [ whatsApp, setWhatsapp ] = useState<string | undefined >('');
@@ -189,6 +189,7 @@ function Form(): JSX.Element {
 
 
         //FOTOS
+        //COVER PHOTO
         const [ backPhoto, setBackPhoto ] = useState<File | null>(null);
         const [ loading2, setLoading2] = useState(false)
 
@@ -209,7 +210,7 @@ function Form(): JSX.Element {
             return response.data;
         };
 
-        const handleSendImage = async () => {
+        const handleSendBackPhoto = async () => {
             setLoading2(true);
             if (backPhoto !== null) {
               await updateBackPhoto(backPhoto);
@@ -218,6 +219,65 @@ function Form(): JSX.Element {
             setLoading2(false);
         };
 
+        //HISTORYPHOTO
+        const [ historyPhoto, setHistoryPhoto ] = useState<File | null>(null);
+        const [ loading3, setLoading3] = useState(false)
+
+        const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+            const image = event.target.files;
+
+            setLoading3(true)
+            if (image && image.length > 0) {
+                setHistoryPhoto(image[0]);
+                setLoading3(false)
+            }
+        }
+
+        const updateHistoryPhoto = async (historyPhoto: File) => {
+            const formData = new FormData();
+            formData.append('image', historyPhoto);
+            const response = await axios.post('/getName', formData);
+            return response.data;
+        };
+
+        const handleSendHistoryPhoto = async () => {
+            setLoading3(true);
+            if (historyPhoto !== null) {
+              await updateHistoryPhoto(historyPhoto);
+              setHistoryPhoto(null);
+            }
+            setLoading3(false);
+        };
+
+        //OFFERPHOTO
+        const [ offerPhoto, setOfferPhoto ] = useState<File | null>(null);
+        const [ loading4, setLoading4] = useState(false)
+
+        const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+            const image = event.target.files;
+
+            setLoading4(true)
+            if (image && image.length > 0) {
+                setOfferPhoto(image[0]);
+                setLoading4(false)
+            }
+        }
+
+        const updateOfferPhoto = async (OfferPhoto: File) => {
+            const formData = new FormData();
+            formData.append('image', OfferPhoto);
+            const response = await axios.post('/getName', formData);
+            return response.data;
+        };
+
+        const handleSendOfferPhoto = async () => {
+            setLoading4(true);
+            if (offerPhoto !== null) {
+              await updateOfferPhoto(offerPhoto);
+              setOfferPhoto(null);
+            }
+            setLoading4(false);
+        };
 
         //CALENDAR
         const [segunda, setSegunda] = useState('');
@@ -412,6 +472,18 @@ function Form(): JSX.Element {
             }
         }
 
+        //CHAVE PIX
+        const [showChavePix, setShowChavePix] = useState(false)
+        const [chavePix, setChavePix] = useState('')
+
+        const handleChavePix = (event: any) => {
+            const updatedChavePix = event?.target?.value;
+
+            setChavePix(updatedChavePix)
+            console.log(chavePix)
+        }
+
+
     if (loading) {
         return (
             <Loading>
@@ -442,8 +514,8 @@ function Form(): JSX.Element {
                 <div className={'second-wrapper'}>
                     <h1>Você tem uma logo que gostaria de usar no site?</h1>
                     <div className={'button-wrapper'}>
-                        <button onClick={() => setSelectLogo(true)}>SIM</button>
-                        <button onClick={() => setSelectLogo(false)}>NÃO</button>
+                        <button onClick={() => setSelectLogo(true)}>USAR MINHA LOGO</button>
+                        <button onClick={() => setSelectLogo(false)}>NÃO USAR LOGO</button>
                     </div>
 
                     {selectLogo === false ? (
@@ -472,7 +544,6 @@ function Form(): JSX.Element {
                     <p>Sua logo vai subsituir o nome da loja no cabeçalho do site</p>
                 </div>
             </SecondSection>
-
 
             <ThirdSection>
                 <div className={'third-wrapper'}>
@@ -508,9 +579,18 @@ function Form(): JSX.Element {
 
             <FourthSection>
                 <div className='fourth-wrapper'>
-                    <h1>Vamos editar seu endereço</h1>
+                    <h1>Gostaria de adicionar endereço no seu site?</h1>
 
-                    <div className='adress-wrapper'>
+                    <div className={'button-wrapper'}>
+                        <button onClick={() => setDisableAdress(true)}>MOSTRAR ENDEREÇO</button>
+                        <button onClick={() => setDisableAdress(false)}>NÃO MOSTRAR ENDEREÇO</button>
+                    </div>
+
+                    {disableAdress === false ? (
+                        <></>
+                    ) : (
+                        <>
+                        <div className='adress-wrapper'>
                         <div>
                             <label> Seu CEP:</label>
                             <InputMask
@@ -518,40 +598,40 @@ function Form(): JSX.Element {
                                 onChange={(e) => getAddress(e)}
                             />
                         </div>
-                    </div>
+                        </div>
 
-                    <div>
-                        <label>Rua:</label>
-                        <input
-                            value={street}
-                            onChange={(e) => setStreet(e.target.value)}
-                        />
-                    </div>
+                        <div>
+                            <label>Rua:</label>
+                            <input
+                                value={street}
+                                onChange={(e) => setStreet(e.target.value)}
+                            />
+                        </div>
 
-                    <div>
-                        <label>Número:</label>
-                        <input
-                            value={number}
-                            onChange={(text) => setNumber(text.target.value)}
-                        />
-                    </div>
+                        <div>
+                            <label>Número:</label>
+                            <input
+                                value={number}
+                                onChange={(text) => setNumber(text.target.value)}
+                            />
+                        </div>
 
-                    <div>
-                        <label>Complemento:</label>
-                        <input
-                            value={complement}
-                            onChange={(text) => setComplement(text.target.value)}
-                            placeholder={'Opcional'}
-                        />
-                    </div>
+                        <div>
+                            <label>Complemento:</label>
+                            <input
+                                value={complement}
+                                onChange={(text) => setComplement(text.target.value)}
+                                placeholder={'Opcional'}
+                            />
+                        </div>
 
-                    <div>
-                        <label>Cidade:</label>
-                        <input
-                            value={city}
-                            onChange={(text) => setCity(text.target.value)}
-                        />
-                    </div>
+                        <div>
+                            <label>Cidade:</label>
+                            <input
+                                value={city}
+                                onChange={(text) => setCity(text.target.value)}
+                            />
+                        </div>
 
                     <div>
                         <label>Estado:</label>
@@ -568,6 +648,10 @@ function Form(): JSX.Element {
                             onChange={(e) => setNeighborhood(e.target.value)}
                         />
                     </div>
+                        </>
+                    )
+
+                    }
 
                 </div>
             </FourthSection>
@@ -577,6 +661,7 @@ function Form(): JSX.Element {
                     <h1>Gostaria de trocar o número de WhatsApp do site?</h1>
                     <div className={'button-wrapper'}>
                         <button onClick={() => setChangeWhatsapp(true)}>Trocar número de WhatsApp</button>
+                        <button onClick={() => setChangeWhatsapp(false)}>Manter número atual</button>
                     </div>
 
                     { changeWhatsapp === false ? (
@@ -601,7 +686,7 @@ function Form(): JSX.Element {
 
             <PicsSection>
                 <CoverPhotoSection>
-                    <div className='cover-photo-section-wrapper'>
+                    <div className='photo-section-wrapper'>
                         <h1>Foto de capa</h1>
                         <p>A foto que vem depois da descrição do seu negócio.</p>
 
@@ -614,46 +699,121 @@ function Form(): JSX.Element {
                         }
 
                         <input type="file" accept="image/*" onChange={handleBackPhoto} />
-                        <button onClick={handleSendImage}>Atualizar foto de capa</button>
+                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button>
                     </div>
                 </CoverPhotoSection>
+
+                {/* <HistoryPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto da sua história</h1>
+                        <p>A foto que vem depois so texto sobre sua história.</p>
+
+                        {loading3 == true ? 
+                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                        : 
+                        <>
+                            {backPhoto === null ? <img src={foto2}/> : <img src={URL.createObjectURL(historyPhoto)}/> }
+                        </>
+                        }
+
+                        <input type="file" accept="image/*" onChange={handleHistoryPhoto} />
+                        <button onClick={handleSendHistoryPhoto}>Atualizar foto de capa</button>
+                    </div>
+                </HistoryPhotoSection>
+
+                <ProductsPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto de capa</h1>
+                        <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                        {loading4 == true ? 
+                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                        : 
+                        <>
+                            {backPhoto === null ? <img src={foto3}/> : <img src={URL.createObjectURL(offerPhoto)}/> }
+                        </>
+                        }
+
+                        <input type="file" accept="image/*" onChange={handleOfferPhoto} />
+                        <button onClick={handleSendOfferPhoto}>Atualizar foto de capa</button>
+                    </div>
+                </ProductsPhotoSection> */}
 
             </PicsSection>
 
             <SixthSection>
                 <div className='sixth-wrapper'>
 
+                <h1>Horário de funcionamento</h1>
+
                 <div className='table'>
-                    <div className='header'>
+                    {/* <div className='table-header'>
                         <h2>Horário de funcionamento</h2>
-                    </div>
+                        <div className='input-title-wrapper'>
+                            <h2>24hrs</h2>
+                            <h2>Fechado</h2>
+                        </div>
+                    </div> */}
 
                     <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
-                                Segunda feira:
-                            </h1>
+                        <div className='working-hours-wrapper'>
+                            <h2>Horário de funcionamento</h2>
                         </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={segunda}
-                            onChange={handleSegunda}
-                            disabled={disabledSeg}
-                            style={ disabledSeg === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
+                        <div className='input-wrapper'>
+                            <div className='title-value'>
+                                <h2>24hrs</h2>
+                            </div>
+                            <div className='title-value'>
+                                <h2>Fechado</h2>
+                            </div>
                         </div>
                     </div>
 
                     <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Segunda feira:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={segunda}
+                                onChange={handleSegunda}
+                                disabled={disabledSeg}
+                                style={ disabledSeg === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
+                                <label>
+                                    <input type="checkbox" onInput={handlesegunda24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+
+                            <div className='value'>
+                                <label>
+                                    <input type="checkbox" onClick={handlesegundafec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Terça feira:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -672,9 +832,9 @@ function Form(): JSX.Element {
 
                     <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Quarta feira:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -693,9 +853,9 @@ function Form(): JSX.Element {
 
                     <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Quinta feira:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -714,9 +874,9 @@ function Form(): JSX.Element {
 
                     <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Sexta feira:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -735,9 +895,9 @@ function Form(): JSX.Element {
 
                     <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Sábado:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -756,9 +916,9 @@ function Form(): JSX.Element {
 
                     <div className='line'>
                         <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h1>
+                            <h3>
                                 Domingo:
-                            </h1>
+                            </h3>
                         </div>
                         <div className='value'>
                             <InputMask
@@ -781,83 +941,96 @@ function Form(): JSX.Element {
                         <h4>24hrs</h4>
                         <h4>Fechado</h4>
                     </div>
+
+
                     <div className='optionsWrapper'>
-                    <div className='checkboxWrapper' id='segunda'>
+
+
+                        <div className='checkboxWrapper' id='terca'>
+                            <label>
+                                <input type="checkbox" onClick={handleterc24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" onClick={handletercfec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
+                        <div className='checkboxWrapper' id='quarta'>
+                            <label>
+                                <input type="checkbox" onClick={handlequarta24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" onClick={handlequartafec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
+                        <div className='checkboxWrapper' id='quinta'>
+                            <label>
+                                <input type="checkbox" onClick={handlequinta24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                            <input type="checkbox" onClick={handlequintafec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
+                        <div className='checkboxWrapper' id='sexta'>
+                            <label>
+                                <input type="checkbox" onClick={handlesexta24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" onClick={handlesextafec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
+                        <div className='checkboxWrapper' id='sabado'>
                         <label>
-                            <input type="checkbox" onInput={handlesegunda24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handlesegundafec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='terca'>
-                        <label>
-                            <input type="checkbox" onClick={handleterc24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handletercfec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='quarta'>
-                        <label>
-                            <input type="checkbox" onClick={handlequarta24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handlequartafec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='quinta'>
-                        <label>
-                            <input type="checkbox" onClick={handlequinta24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                        <input type="checkbox" onClick={handlequintafec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='sexta'>
-                        <label>
-                            <input type="checkbox" onClick={handlesexta24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handlesextafec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='sabado'>
-                       <label>
-                            <input type="checkbox" onClick={handlesabado24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handlesabadofec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
-                    <div className='checkboxWrapper' id='domingo'>
-                        <label>
-                            <input type="checkbox" onClick={handledomingo24}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" onClick={handledomingofec}></input>
-                            <span className='checkbox'></span>
-                        </label>
-                    </div>
+                                <input type="checkbox" onClick={handlesabado24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" onClick={handlesabadofec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
+                        <div className='checkboxWrapper' id='domingo'>
+                            <label>
+                                <input type="checkbox" onClick={handledomingo24}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" onClick={handledomingofec}></input>
+                                <span className='checkbox'></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
 
                 </div>
             </SixthSection>
+
+            <SeventhSection>
+                <div className='seventh-wrapper'>
+                    <h1>Gostaria de adicionar sua chave PIX no site?</h1>
+                    <div className={'button-wrapper'}>
+                        <button onClick={() => setShowChavePix(true)}>Adicionar chave PIX</button>
+                        <button onClick={() => setShowChavePix(false)}>Não adicionar</button>
+                    </div>
+
+                    {showChavePix === false ? (
+                        <></>
+                    ) : (
+                        <>
+                            <input type="text" onChange={handleChavePix} />
+                        </>
+                    )}
+
+                </div>
+            </SeventhSection>
 
         </Container>
     )

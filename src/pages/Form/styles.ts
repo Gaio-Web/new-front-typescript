@@ -264,6 +264,7 @@ export const ThirdSection = styled.div`
   }
 `;
 
+//ENDEREÇO
 export const FourthSection = styled.div`
   width: 100%;
   height: fit-content;
@@ -376,7 +377,123 @@ export const PicsSection = styled.div`
 export const CoverPhotoSection = styled.div`
 
 `
+export const HistoryPhotoSection = styled.div`
 
+`
+export const ProductsPhotoSection = styled.div`
+
+`
+
+
+//HORÁRIO DE FUNCIONAMENTO
 export const SixthSection = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+
+  & .sixth-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 80%;
+    height: fit-content;
+
+    padding: 4rem 2rem;
+    gap: 1rem;
+
+    border: 2px solid rgba(136,136,136,.2);
+    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+    border-radius: .5rem;
+
+    @media screen and (max-width: 800px){
+      width: 100%;
+      padding: 10% 5%;
+    }
+
+    //Main title
+    & h1{
+      color: #034AA6;
+      text-decoration: underline;
+    }
+
+    //Whole table
+    & .table{
+      width: 80%;
+      background-color: #BDCFFF;
+
+      padding: 2rem 1rem ;
+
+      border-radius: 20px;
+      
+
+      //Table lines
+      & .line{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        & .working-hours-wrapper{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          width: 50%;
+
+          & h2{
+            font-size: 1.15rem;
+          }
+
+          & h3{
+            font-size: .9rem;
+          }
+        }
+
+        & .title-value{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+
+        & .value{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid black;
+          width: 100%;
+        }
+
+        & .input-wrapper{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+
+
+          width: 50%;
+
+          & h2{
+            font-size: 1.15rem;
+          }
+        }
+      }
+
+
+    }
+  }
+
+`;
+
+
+export const SeventhSection = styled.div`
 
 `
