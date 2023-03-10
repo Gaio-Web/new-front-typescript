@@ -3,7 +3,7 @@ import { CalendarStyles } from './styles'
 
 interface ICalendar {
     //horário funcionamento
-    segunda: string;
+    segunda: string | null;
     terca: string;
     quarta: string;
     quinta: string;
