@@ -24,6 +24,11 @@ import {Carousel} from './Components/Carousel/Carousel'
 import {useParams} from 'react-router-dom';
 
 interface Contact {
+    //Nome
+    name: string;
+    backPhoto: string;
+    backPhotoType: string;
+
     //text content
     description: string;
     products: string;
@@ -32,7 +37,6 @@ interface Contact {
 
     //Images
     logo: File;
-    backPhoto: string,
     historyPhoto: string,
     offerPhoto: string,
     gallery: string,
@@ -62,7 +66,6 @@ interface Contact {
     //client info
     businessName: string,
     phone: string,
-    name: string,
     id: string,
 }
 
@@ -286,6 +289,8 @@ function FindByPhone(): JSX.Element {
                 <div className={'fifth-wrapper'}>
                     <h1 className='sectionTitle'>Nossa história</h1>
                     <p>{data.history}</p>
+
+                    <img src={data.backPhoto}  alt={'Foto de fundo'}/>
                     <img className='pgImg' src={Photo2} alt={'foto-da-história'}/>
                     <button>CONVERSAR POR WHATSAPP</button>
                 </div>
