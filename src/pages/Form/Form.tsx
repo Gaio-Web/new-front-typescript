@@ -1,12 +1,11 @@
-
-import React, { useEffect, useState, createContext} from 'react'
-import {useParams} from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {json, useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
 import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection, SixthSection, SeventhSection, HistoryPhotoSection, ProductsPhotoSection} from "./styles";
 
-import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
+import {InputMask, InputMaskChangeEvent} from 'primereact/inputmask';
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 
@@ -16,6 +15,9 @@ import foto1 from '../../assets/foto1.png'
 import foto2 from '../../assets/foto2.png'
 import foto3 from '../../assets/foto3.png'
 
+import { Calendar } from '../Products/Components/Calendar/Calendar';
+
+import FileBase64 from 'react-file-base64';
 
 interface Contact {
     //text content
@@ -61,29 +63,40 @@ interface Contact {
 }
 
 
-export const Contexto = createContext(null)
+function Form(this: any): JSX.Element {
+    // const [image, setImage] = useState({title: '', image: ''});
+    const [image, setImage] = useState<any>('');
 
+    const {id} = useParams()
 
-function Form(): JSX.Element {
+    document.title = id!;
 
-    const { id } = useParams()
+    const onImageSubmit = () => {
+        const imageToDB = {
+            phone: '',
+            backPhotoType: image.type,
+            backPhoto: image.base64,
+        }
+    }
 
-    const uniqueName = id!.replace(/-/g, " ")
-    document.title = uniqueName
+    const getImage = (files: any) => {
+        setImage(files)
+    }
+
 
     const [data, setData] = useState<Contact | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        async function fetchDataForms(){
-            try{
+        async function fetchDataForms() {
+            try {
                 setLoading(true);
                 const response = await axios.get<Contact>(
                     `https://gaio-web-new-api-test.onrender.com/findByPhone/5584991097445`
                     //`http://localhost:3001/findByPhone/5584991097445`
                 );
                 setData(response.data);
-            } catch (err){
+            } catch (err) {
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -95,55 +108,73 @@ function Form(): JSX.Element {
     }, []);
 
 
-
     //Logo
-        const [selectLogo, setSelectLogo] = useState(false)
-        const [isLoading1, setLoading1] = useState(false);
-        const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
-        const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
+    const [selectLogo, setSelectLogo] = useState(false)
+    const [isLoading1, setLoading1] = useState(false);
+    const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
+    const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
 
-        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            const files = event.target.files;
-            setLoading1(true)
-            if (files && files.length > 0) {
-                setSelectedLogo(files[0]);
-                setLoading1(false)
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        setLoading1(true)
+        if (files && files.length > 0) {
+            setSelectedLogo(files[0]);
+            setLoading1(false)
+        }
+    };
+
+    const uploadBackPhoto = async () => {
+        console.log('aushauhs')
+        const body = JSON.stringify(
+            {
+                phone: id,
+                backPhotoType: image.type,
+                backPhoto: image.base64,
             }
-          };
+        )
+        // const response = await axios.post('http://localhost:3001/upload', body);
+        const response = await fetch("http://localhost:3001/upload", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: body
+        })
+        // const response = await axios.post('https://gaio-web-new-api-test.onrender.com/upload', body);
+        return response.body;
+    }
 
-          //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
-        const updateLogo = async (logo: File) => {
-            const formData = new FormData();
-            formData.append('image', logo);
-            const response = await axios.post('http://localhost:3000/newUpdateLogo', formData);
-            return response.data;
-        };
+    //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
+    const updateLogo = async (logo: File) => {
+        const formData = new FormData();
+        formData.append('image', logo);
+        const response = await axios.post('https://gaio-web-new-api-test.onrender.com/newUpdateLogo', formData);
+        return response.data;
+    };
 
-        // NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
-          const handleClick = async () => {
-            const data = await updateLogo(selectedLogo!);
-            setUploadedLogoUrl(data.logoUrl);
-          };
+    // NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
+    const handleClick = async () => {
+        const data = await updateLogo(selectedLogo!);
+        setUploadedLogoUrl(data.logoUrl);
+    };
 
 
-        //CORES
-        const [colorized, setColorized] = useState(false);
-        const [color, setColor] = useState('rgb(5, 55, 124)');
+    //CORES
+    const [colorized, setColorized] = useState(false);
+    const [color, setColor] = useState('rgb(5, 55, 124)');
 
-        const [options, setoptions] = useState([
-            {color: "#EB596E", title: 'Carmine'},
-            {color: "#F4972B", title: 'Laranja'},
-            {color: "#FD3997", title: 'Rosa'},
-            {color: "#5E8B7E", title: 'Verde'},
-            {color: "#00ADB5", title: 'Azul'},
-            {color: "#6868AC", title: 'Lilás'},
-            {color: "#6B0BE6", title: "Roxo"},
-            {color: "#000", title: "Preto"},
-            {color: "#B4A5A5", title: 'Areia'},
-            {color: "#D80C0C", title: 'Vermelho'},
-            {color: "#25D8A7", title: "Turquesa"},
-            {color: "#6D6D6D", title: "Cinza"}
-        ])
+    const [options, setoptions] = useState([
+        {color: "#EB596E", title: 'Carmine'},
+        {color: "#F4972B", title: 'Laranja'},
+        {color: "#FD3997", title: 'Rosa'},
+        {color: "#5E8B7E", title: 'Verde'},
+        {color: "#00ADB5", title: 'Azul'},
+        {color: "#6868AC", title: 'Lilás'},
+        {color: "#6B0BE6", title: "Roxo"},
+        {color: "#00000", title: "Preto"},
+        {color: "#B4A5A5", title: 'Areia'},
+        {color: "#D80C0C", title: 'Vermelho'},
+        {color: "#25D8A7", title: "Turquesa"},
+        {color: "#6D6D6D", title: "Cinza"}
+    ])
 
 
         //ENDERECO
@@ -155,37 +186,36 @@ function Form(): JSX.Element {
         const [neighborhood, setNeighborhood] = useState('');
         const [city, setCity] = useState('');
 
-        const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
-            const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
-        
-            if (cepvalid?.length !== 8) {
-              return;
-            }  
-        
-            await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
-              .then((res) => res.json())
-              .then((data) => {
+    const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
+        const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
+
+        if (cepvalid?.length !== 8) {
+            return;
+        }
+
+        await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
+            .then((res) => res.json())
+            .then((data) => {
                 setStreet(`${data.logradouro}`);
                 setNeighborhood(`${data.bairro}`);
                 setState(data.uf)
                 setCity(data.localidade)
                 console.log(data)
-              });
-        }
+            });
+    }
 
         //WHATSAPP
         const [ changeWhatsapp, setChangeWhatsapp ] = useState(false);
         const [ whatsApp, setWhatsapp ] = useState<string | undefined >('');
 
-        const getWhatsApp = (event: InputMaskChangeEvent) => {
-            const whatsAppValid = event?.target?.value;
+    const getWhatsApp = (event: InputMaskChangeEvent) => {
+        const whatsAppValid = event?.target?.value;
 
-            if (whatsAppValid?.length !== 11){
-                setWhatsapp(`${whatsAppValid}`)
-                return;
-            }
+        if (whatsAppValid?.length !== 11) {
+            setWhatsapp(`${whatsAppValid}`)
+            return;
         }
-
+    }
 
 
         //FOTOS
@@ -193,24 +223,27 @@ function Form(): JSX.Element {
         const [ backPhoto, setBackPhoto ] = useState<File | null>(null);
         const [ loading2, setLoading2] = useState(false)
 
-        const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-            const image = event.target.files;
+    const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const image = event.target.files;
+        console.log('handle')
 
-            setLoading2(true)
-            if (image && image.length > 0) {
-                setBackPhoto(image[0]);
-                setLoading1(false)
-            }
+        setLoading2(true)
+        if (image && image.length > 0) {
+            setBackPhoto(image[0]);
+            setLoading1(false)
         }
+    }
 
-        const updateBackPhoto = async (backPhoto: File) => {
-            const formData = new FormData();
-            formData.append('image', backPhoto);
-            const response = await axios.post('/getName', formData);
-            return response.data;
-        };
+    const updateBackPhoto = async (backPhoto: File) => {
+        console.log('update')
+        const formData = new FormData();
+        formData.append('image', backPhoto);
+        const response = await axios.post('http://localhost:3001/newUpdateLogo', formData);
+        return response.data;
+    };
 
         const handleSendBackPhoto = async () => {
+            console.log('send')
             setLoading2(true);
             if (backPhoto !== null) {
               await updateBackPhoto(backPhoto);
@@ -279,198 +312,198 @@ function Form(): JSX.Element {
             setLoading4(false);
         };
 
-        //CALENDAR
-        const [segunda, setSegunda] = useState('');
-        const [terca, setTerca] = useState('');
-        const [quarta, setQuarta] = useState('');
-        const [quinta, setQuinta] = useState('');
-        const [sexta, setSexta] = useState('');
-        const [sabado, setSabado] = useState('');
-        const [domingo, setDomingo] = useState('');
+    //CALENDAR
+    const [segunda, setSegunda] = useState('');
+    const [terca, setTerca] = useState('');
+    const [quarta, setQuarta] = useState('');
+    const [quinta, setQuinta] = useState('');
+    const [sexta, setSexta] = useState('');
+    const [sabado, setSabado] = useState('');
+    const [domingo, setDomingo] = useState('');
 
-        const [disabledSeg, setDisabledSeg] = useState(false);
-        const [disabledTer, setDisabledTer] = useState(false);
-        const [disabledQuar, setDisabledQuar] = useState(false);
-        const [disabledQuin, setDisabledQuin] = useState(false);
-        const [disabledSex, setDisabledSex] = useState(false);
-        const [disabledSab, setDisabledSab] = useState(false);
-        const [disabledDom, setDisabledDom] = useState(false);
+    const [disabledSeg, setDisabledSeg] = useState(false);
+    const [disabledTer, setDisabledTer] = useState(false);
+    const [disabledQuar, setDisabledQuar] = useState(false);
+    const [disabledQuin, setDisabledQuin] = useState(false);
+    const [disabledSex, setDisabledSex] = useState(false);
+    const [disabledSab, setDisabledSab] = useState(false);
+    const [disabledDom, setDisabledDom] = useState(false);
 
 
-        //SEGUNDA
-        function handleSegunda(event: any){
-            setSegunda(event.target.value);
-        }
+    //SEGUNDA
+    function handleSegunda(event: any) {
+        setSegunda(event.target.value);
+    }
 
-        function handlesegundafec(){
-            if(segunda === 'Fechado'){
-                setSegunda('')
-                setDisabledSeg(false)
-            }else{
-                setSegunda('Fechado');
-                setDisabledSeg(true)
-            }
+    function handlesegundafec() {
+        if (segunda === 'Fechado') {
+            setSegunda('')
+            setDisabledSeg(false)
+        } else {
+            setSegunda('Fechado');
+            setDisabledSeg(true)
         }
-    
-        function handlesegunda24(){
-            if(segunda === '24 horas'){
-                setSegunda('')
-                setDisabledSeg(false)
-            }else{
-                setSegunda('24 horas');
-                setDisabledSeg(true)
-            }
-        }
+    }
 
-        //TERCA
-        function handleTerca(event: any){
-            setTerca(event.target.value);
+    function handlesegunda24() {
+        if (segunda === '24 horas') {
+            setSegunda('')
+            setDisabledSeg(false)
+        } else {
+            setSegunda('24 horas');
+            setDisabledSeg(true)
         }
-    
-        function handletercfec(){
-            if(terca === 'Fechado'){
-                setTerca('')
-                setDisabledTer(false)
-            }else{
-                setTerca('Fechado');
-                setDisabledTer(true)
-            }
-        }
-    
-        function handleterc24(){
-            if(terca === '24 horas'){
-                setTerca('')
-                setDisabledTer(false)
-            }else{
-                setTerca('24 horas');
-                setDisabledTer(true)
-            }
-        }
-    
-        //QUARTA
-        function handleQuarta(event: any){
-            setQuarta(event.target.value);
-        }
+    }
 
-        function handlequartafec(){
-            if(quarta === 'Fechado'){
-                setQuarta('')
-                setDisabledQuar(false)
-            }else{
-                setQuarta('Fechado');
-                setDisabledQuar(true)
-            }
-        }
-    
-        function handlequarta24(){
-            if(quarta === '24 horas'){
-                setQuarta('')
-                setDisabledQuar(false)
-            }else{
-                setQuarta('24 horas');
-                setDisabledQuar(true)
-            }
-        }
-    
-        //QUINTA
-        function handleQuinta(event: any){
-            setQuinta(event.target.value);
-        }
+    //TERCA
+    function handleTerca(event: any) {
+        setTerca(event.target.value);
+    }
 
-        function handlequintafec(){
-            if(quinta === 'Fechado'){
-                setQuinta('')
-                setDisabledQuin(false)
-            }else{
-                setQuinta('Fechado');
-                setDisabledQuin(true)
-            }
+    function handletercfec() {
+        if (terca === 'Fechado') {
+            setTerca('')
+            setDisabledTer(false)
+        } else {
+            setTerca('Fechado');
+            setDisabledTer(true)
         }
-    
-        function handlequinta24(){
-            if(quinta === '24 horas'){
-                setQuinta('')
-                setDisabledQuin(false)
-            }else{
-                setQuinta('24 horas');
-                setDisabledQuin(true)
-            }
-        }
-    
-        //SEXTA
-        function handleSexta(event: any){
-            setQuarta(event.target.value);
-        }
+    }
 
-        function handlesextafec(){
-            if(sexta === 'Fechado'){
-                setSexta('')
-                setDisabledSex(false)
-            }else{
-                setSexta('Fechado');
-                setDisabledSex(true)
-            }
+    function handleterc24() {
+        if (terca === '24 horas') {
+            setTerca('')
+            setDisabledTer(false)
+        } else {
+            setTerca('24 horas');
+            setDisabledTer(true)
         }
-    
-        function handlesexta24(){
-            if(sexta === '24 horas'){
-                setSexta('')
-                setDisabledSex(false)
-            }else{
-                setSexta('24 horas');
-                setDisabledSex(true)
-            }
-        }
-    
-        //SABADO
-        function handleSabado(event: any){
-            setQuarta(event.target.value);
-        }
+    }
 
-        function handlesabadofec(){
-            if(sabado === 'Fechado'){
-                setSabado('')
-                setDisabledSab(false)
-            }else{
-                setSabado('Fechado');
-                setDisabledSab(true)
-            }
-        }
-    
-        function handlesabado24(){
-            if(sabado === '24 horas'){
-                setSabado('')
-                setDisabledSab(false)
-            }else{
-                setSabado('24 horas');
-                setDisabledSab(true)
-            }
-        }
-    
-        //DOMINGO
-        function handleDomingo(event: any){
-            setQuarta(event.target.value);
-        }
+    //QUARTA
+    function handleQuarta(event: any) {
+        setQuarta(event.target.value);
+    }
 
-        function handledomingofec(){
-            if(domingo === 'Fechado'){
-                setDomingo('')
-                setDisabledDom(false)
-            }else{
-                setDomingo('Fechado');
-                setDisabledDom(true)
-            }
+    function handlequartafec() {
+        if (quarta === 'Fechado') {
+            setQuarta('')
+            setDisabledQuar(false)
+        } else {
+            setQuarta('Fechado');
+            setDisabledQuar(true)
         }
-    
-        function handledomingo24(){
-            if(domingo === '24 horas'){
-                setDomingo('')
-                setDisabledDom(false)
-            }else{
-                setDomingo('24 horas');
-                setDisabledDom(true)
-            }
+    }
+
+    function handlequarta24() {
+        if (quarta === '24 horas') {
+            setQuarta('')
+            setDisabledQuar(false)
+        } else {
+            setQuarta('24 horas');
+            setDisabledQuar(true)
         }
+    }
+
+    //QUINTA
+    function handleQuinta(event: any) {
+        setQuinta(event.target.value);
+    }
+
+    function handlequintafec() {
+        if (quinta === 'Fechado') {
+            setQuinta('')
+            setDisabledQuin(false)
+        } else {
+            setQuinta('Fechado');
+            setDisabledQuin(true)
+        }
+    }
+
+    function handlequinta24() {
+        if (quinta === '24 horas') {
+            setQuinta('')
+            setDisabledQuin(false)
+        } else {
+            setQuinta('24 horas');
+            setDisabledQuin(true)
+        }
+    }
+
+    //SEXTA
+    function handleSexta(event: any) {
+        setQuarta(event.target.value);
+    }
+
+    function handlesextafec() {
+        if (sexta === 'Fechado') {
+            setSexta('')
+            setDisabledSex(false)
+        } else {
+            setSexta('Fechado');
+            setDisabledSex(true)
+        }
+    }
+
+    function handlesexta24() {
+        if (sexta === '24 horas') {
+            setSexta('')
+            setDisabledSex(false)
+        } else {
+            setSexta('24 horas');
+            setDisabledSex(true)
+        }
+    }
+
+    //SABADO
+    function handleSabado(event: any) {
+        setQuarta(event.target.value);
+    }
+
+    function handlesabadofec() {
+        if (sabado === 'Fechado') {
+            setSabado('')
+            setDisabledSab(false)
+        } else {
+            setSabado('Fechado');
+            setDisabledSab(true)
+        }
+    }
+
+    function handlesabado24() {
+        if (sabado === '24 horas') {
+            setSabado('')
+            setDisabledSab(false)
+        } else {
+            setSabado('24 horas');
+            setDisabledSab(true)
+        }
+    }
+
+    //DOMINGO
+    function handleDomingo(event: any) {
+        setQuarta(event.target.value);
+    }
+
+    function handledomingofec() {
+        if (domingo === 'Fechado') {
+            setDomingo('')
+            setDisabledDom(false)
+        } else {
+            setDomingo('Fechado');
+            setDisabledDom(true)
+        }
+    }
+
+    function handledomingo24() {
+        if (domingo === '24 horas') {
+            setDomingo('')
+            setDisabledDom(false)
+        } else {
+            setDomingo('24 horas');
+            setDisabledDom(true)
+        }
+    }
 
         //CHAVE PIX
         const [showChavePix, setShowChavePix] = useState(false)
@@ -523,20 +556,20 @@ function Form(): JSX.Element {
                     ) : (
                         <>
                             <div>
-                                <input type="file" accept="image/*" onChange={handleChange} />
-                                {isLoading1 == true ? 
-                                <ReactLoading type={'spin'} color={'#05377c'} height={200} width={100}/>
-                                :
-                                <>
-                                {selectedLogo && (
-                                    <img
-                                        src={URL.createObjectURL(selectedLogo)}
-                                        alt="logo"
-                                        key={Date.now()}
-                                    />
-                                )}
-                                </>
-                            }
+                                <input type="file" accept="image/*" onChange={handleChange}/>
+                                {isLoading1 == true ?
+                                    <ReactLoading type={'spin'} color={'#05377c'} height={200} width={100}/>
+                                    :
+                                    <>
+                                        {selectedLogo && (
+                                            <img
+                                                src={URL.createObjectURL(selectedLogo)}
+                                                alt="logo"
+                                                key={Date.now()}
+                                            />
+                                        )}
+                                    </>
+                                }
                             </div>
                         </>
                     )}
@@ -555,20 +588,21 @@ function Form(): JSX.Element {
 
                     <div className='colorized'>
                         {colorized === true ? (
-                            <div className='color-picker' style={{ backgroundColor: color }}>
-                            <h1>Escolha a cor dominante do seu site</h1>
-                        
-                            <div className='options'>
-                                {options.map(opt => (
-                                <div className={color === opt.color ? 'non-selected' : 'selected'} onClick={() => setColor(opt.color)}>
-                                    <div className='color-option' style={{ backgroundColor: opt.color }}/>
-                                    <h1>{opt.title}</h1>
+                            <div className='color-picker' style={{backgroundColor: color}}>
+                                <h1>Escolha a cor dominante do seu site</h1>
+
+                                <div className='options'>
+                                    {options.map(opt => (
+                                        <div className={color === opt.color ? 'non-selected' : 'selected'}
+                                             onClick={() => setColor(opt.color)}>
+                                            <div className='color-option' style={{backgroundColor: opt.color}}/>
+                                            <h1>{opt.title}</h1>
+                                        </div>
+                                    ))}
                                 </div>
-                                ))}
+
+                                <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
                             </div>
-            
-                            <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
-                    </div>
                         ) : (
                             <></>
                         )}
@@ -664,7 +698,7 @@ function Form(): JSX.Element {
                         <button onClick={() => setChangeWhatsapp(false)}>Manter número atual</button>
                     </div>
 
-                    { changeWhatsapp === false ? (
+                    {changeWhatsapp === false ? (
                         <></>
                     ) : (
                         <>
@@ -690,18 +724,60 @@ function Form(): JSX.Element {
                         <h1>Foto de capa</h1>
                         <p>A foto que vem depois da descrição do seu negócio.</p>
 
-                        {loading2 == true ? 
-                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        : 
-                        <>
-                            {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/> }
-                        </>
-                        }
+                        {/*{loading2 ?*/}
+                        {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
+                        {/*    :*/}
+                        {/*    <>*/}
+                        {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
+                        {/*    </>*/}
+                        {/*}*/}
 
                         <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button>
+                        
+                        <FileBase64
+                            multiple={false}
+                            onDone={getImage}
+                        />
+                        <button type={'submit'} onClick={uploadBackPhoto}>enviar</button>
                     </div>
                 </CoverPhotoSection>
+
+                {/* <HistoryPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto da sua história</h1>
+                        <p>A foto que vem depois so texto sobre sua história.</p>
+
+                        {loading3 == true ? 
+                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                        : 
+                        <>
+                            {backPhoto === null ? <img src={foto2}/> : <img src={URL.createObjectURL(historyPhoto)}/> }
+                        </>
+                        }
+
+                        <input type="file" accept="image/*" onChange={handleHistoryPhoto} />
+                        <button onClick={handleSendHistoryPhoto}>Atualizar foto de capa</button>
+                    </div>
+                </HistoryPhotoSection>
+
+                <ProductsPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto de capa</h1>
+                        <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                        {loading4 == true ? 
+                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
+                        : 
+                        <>
+                            {backPhoto === null ? <img src={foto3}/> : <img src={URL.createObjectURL(offerPhoto)}/> }
+                        </>
+                        }
+
+                        <input type="file" accept="image/*" onChange={handleOfferPhoto} />
+                        <button onClick={handleSendOfferPhoto}>Atualizar foto de capa</button>
+                    </div>
+                </ProductsPhotoSection> */}
 
                 {/* <HistoryPhotoSection>
                     <div className='photo-section-wrapper'>
@@ -815,18 +891,77 @@ function Form(): JSX.Element {
                                 Terça feira:
                             </h3>
                         </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={terca}
-                            onChange={handleTerca}
-                            disabled={disabledTer}
-                            style={ disabledTer === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
+                        <div className='optionsWrapper'>
+                            <div className='checkboxWrapper' id='segunda'>
+                                <label>
+                                    <input type="checkbox" onInput={handlesegunda24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handlesegundafec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='terca'>
+                                <label>
+                                    <input type="checkbox" onClick={handleterc24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handletercfec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='quarta'>
+                                <label>
+                                    <input type="checkbox" onClick={handlequarta24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handlequartafec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='quinta'>
+                                <label>
+                                    <input type="checkbox" onClick={handlequinta24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handlequintafec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='sexta'>
+                                <label>
+                                    <input type="checkbox" onClick={handlesexta24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handlesextafec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='sabado'>
+                                <label>
+                                    <input type="checkbox" onClick={handlesabado24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handlesabadofec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
+                            <div className='checkboxWrapper' id='domingo'>
+                                <label>
+                                    <input type="checkbox" onClick={handledomingo24}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" onClick={handledomingofec}></input>
+                                    <span className='checkbox'></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
