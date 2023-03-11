@@ -731,9 +731,8 @@ function Form(this: any): JSX.Element {
                         {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
                         {/*    </>*/}
                         {/*}*/}
-
-                        <input type="file" accept="image/*" onChange={handleBackPhoto} />
-                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button>
+                        {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
+                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
                         
                         <FileBase64
                             multiple={false}
@@ -742,42 +741,6 @@ function Form(this: any): JSX.Element {
                         <button type={'submit'} onClick={uploadBackPhoto}>enviar</button>
                     </div>
                 </CoverPhotoSection>
-
-                {/* <HistoryPhotoSection>
-                    <div className='photo-section-wrapper'>
-                        <h1>Foto da sua história</h1>
-                        <p>A foto que vem depois so texto sobre sua história.</p>
-
-                        {loading3 == true ? 
-                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        : 
-                        <>
-                            {backPhoto === null ? <img src={foto2}/> : <img src={URL.createObjectURL(historyPhoto)}/> }
-                        </>
-                        }
-
-                        <input type="file" accept="image/*" onChange={handleHistoryPhoto} />
-                        <button onClick={handleSendHistoryPhoto}>Atualizar foto de capa</button>
-                    </div>
-                </HistoryPhotoSection>
-
-                <ProductsPhotoSection>
-                    <div className='photo-section-wrapper'>
-                        <h1>Foto de capa</h1>
-                        <p>A foto que vem depois da descrição do seu negócio.</p>
-
-                        {loading4 == true ? 
-                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        : 
-                        <>
-                            {backPhoto === null ? <img src={foto3}/> : <img src={URL.createObjectURL(offerPhoto)}/> }
-                        </>
-                        }
-
-                        <input type="file" accept="image/*" onChange={handleOfferPhoto} />
-                        <button onClick={handleSendOfferPhoto}>Atualizar foto de capa</button>
-                    </div>
-                </ProductsPhotoSection> */}
 
                 {/* <HistoryPhotoSection>
                     <div className='photo-section-wrapper'>
