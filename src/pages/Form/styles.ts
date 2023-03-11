@@ -262,23 +262,26 @@ export const ThirdSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(5, 55, 124);
 
   & .third-wrapper {
-    width: 70%;
+    width: 80%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    //padding: 4rem 2rem;
+
+    margin: .5rem 0;
     padding: 0;
     gap: 1rem;
+    background-color: rgb(5, 55, 124);
 
-    @media screen and (max-width: 800px) {
-      width: 100%;
-      max-width: 100vw;
-      //padding: 10% 5%;
-      padding: 0;
+    border: 2px solid rgba(136,136,136,.2);
+    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+    border-radius: .5rem;
+
+    @media screen and (max-width: 800px){
+      width: 85%;
+      padding: 10% 5%;
     }
 
     & h1 {
@@ -289,14 +292,10 @@ export const ThirdSection = styled.div`
       font-family: 'Montserrat', sans-serif;
       padding: 2rem;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        padding: .5rem
       }
     }
-
 
     .color-picker{
         display: flex;
@@ -304,7 +303,16 @@ export const ThirdSection = styled.div`
         justify-content: center;
         align-items: center;
         background: #034AA6;
-        padding: 1rem; 
+        padding: 1rem 0; 
+
+        border: 2px solid rgba(136,136,136,.2);
+        box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+        border-radius: .5rem;
+
+        @media screen and (max-width: 800px){
+          width: 100%;
+        }
+
         h1{
             font-weight: 700;
             font-size: 20px;
@@ -317,12 +325,13 @@ export const ThirdSection = styled.div`
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 359px;
+            width: 95%;
             height: 46vh;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: #FFFFFF;
             border-radius: 10px;
             flex-wrap: wrap;
+
             .selected{
                 display: flex;
                 width: 69px;
