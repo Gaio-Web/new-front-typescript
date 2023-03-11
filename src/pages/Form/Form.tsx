@@ -7,6 +7,8 @@ import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSec
 
 import {InputMask, InputMaskChangeEvent} from 'primereact/inputmask';
 
+import { FiUpload, FiSend } from "react-icons/fi";
+
 import LogoGaioMain from '../../assets/logoGaio.png'
 
 import ReactLoading from 'react-loading'
@@ -555,8 +557,7 @@ function Form(this: any): JSX.Element {
                         <></>
                     ) : (
                         <>
-                            <div>
-                                <input type="file" accept="image/*" onChange={handleChange}/>
+                            <div className='image-update-wrapper'>
                                 {isLoading1 == true ?
                                     <ReactLoading type={'spin'} color={'#05377c'} height={200} width={100}/>
                                     :
@@ -570,6 +571,11 @@ function Form(this: any): JSX.Element {
                                         )}
                                     </>
                                 }
+                                <label className='custom-file-upload'>
+                                    <FiUpload color={'#fff'} size={24}/>
+                                    <input type="file" accept="image/*" onChange={handleChange}/>
+                                    Fazer upload da logo
+                                </label>
                             </div>
                         </>
                     )}

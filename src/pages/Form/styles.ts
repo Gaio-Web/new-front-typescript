@@ -128,7 +128,7 @@ export const SecondSection = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 1rem;
+    gap: 2.5rem;
 
     @media screen and (max-width: 800px){
       width: 100%;
@@ -165,23 +165,74 @@ export const SecondSection = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 1.5rem;
       
       & button {
-        height: 3rem;
-        width: 10rem;
+        height: fit-content;
+        width: 20vw;
+        padding: 1rem 0;
         border-radius: 8px;
         border: none;
-        background-color: rgb(5, 55, 124);
+        background-color: #034AA3;
         cursor: pointer;
+
+        text-transform: uppercase;
         
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: bold;
         color: white;
         letter-spacing: 1px;
       }
     }
-    
+
+    & .image-update-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      & img{
+      max-width: 15vw;
+      height: auto;
+      border: 1px solid gray;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+    }
+
+      /* & input{
+        background-color: rgb(5, 55, 124);
+        padding: 1rem 2rem;
+        color: white;
+      } */
+
+      .custom-file-upload {
+            background: #034AA3;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            border: 0;
+            padding: .5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 40px;
+            width: 85%;
+            max-width: 350px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            svg{
+                margin-right: 1rem;
+            }
+            input[type="file"]{
+                display: none;
+            }
+        }
+
+    }
+
   }
 `;
 
