@@ -343,9 +343,18 @@ export const FourthSection = styled.div`
     padding: 3rem 2rem;
     gap: 2.5rem;
 
+    border: 2px solid rgba(136,136,136,.2);
+    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+    border-radius: .5rem;
+    margin: 2rem 0;
+
     @media screen and (max-width: 800px){
-      width: 100%;
+      width: 85%;
       padding: 10% 5%;
+
+      border: 2px solid rgba(136,136,136,.2);
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+      border-radius: .5rem;
     }
 
     & h1 {
