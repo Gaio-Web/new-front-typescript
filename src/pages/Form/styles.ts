@@ -340,8 +340,8 @@ export const FourthSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 2rem;
-    gap: 1rem;
+    padding: 3rem 2rem;
+    gap: 2.5rem;
 
     @media screen and (max-width: 800px){
       width: 100%;
@@ -350,7 +350,7 @@ export const FourthSection = styled.div`
 
     & h1 {
       margin: 0;
-      color: white;
+      color: rgb(5, 55, 124);
       font-size: 28px;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
@@ -362,18 +362,137 @@ export const FourthSection = styled.div`
         font-size: 18px
       }
     }
-    
-    & p {
-      margin: 0;
-      font-weight: 500;
-      font-size: 17px;
-      color: #F0F0F0;
-      font-family: 'Montserrat', sans-serif;
 
-      text-align: center;
+    & .button-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      @media screen and (max-width: 800px){
+          flex-direction: column;
+        }
+      
+      & button {
+        height: fit-content;
+        width: 25vw;
+        padding: 1rem 0;
+        border-radius: 8px;
+        border: none;
+        background-color: #034AA3;
+        cursor: pointer;
+
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+
+        @media screen and (max-width: 800px){
+          width: 75vw;
+        }
+      }
     }
-    
+
+
+    & .adress-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+
+      & .adress-input-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+
+        @media screen and (max-width: 800px){
+          width: 75vw;
+        }
+
+        & label{
+          font-size: 1rem;
+          font-weight: bold;
+          color: black;
+          padding: 0 0 .5rem .5rem;
+          width: 100%;
+          text-align: start;
+        }
+
+        & input{
+          height: 3rem;
+          width: 95%;
+          border: 1px solid black;
+          border-radius: 10px;
+          padding: 0 1rem;
+          color: black;
+          ::placeholder{
+            font-size: 1rem;
+          }
+        }
+      }
+
+    }
+
+    & .smaller-input-wraper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 1rem;
+      width: 50vw;
+      height: 100%;
+      margin: 1.5rem 0;
+
+      @media screen and (max-width: 800px){
+          width: 75vw;
+          gap: 1.5rem;
+        }
+
+      & div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+
+      }
+
+      & label{
+          font-size: 1rem;
+          font-weight: bold;
+          color: black;
+          padding: 0 0 .5rem .5rem;
+          width: 100%;
+          text-align: start;
+        }
+
+        & input{
+          height: 3rem;
+          width: 90%;
+          border: 1px solid black;
+          border-radius: 10px;
+          padding: 0 1rem;
+          color: black;
+          ::placeholder{
+            font-size: 1rem;
+          }
+
+          @media screen and (max-width: 800px){
+            width: 85%;
+          }
+        }
+      }
+
+
   }
+    
 `;
 
 export const FifthSection = styled.div`
@@ -445,9 +564,8 @@ export const ProductsPhotoSection = styled.div`
 
 `
 
-
 //HORÁRIO DE FUNCIONAMENTO
-//Fiz um pouco do css Inline pra evitar ficar criando novas classes
+//Fiz um pouco do css Inline pra evitar ficar criando novas classes.
 export const SixthSection = styled.div`
   width: 100%;
   height: fit-content;

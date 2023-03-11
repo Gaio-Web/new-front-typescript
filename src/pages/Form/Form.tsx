@@ -634,64 +634,72 @@ function Form(this: any): JSX.Element {
                         <></>
                     ) : (
                         <>
-                        <div className='adress-wrapper'>
-                        <div>
-                            <label> Seu CEP:</label>
-                            <InputMask
-                                mask={'99999-999'}
-                                onChange={(e) => getAddress(e)}
-                            />
-                        </div>
-                        </div>
+                            <div className='main-adress-wrapper'>
+                            <div className='adress-wrapper'>
+                                <div className='adress-input-wrapper'>
+                                    <label> Seu CEP:</label>
+                                    <InputMask
+                                        mask={'99999-999'}
+                                        onChange={(e) => getAddress(e)}
+                                    />
+                                </div>
 
-                        <div>
-                            <label>Rua:</label>
-                            <input
-                                value={street}
-                                onChange={(e) => setStreet(e.target.value)}
-                            />
-                        </div>
+                                <div className='adress-input-wrapper'>
+                                    <label>Rua:</label>
+                                    <input
+                                        value={street}
+                                        onChange={(e) => setStreet(e.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                        <div>
-                            <label>Número:</label>
-                            <input
-                                value={number}
-                                onChange={(text) => setNumber(text.target.value)}
-                            />
-                        </div>
+                            <div className='smaller-input-wraper'>
+                                <div>
+                                    <label>Número:</label>
+                                    <input
+                                        value={number}
+                                        onChange={(text) => setNumber(text.target.value)}
+                                            className='smaller-input'
+                                    />
+                                </div>
 
-                        <div>
-                            <label>Complemento:</label>
-                            <input
-                                value={complement}
-                                onChange={(text) => setComplement(text.target.value)}
-                                placeholder={'Opcional'}
-                            />
-                        </div>
+                                <div>
+                                    <label>Complemento:</label>
+                                    <input
+                                        value={complement}
+                                        onChange={(text) => setComplement(text.target.value)}
+                                        placeholder={'Opcional'}
+                                            className='smaller-input'
+                                    />
+                                </div>
+                            </div>
 
-                        <div>
-                            <label>Cidade:</label>
-                            <input
-                                value={city}
-                                onChange={(text) => setCity(text.target.value)}
-                            />
-                        </div>
+                            <div className='adress-wrapper'>
+                                <div className='adress-input-wrapper'>
+                                    <label>Cidade:</label>
+                                    <input
+                                        value={city}
+                                        onChange={(text) => setCity(text.target.value)}
+                                    />
+                                </div>
 
-                    <div>
-                        <label>Estado:</label>
-                        <input
-                            value={state}
-                            onChange={(text) => setState(text.target.value)}
-                        />
-                    </div>
+                                <div className='adress-input-wrapper'>
+                                    <label>Estado:</label>
+                                    <input
+                                        value={state}
+                                        onChange={(text) => setState(text.target.value)}
+                                    />
+                                </div>
 
-                    <div>
-                        <label>Bairro:</label>
-                        <input
-                            value={neighborhood}
-                            onChange={(e) => setNeighborhood(e.target.value)}
-                        />
-                    </div>
+                                <div className='adress-input-wrapper'>
+                                    <label>Bairro:</label>
+                                    <input
+                                        value={neighborhood}
+                                        onChange={(e) => setNeighborhood(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            </div>
                         </>
                     )
 
