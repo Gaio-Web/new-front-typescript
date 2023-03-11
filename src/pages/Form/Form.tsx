@@ -66,7 +66,6 @@ interface Contact {
 
 
 function Form(this: any): JSX.Element {
-    // const [image, setImage] = useState({title: '', image: ''});
     const [image, setImage] = useState<any>('');
 
     const {id} = useParams()
@@ -575,7 +574,7 @@ function Form(this: any): JSX.Element {
                                     <FiUpload color={'#fff'} size={24}/>
                                     <input type="file" accept="image/*" onChange={handleChange}/>
                                     {selectedLogo === null ? (
-                                        <p>Fazer upload da logo</p>
+                                        <p>Fazer upload</p>
                                     ) : (
                                         <p>Trocar logo</p>
                                     )}
@@ -753,10 +752,24 @@ function Form(this: any): JSX.Element {
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
                         
-                        <FileBase64
-                            multiple={false}
-                            onDone={getImage}
-                        />
+                        {backPhoto === null ? (
+                            <img src={foto1} alt="foto da capa" />
+                        ) : (
+                            <img src={foto1} alt="foto da capa" />
+                            //trocar por backPhoto
+                        )}
+
+
+
+                        <label className='custom-file-upload'>
+                            <FiUpload color={'#fff'} size={24}/>
+                            <FileBase64
+                                multiple={false}
+                                onDone={getImage}
+                            />
+                            <p>Fazer upload</p>
+                        </label>
+
                         <button type={'submit'} onClick={uploadBackPhoto}>enviar</button>
                     </div>
                 </CoverPhotoSection>

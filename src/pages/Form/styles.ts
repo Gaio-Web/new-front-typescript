@@ -57,7 +57,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  background-color: #eee;
   font-family: 'Montserrat', sans-serif;
 `;
 
@@ -128,7 +128,7 @@ export const SecondSection = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 3rem 2rem;
-    margin: 1.5rem 0;
+    margin: .5rem 0;
     gap: 2.5rem;
 
     border: 2px solid rgba(136,136,136,.2);
@@ -224,16 +224,16 @@ export const SecondSection = styled.div`
         color: white;
         font-weight: bold;
         border: 0;
+        border-radius: 10px;
         padding: .5rem 2rem;
         cursor: pointer;
+        
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        height: 40px;
-        width: 85%;
-        max-width: 350px;
-        margin: 1.5rem 0;
+
+        width: 70%;
         svg{
             margin-right: 1rem;
         }
@@ -243,6 +243,9 @@ export const SecondSection = styled.div`
 
         p{
           color: white;
+          font-size: 1rem;
+          text-align: center;
+          margin: .8rem 0;
         }
       }
 
@@ -351,7 +354,7 @@ export const FourthSection = styled.div`
     border: 2px solid rgba(136,136,136,.2);
     box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     border-radius: .5rem;
-    margin: 1.5rem 0;
+    margin: .5rem 0;
 
     @media screen and (max-width: 800px){
       width: 85%;
@@ -513,7 +516,7 @@ export const FifthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(5, 55, 124);
+  background-color: #eee;
 
   & .fifth-wrapper {
     width: 80%;
@@ -523,10 +526,16 @@ export const FifthSection = styled.div`
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
+    margin: .5rem 0;
     gap: 2.5rem;
 
+    background-color: rgb(5, 55, 124);
+    border: 2px solid rgba(136,136,136,.2);
+    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+    border-radius: .5rem;
+
     @media screen and (max-width: 800px){
-      width: 100%;
+      width: 85%;
       padding: 10% 5%;
     }
 
@@ -599,12 +608,96 @@ export const PicsSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #eee;
+  margin: .5rem 0;
 
-  padding: 1rem;
-  border: 1px solid black;
+  width: 95%;
+  height: fit-content;
+  flex-direction: column;
+
+  border: 2px solid rgba(136,136,136,.2);
+  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+  border-radius: .5rem;
+  
 `
 export const CoverPhotoSection = styled.div`
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
+  margin: 1rem .5rem;
 
+  border: 2px solid rgba(136,136,136,.2);
+  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+  border-radius: .5rem;
+
+  & .photo-section-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+
+    & h1{
+      text-align: center;
+      color: #034AA6;
+    }
+
+    & p{
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    & img{
+      width: 90%;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .custom-file-upload {
+      background: #034AA3;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      border: 0;
+      border-radius: 10px;
+      padding: 0 2rem;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      width: 70%;
+      margin: 1.5rem 0;
+
+      svg{
+          margin-right: 1rem;
+      }
+      input{
+          display: none;
+      }
+
+      p{
+        color: white;
+      }
+    }
+
+    & button{
+      border: 0;
+      border-radius: 10px;
+      background: #034AA3;
+
+      font-size: .9rem;
+      color: white;
+
+      padding: 1rem 2rem;
+    }
+  }
 `
 export const HistoryPhotoSection = styled.div`
 
@@ -621,7 +714,7 @@ export const SixthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #eee;
 
   & .sixth-wrapper {
     display: flex;
@@ -632,6 +725,7 @@ export const SixthSection = styled.div`
     height: fit-content;
 
     padding: 4rem 2rem;
+    margin: .5rem 0;
     gap: 1rem;
 
     border: 2px solid rgba(136,136,136,.2);
@@ -639,7 +733,7 @@ export const SixthSection = styled.div`
     border-radius: .5rem;
 
     @media screen and (max-width: 800px){
-      width: 100%;
+      width: 90%;
       padding: 10% 2%;
     }
 
@@ -787,7 +881,94 @@ export const SixthSection = styled.div`
 
 `;
 
-
 export const SeventhSection = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
 
+  & .seventh-wrapper {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    margin: .5rem 0;
+    gap: 2.5rem;
+
+    background-color: rgb(5, 55, 124);
+    border: 2px solid rgba(136,136,136,.2);
+    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+    border-radius: .5rem;
+
+    @media screen and (max-width: 800px){
+      width: 85%;
+      padding: 10% 5%;
+    }
+
+    & h1 {
+      margin: 0;
+      color: white;
+      font-size: 28px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      @media screen and (max-width: 410px) {
+        font-size: 6vw;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px
+      }
+    }
+
+    & .button-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      @media screen and (max-width: 800px){
+        flex-direction: column;
+      }
+      
+      & button {
+        height: fit-content;
+        width: 25vw;
+        padding: 1rem 0;
+        border-radius: 8px;
+        border: none;
+        background-color: #034AA3;
+        cursor: pointer;
+
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+
+        @media screen and (max-width: 800px){
+          width: 85vw;
+        }
+      }
+    }
+
+    & input{
+      width: 80%;
+
+      @media screen and (max-width: 800px){
+        width: 70vw;
+
+        padding: 1rem ;
+        border: 0;
+        border-radius: 10px;
+        text-align: center;
+        font-size: .95rem;
+      }
+    }
+  }
 `
