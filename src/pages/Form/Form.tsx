@@ -782,13 +782,13 @@ function Form(this: any): JSX.Element {
 
             <SixthSection>
             <div className='sixth-wrapper'>
-                
+
                 <h1>Horário de funcionamento</h1>
 
                 <div className='table'>
 
                     <div className='line'>
-                        <div className='working-hours-wrapper'>
+                        <div className='working-hours-wrapper' style={{borderRadius: '10px 10px 0 0', backgroundColor: '#034aa6'}}>
                             <h2>Horário de funcionamento</h2>
                         </div>
                         <div className='input-wrapper'>
@@ -803,7 +803,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Segunda feira:
                                 </h3>
@@ -817,21 +817,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledSeg}
                                 style={ disabledSeg === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"} 
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handlesegunda24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handlesegundafec}></input>
                                     <span className='checkbox'></span>
@@ -843,7 +843,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Terça feira:
                                 </h3>
@@ -857,21 +857,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledTer}
                                 style={ disabledTer === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handleterc24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handletercfec}></input>
                                     <span className='checkbox'></span>
@@ -882,7 +882,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Quarta feira:
                                 </h3>
@@ -896,21 +896,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledQuar}
                                 style={ disabledQuar === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handlequarta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handlequartafec}></input>
                                     <span className='checkbox'></span>
@@ -921,7 +921,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Quinta feira:
                                 </h3>
@@ -935,21 +935,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledQuin}
                                 style={ disabledQuin === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handlequinta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handlequintafec}></input>
                                     <span className='checkbox'></span>
@@ -960,7 +960,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Sexta feira:
                                 </h3>
@@ -974,21 +974,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledSex}
                                 style={ disabledSex === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handlesexta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handlesextafec}></input>
                                     <span className='checkbox'></span>
@@ -999,7 +999,7 @@ function Form(this: any): JSX.Element {
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
-                            <div className='value'>
+                            <div className='value' style={{borderRight:'1px solid gray'}}>
                                 <h3>
                                     Sabado:
                                 </h3>
@@ -1013,21 +1013,21 @@ function Form(this: any): JSX.Element {
                                 disabled={disabledSab}
                                 style={ disabledSab === true
                                     ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    : { color: "gray"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handlesabado24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handlesabadofec}></input>
                                     <span className='checkbox'></span>
@@ -1037,36 +1037,36 @@ function Form(this: any): JSX.Element {
                     </div>
 
                     <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value'>
+                        <div className='working-hours-wrapper' style={{borderRadius:"0 0 10px 10px"}}>
+                            <div className='value' style={{borderRadius:"0 0 0 10px", borderRight:'1px solid gray', borderBottom:'0'}}>
                                 <h3>
                                     Domingo:
                                 </h3>
                             </div>
-                            <div className='value'>
+                            <div className='value' style={{borderRadius:"0 0 10px 0", borderBottom:'0'}}>
                                 <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={domingo}
-                                onChange={handleDomingo}
-                                disabled={disabledDom}
-                                style={ disabledDom === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "#C0C0C0"}
+                                    mask={`99:99h ás 99:99h`}
+                                    placeholder='PREENCHER'
+                                    value={domingo}
+                                    onChange={handleDomingo}
+                                    disabled={disabledDom}
+                                    style={ disabledDom === true
+                                        ? { color: "#FAFAFF", borderRadius:"0 0 10px 0"}
+                                        : { color: "gray", borderRadius:"0 0 10px 0"}
                                     }
                                 />
                             </div>
                         </div>
 
                         <div className='input-wrapper'>
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onInput={handledomingo24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
 
-                            <div className='value'>
+                            <div className='input-value'>
                                 <label>
                                     <input type="checkbox" onClick={handledomingofec}></input>
                                     <span className='checkbox'></span>

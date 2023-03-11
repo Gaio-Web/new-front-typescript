@@ -386,6 +386,7 @@ export const ProductsPhotoSection = styled.div`
 
 
 //HORÁRIO DE FUNCIONAMENTO
+//Fiz um pouco do css Inline pra evitar ficar criando novas classes
 export const SixthSection = styled.div`
   width: 100%;
   height: fit-content;
@@ -411,23 +412,29 @@ export const SixthSection = styled.div`
 
     @media screen and (max-width: 800px){
       width: 100%;
-      padding: 10% 5%;
+      padding: 10% 2%;
     }
 
     //Main title
     & h1{
       color: #034AA6;
       text-decoration: underline;
+      text-align: center;
     }
 
     //Whole table
     & .table{
-      width: 80%;
+      width: 60%;
       background-color: #BDCFFF;
 
       padding: 2rem 1rem ;
 
       border-radius: 20px;
+
+      @media screen and (max-width: 800px){
+        width: 95%;
+        padding: 10% 2%;
+      }
       
 
       //Table lines
@@ -436,22 +443,53 @@ export const SixthSection = styled.div`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        height: 4rem;
 
         & .working-hours-wrapper{
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
+          background-color: white;
+          //border-radius inline
 
-          width: 50%;
+          width: 65%;
+
+          @media screen and (max-width: 800px){
+            width: 70%;
+          }
 
           & h2{
             font-size: 1.15rem;
+            color: white;
+
+            @media screen and (max-width: 800px){
+              font-size: .9rem;
+              margin: .85rem 0;
+            }
           }
 
           & h3{
             font-size: .9rem;
+
+            @media screen and (max-width: 800px){
+              font-size: .8rem;
+            }
+          }
+
+          & input{
+            width: 100%;
+            height: 90%;
+            text-align: center;
+            font-size: 1.05rem;
+            border: 0;
+            //border-radius inline
+            //color inline
+
+            @media screen and (max-width: 800px){
+              width: 90%;
+              height: 80%;
+              font-size: .8rem;
+            }
           }
         }
 
@@ -468,8 +506,11 @@ export const SixthSection = styled.div`
           flex-direction: row;
           justify-content: center;
           align-items: center;
-          border: 1px solid black;
           width: 100%;
+          height: 4rem;
+          //border-radius inline
+          //border inline
+          border-bottom: 1px solid gray;
         }
 
         & .input-wrapper{
@@ -478,12 +519,35 @@ export const SixthSection = styled.div`
           justify-content: center;
           align-items: center;
 
+          width: 35%;
 
-
-          width: 50%;
+          @media screen and (max-width: 800px){
+            width: 30%;
+          }
 
           & h2{
             font-size: 1.15rem;
+            color: #034AA6;
+            text-decoration: underline;
+
+            @media screen and (max-width: 800px){
+              font-size: .8rem;
+            }
+          }
+
+          & .input-value{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            width: 100%;
+            height: 4rem;
+
+            & input{
+              height: 50px;
+              width: 100%;
+            }
           }
         }
       }
