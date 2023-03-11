@@ -436,6 +436,7 @@ export const SixthSection = styled.div`
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        height: 4rem;
 
         & .working-hours-wrapper{
           display: flex;

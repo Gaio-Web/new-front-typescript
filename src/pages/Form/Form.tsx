@@ -781,18 +781,11 @@ function Form(this: any): JSX.Element {
             </PicsSection>
 
             <SixthSection>
-                <div className='sixth-wrapper'>
-
+            <div className='sixth-wrapper'>
+                
                 <h1>Horário de funcionamento</h1>
 
                 <div className='table'>
-                    {/* <div className='table-header'>
-                        <h2>Horário de funcionamento</h2>
-                        <div className='input-title-wrapper'>
-                            <h2>24hrs</h2>
-                            <h2>Fechado</h2>
-                        </div>
-                    </div> */}
 
                     <div className='line'>
                         <div className='working-hours-wrapper'>
@@ -849,77 +842,231 @@ function Form(this: any): JSX.Element {
                     </div>
 
                     <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Terça feira:
-                            </h3>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Terça feira:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={terca}
+                                onChange={handleTerca}
+                                disabled={disabledTer}
+                                style={ disabledTer === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
                         </div>
-                        <div className='optionsWrapper'>
-                            <div className='checkboxWrapper' id='segunda'>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onInput={handlesegunda24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" onClick={handlesegundafec}></input>
+                                    <input type="checkbox" onInput={handleterc24}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='terca'>
-                                <label>
-                                    <input type="checkbox" onClick={handleterc24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handletercfec}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='quarta'>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Quarta feira:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={quarta}
+                                onChange={handleQuarta}
+                                disabled={disabledQuar}
+                                style={ disabledQuar === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onClick={handlequarta24}></input>
+                                    <input type="checkbox" onInput={handlequarta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
+                            </div>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handlequartafec}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='quinta'>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Quinta feira:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={quinta}
+                                onChange={handleQuinta}
+                                disabled={disabledQuin}
+                                style={ disabledQuin === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onClick={handlequinta24}></input>
+                                    <input type="checkbox" onInput={handlequinta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
+                            </div>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handlequintafec}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='sexta'>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Sexta feira:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={sexta}
+                                onChange={handleSexta}
+                                disabled={disabledSex}
+                                style={ disabledSex === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onClick={handlesexta24}></input>
+                                    <input type="checkbox" onInput={handlesexta24}></input>
                                     <span className='checkbox'></span>
                                 </label>
+                            </div>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handlesextafec}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='sabado'>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Sabado:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={sabado}
+                                onChange={handleSabado}
+                                disabled={disabledSab}
+                                style={ disabledSab === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onClick={handlesabado24}></input>
+                                    <input type="checkbox" onInput={handlesabado24}></input>
                                     <span className='checkbox'></span>
                                 </label>
+                            </div>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handlesabadofec}></input>
                                     <span className='checkbox'></span>
                                 </label>
                             </div>
-                            <div className='checkboxWrapper' id='domingo'>
+                        </div>
+                    </div>
+
+                    <div className='line'>
+                        <div className='working-hours-wrapper'>
+                            <div className='value'>
+                                <h3>
+                                    Domingo:
+                                </h3>
+                            </div>
+                            <div className='value'>
+                                <InputMask
+                                mask={`99:99h ás 99:99h`}
+                                placeholder='PREENCHER'
+                                value={domingo}
+                                onChange={handleDomingo}
+                                disabled={disabledDom}
+                                style={ disabledDom === true
+                                    ? { color: "#FAFAFF"}
+                                    : { color: "#C0C0C0"}
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <div className='input-wrapper'>
+                            <div className='value'>
                                 <label>
-                                    <input type="checkbox" onClick={handledomingo24}></input>
+                                    <input type="checkbox" onInput={handledomingo24}></input>
                                     <span className='checkbox'></span>
                                 </label>
+                            </div>
+
+                            <div className='value'>
                                 <label>
                                     <input type="checkbox" onClick={handledomingofec}></input>
                                     <span className='checkbox'></span>
@@ -928,187 +1075,8 @@ function Form(this: any): JSX.Element {
                         </div>
                     </div>
 
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Quarta feira:
-                            </h3>
-                        </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={quarta}
-                            onChange={handleQuarta}
-                            disabled={disabledQuar}
-                            style={ disabledQuar === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Quinta feira:
-                            </h3>
-                        </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={quinta}
-                            onChange={handleQuinta}
-                            disabled={disabledQuin}
-                            style={ disabledQuin === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Sexta feira:
-                            </h3>
-                        </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={sexta}
-                            onChange={handleSexta}
-                            disabled={disabledSex}
-                            style={ disabledSex === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Sábado:
-                            </h3>
-                        </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={sabado}
-                            onChange={handleSabado}
-                            disabled={disabledSab}
-                            style={ disabledSab === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='value' style={{ borderRight: '1px solid #000' }}>
-                            <h3>
-                                Domingo:
-                            </h3>
-                        </div>
-                        <div className='value'>
-                            <InputMask
-                            mask={`99:99h ás 99:99h`}
-                            placeholder='PREENCHER'
-                            value={domingo}
-                            onChange={handleDomingo}
-                            disabled={disabledDom}
-                            style={ disabledDom === true
-                                  ? { color: "#FAFAFF"}
-                                  : { color: "#C0C0C0"}
-                                }
-                            />
-                        </div>
-                    </div>
                 </div>
-
-                <div className='options'>
-                    <div className='optionsHeader'>
-                        <h4>24hrs</h4>
-                        <h4>Fechado</h4>
-                    </div>
-
-
-                    <div className='optionsWrapper'>
-
-
-                        <div className='checkboxWrapper' id='terca'>
-                            <label>
-                                <input type="checkbox" onClick={handleterc24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                                <input type="checkbox" onClick={handletercfec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                        <div className='checkboxWrapper' id='quarta'>
-                            <label>
-                                <input type="checkbox" onClick={handlequarta24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                                <input type="checkbox" onClick={handlequartafec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                        <div className='checkboxWrapper' id='quinta'>
-                            <label>
-                                <input type="checkbox" onClick={handlequinta24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                            <input type="checkbox" onClick={handlequintafec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                        <div className='checkboxWrapper' id='sexta'>
-                            <label>
-                                <input type="checkbox" onClick={handlesexta24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                                <input type="checkbox" onClick={handlesextafec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                        <div className='checkboxWrapper' id='sabado'>
-                        <label>
-                                <input type="checkbox" onClick={handlesabado24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                                <input type="checkbox" onClick={handlesabadofec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                        <div className='checkboxWrapper' id='domingo'>
-                            <label>
-                                <input type="checkbox" onClick={handledomingo24}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                            <label>
-                                <input type="checkbox" onClick={handledomingofec}></input>
-                                <span className='checkbox'></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-
-                </div>
+            </div>
             </SixthSection>
 
             <SeventhSection>
