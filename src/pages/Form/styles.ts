@@ -297,6 +297,86 @@ export const ThirdSection = styled.div`
       }
     }
 
+
+    .color-picker{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #034AA6;
+        padding: 1rem; 
+        h1{
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 29px;
+            padding: 1rem 0;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .options{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 359px;
+            height: 46vh;
+            padding: 2rem 0;
+            background: #FFFFFF;
+            border-radius: 10px;
+            flex-wrap: wrap;
+            .selected{
+                display: flex;
+                width: 69px;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-left: 1rem;
+                .color-option{
+                    width: 44.12px;
+                    height: 44.12px;
+                    border-radius: 10.2609px;
+                }
+                h1{
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #000000;
+                    text-align: center;
+                    padding-bottom: 0;
+                }
+            }
+            .non-selected{
+                display: flex;
+                width: 69px;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-left: 1rem;
+                .color-option{
+                    width: 44.12px;
+                    height: 44.12px;
+                    border-radius: 10.2609px;
+                    border: 2px solid #034AA6;
+                }
+                h1{
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #000000;
+                    text-align: center;
+                    padding-bottom: 0;
+                }
+            }
+        }
+        p{
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 39px;
+            
+            text-align: center;
+            text-decoration-line: underline;
+            color: #FFFFFF;
+            padding: 1rem;
+        }
+    }
+
     & p {
       margin: 0;
       font-weight: 500;
@@ -308,25 +388,35 @@ export const ThirdSection = styled.div`
     }
 
     & .button-wrapper {
-      width: 45%;
+      width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
 
+      @media screen and (max-width: 800px){
+          flex-direction: column;
+        }
+      
       & button {
-        height: 3rem;
-        width: 100%;
+        height: fit-content;
+        width: 25vw;
+        padding: 1rem 0;
         border-radius: 8px;
         border: none;
-        background-color: #2e96ad;
+        background-color: #034AA3;
         cursor: pointer;
 
-        font-size: 20px;
+        text-transform: uppercase;
+        font-size: 1rem;
         font-weight: bold;
         color: white;
         letter-spacing: 1px;
+
+        @media screen and (max-width: 800px){
+          width: 75vw;
+        }
       }
     }
 

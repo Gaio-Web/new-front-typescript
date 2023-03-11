@@ -170,7 +170,7 @@ function Form(this: any): JSX.Element {
         {color: "#00ADB5", title: 'Azul'},
         {color: "#6868AC", title: 'Lilás'},
         {color: "#6B0BE6", title: "Roxo"},
-        {color: "#00000", title: "Preto"},
+        {color: "#000", title: "Preto"},
         {color: "#B4A5A5", title: 'Areia'},
         {color: "#D80C0C", title: 'Vermelho'},
         {color: "#25D8A7", title: "Turquesa"},
