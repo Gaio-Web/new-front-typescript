@@ -127,7 +127,7 @@ export const SecondSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     gap: 2.5rem;
 
     @media screen and (max-width: 800px){
@@ -166,6 +166,10 @@ export const SecondSection = styled.div`
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
+
+      @media screen and (max-width: 800px){
+          flex-direction: column;
+        }
       
       & button {
         height: fit-content;
@@ -182,6 +186,10 @@ export const SecondSection = styled.div`
         font-weight: bold;
         color: white;
         letter-spacing: 1px;
+
+        @media screen and (max-width: 800px){
+          width: 60vw;
+        }
       }
     }
 
@@ -198,38 +206,40 @@ export const SecondSection = styled.div`
       padding: 1rem;
       border-radius: 10px;
       margin: 2rem 0;
+
+      @media screen and (max-width: 800px){
+        margin: 1rem 0;
+        max-width: 50vw;
+      }
     }
 
-      /* & input{
-        background-color: rgb(5, 55, 124);
-        padding: 1rem 2rem;
-        color: white;
-      } */
-
       .custom-file-upload {
-            background: #034AA3;
-            border-radius: 30px;
-            color: white;
-            font-weight: bold;
-            border: 0;
-            padding: .5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 40px;
-            width: 85%;
-            max-width: 350px;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            svg{
-                margin-right: 1rem;
-            }
-            input[type="file"]{
-                display: none;
-            }
+        background: #034AA3;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        border: 0;
+        padding: .5rem 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 40px;
+        width: 85%;
+        max-width: 350px;
+        margin: 1.5rem 0;
+        svg{
+            margin-right: 1rem;
         }
+        input[type="file"]{
+            display: none;
+        }
+
+        p{
+          color: white;
+        }
+      }
 
     }
 

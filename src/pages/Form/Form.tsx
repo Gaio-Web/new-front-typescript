@@ -574,7 +574,11 @@ function Form(this: any): JSX.Element {
                                 <label className='custom-file-upload'>
                                     <FiUpload color={'#fff'} size={24}/>
                                     <input type="file" accept="image/*" onChange={handleChange}/>
-                                    Fazer upload da logo
+                                    {selectedLogo === null ? (
+                                        <p>Fazer upload da logo</p>
+                                    ) : (
+                                        <p>Trocar logo</p>
+                                    )}
                                 </label>
                             </div>
                         </>
