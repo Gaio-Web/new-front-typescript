@@ -709,7 +709,7 @@ function Form(this: any): JSX.Element {
             </FourthSection>
 
             <FifthSection>
-                <div className='fifht-wrapper'>
+                <div className='fifth-wrapper'>
                     <h1>Gostaria de trocar o número de WhatsApp do site?</h1>
                     <div className={'button-wrapper'}>
                         <button onClick={() => setChangeWhatsapp(true)}>Trocar número de WhatsApp</button>
@@ -723,10 +723,11 @@ function Form(this: any): JSX.Element {
                             <div className='changeWhatsApp'>
                                 <InputMask
                                     mask={'(99)99999-9999'}
+                                    placeholder='99 99999-9999'
                                     onChange={(e) => getWhatsApp(e)}
                                 />
                             </div>
-                            <h1>{whatsApp}</h1>
+                            {/* <h1>{whatsApp}</h1> */}
 
                         </>
                     )

@@ -506,6 +506,7 @@ export const FourthSection = styled.div`
     
 `;
 
+//TROCAR WHATSAPP
 export const FifthSection = styled.div`
   width: 100%;
   height: fit-content;
@@ -520,8 +521,9 @@ export const FifthSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 4rem 2rem;
-    gap: 1rem;
+    gap: 2.5rem;
 
     @media screen and (max-width: 800px){
       width: 100%;
@@ -542,15 +544,51 @@ export const FifthSection = styled.div`
         font-size: 18px
       }
     }
-    
-    & p {
-      margin: 0;
-      font-weight: 500;
-      font-size: 17px;
-      color: #F0F0F0;
-      font-family: 'Montserrat', sans-serif;
 
-      text-align: center;
+    & .button-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      @media screen and (max-width: 800px){
+        flex-direction: column;
+      }
+      
+      & button {
+        height: fit-content;
+        width: 25vw;
+        padding: 1rem 0;
+        border-radius: 8px;
+        border: none;
+        background-color: #034AA3;
+        cursor: pointer;
+
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+
+        @media screen and (max-width: 800px){
+          width: 85vw;
+        }
+      }
+    }
+
+    & input{
+      width: 80%;
+
+      @media screen and (max-width: 800px){
+        width: 70vw;
+
+        padding: 1rem ;
+        border: 0;
+        border-radius: 10px;
+        text-align: center;
+        font-size: .95rem;
+      }
     }
     
   }
@@ -610,6 +648,7 @@ export const SixthSection = styled.div`
       color: #034AA6;
       text-decoration: underline;
       text-align: center;
+      margin-top: 0;
     }
 
     //Whole table
