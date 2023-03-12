@@ -275,11 +275,11 @@ export const ThirdSection = styled.div`
     gap: 1rem;
     background-color: rgb(5, 55, 124);
 
-    border: 2px solid rgba(136,136,136,.2);
+    border: 2px solid rgba(136, 136, 136, .2);
     box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     border-radius: .5rem;
 
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 800px) {
       width: 85%;
       padding: 10% 5%;
     }
@@ -292,98 +292,104 @@ export const ThirdSection = styled.div`
       font-family: 'Montserrat', sans-serif;
       padding: 2rem;
 
-      @media screen and (max-width: 800px){
+      @media screen and (max-width: 800px) {
         padding: .5rem
       }
     }
 
-    .color-picker{
+    .color-picker {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #034AA6;
+      padding: 1rem 0;
+
+      border: 2px solid rgba(136, 136, 136, .2);
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+      border-radius: .5rem;
+
+      @media screen and (max-width: 800px) {
+        width: 100%;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 29px;
+        padding: 1rem 0;
+        text-align: center;
+        color: #FFFFFF;
+      }
+
+      .options {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        background: #034AA6;
-        padding: 1rem 0; 
+        justify-content: center;
+        width: 95%;
+        height: 100%;
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
+        border-radius: 8px;
+        flex-wrap: wrap;
+        gap: 1rem;
 
-        border: 2px solid rgba(136,136,136,.2);
-        box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-        border-radius: .5rem;
+        .selected {
+          display: flex;
+          width: 69px;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
 
-        @media screen and (max-width: 800px){
-          width: 100%;
-        }
+          .color-option {
+            width: 44.12px;
+            height: 44.12px;
+            border-radius: 4px;
+          }
 
-        h1{
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 29px;
-            padding: 1rem 0;
+          h1 {
+            font-weight: 400;
+            font-size: 14px;
+            color: #000000;
             text-align: center;
-            color: #FFFFFF;
+            padding-bottom: 0;
+          }
         }
-        .options{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 95%;
-            height: 46vh;
-            padding: 1.5rem 0;
-            background: #FFFFFF;
-            border-radius: 10px;
-            flex-wrap: wrap;
 
-            .selected{
-                display: flex;
-                width: 69px;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                margin-left: 1rem;
-                .color-option{
-                    width: 44.12px;
-                    height: 44.12px;
-                    border-radius: 10.2609px;
-                }
-                h1{
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: #000000;
-                    text-align: center;
-                    padding-bottom: 0;
-                }
-            }
-            .non-selected{
-                display: flex;
-                width: 69px;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                margin-left: 1rem;
-                .color-option{
-                    width: 44.12px;
-                    height: 44.12px;
-                    border-radius: 10.2609px;
-                    border: 2px solid #034AA6;
-                }
-                h1{
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: #000000;
-                    text-align: center;
-                    padding-bottom: 0;
-                }
-            }
-        }
-        p{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 39px;
-            
+        .non-selected {
+          display: flex;
+          width: 69px;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .color-option {
+            width: 44.12px;
+            height: 44.12px;
+            border-radius: 10.2609px;
+            border: 2px solid #034AA6;
+          }
+
+          h1 {
+            font-weight: 400;
+            font-size: 14px;
+            color: #000000;
             text-align: center;
-            text-decoration-line: underline;
-            color: #FFFFFF;
-            padding: 1rem;
+            padding-bottom: 0;
+          }
         }
+      }
+
+      p {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 39px;
+
+        text-align: center;
+        text-decoration-line: underline;
+        color: #FFFFFF;
+        padding: 1rem;
+      }
     }
 
     & p {
@@ -404,10 +410,10 @@ export const ThirdSection = styled.div`
       gap: 1.5rem;
       margin-bottom: 1rem;
 
-      @media screen and (max-width: 800px){
-          flex-direction: column;
-        }
-      
+      @media screen and (max-width: 800px) {
+        flex-direction: column;
+      }
+
       & button {
         height: fit-content;
         width: 25vw;
@@ -423,7 +429,7 @@ export const ThirdSection = styled.div`
         color: white;
         letter-spacing: 1px;
 
-        @media screen and (max-width: 800px){
+        @media screen and (max-width: 800px) {
           width: 75vw;
         }
       }
@@ -450,12 +456,12 @@ export const FourthSection = styled.div`
     padding: 3rem 2rem;
     gap: 2.5rem;
 
-    border: 2px solid rgba(136,136,136,.2);
+    border: 2px solid rgba(136, 136, 136, .2);
     box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     border-radius: .5rem;
     margin: .5rem 0;
 
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 800px) {
       width: 85%;
       padding: 10% 5%;
 
@@ -483,10 +489,10 @@ export const FourthSection = styled.div`
       justify-content: center;
       gap: 1.5rem;
 
-      @media screen and (max-width: 800px){
-          flex-direction: column;
-        }
-      
+      @media screen and (max-width: 800px) {
+        flex-direction: column;
+      }
+
       & button {
         height: fit-content;
         width: 25vw;
@@ -502,14 +508,14 @@ export const FourthSection = styled.div`
         color: white;
         letter-spacing: 1px;
 
-        @media screen and (max-width: 800px){
+        @media screen and (max-width: 800px) {
           width: 75vw;
         }
       }
     }
 
 
-    & .adress-wrapper{
+    & .adress-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -518,18 +524,18 @@ export const FourthSection = styled.div`
       width: 100%;
       height: 100%;
 
-      & .adress-input-wrapper{
+      & .adress-input-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 50vw;
 
-        @media screen and (max-width: 800px){
+        @media screen and (max-width: 800px) {
           width: 75vw;
         }
 
-        & label{
+        & label {
           font-size: 1rem;
           font-weight: bold;
           color: black;
@@ -538,14 +544,15 @@ export const FourthSection = styled.div`
           text-align: start;
         }
 
-        & input{
+        & input {
           height: 3rem;
           width: 95%;
           border: 1px solid black;
           border-radius: 10px;
           padding: 0 1rem;
           color: black;
-          ::placeholder{
+
+          ::placeholder {
             font-size: 1rem;
           }
         }
@@ -553,7 +560,7 @@ export const FourthSection = styled.div`
 
     }
 
-    & .smaller-input-wraper{
+    & .smaller-input-wraper {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -563,12 +570,12 @@ export const FourthSection = styled.div`
       height: 100%;
       margin: 1.5rem 0;
 
-      @media screen and (max-width: 800px){
-          width: 75vw;
-          gap: 1.5rem;
-        }
+      @media screen and (max-width: 800px) {
+        width: 75vw;
+        gap: 1.5rem;
+      }
 
-      & div{
+      & div {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -577,35 +584,33 @@ export const FourthSection = styled.div`
 
       }
 
-      & label{
-          font-size: 1rem;
-          font-weight: bold;
-          color: black;
-          padding: 0 0 .5rem .5rem;
-          width: 100%;
-          text-align: start;
-        }
-
-        & input{
-          height: 3rem;
-          width: 90%;
-          border: 1px solid black;
-          border-radius: 10px;
-          padding: 0 1rem;
-          color: black;
-          ::placeholder{
-            font-size: 1rem;
-          }
-
-          @media screen and (max-width: 800px){
-            width: 85%;
-          }
-        }
+      & label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: black;
+        padding: 0 0 .5rem .5rem;
+        width: 100%;
+        text-align: start;
       }
 
+      & input {
+        height: 3rem;
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 0 1rem;
+        color: black;
 
+        ::placeholder {
+          font-size: 1rem;
+        }
+
+        @media screen and (max-width: 800px) {
+          width: 85%;
+        }
+      }
+    }
   }
-    
 `;
 
 //TROCAR WHATSAPP
@@ -827,17 +832,17 @@ export const SixthSection = styled.div`
     margin: .5rem 0;
     gap: 1rem;
 
-    border: 2px solid rgba(136,136,136,.2);
+    border: 2px solid rgba(136, 136, 136, .2);
     box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     border-radius: .5rem;
 
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 800px) {
       width: 90%;
       padding: 10% 2%;
     }
 
     //Main title
-    & h1{
+    & h1 {
       color: #034AA6;
       text-decoration: underline;
       text-align: center;
@@ -845,28 +850,28 @@ export const SixthSection = styled.div`
     }
 
     //Whole table
-    & .table{
+    & .table {
       width: 60%;
       background-color: #BDCFFF;
 
-      padding: 2rem 1rem ;
+      padding: 2rem 1rem;
 
       border-radius: 20px;
 
-      @media screen and (max-width: 800px){
+      @media screen and (max-width: 800px) {
         width: 95%;
         padding: 10% 2%;
       }
-      
+
 
       //Table lines
-      & .line{
+      & .line {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
 
-        & .working-hours-wrapper{
+        & .working-hours-wrapper {
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -876,29 +881,29 @@ export const SixthSection = styled.div`
 
           width: 65%;
 
-          @media screen and (max-width: 800px){
+          @media screen and (max-width: 800px) {
             width: 70%;
           }
 
-          & h2{
+          & h2 {
             font-size: 1.15rem;
             color: white;
 
-            @media screen and (max-width: 800px){
+            @media screen and (max-width: 800px) {
               font-size: .9rem;
               margin: .85rem 0;
             }
           }
 
-          & h3{
+          & h3 {
             font-size: .9rem;
 
-            @media screen and (max-width: 800px){
+            @media screen and (max-width: 800px) {
               font-size: .8rem;
             }
           }
 
-          & input{
+          & input {
             width: 100%;
             height: 90%;
             text-align: center;
@@ -907,7 +912,7 @@ export const SixthSection = styled.div`
             //border-radius inline
             //color inline
 
-            @media screen and (max-width: 800px){
+            @media screen and (max-width: 800px) {
               width: 90%;
               height: 80%;
               font-size: .8rem;
@@ -915,7 +920,7 @@ export const SixthSection = styled.div`
           }
         }
 
-        & .title-value{
+        & .title-value {
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -923,7 +928,7 @@ export const SixthSection = styled.div`
           width: 100%;
         }
 
-        & .value{
+        & .value {
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -935,41 +940,59 @@ export const SixthSection = styled.div`
           border-bottom: 1px solid gray;
         }
 
-        & .input-wrapper{
+        & .input-wrapper {
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
-
           width: 35%;
+          box-sizing: border-box;
 
-          @media screen and (max-width: 800px){
+          @media screen and (max-width: 800px) {
             width: 30%;
           }
 
-          & h2{
+          & h2 {
             font-size: 1.15rem;
             color: #034AA6;
             text-decoration: underline;
 
-            @media screen and (max-width: 800px){
+            @media screen and (max-width: 800px) {
               font-size: .8rem;
             }
           }
 
-          & .input-value{
+          & .input-value {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            border: 0;
             width: 100%;
+            box-sizing: border-box;
             height: 4rem;
 
-            & input{
-              height: 50px;
+            & .checkbox-wrapper {
               width: 100%;
+              height: 100%;
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              
+              & .checkbox {
+                width: 30%;
+                height: 30%;
+                cursor: pointer;
+              }
             }
+            //
+            //& input {
+            //  height: 65px;
+            //  width: 65px;
+            //  margin: 0;
+            //  background-color: red;
+            //  cursor: pointer;
+            //}
           }
         }
       }

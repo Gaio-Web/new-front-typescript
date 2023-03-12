@@ -3,11 +3,25 @@ import {json, useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
-import {Loading, Container, FirstSection, SecondSection, ThirdSection, FourthSection, FifthSection, PicsSection, CoverPhotoSection, SixthSection, SeventhSection, HistoryPhotoSection, ProductsPhotoSection} from "./styles";
+import {
+    Loading,
+    Container,
+    FirstSection,
+    SecondSection,
+    ThirdSection,
+    FourthSection,
+    FifthSection,
+    PicsSection,
+    CoverPhotoSection,
+    SixthSection,
+    SeventhSection,
+    HistoryPhotoSection,
+    ProductsPhotoSection
+} from "./styles";
 
 import {InputMask, InputMaskChangeEvent} from 'primereact/inputmask';
 
-import { FiUpload, FiSend } from "react-icons/fi";
+import {FiUpload, FiSend} from "react-icons/fi";
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 
@@ -17,7 +31,7 @@ import foto1 from '../../assets/foto1.png'
 import foto2 from '../../assets/foto2.png'
 import foto3 from '../../assets/foto3.png'
 
-import { Calendar } from '../Products/Components/Calendar/Calendar';
+import {Calendar} from '../Products/Components/Calendar/Calendar';
 
 import FileBase64 from 'react-file-base64';
 
@@ -30,10 +44,29 @@ interface Contact {
 
     //Images
     logo: File;
-    backPhoto: string,
-    historyPhoto: string,
     offerPhoto: string,
     gallery: string,
+
+    // PHOTOS
+    // photo_position: string | number;
+    photos: {
+        photo1: {
+            base64: string;
+            type: string;
+        },
+        photo2: {
+            base64: string;
+            type: string;
+        },
+        photo3: {
+            base64: string;
+            type: string;
+        },
+        logo: {
+            base64: string;
+            type: string;
+        }
+    }
 
     //calendar info
     segunda: string,
@@ -71,15 +104,7 @@ function Form(this: any): JSX.Element {
     const {id} = useParams()
 
     document.title = id!;
-
-    const onImageSubmit = () => {
-        const imageToDB = {
-            phone: '',
-            backPhotoType: image.type,
-            backPhoto: image.base64,
-        }
-    }
-
+    // console.log('id aqui: ',id);
     const getImage = (files: any) => {
         setImage(files)
     }
@@ -129,8 +154,9 @@ function Form(this: any): JSX.Element {
         const body = JSON.stringify(
             {
                 phone: id,
-                backPhotoType: image.type,
-                backPhoto: image.base64,
+                photo_position: '1',
+                base64: image.base64,
+                type: image.type,
             }
         )
         // const response = await axios.post('http://localhost:3001/upload', body);
@@ -178,14 +204,14 @@ function Form(this: any): JSX.Element {
     ])
 
 
-        //ENDERECO
-        const [ disableAdress, setDisableAdress ] = useState(false)
-        const [ street, setStreet ] = useState('');
-        const [ state, setState ] = useState('');
-        const [ number, setNumber ] = useState('');
-        const [ complement, setComplement ] = useState('');
-        const [neighborhood, setNeighborhood] = useState('');
-        const [city, setCity] = useState('');
+    //ENDERECO
+    const [disableAdress, setDisableAdress] = useState(false)
+    const [street, setStreet] = useState('');
+    const [state, setState] = useState('');
+    const [number, setNumber] = useState('');
+    const [complement, setComplement] = useState('');
+    const [neighborhood, setNeighborhood] = useState('');
+    const [city, setCity] = useState('');
 
     const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
         const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
@@ -205,9 +231,9 @@ function Form(this: any): JSX.Element {
             });
     }
 
-        //WHATSAPP
-        const [ changeWhatsapp, setChangeWhatsapp ] = useState(false);
-        const [ whatsApp, setWhatsapp ] = useState<string | undefined >('');
+    //WHATSAPP
+    const [changeWhatsapp, setChangeWhatsapp] = useState(false);
+    const [whatsApp, setWhatsapp] = useState<string | undefined>('');
 
     const getWhatsApp = (event: InputMaskChangeEvent) => {
         const whatsAppValid = event?.target?.value;
@@ -219,10 +245,10 @@ function Form(this: any): JSX.Element {
     }
 
 
-        //FOTOS
-        //COVER PHOTO
-        const [ backPhoto, setBackPhoto ] = useState<File | null>(null);
-        const [ loading2, setLoading2] = useState(false)
+    //FOTOS
+    //COVER PHOTO
+    const [backPhoto, setBackPhoto] = useState<File | null>(null);
+    const [loading2, setLoading2] = useState(false)
 
     const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const image = event.target.files;
@@ -243,75 +269,75 @@ function Form(this: any): JSX.Element {
         return response.data;
     };
 
-        const handleSendBackPhoto = async () => {
-            console.log('send')
-            setLoading2(true);
-            if (backPhoto !== null) {
-              await updateBackPhoto(backPhoto);
-              setBackPhoto(null);
-            }
-            setLoading2(false);
-        };
-
-        //HISTORYPHOTO
-        const [ historyPhoto, setHistoryPhoto ] = useState<File | null>(null);
-        const [ loading3, setLoading3] = useState(false)
-
-        const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-            const image = event.target.files;
-
-            setLoading3(true)
-            if (image && image.length > 0) {
-                setHistoryPhoto(image[0]);
-                setLoading3(false)
-            }
+    const handleSendBackPhoto = async () => {
+        console.log('send')
+        setLoading2(true);
+        if (backPhoto !== null) {
+            await updateBackPhoto(backPhoto);
+            setBackPhoto(null);
         }
+        setLoading2(false);
+    };
 
-        const updateHistoryPhoto = async (historyPhoto: File) => {
-            const formData = new FormData();
-            formData.append('image', historyPhoto);
-            const response = await axios.post('/getName', formData);
-            return response.data;
-        };
+    //HISTORYPHOTO
+    const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
+    const [loading3, setLoading3] = useState(false)
 
-        const handleSendHistoryPhoto = async () => {
-            setLoading3(true);
-            if (historyPhoto !== null) {
-              await updateHistoryPhoto(historyPhoto);
-              setHistoryPhoto(null);
-            }
-            setLoading3(false);
-        };
+    const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const image = event.target.files;
 
-        //OFFERPHOTO
-        const [ offerPhoto, setOfferPhoto ] = useState<File | null>(null);
-        const [ loading4, setLoading4] = useState(false)
-
-        const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-            const image = event.target.files;
-
-            setLoading4(true)
-            if (image && image.length > 0) {
-                setOfferPhoto(image[0]);
-                setLoading4(false)
-            }
+        setLoading3(true)
+        if (image && image.length > 0) {
+            setHistoryPhoto(image[0]);
+            setLoading3(false)
         }
+    }
 
-        const updateOfferPhoto = async (OfferPhoto: File) => {
-            const formData = new FormData();
-            formData.append('image', OfferPhoto);
-            const response = await axios.post('/getName', formData);
-            return response.data;
-        };
+    const updateHistoryPhoto = async (historyPhoto: File) => {
+        const formData = new FormData();
+        formData.append('image', historyPhoto);
+        const response = await axios.post('/getName', formData);
+        return response.data;
+    };
 
-        const handleSendOfferPhoto = async () => {
-            setLoading4(true);
-            if (offerPhoto !== null) {
-              await updateOfferPhoto(offerPhoto);
-              setOfferPhoto(null);
-            }
-            setLoading4(false);
-        };
+    const handleSendHistoryPhoto = async () => {
+        setLoading3(true);
+        if (historyPhoto !== null) {
+            await updateHistoryPhoto(historyPhoto);
+            setHistoryPhoto(null);
+        }
+        setLoading3(false);
+    };
+
+    //OFFERPHOTO
+    const [offerPhoto, setOfferPhoto] = useState<File | null>(null);
+    const [loading4, setLoading4] = useState(false)
+
+    const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const image = event.target.files;
+
+        setLoading4(true)
+        if (image && image.length > 0) {
+            setOfferPhoto(image[0]);
+            setLoading4(false)
+        }
+    }
+
+    const updateOfferPhoto = async (OfferPhoto: File) => {
+        const formData = new FormData();
+        formData.append('image', OfferPhoto);
+        const response = await axios.post('/getName', formData);
+        return response.data;
+    };
+
+    const handleSendOfferPhoto = async () => {
+        setLoading4(true);
+        if (offerPhoto !== null) {
+            await updateOfferPhoto(offerPhoto);
+            setOfferPhoto(null);
+        }
+        setLoading4(false);
+    };
 
     //CALENDAR
     const [segunda, setSegunda] = useState('');
@@ -506,30 +532,30 @@ function Form(this: any): JSX.Element {
         }
     }
 
-        //CHAVE PIX
-        const [showChavePix, setShowChavePix] = useState(false)
-        const [chavePix, setChavePix] = useState('')
+    //CHAVE PIX
+    const [showChavePix, setShowChavePix] = useState(false)
+    const [chavePix, setChavePix] = useState('')
 
-        const handleChavePix = (event: any) => {
-            const updatedChavePix = event?.target?.value;
+    const handleChavePix = (event: any) => {
+        const updatedChavePix = event?.target?.value;
 
-            setChavePix(updatedChavePix)
-            console.log(chavePix)
-        }
-
-
-    if (loading) {
-        return (
-            <Loading>
-                <div className={'loading-wrapper'}>
-                    <h1>Carregando...</h1>
-                    <div className={'wrapper'}>
-                        <img src={LogoGaioMain} alt={'Logo Gaio'}/>
-                    </div>
-                </div>
-            </Loading>
-        );
+        setChavePix(updatedChavePix)
+        console.log(chavePix)
     }
+
+
+    // if (loading) {
+    //     return (
+    //         <Loading>
+    //             <div className={'loading-wrapper'}>
+    //                 <h1>Carregando...</h1>
+    //                 <div className={'wrapper'}>
+    //                     <img src={LogoGaioMain} alt={'Logo Gaio'}/>
+    //                 </div>
+    //             </div>
+    //         </Loading>
+    //     );
+    // }
 
     if (!data) {
         return <p>Registro não encontrado</p>;
@@ -634,70 +660,70 @@ function Form(this: any): JSX.Element {
                     ) : (
                         <>
                             <div className='main-adress-wrapper'>
-                            <div className='adress-wrapper'>
-                                <div className='adress-input-wrapper'>
-                                    <label> Seu CEP:</label>
-                                    <InputMask
-                                        mask={'99999-999'}
-                                        onChange={(e) => getAddress(e)}
-                                    />
+                                <div className='adress-wrapper'>
+                                    <div className='adress-input-wrapper'>
+                                        <label> Seu CEP:</label>
+                                        <InputMask
+                                            mask={'99999-999'}
+                                            onChange={(e) => getAddress(e)}
+                                        />
+                                    </div>
+
+                                    <div className='adress-input-wrapper'>
+                                        <label>Rua:</label>
+                                        <input
+                                            value={street}
+                                            onChange={(e) => setStreet(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className='adress-input-wrapper'>
-                                    <label>Rua:</label>
-                                    <input
-                                        value={street}
-                                        onChange={(e) => setStreet(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='smaller-input-wraper'>
-                                <div>
-                                    <label>Número:</label>
-                                    <input
-                                        value={number}
-                                        onChange={(text) => setNumber(text.target.value)}
+                                <div className='smaller-input-wraper'>
+                                    <div>
+                                        <label>Número:</label>
+                                        <input
+                                            value={number}
+                                            onChange={(text) => setNumber(text.target.value)}
                                             className='smaller-input'
-                                    />
-                                </div>
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label>Complemento:</label>
-                                    <input
-                                        value={complement}
-                                        onChange={(text) => setComplement(text.target.value)}
-                                        placeholder={'Opcional'}
+                                    <div>
+                                        <label>Complemento:</label>
+                                        <input
+                                            value={complement}
+                                            onChange={(text) => setComplement(text.target.value)}
+                                            placeholder={'Opcional'}
                                             className='smaller-input'
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='adress-wrapper'>
-                                <div className='adress-input-wrapper'>
-                                    <label>Cidade:</label>
-                                    <input
-                                        value={city}
-                                        onChange={(text) => setCity(text.target.value)}
-                                    />
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className='adress-input-wrapper'>
-                                    <label>Estado:</label>
-                                    <input
-                                        value={state}
-                                        onChange={(text) => setState(text.target.value)}
-                                    />
-                                </div>
+                                <div className='adress-wrapper'>
+                                    <div className='adress-input-wrapper'>
+                                        <label>Cidade:</label>
+                                        <input
+                                            value={city}
+                                            onChange={(text) => setCity(text.target.value)}
+                                        />
+                                    </div>
 
-                                <div className='adress-input-wrapper'>
-                                    <label>Bairro:</label>
-                                    <input
-                                        value={neighborhood}
-                                        onChange={(e) => setNeighborhood(e.target.value)}
-                                    />
+                                    <div className='adress-input-wrapper'>
+                                        <label>Estado:</label>
+                                        <input
+                                            value={state}
+                                            onChange={(text) => setState(text.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className='adress-input-wrapper'>
+                                        <label>Bairro:</label>
+                                        <input
+                                            value={neighborhood}
+                                            onChange={(e) => setNeighborhood(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </>
                     )
@@ -751,15 +777,13 @@ function Form(this: any): JSX.Element {
                         {/*}*/}
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
-                        
+
                         {backPhoto === null ? (
-                            <img src={foto1} alt="foto da capa" />
+                            <img src={foto1} alt="foto da capa"/>
                         ) : (
-                            <img src={foto1} alt="foto da capa" />
+                            <img src={foto1} alt="foto da capa"/>
                             //trocar por backPhoto
                         )}
-
-
 
                         <label className='custom-file-upload'>
                             <FiUpload color={'#fff'} size={24}/>
@@ -779,9 +803,9 @@ function Form(this: any): JSX.Element {
                         <h1>Foto da sua história</h1>
                         <p>A foto que vem depois so texto sobre sua história.</p>
 
-                        {loading3 == true ? 
+                        {loading3 == true ?
                             <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        : 
+                        :
                         <>
                             {backPhoto === null ? <img src={foto2}/> : <img src={URL.createObjectURL(historyPhoto)}/> }
                         </>
@@ -797,9 +821,9 @@ function Form(this: any): JSX.Element {
                         <h1>Foto de capa</h1>
                         <p>A foto que vem depois da descrição do seu negócio.</p>
 
-                        {loading4 == true ? 
+                        {loading4 == true ?
                             <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        : 
+                        :
                         <>
                             {backPhoto === null ? <img src={foto3}/> : <img src={URL.createObjectURL(offerPhoto)}/> }
                         </>
@@ -813,302 +837,293 @@ function Form(this: any): JSX.Element {
             </PicsSection>
 
             <SixthSection>
-            <div className='sixth-wrapper'>
+                <div className='sixth-wrapper'>
 
-                <h1>Horário de funcionamento</h1>
+                    <h1>Horário de funcionamento</h1>
 
-                <div className='table'>
+                    <div className='table'>
 
-                    <div className='line'>
-                        <div className='working-hours-wrapper' style={{borderRadius: '10px 10px 0 0', backgroundColor: '#034aa6'}}>
-                            <h2>Horário de funcionamento</h2>
-                        </div>
-                        <div className='input-wrapper'>
-                            <div className='title-value'>
-                                <h2>24hrs</h2>
+                        <div className='line'>
+                            <div className='working-hours-wrapper'
+                                 style={{borderRadius: '10px 10px 0 0', backgroundColor: '#034aa6'}}>
+                                <h2>Horário de funcionamento</h2>
                             </div>
-                            <div className='title-value'>
-                                <h2>Fechado</h2>
+                            <div className='input-wrapper'>
+                                <div className='title-value'>
+                                    <h2>24hrs</h2>
+                                </div>
+                                <div className='title-value'>
+                                    <h2>Fechado</h2>
+                                </div>
                             </div>
                         </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Segunda feira:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={segunda}
+                                        onChange={handleSegunda}
+                                        disabled={disabledSeg}
+                                        style={disabledSeg === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handlesegunda24}></input>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handlesegundafec}/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Terça feira:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={terca}
+                                        onChange={handleTerca}
+                                        disabled={disabledTer}
+                                        style={disabledTer === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handleterc24}/>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handletercfec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Quarta feira:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={quarta}
+                                        onChange={handleQuarta}
+                                        disabled={disabledQuar}
+                                        style={disabledQuar === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handlequarta24}></input>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handlequartafec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Quinta feira:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={quinta}
+                                        onChange={handleQuinta}
+                                        disabled={disabledQuin}
+                                        style={disabledQuin === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handlequinta24}/>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handlequintafec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Sexta feira:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={sexta}
+                                        onChange={handleSexta}
+                                        disabled={disabledSex}
+                                        style={disabledSex === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handlesexta24}/>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handlesextafec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper'>
+                                <div className='value' style={{borderRight: '1px solid gray'}}>
+                                    <h3>
+                                        Sabado:
+                                    </h3>
+                                </div>
+                                <div className='value'>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={sabado}
+                                        onChange={handleSabado}
+                                        disabled={disabledSab}
+                                        style={disabledSab === true
+                                            ? {color: "#FAFAFF"}
+                                            : {color: "gray"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handlesabado24}/>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handlesabadofec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='line'>
+                            <div className='working-hours-wrapper' style={{borderRadius: "0 0 10px 10px"}}>
+                                <div className='value' style={{
+                                    borderRadius: "0 0 0 10px",
+                                    borderRight: '1px solid gray',
+                                    borderBottom: '0'
+                                }}>
+                                    <h3>
+                                        Domingo:
+                                    </h3>
+                                </div>
+                                <div className='value' style={{borderRadius: "0 0 10px 0", borderBottom: '0'}}>
+                                    <InputMask
+                                        mask={`99:99h ás 99:99h`}
+                                        placeholder='PREENCHER'
+                                        value={domingo}
+                                        onChange={handleDomingo}
+                                        disabled={disabledDom}
+                                        style={disabledDom === true
+                                            ? {color: "#FAFAFF", borderRadius: "0 0 10px 0"}
+                                            : {color: "gray", borderRadius: "0 0 10px 0"}
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='input-wrapper'>
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onInput={handledomingo24}/>
+                                    </div>
+                                </div>
+
+                                <div className='input-value'>
+                                    <div className={'checkbox-wrapper'}>
+                                        <input type="checkbox" className={'checkbox'} onClick={handledomingofec}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Segunda feira:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={segunda}
-                                onChange={handleSegunda}
-                                disabled={disabledSeg}
-                                style={ disabledSeg === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"} 
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handlesegunda24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handlesegundafec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Terça feira:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={terca}
-                                onChange={handleTerca}
-                                disabled={disabledTer}
-                                style={ disabledTer === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handleterc24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handletercfec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Quarta feira:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={quarta}
-                                onChange={handleQuarta}
-                                disabled={disabledQuar}
-                                style={ disabledQuar === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handlequarta24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handlequartafec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Quinta feira:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={quinta}
-                                onChange={handleQuinta}
-                                disabled={disabledQuin}
-                                style={ disabledQuin === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handlequinta24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handlequintafec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Sexta feira:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={sexta}
-                                onChange={handleSexta}
-                                disabled={disabledSex}
-                                style={ disabledSex === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handlesexta24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handlesextafec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper'>
-                            <div className='value' style={{borderRight:'1px solid gray'}}>
-                                <h3>
-                                    Sabado:
-                                </h3>
-                            </div>
-                            <div className='value'>
-                                <InputMask
-                                mask={`99:99h ás 99:99h`}
-                                placeholder='PREENCHER'
-                                value={sabado}
-                                onChange={handleSabado}
-                                disabled={disabledSab}
-                                style={ disabledSab === true
-                                    ? { color: "#FAFAFF"}
-                                    : { color: "gray"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handlesabado24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handlesabadofec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='line'>
-                        <div className='working-hours-wrapper' style={{borderRadius:"0 0 10px 10px"}}>
-                            <div className='value' style={{borderRadius:"0 0 0 10px", borderRight:'1px solid gray', borderBottom:'0'}}>
-                                <h3>
-                                    Domingo:
-                                </h3>
-                            </div>
-                            <div className='value' style={{borderRadius:"0 0 10px 0", borderBottom:'0'}}>
-                                <InputMask
-                                    mask={`99:99h ás 99:99h`}
-                                    placeholder='PREENCHER'
-                                    value={domingo}
-                                    onChange={handleDomingo}
-                                    disabled={disabledDom}
-                                    style={ disabledDom === true
-                                        ? { color: "#FAFAFF", borderRadius:"0 0 10px 0"}
-                                        : { color: "gray", borderRadius:"0 0 10px 0"}
-                                    }
-                                />
-                            </div>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onInput={handledomingo24}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-
-                            <div className='input-value'>
-                                <label>
-                                    <input type="checkbox" onClick={handledomingofec}></input>
-                                    <span className='checkbox'></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
             </SixthSection>
 
             <SeventhSection>
@@ -1123,7 +1138,7 @@ function Form(this: any): JSX.Element {
                         <></>
                     ) : (
                         <>
-                            <input type="text" onChange={handleChavePix} />
+                            <input type="text" onChange={handleChavePix}/>
                         </>
                     )}
 
