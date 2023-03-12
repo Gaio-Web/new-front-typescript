@@ -158,12 +158,22 @@ function Form(this: any): JSX.Element {
                 base64: image.base64,
                 type: image.type,
             }
+            // {
+            //     phone: "5584991097445",
+            //     photo_position: "1",
+            //     base64: "TESTEEE",
+            //     type: "image/jpeg"
+            // }
         )
+        console.log('corpo: ', body)
         // const response = await axios.post('http://localhost:3001/upload', body);
         const response = await fetch("https://gaio-web-new-api-test.onrender.com/upload", {
             method: "POST",
-            mode: 'no-cors',
-            headers: {'Content-Type': 'application/json'},
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: body
         })
         // const response = await axios.post('https://gaio-web-new-api-test.onrender.com/upload', body);
