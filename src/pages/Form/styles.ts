@@ -798,7 +798,7 @@ export const CoverPhotoSection = styled.div`
 
       font-size: .9rem;
       color: white;
-
+      cursor: pointer;
       padding: 1rem 2rem;
     }
   }
