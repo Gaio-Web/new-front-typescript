@@ -282,8 +282,8 @@ export const ThirdSection = styled.div`
     border-radius: .5rem;
 
     @media screen and (max-width: 800px) {
-      width: 85%;
-      padding: 10% 5%;
+      width: 92%;
+      padding: 10% 2%;
     }
 
     & h1 {
@@ -335,7 +335,7 @@ export const ThirdSection = styled.div`
         box-sizing: border-box;
         border-radius: 8px;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 1.3rem;
 
         .selected {
           display: flex;
@@ -370,7 +370,8 @@ export const ThirdSection = styled.div`
             width: 44.12px;
             height: 44.12px;
             border-radius: 4px;
-            border: 2px solid #034AA6;
+            box-sizing: border-box;
+            border: 3px solid #034AA6;
           }
 
           h1 {

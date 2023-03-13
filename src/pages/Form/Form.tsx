@@ -167,7 +167,7 @@ function Form(this: any): JSX.Element {
 
     //CORES
     const [colorized, setColorized] = useState(false);
-    const [color, setColor] = useState('rgb(5, 55, 124)');
+    const [color, setColor] = useState('#034AA3');
 
     const handleSendColor = () => {
         console.log(color)
