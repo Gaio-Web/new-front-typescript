@@ -632,28 +632,26 @@ function Form(this: any): JSX.Element {
                         <button onClick={() => setColorized(true)}>EDITAR CORES</button>
                     </div>
 
-                    <div className='colorized'>
-                        {colorized === true ? (
-                            <div className='color-picker' style={{backgroundColor: color}}>
-                                <h1>Escolha a cor dominante do seu site</h1>
+                    {colorized === true ? (
+                        <div className='color-picker' style={{backgroundColor: color}}>
+                            <h1>Escolha a cor dominante do seu site</h1>
 
-                                <div className='options'>
-                                    {options.map(opt => (
-                                        <div className={color === opt.color ? 'non-selected' : 'selected'}
-                                             onClick={() => setColor(opt.color)}>
-                                            <div className='color-option' style={{backgroundColor: opt.color}}/>
-                                            <h1>{opt.title}</h1>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
-                                <button onClick={handleSendColor}>Enviar</button>
+                            <div className='options'>
+                                {options.map(opt => (
+                                    <div className={color === opt.color ? 'non-selected' : 'selected'}
+                                            onClick={() => setColor(opt.color)}>
+                                        <div className='color-option' style={{backgroundColor: opt.color}}/>
+                                        <h1>{opt.title}</h1>
+                                    </div>
+                                ))}
                             </div>
-                        ) : (
-                            <></>
-                        )}
-                    </div>
+
+                            <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
+                            <button onClick={handleSendColor}>Enviar</button>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
 
                 </div>
             </ThirdSection>
