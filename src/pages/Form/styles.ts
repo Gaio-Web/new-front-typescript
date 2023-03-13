@@ -42,7 +42,7 @@ export const Loading = styled.section`
     & p {
       margin: 0;
       font-size: 20px;
-      font-family: Raleway, sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
     & img {
       width: 150px;
@@ -77,7 +77,7 @@ export const FirstSection = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 1rem;
+    gap: 1.5rem;
 
     @media screen and (max-width: 800px){
       width: 100%;
@@ -88,14 +88,13 @@ export const FirstSection = styled.div`
       margin: 0;
       color: white;
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        font-size: 1.6rem;
+        line-height: 2.4rem;
       }
     }
     
@@ -103,6 +102,7 @@ export const FirstSection = styled.div`
       margin: 0;
       font-weight: 500;
       font-size: 17px;
+      line-height: 1.7rem;
       color: #F0F0F0;
       font-family: 'Montserrat', sans-serif;
 
@@ -144,14 +144,13 @@ export const SecondSection = styled.div`
       margin: 0;
       color: rgb(5, 55, 124);
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.4rem;
       }
     }
     
@@ -159,6 +158,7 @@ export const SecondSection = styled.div`
       margin: 0;
       font-weight: 500;
       font-size: 17px;
+      line-height: 1.7rem;
       color: #000;
       font-family: 'Montserrat', sans-serif;
 
@@ -178,9 +178,10 @@ export const SecondSection = styled.div`
       
       & button {
         height: fit-content;
-        width: 20vw;
-        padding: 1rem 0;
-        border-radius: 8px;
+        width: fit-content;
+        max-width: 85vw;
+        padding: 1.2rem 2rem;
+        border-radius: 10px;
         border: none;
         background-color: #034AA3;
         cursor: pointer;
@@ -193,7 +194,7 @@ export const SecondSection = styled.div`
         letter-spacing: 1px;
 
         @media screen and (max-width: 800px){
-          width: 60vw;
+          width: 85vw;
         }
       }
     }
@@ -219,24 +220,26 @@ export const SecondSection = styled.div`
     }
 
       .custom-file-upload {
-        background: #034AA3;
-        border-radius: 30px;
-        color: white;
-        font-weight: bold;
-        border: 0;
-        border-radius: 10px;
-        padding: .5rem 2rem;
-        cursor: pointer;
-        
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
+        width: 85%;
+        margin: 1rem 0;
 
-        width: 70%;
+        border: 0;
+        border-radius: 10px;
+        padding: .7rem 2rem;
+        cursor: pointer;
+
+        background: #034AA3;
+        color: white;
+        font-weight: 600;
+
         svg{
             margin-right: 1rem;
         }
+
         input[type="file"]{
             display: none;
         }
@@ -245,10 +248,9 @@ export const SecondSection = styled.div`
           color: white;
           font-size: 1rem;
           text-align: center;
-          margin: .8rem 0;
+          padding: .8rem 0;
         }
       }
-
     }
 
   }
@@ -272,7 +274,7 @@ export const ThirdSection = styled.div`
 
     margin: .5rem 0;
     padding: 0;
-    gap: 1rem;
+    gap: 2.5rem;
     background-color: rgb(5, 55, 124);
 
     border: 2px solid rgba(136, 136, 136, .2);
@@ -288,12 +290,13 @@ export const ThirdSection = styled.div`
       margin: 0;
       color: white;
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      padding: 2rem;
 
-      @media screen and (max-width: 800px) {
-        padding: .5rem
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.4rem;
       }
     }
 
@@ -416,9 +419,10 @@ export const ThirdSection = styled.div`
 
       & button {
         height: fit-content;
-        width: 25vw;
-        padding: 1rem 0;
-        border-radius: 8px;
+        width: fit-content;
+        max-width: 85vw;
+        padding: 1.2rem 2rem;
+        border-radius: 10px;
         border: none;
         background-color: #034AA3;
         cursor: pointer;
@@ -430,7 +434,7 @@ export const ThirdSection = styled.div`
         letter-spacing: 1px;
 
         @media screen and (max-width: 800px) {
-          width: 75vw;
+          width: 85vw;
         }
       }
     }
@@ -471,14 +475,13 @@ export const FourthSection = styled.div`
       margin: 0;
       color: rgb(5, 55, 124);
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.4rem;
       }
     }
 
@@ -495,9 +498,10 @@ export const FourthSection = styled.div`
 
       & button {
         height: fit-content;
-        width: 25vw;
-        padding: 1rem 0;
-        border-radius: 8px;
+        width: fit-content;
+        max-width: 85vw;
+        padding: 1.2rem 2rem;
+        border-radius: 10px;
         border: none;
         background-color: #034AA3;
         cursor: pointer;
@@ -509,7 +513,7 @@ export const FourthSection = styled.div`
         letter-spacing: 1px;
 
         @media screen and (max-width: 800px) {
-          width: 75vw;
+          width: 85vw;
         }
       }
     }
@@ -647,14 +651,13 @@ export const FifthSection = styled.div`
       margin: 0;
       color: white;
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.4rem;
       }
     }
 
@@ -671,9 +674,10 @@ export const FifthSection = styled.div`
       
       & button {
         height: fit-content;
-        width: 25vw;
-        padding: 1rem 0;
-        border-radius: 8px;
+        width: fit-content;
+        max-width: 85vw;
+        padding: 1.2rem 2rem;
+        border-radius: 10px;
         border: none;
         background-color: #034AA3;
         cursor: pointer;
@@ -723,6 +727,21 @@ export const PicsSection = styled.div`
   box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
   border-radius: .5rem;
   
+  & .picsTitle {
+      margin: 0;
+      color: #034AA6;
+      font-size: 28px;
+      line-height: 2.4rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      padding: 3rem 1rem 1rem 1rem ;
+
+      @media screen and (max-width: 800px){
+        font-size: 1.7rem;
+        line-height: 2.2rem;
+      }
+    }
 `
 export const CoverPhotoSection = styled.div`
   width: 90%;
@@ -745,12 +764,22 @@ export const CoverPhotoSection = styled.div`
     flex-direction: column;
     padding: 1rem;
 
-    & h1{
-      text-align: center;
+
+    & h1 {
+      margin: 0;
       color: #034AA6;
+      font-size: 28px;
+      line-height: 2.4rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+      }
     }
 
-    & p{
+    & .photoText{
       font-size: .9rem;
       text-align: center;
     }
@@ -762,31 +791,36 @@ export const CoverPhotoSection = styled.div`
     }
 
     .custom-file-upload {
-      background: #034AA3;
-      color: white;
-      font-weight: bold;
-      border: 0;
-      border-radius: 10px;
-      padding: 0 2rem;
-      cursor: pointer;
-
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-
       width: 70%;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
+
+      border: 0;
+      border-radius: 10px;
+      padding: .1rem 2rem;
+      cursor: pointer;
+
+      background: #034AA3;
+      color: white;
+      font-weight: 600;
 
       svg{
           margin-right: 1rem;
       }
+
       input{
           display: none;
       }
 
-      p{
+      & .uploadText{
         color: white;
+        font-size: 1rem;
+        text-align: center;
+        padding: .8rem 0;
+        margin: 0;
       }
     }
 
@@ -799,14 +833,197 @@ export const CoverPhotoSection = styled.div`
       color: white;
       cursor: pointer;
       padding: 1rem 2rem;
+      margin: 0;
     }
   }
 `
 export const HistoryPhotoSection = styled.div`
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
+  margin: 1rem .5rem;
 
+  border: 2px solid rgba(136,136,136,.2);
+  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+  border-radius: .5rem;
+
+  & .photo-section-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+
+
+    & h1 {
+      margin: 0;
+      color: #034AA6;
+      font-size: 28px;
+      line-height: 2.4rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+      }
+    }
+
+    & .photoText{
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    & img{
+      width: 90%;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .custom-file-upload {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 70%;
+      margin: 1rem 0;
+
+      border: 0;
+      border-radius: 10px;
+      padding: .1rem 2rem;
+      cursor: pointer;
+
+      background: #034AA3;
+      color: white;
+      font-weight: 600;
+
+      svg{
+          margin-right: 1rem;
+      }
+
+      input{
+          display: none;
+      }
+
+      & .uploadText{
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+        padding: .8rem 0;
+        margin: 0;
+      }
+    }
+
+    & button{
+      border: 0;
+      border-radius: 10px;
+      background: #034AA3;
+
+      font-size: .9rem;
+      color: white;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      margin: 0;
+    }
+  }
 `
 export const ProductsPhotoSection = styled.div`
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
+  margin: 1rem .5rem;
 
+  border: 2px solid rgba(136,136,136,.2);
+  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+  border-radius: .5rem;
+
+  & .photo-section-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+
+
+    & h1 {
+      margin: 0;
+      color: #034AA6;
+      font-size: 28px;
+      line-height: 2.4rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+      }
+    }
+
+    & .photoText{
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    & img{
+      width: 90%;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .custom-file-upload {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 70%;
+      margin: 1rem 0;
+
+      border: 0;
+      border-radius: 10px;
+      padding: .1rem 2rem;
+      cursor: pointer;
+
+      background: #034AA3;
+      color: white;
+      font-weight: 600;
+
+      svg{
+          margin-right: 1rem;
+      }
+
+      input{
+          display: none;
+      }
+
+      & .uploadText{
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+        padding: .8rem 0;
+        margin: 0;
+      }
+    }
+
+    & button{
+      border: 0;
+      border-radius: 10px;
+      background: #034AA3;
+
+      font-size: .9rem;
+      color: white;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      margin: 0;
+    }
+  }
 `
 
 //HORÁRIO DE FUNCIONAMENTO
@@ -1002,6 +1219,7 @@ export const SixthSection = styled.div`
 
 `;
 
+//PIX
 export const SeventhSection = styled.div`
   width: 100%;
   height: fit-content;
@@ -1035,14 +1253,13 @@ export const SeventhSection = styled.div`
       margin: 0;
       color: white;
       font-size: 28px;
+      line-height: 2.4rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
 
-      @media screen and (max-width: 410px) {
-        font-size: 6vw;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px
+      @media screen and (max-width: 800px){
+        font-size: 1.5rem;
+        line-height: 2.2rem;
       }
     }
 
@@ -1059,9 +1276,10 @@ export const SeventhSection = styled.div`
       
       & button {
         height: fit-content;
-        width: 25vw;
-        padding: 1rem 0;
-        border-radius: 8px;
+        width: fit-content;
+        max-width: 85vw;
+        padding: 1.2rem 2rem;
+        border-radius: 10px;
         border: none;
         background-color: #034AA3;
         cursor: pointer;

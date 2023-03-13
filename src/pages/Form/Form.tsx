@@ -137,21 +137,7 @@ function Form(this: any): JSX.Element {
     }, []);
 
 
-    //Logo
-    const [selectLogo, setSelectLogo] = useState(false)
-    const [isLoading1, setLoading1] = useState(false);
-    const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
-    //const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        setLoading1(true)
-        if (files && files.length > 0) {
-            setSelectedLogo(files[0]);
-            setLoading1(false)
-        }
-    };
-
+    //IMAGENS//FOTOS
     const uploadPhoto = async (photoPosition: string) => {
         const body = JSON.stringify(
             {
@@ -173,21 +159,11 @@ function Form(this: any): JSX.Element {
         })
     }
 
-    //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
-    const updateLogo = async (logo: File) => {
-        const formData = new FormData();
-        formData.append('image', logo);
-        const response = await axios.post('https://gaio-web-new-api-test.onrender.com/newUpdateLogo', formData);
-        return response.data;
-    };
 
-    // NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
-    const handleClick = async () => {
-        //const data = await updateLogo(selectedLogo!);
-        //setUploadedLogoUrl(data.logoUrl);
-        console.log(selectedLogo)
-    };
 
+    //Logo
+    const [selectLogo, setSelectLogo] = useState(false)
+    const [isLoading1, setLoading1] = useState(false);
 
     //CORES
     const [colorized, setColorized] = useState(false);
@@ -240,9 +216,33 @@ function Form(this: any): JSX.Element {
             });
     }
 
-    const handleSendEndereco = () => {
-        console.log(street, state, number, complement, neighborhood, city)
+    const handleSendEndereco = async () => {
+        //console.log(street, state, number, complement, neighborhood, city)
+
+        const payload = {
+            street: street,
+            state: state,
+            number: number,
+            complement: complement,
+            neighborhood: neighborhood,
+            city: city
+        }
+
+        await fetch('/fillAdress', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'aplication/json'
+        },
+            body: JSON.stringify(payload),
+        })
+            .then((res) =>  res.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => console.log(err))
     }
+
+
 
     //WHATSAPP
     const [changeWhatsapp, setChangeWhatsapp] = useState(false);
@@ -264,37 +264,18 @@ function Form(this: any): JSX.Element {
 
     //FOTOS
     //COVER PHOTO
-    const [backPhoto, setBackPhoto] = useState<File | null>(null);
+    const [selectedCoverPhoto, setSelectedCoverPhoto] = useState<File | null>(null);
     const [loading2, setLoading2] = useState(false)
 
-    const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const image = event.target.files;
-        console.log('handle')
-
+    const handleChangeCoverPhoto = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
         setLoading2(true)
-        if (image && image.length > 0) {
-            setBackPhoto(image[0]);
-            setLoading1(false)
+        if (files && files.length > 0) {
+            setSelectedCoverPhoto(files[0]);
+            setLoading2(false)
         }
-    }
-
-    const updateBackPhoto = async (backPhoto: File) => {
-        console.log('update')
-        const formData = new FormData();
-        formData.append('image', backPhoto);
-        const response = await axios.post('http://localhost:3001/newUpdateLogo', formData);
-        return response.data;
     };
 
-    const handleSendBackPhoto = async () => {
-        console.log('send')
-        setLoading2(true);
-        if (backPhoto !== null) {
-            await updateBackPhoto(backPhoto);
-            setBackPhoto(null);
-        }
-        setLoading2(false);
-    };
 
     //HISTORYPHOTO
     const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
@@ -377,7 +358,9 @@ function Form(this: any): JSX.Element {
         console.log(
             `Segunda: ${segunda}, Terça: ${terca}, Quarta: ${quarta}, Quinta: ${quinta}, Sexta: ${sexta}, Sábado: ${sabado}, Domingo: ${domingo}`
         )
+
     }
+    
 
     //SEGUNDA
     function handleSegunda(event: any) {
@@ -591,7 +574,7 @@ function Form(this: any): JSX.Element {
             <FirstSection>
                 <div className={'first-wrapper'}>
                     <h1>Obrigado por confiar no nosso serviço!</h1>
-                    <p>Agora, vamos finalizar seu site cadastrando suas fotos e horário de funcionamento.</p>
+                    <p>Agora, vamos finalizar seu site cadastrando suas fotos e as informações opcionais.</p>
                 </div>
             </FirstSection>
 
@@ -608,29 +591,31 @@ function Form(this: any): JSX.Element {
                     ) : (
                         <>
                             <div className='image-update-wrapper'>
-                                {isLoading1 == true ?
+                                {/* {isLoading1 == true ?
                                     <ReactLoading type={'spin'} color={'#05377c'} height={200} width={100}/>
                                     :
-                                    <>
-                                        {selectedLogo && (
-                                            <img
-                                                src={URL.createObjectURL(selectedLogo)}
-                                                alt="logo"
-                                                key={Date.now()}
-                                            />
-                                        )}
-                                    </>
-                                }
+                                    <img className='pgImg' src={data?.photos.logo.base64} alt={'foto-1'}/>
+                                } */}
+                        
+                                {/*TROCAR POR LOGO*/}
+                                {data.photos.photo1.base64 === "" ? (
+                                    <img src={foto1} alt="foto da capa"/>
+                                ) : (
+                                    <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
+                                )}
+
                                 <label className='custom-file-upload'>
                                     <FiUpload color={'#fff'} size={24}/>
-                                    <input type="file" accept="image/*" onChange={handleChange}/>
-                                    {selectedLogo === null ? (
-                                        <p>Fazer upload</p>
-                                    ) : (
-                                        <p>Trocar logo</p>
-                                    )}
+                                    <FileBase64
+                                        multiple={false}
+                                        onDone={getImage}
+                                    />
+
+                                    Fazer upload
                                 </label>
-                                <button onClick={handleClick}>Enviar</button>
+                                <button onClick={() => {
+                                    uploadPhoto('4')
+                                }}>Enviar</button>
                             </div>
                         </>
                     )}
@@ -678,8 +663,8 @@ function Form(this: any): JSX.Element {
                     <h1>Gostaria de adicionar endereço no seu site?</h1>
 
                     <div className={'button-wrapper'}>
-                        <button onClick={() => setDisableAdress(true)}>MOSTRAR ENDEREÇO</button>
-                        <button onClick={() => setDisableAdress(false)}>NÃO MOSTRAR ENDEREÇO</button>
+                        <button onClick={() => setDisableAdress(true)}>ADICIONAR ENDEREÇO</button>
+                        <button onClick={() => setDisableAdress(false)}>SEM ENDEREÇO</button>
                     </div>
 
                     {disableAdress === false ? (
@@ -766,7 +751,7 @@ function Form(this: any): JSX.Element {
                 <div className='fifth-wrapper'>
                     <h1>Gostaria de trocar o número de WhatsApp do site?</h1>
                     <div className={'button-wrapper'}>
-                        <button onClick={() => setChangeWhatsapp(true)}>Trocar número de WhatsApp</button>
+                        <button onClick={() => setChangeWhatsapp(true)}>Trocar WhatsApp</button>
                         <button onClick={() => setChangeWhatsapp(false)}>Manter número atual</button>
                     </div>
 
@@ -792,27 +777,17 @@ function Form(this: any): JSX.Element {
             </FifthSection>
 
             <PicsSection>
+                <h1 className='picsTitle'>Vamos editar as fotos do seu site.</h1>
                 {/*back*/}
                 <CoverPhotoSection>
                     <div className='photo-section-wrapper'>
                         <h1>Foto de capa</h1>
-                        <p>A foto que vem depois da descrição do seu negócio.</p>
+                        <p className='photoText'>A foto que vem depois da descrição do seu negócio.</p>
 
-                        {/*{loading2 ?*/}
-                        {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
-                        {/*    :*/}
-                        {/*    <>*/}
-                        {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
-                        {/*    </>*/}
-                        {/*}*/}
-                        {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
-                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
-
-                        {backPhoto === null ? (
+                        {data.photos.photo1.base64 === null ? (
                             <img src={foto1} alt="foto da capa"/>
                         ) : (
-                            <img src={foto1} alt="foto da capa"/>
-                            //trocar por backPhoto
+                            <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
                         )}
 
                         <label className='custom-file-upload'>
@@ -820,21 +795,23 @@ function Form(this: any): JSX.Element {
                             <FileBase64
                                 multiple={false}
                                 onDone={getImage}
+                                onChange={handleChangeCoverPhoto}
                             />
-                            <p>Fazer upload</p>
+                            <p className='uploadText'>Fazer upload</p>
                         </label>
 
                         <button type={'submit'} onClick={() => {
                             uploadPhoto('1')
                         }}>enviar
                         </button>
+                        
                     </div>
                 </CoverPhotoSection>
                 {/*history*/}
                 <CoverPhotoSection>
                     <div className='photo-section-wrapper'>
                         <h1>Foto da história</h1>
-                        <p>A foto que vem depois da descrição do seu negócio.</p>
+                        <p className='photoText'>A foto que vem depois da descrição do seu negócio.</p>
 
                         {/*{loading2 ?*/}
                         {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
@@ -846,7 +823,7 @@ function Form(this: any): JSX.Element {
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
 
-                        {backPhoto === null ? (
+                        {data.photos.photo1.base64 === null ? (
                             <img src={foto1} alt="foto da capa"/>
                         ) : (
                             <img src={foto1} alt="foto da capa"/>
@@ -859,7 +836,7 @@ function Form(this: any): JSX.Element {
                                 multiple={false}
                                 onDone={getImage}
                             />
-                            <p>Fazer upload</p>
+                            <p className='uploadText'>Fazer upload</p>
                         </label>
 
                         <button type={'submit'} onClick={() => {
@@ -872,7 +849,7 @@ function Form(this: any): JSX.Element {
                 <CoverPhotoSection>
                     <div className='photo-section-wrapper'>
                         <h1>Foto das ofertas</h1>
-                        <p>A foto que vem depois da descrição do seu negócio.</p>
+                        <p className='photoText'>A foto que vem depois da descrição do seu negócio.</p>
 
                         {/*{loading2 ?*/}
                         {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
@@ -884,11 +861,10 @@ function Form(this: any): JSX.Element {
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
 
-                        {backPhoto === null ? (
+                        {data.photos.photo1.base64 === null ? (
                             <img src={foto1} alt="foto da capa"/>
                         ) : (
-                            <img src={foto1} alt="foto da capa"/>
-                            //trocar por backPhoto
+                            <img src={data.photos.photo1.base64} alt={'foto-1'}/>
                         )}
 
                         <label className='custom-file-upload'>
@@ -897,10 +873,10 @@ function Form(this: any): JSX.Element {
                                 multiple={false}
                                 onDone={getImage}
                             />
-                            <p>Fazer upload</p>
+                            <p className='uploadText'>Fazer upload</p>
                         </label>
 
-                        <button type={'submit'} onClick={() => {
+                        <button type={'submit'} onClick={(handleSendBackPhoto) => {
                             uploadPhoto('3')
                         }}>enviar
                         </button>
