@@ -149,26 +149,6 @@ function Form(this: any): JSX.Element {
         }
     };
 
-    const uploadBackPhoto = async () => {
-        console.log('aushauhs')
-        const body = JSON.stringify(
-            {
-                phone: id,
-                photo_position: '1',
-                base64: image.base64,
-                type: image.type,
-            }
-        )
-        // const response = await axios.post('http://localhost:3001/upload', body);
-        const response = await fetch("http://localhost:3001/upload", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: body
-        })
-        // const response = await axios.post('https://gaio-web-new-api-test.onrender.com/upload', body);
-        return response.body;
-    }
-
     //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
     const updateLogo = async (logo: File) => {
         const formData = new FormData();
@@ -262,6 +242,27 @@ function Form(this: any): JSX.Element {
     //COVER PHOTO
     const [backPhoto, setBackPhoto] = useState<File | null>(null);
     const [loading2, setLoading2] = useState(false)
+
+
+    const uploadBackPhoto = async () => {
+        console.log('aushauhs')
+        const body = JSON.stringify(
+            {
+                phone: id,
+                photo_position: '1',
+                base64: image.base64,
+                type: image.type,
+            }
+        )
+        // const response = await axios.post('http://localhost:3001/upload', body);
+        const response = await fetch("http://localhost:3001/upload", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: body
+        })
+        // const response = await axios.post('https://gaio-web-new-api-test.onrender.com/upload', body);
+        return response.body;
+    }
 
     const handleBackPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const image = event.target.files;
