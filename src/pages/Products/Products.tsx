@@ -177,8 +177,7 @@ function FindByPhone(): JSX.Element {
             <FirstSection>
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
-                    {/*<p>{data.call}</p>*/}
-                    <p>{data.name}</p>
+                    <p>{data.call}</p>
                     <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
                     <button>VAMOS CONVERSAR!</button>
                 </div>
