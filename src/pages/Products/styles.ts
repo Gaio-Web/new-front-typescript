@@ -220,6 +220,11 @@ export const SecondSection = styled.div`
       text-align: center;
       font-family: 'Montserrat', sans-serif;
     }
+    
+    & h3 {
+      margin: 0;
+      
+    }
 
 
   }
@@ -434,7 +439,7 @@ export const FifthSection = styled.div`
 //       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
 //       border-radius: 15px;
 //       margin: 2rem 0 1rem;
-            
+
 //         .header{
 //         display: flex;
 //         align-items: center;
@@ -474,7 +479,7 @@ export const FifthSection = styled.div`
 //             margin: 0;
 //             text-align: center;
 //             }
-            
+
 //             h3{
 //                 font-weight: 500;
 //             }

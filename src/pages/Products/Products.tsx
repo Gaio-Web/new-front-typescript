@@ -86,6 +86,12 @@ interface Contact {
     qualities1: string,
     qualities2: string,
     qualities3: string,
+
+    quality1: string,
+    quality2: string,
+    quality3: string,
+
+
     qualitydescription1: string,
     qualitydescription2: string,
     qualitydescription3: string,
@@ -164,9 +170,8 @@ function FindByPhone(): JSX.Element {
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
                     {/*<p>{data.call}</p>*/}
-                    <p> testing </p>
                     <p>{data.name.toLowerCase().trim().replace(/\s+/g, '-')}</p>
-                    <img className='pgImg' src={Photo1} alt={'foto-1'}/>
+                    <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
                     <button>VAMOS CONVERSAR!</button>
                 </div>
             </FirstSection>
@@ -175,7 +180,7 @@ function FindByPhone(): JSX.Element {
                 <div className={'second-wrapper'}>
                     <h1 className='sectionTitle'>O que oferecemos</h1>
                     <p>{data.products}</p>
-                    <img className='pgImg' src={Photo3} alt={'foto-do-produto'}/>
+                    <img className='pgImg' src={data.photos.photo3.base64} alt={'foto-do-produto'}/>
                     <button>FALE COM A GENTE</button>
                 </div>
             </SecondSection>
@@ -218,7 +223,7 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.qualities1}</h3>
+                        <h3>{data.quality1}</h3>
                         <p>{data.qualitydescription1}</p>
                     </div>
 
@@ -257,7 +262,7 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.qualities2}</h3>
+                        <h3>{data.quality2}</h3>
                         <p>{data.qualitydescription2}</p>
                     </div>
 
@@ -297,51 +302,31 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.qualities3}</h3>
+                        <h3>{data.quality3}</h3>
                         <p>{data.qualitydescription1}</p>
                     </div>
 
                 </div>
             </ThirdSection>
 
-            <FourthSection>
-                <div className={'fourth-wrapper'}>
-                    <h1>Galeria de fotos</h1>
-                    <Carousel/>
-                    <button>FALE COM A GENTE</button>
-                </div>
-            </FourthSection>
+            {/*<FourthSection>*/}
+            {/*    <div className={'fourth-wrapper'}>*/}
+            {/*        <h1>Galeria de fotos</h1>*/}
+            {/*        <Carousel/>*/}
+            {/*        <button>FALE COM A GENTE</button>*/}
+            {/*    </div>*/}
+            {/*</FourthSection>*/}
 
             <FifthSection>
                 <div className={'fifth-wrapper'}>
-                    <h1 className='sectionTitle'>Nosso fundo</h1>
+                    <h1 className='sectionTitle'>Nossa História</h1>
                     <p>{data.history}</p>
 
-                    <img src={data.photos.photo1.base64} alt={'Foto de fundo'}/>
+                    <img src={data.photos.photo2.base64} alt={'Foto de fundo'}/>
                     {/*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*/}
                     <button>CONVERSAR POR WHATSAPP</button>
                 </div>
             </FifthSection>
-            <FifthSection>
-                <div className={'fifth-wrapper'}>
-                    <h1 className='sectionTitle'>Nossa história</h1>
-                    <p>{data.history}</p>
-
-                    <img src={data.photos.photo3.base64} alt={'Foto de fundo'}/>
-                    {/*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*/}
-                    <button>CONVERSAR POR WHATSAPP</button>
-                </div>
-            </FifthSection>
-        {/*    <FifthSection>*/}
-        {/*    <div className={'fifth-wrapper'}>*/}
-        {/*        <h1 className='sectionTitle'>Nossas ofertas</h1>*/}
-        {/*        <p>{data.history}</p>*/}
-
-        {/*        <img src={data.photos.photo3.base64} alt={'Foto de fundo'}/>*/}
-        {/*        /!*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*!/*/}
-        {/*        <button>CONVERSAR POR WHATSAPP</button>*/}
-        {/*    </div>*/}
-        {/*</FifthSection>*/}
 
             <Calendar
                 segunda={`${data.segunda}`}
