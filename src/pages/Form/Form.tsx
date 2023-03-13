@@ -138,7 +138,7 @@ function Form(this: any): JSX.Element {
     const [selectLogo, setSelectLogo] = useState(false)
     const [isLoading1, setLoading1] = useState(false);
     const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
-    const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
+    //const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
@@ -180,14 +180,19 @@ function Form(this: any): JSX.Element {
 
     // NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
     const handleClick = async () => {
-        const data = await updateLogo(selectedLogo!);
-        setUploadedLogoUrl(data.logoUrl);
+        //const data = await updateLogo(selectedLogo!);
+        //setUploadedLogoUrl(data.logoUrl);
+        console.log(selectedLogo)
     };
 
 
     //CORES
     const [colorized, setColorized] = useState(false);
     const [color, setColor] = useState('rgb(5, 55, 124)');
+
+    const handleSendColor = () => {
+        console.log(color)
+    }
 
     const [options, setoptions] = useState([
         {color: "#EB596E", title: 'Carmine'},
@@ -232,6 +237,10 @@ function Form(this: any): JSX.Element {
             });
     }
 
+    const handleSendEndereco = () => {
+        console.log(street, state, number, complement, neighborhood, city)
+    }
+
     //WHATSAPP
     const [changeWhatsapp, setChangeWhatsapp] = useState(false);
     const [whatsApp, setWhatsapp] = useState<string | undefined>('');
@@ -243,6 +252,10 @@ function Form(this: any): JSX.Element {
             setWhatsapp(`${whatsAppValid}`)
             return;
         }
+    }
+
+    const handleSendWhatsApp = () => {
+        console.log(whatsApp)
     }
 
 
@@ -357,6 +370,11 @@ function Form(this: any): JSX.Element {
     const [disabledSab, setDisabledSab] = useState(false);
     const [disabledDom, setDisabledDom] = useState(false);
 
+    const handleSendCalendar = () =>{
+        console.log(
+            `Segunda: ${segunda}, Terça: ${terca}, Quarta: ${quarta}, Quinta: ${quinta}, Sexta: ${sexta}, Sábado: ${sabado}, Domingo: ${domingo}`
+        )
+    }
 
     //SEGUNDA
     function handleSegunda(event: any) {
@@ -541,6 +559,9 @@ function Form(this: any): JSX.Element {
         const updatedChavePix = event?.target?.value;
 
         setChavePix(updatedChavePix)
+    }
+
+    const handleSendChavePix = () =>{
         console.log(chavePix)
     }
 
@@ -606,6 +627,7 @@ function Form(this: any): JSX.Element {
                                         <p>Trocar logo</p>
                                     )}
                                 </label>
+                                <button onClick={handleClick}>Enviar</button>
                             </div>
                         </>
                     )}
@@ -638,6 +660,7 @@ function Form(this: any): JSX.Element {
                                 </div>
 
                                 <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
+                                <button onClick={handleSendColor}>Enviar</button>
                             </div>
                         ) : (
                             <></>
@@ -725,6 +748,8 @@ function Form(this: any): JSX.Element {
                                         />
                                     </div>
                                 </div>
+
+                                <button onClick={handleSendEndereco}> Enviar </button>
                             </div>
                         </>
                     )
@@ -754,7 +779,7 @@ function Form(this: any): JSX.Element {
                                 />
                             </div>
                             {/* <h1>{whatsApp}</h1> */}
-
+                            <button onClick={handleSendWhatsApp}>Enviar</button>
                         </>
                     )
 
@@ -1204,6 +1229,8 @@ function Form(this: any): JSX.Element {
                         </div>
 
                     </div>
+
+                    <button onClick={handleSendCalendar}>Enviar</button>
                 </div>
             </SixthSection>
 
@@ -1220,6 +1247,7 @@ function Form(this: any): JSX.Element {
                     ) : (
                         <>
                             <input type="text" onChange={handleChavePix}/>
+                            <button onClick={handleSendChavePix}>Enviar</button>
                         </>
                     )}
 
