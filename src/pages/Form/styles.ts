@@ -1183,12 +1183,12 @@ export const SixthSection = styled.div`
 
 //PIX
 export const SeventhSection = styled.div`
-  width: 100%;
+  display: none;
   height: fit-content;
-  display: flex;
   align-items: center;
   justify-content: center;
   background-color: #eee;
+  width: 100%;
 
   & .seventh-wrapper {
     width: 80%;

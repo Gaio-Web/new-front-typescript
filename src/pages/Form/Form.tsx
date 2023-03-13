@@ -217,7 +217,6 @@ function Form(this: any): JSX.Element {
     }
 
     const handleSendEndereco = async () => {
-        //console.log(street, state, number, complement, neighborhood, city)
 
         const payload = {
             street: street,
@@ -539,7 +538,7 @@ function Form(this: any): JSX.Element {
 
     //CHAVE PIX
     const [showChavePix, setShowChavePix] = useState(false)
-    const [chavePix, setChavePix] = useState<File | null>(null);
+    const [chavePix, setChavePix] = useState("");
 
     const handleChavePix = (event: any) => {
         const updatedChavePix = event?.target?.value;
@@ -548,15 +547,6 @@ function Form(this: any): JSX.Element {
     }
 
 
-    // const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const image = event.target.files;
-
-    //     setLoading4(true)
-    //     if (image && image.length > 0) {
-    //         setOfferPhoto(image[0]);
-    //         setLoading4(false)
-    //     }
-    // }
 
 
     // if (loading) {
@@ -626,9 +616,14 @@ function Form(this: any): JSX.Element {
 
                     <p>Sua logo vai subsituir o nome da loja no cabeçalho do site</p>
 
-                    <SendButton1 submit={() => {
-                        uploadPhoto('4')
-                    }}/>
+                    {selectLogo === false ? (
+                        <></>
+                    ) : (
+                        <SendButton1 submit={() => {
+                            uploadPhoto('4')
+                        }}/>
+                    )}
+
                 </div>
             </SecondSection>
 
@@ -1228,7 +1223,7 @@ function Form(this: any): JSX.Element {
                     ) : (
                         <>
                             <input type="text" onChange={handleChavePix}/>
-                            {/* <SendButton1 submit={handleChavePix}/> */}
+                            {/* <SendButton1 submit={updateChavePix}/> */}
                         </>
                     )}
 
