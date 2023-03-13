@@ -314,15 +314,34 @@ function FindByPhone(): JSX.Element {
 
             <FifthSection>
                 <div className={'fifth-wrapper'}>
-                    <h1 className='sectionTitle'>Nossa história</h1>
+                    <h1 className='sectionTitle'>Nosso fundo</h1>
                     <p>{data.history}</p>
 
                     <img src={data.photos.photo1.base64} alt={'Foto de fundo'}/>
-                    <h1>Foto vindo do banco aqui</h1>
                     {/*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*/}
                     <button>CONVERSAR POR WHATSAPP</button>
                 </div>
             </FifthSection>
+            <FifthSection>
+                <div className={'fifth-wrapper'}>
+                    <h1 className='sectionTitle'>Nossa história</h1>
+                    <p>{data.history}</p>
+
+                    <img src={data.photos.photo3.base64} alt={'Foto de fundo'}/>
+                    {/*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*/}
+                    <button>CONVERSAR POR WHATSAPP</button>
+                </div>
+            </FifthSection>
+        {/*    <FifthSection>*/}
+        {/*    <div className={'fifth-wrapper'}>*/}
+        {/*        <h1 className='sectionTitle'>Nossas ofertas</h1>*/}
+        {/*        <p>{data.history}</p>*/}
+
+        {/*        <img src={data.photos.photo3.base64} alt={'Foto de fundo'}/>*/}
+        {/*        /!*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*!/*/}
+        {/*        <button>CONVERSAR POR WHATSAPP</button>*/}
+        {/*    </div>*/}
+        {/*</FifthSection>*/}
 
             <Calendar
                 segunda={`${data.segunda}`}

@@ -710,14 +710,14 @@ export const FifthSection = styled.div`
 //Engloba toda as section que tem fotos
 export const PicsSection = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #eee;
-  margin: .5rem 0;
+  //margin: .5rem 0; 
 
   width: 95%;
-  height: fit-content;
-  flex-direction: column;
+  //height: fit-content;
 
   border: 2px solid rgba(136,136,136,.2);
   box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
@@ -763,7 +763,6 @@ export const CoverPhotoSection = styled.div`
 
     .custom-file-upload {
       background: #034AA3;
-      border-radius: 30px;
       color: white;
       font-weight: bold;
       border: 0;

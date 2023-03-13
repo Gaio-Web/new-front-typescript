@@ -149,35 +149,25 @@ function Form(this: any): JSX.Element {
         }
     };
 
-    const uploadBackPhoto = async () => {
-        console.log('aushauhs')
+    const uploadPhoto = async (photoPosition: string) => {
         const body = JSON.stringify(
             {
                 phone: id,
-                photo_position: '1',
+                photo_position: photoPosition,
                 base64: image.base64,
                 type: image.type,
             }
-            // {
-            //     phone: "5584991097445",
-            //     photo_position: "1",
-            //     base64: "TESTEEE",
-            //     type: "image/jpeg"
-            // }
         )
         console.log('corpo: ', body)
-        // const response = await axios.post('http://localhost:3001/upload', body);
         const response = await fetch("https://gaio-web-new-api-test.onrender.com/upload", {
             method: "POST",
             mode: 'cors',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: body
         })
-        // const response = await axios.post('https://gaio-web-new-api-test.onrender.com/upload', body);
-        return response.body;
     }
 
     //LOGO - NÃO CONSEGUI FAZER SUBIR PRO BANCO POR NADA NA TERRA.
@@ -774,6 +764,7 @@ function Form(this: any): JSX.Element {
             </FifthSection>
 
             <PicsSection>
+                {/*back*/}
                 <CoverPhotoSection>
                     <div className='photo-section-wrapper'>
                         <h1>Foto de capa</h1>
@@ -805,7 +796,86 @@ function Form(this: any): JSX.Element {
                             <p>Fazer upload</p>
                         </label>
 
-                        <button type={'submit'} onClick={uploadBackPhoto}>enviar</button>
+                        <button type={'submit'} onClick={() => {
+                            uploadPhoto('1')
+                        }}>enviar
+                        </button>
+                    </div>
+                </CoverPhotoSection>
+                {/*history*/}
+                <CoverPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto da história</h1>
+                        <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                        {/*{loading2 ?*/}
+                        {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
+                        {/*    :*/}
+                        {/*    <>*/}
+                        {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
+                        {/*    </>*/}
+                        {/*}*/}
+                        {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
+                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
+
+                        {backPhoto === null ? (
+                            <img src={foto1} alt="foto da capa"/>
+                        ) : (
+                            <img src={foto1} alt="foto da capa"/>
+                            //trocar por backPhoto
+                        )}
+
+                        <label className='custom-file-upload'>
+                            <FiUpload color={'#fff'} size={24}/>
+                            <FileBase64
+                                multiple={false}
+                                onDone={getImage}
+                            />
+                            <p>Fazer upload</p>
+                        </label>
+
+                        <button type={'submit'} onClick={() => {
+                            uploadPhoto('2')
+                        }}>enviar
+                        </button>
+                    </div>
+                </CoverPhotoSection>
+                {/*offer*/}
+                <CoverPhotoSection>
+                    <div className='photo-section-wrapper'>
+                        <h1>Foto das ofertas</h1>
+                        <p>A foto que vem depois da descrição do seu negócio.</p>
+
+                        {/*{loading2 ?*/}
+                        {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
+                        {/*    :*/}
+                        {/*    <>*/}
+                        {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
+                        {/*    </>*/}
+                        {/*}*/}
+                        {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
+                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
+
+                        {backPhoto === null ? (
+                            <img src={foto1} alt="foto da capa"/>
+                        ) : (
+                            <img src={foto1} alt="foto da capa"/>
+                            //trocar por backPhoto
+                        )}
+
+                        <label className='custom-file-upload'>
+                            <FiUpload color={'#fff'} size={24}/>
+                            <FileBase64
+                                multiple={false}
+                                onDone={getImage}
+                            />
+                            <p>Fazer upload</p>
+                        </label>
+
+                        <button type={'submit'} onClick={() => {
+                            uploadPhoto('3')
+                        }}>enviar
+                        </button>
                     </div>
                 </CoverPhotoSection>
 
