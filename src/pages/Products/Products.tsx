@@ -110,7 +110,9 @@ function FindByPhone(): JSX.Element {
 
     const {id} = useParams()
 
-    const uniqueName = id!.replace(/-/g, " ")
+    // const uniqueName = id!.replace(/-/g, " ")
+    const uniqueName = id!.replace(/-/g, " ").replace(/(^|\s)\S/g, (match) => match.toUpperCase()).replace(/(-\s)\S/g, (match) => match.toUpperCase());;
+    console.log('auuu: ', uniqueName)
     document.title = uniqueName
 
     // // @ts-ignore
@@ -125,9 +127,10 @@ function FindByPhone(): JSX.Element {
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
+            console.log('id: ',id);
             try {
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByName/${id}`
+                    `https://gaio-web-new-api-test.onrender.com/findByName/${id!.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')}`
                 );
                 setData(response.data);
             } catch (error) {
@@ -170,7 +173,7 @@ function FindByPhone(): JSX.Element {
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
                     {/*<p>{data.call}</p>*/}
-                    <p>{data.name.toLowerCase().trim().replace(/\s+/g, '-')}</p>
+                    <p>{data.name}</p>
                     <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
                     <button>VAMOS CONVERSAR!</button>
                 </div>
