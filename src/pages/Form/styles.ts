@@ -302,7 +302,6 @@ export const ThirdSection = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #034AA6;
       padding: 1rem 0;
 
       border: 2px solid rgba(136, 136, 136, .2);
@@ -326,6 +325,7 @@ export const ThirdSection = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: white;
         width: 95%;
         height: 100%;
         padding: 1.5rem 1rem;
@@ -366,7 +366,7 @@ export const ThirdSection = styled.div`
           .color-option {
             width: 44.12px;
             height: 44.12px;
-            border-radius: 10.2609px;
+            border-radius: 4px;
             border: 2px solid #034AA6;
           }
 
