@@ -763,7 +763,7 @@ export const CoverPhotoSection = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 1rem;
+    padding: 2rem 1rem 2rem;
 
 
     & h1 {
@@ -797,7 +797,7 @@ export const CoverPhotoSection = styled.div`
       justify-content: center;
       text-align: center;
       width: 70%;
-      margin: 1rem 0;
+      margin: 1rem 0 2rem;
 
       border: 0;
       border-radius: 10px;
@@ -823,18 +823,6 @@ export const CoverPhotoSection = styled.div`
         padding: .8rem 0;
         margin: 0;
       }
-    }
-
-    & button{
-      border: 0;
-      border-radius: 10px;
-      background: #034AA3;
-
-      font-size: .9rem;
-      color: white;
-      cursor: pointer;
-      padding: 1rem 2rem;
-      margin: 0;
     }
   }
 `
@@ -918,18 +906,6 @@ export const HistoryPhotoSection = styled.div`
         margin: 0;
       }
     }
-
-    & button{
-      border: 0;
-      border-radius: 10px;
-      background: #034AA3;
-
-      font-size: .9rem;
-      color: white;
-      cursor: pointer;
-      padding: 1rem 2rem;
-      margin: 0;
-    }
   }
 `
 export const ProductsPhotoSection = styled.div`
@@ -1012,18 +988,6 @@ export const ProductsPhotoSection = styled.div`
         margin: 0;
       }
     }
-
-    & button{
-      border: 0;
-      border-radius: 10px;
-      background: #034AA3;
-
-      font-size: .9rem;
-      color: white;
-      cursor: pointer;
-      padding: 1rem 2rem;
-      margin: 0;
-    }
   }
 `
 
@@ -1056,6 +1020,10 @@ export const SixthSection = styled.div`
     @media screen and (max-width: 800px) {
       width: 90%;
       padding: 10% 2%;
+    }
+
+    & button {
+      margin-top: 1.5rem;
     }
 
     //Main title
@@ -1202,14 +1170,7 @@ export const SixthSection = styled.div`
                 cursor: pointer;
               }
             }
-            //
-            //& input {
-            //  height: 65px;
-            //  width: 65px;
-            //  margin: 0;
-            //  background-color: red;
-            //  cursor: pointer;
-            //}
+
           }
         }
       }

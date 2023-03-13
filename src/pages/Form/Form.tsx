@@ -16,12 +16,14 @@ import {
     SixthSection,
     SeventhSection,
     HistoryPhotoSection,
-    ProductsPhotoSection
+    ProductsPhotoSection,
 } from "./styles";
 
 import {InputMask, InputMaskChangeEvent} from 'primereact/inputmask';
 
 import {FiUpload, FiSend} from "react-icons/fi";
+
+import  SendButton1  from "../Products/Components/SendButton"
 
 import LogoGaioMain from '../../assets/logoGaio.png'
 
@@ -30,8 +32,6 @@ import ReactLoading from 'react-loading'
 import foto1 from '../../assets/foto1.png'
 import foto2 from '../../assets/foto2.png'
 import foto3 from '../../assets/foto3.png'
-
-import {Calendar} from '../Products/Components/Calendar/Calendar';
 
 import FileBase64 from 'react-file-base64';
 
@@ -539,7 +539,7 @@ function Form(this: any): JSX.Element {
 
     //CHAVE PIX
     const [showChavePix, setShowChavePix] = useState(false)
-    const [chavePix, setChavePix] = useState('')
+    const [chavePix, setChavePix] = useState<File | null>(null);
 
     const handleChavePix = (event: any) => {
         const updatedChavePix = event?.target?.value;
@@ -547,9 +547,16 @@ function Form(this: any): JSX.Element {
         setChavePix(updatedChavePix)
     }
 
-    const handleSendChavePix = () =>{
-        console.log(chavePix)
-    }
+
+    // const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const image = event.target.files;
+
+    //     setLoading4(true)
+    //     if (image && image.length > 0) {
+    //         setOfferPhoto(image[0]);
+    //         setLoading4(false)
+    //     }
+    // }
 
 
     // if (loading) {
@@ -613,14 +620,15 @@ function Form(this: any): JSX.Element {
 
                                     Fazer upload
                                 </label>
-                                <button onClick={() => {
-                                    uploadPhoto('4')
-                                }}>Enviar</button>
                             </div>
                         </>
                     )}
 
                     <p>Sua logo vai subsituir o nome da loja no cabeçalho do site</p>
+
+                    <SendButton1 submit={() => {
+                        uploadPhoto('4')
+                    }}/>
                 </div>
             </SecondSection>
 
@@ -647,7 +655,7 @@ function Form(this: any): JSX.Element {
                             </div>
 
                             <p>Não se esqueça que o texto da tela inicial do site é branco.</p>
-                            <button onClick={handleSendColor}>Enviar</button>
+                            <SendButton1 submit={handleSendColor}/>
                         </div>
                     ) : (
                         <></>
@@ -735,8 +743,8 @@ function Form(this: any): JSX.Element {
                                     </div>
                                 </div>
 
-                                <button onClick={handleSendEndereco}> Enviar </button>
                             </div>
+                            <SendButton1 submit={handleSendEndereco}/>
                         </>
                     )
 
@@ -764,8 +772,8 @@ function Form(this: any): JSX.Element {
                                     onChange={(e) => getWhatsApp(e)}
                                 />
                             </div>
-                            {/* <h1>{whatsApp}</h1> */}
-                            <button onClick={handleSendWhatsApp}>Enviar</button>
+
+                            <SendButton1 submit={handleSendWhatsApp}/>
                         </>
                     )
 
@@ -798,10 +806,9 @@ function Form(this: any): JSX.Element {
                             <p className='uploadText'>Fazer upload</p>
                         </label>
 
-                        <button type={'submit'} onClick={() => {
+                        <SendButton1 submit={() => {
                             uploadPhoto('1')
-                        }}>enviar
-                        </button>
+                        }}/>
                         
                     </div>
                 </CoverPhotoSection>
@@ -837,10 +844,9 @@ function Form(this: any): JSX.Element {
                             <p className='uploadText'>Fazer upload</p>
                         </label>
 
-                        <button type={'submit'} onClick={() => {
+                        <SendButton1 submit={() => {
                             uploadPhoto('2')
-                        }}>enviar
-                        </button>
+                        }}/>
                     </div>
                 </CoverPhotoSection>
                 {/*offer*/}
@@ -874,10 +880,9 @@ function Form(this: any): JSX.Element {
                             <p className='uploadText'>Fazer upload</p>
                         </label>
 
-                        <button type={'submit'} onClick={(handleSendBackPhoto) => {
+                        <SendButton1 submit={() => {
                             uploadPhoto('3')
-                        }}>enviar
-                        </button>
+                        }}/>
                     </div>
                 </CoverPhotoSection>
 
@@ -1206,8 +1211,7 @@ function Form(this: any): JSX.Element {
                         </div>
 
                     </div>
-
-                    <button onClick={handleSendCalendar}>Enviar</button>
+                    <SendButton1 submit={handleSendCalendar}/>
                 </div>
             </SixthSection>
 
@@ -1224,7 +1228,7 @@ function Form(this: any): JSX.Element {
                     ) : (
                         <>
                             <input type="text" onChange={handleChavePix}/>
-                            <button onClick={handleSendChavePix}>Enviar</button>
+                            {/* <SendButton1 submit={handleChavePix}/> */}
                         </>
                     )}
 
