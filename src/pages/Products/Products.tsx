@@ -165,7 +165,12 @@ function FindByPhone(): JSX.Element {
         <Container>
             <header>
                 <div className='nav'>
-                    <img src={LogoGaioMain} alt={'logo-gaio'}/>
+                    {/* {data.photos.logo.base64 == "" ? (
+                        <h1>{data.name}</h1>
+                    ) : (
+                        //<img src={data.photos.logo.base64} alt={'logo'}/>
+                    )} */}
+                    <h1>{data.name}</h1>
                 </div>
             </header>
 
@@ -347,13 +352,15 @@ function FindByPhone(): JSX.Element {
 
                     <div className='adressWrapper'>
                         <div className='userAdress'>
-                            <p>{data.address.street}, {data.address.number}, {data.address.complement}
-                                <br/> {data.address.zipCode}, {data.address.city}/{data.address.state} </p>
+                            {data.address.zipCode == '' ? (
+                                <p>Rua exemplo, 45, 302, <br /> sua cidade / estado</p>
+                            ) : (
+                                <p>{data.address.street}, {data.address.number}, {data.address.complement}
+                                <br/>{data.address.city}/{data.address.state} </p>
+                            )}
                         </div>
 
-                        <button className='buttonCopy'>
-                            {/* onClick={() =>  navigator.clipboard.writeText(`${street}, ${number}, ${complement} ${city}, ${state}`)} */}
-
+                        <button className='buttonCopy' onClick={() =>  navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)}>
                             <div>
                                 <span>
                                     <p>Copiar endereço</p>

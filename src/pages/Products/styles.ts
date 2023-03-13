@@ -91,6 +91,10 @@ export const Container = styled.div`
       & img {
         width: 120px;
       }
+
+      & h1{
+        color: rgb(5, 55, 124);
+      }
     }
   }
 
