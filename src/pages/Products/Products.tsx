@@ -160,7 +160,7 @@ function FindByPhone(): JSX.Element {
                     <div className={'wrapper'}>
                         <h1 style={{color:'rgb(5, 55, 124)'}}>{data?.name}</h1>
                         { data?.photos.logo.base64 == '' ? (
-                            <></> 
+                            <div className='empty-div'></div> 
                         ) : (
                             <img src={data?.photos.logo.base64} alt="logo" />
                         )}
@@ -188,8 +188,8 @@ function FindByPhone(): JSX.Element {
 
             <FirstSection>
                 <div className={'first-wrapper'}>
-                    <h1>{data.description}</h1>
-                    <p>{data.call}</p>
+                    <h1>{data.call}</h1>
+                    <p>{data.description}</p>
                     <div className='img-wrapper'>
                         <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
                     </div>

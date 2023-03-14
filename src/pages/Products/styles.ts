@@ -18,6 +18,11 @@ export const Loading = styled.section`
     width: 50%;
     height: 50%;
     gap: 2rem;
+
+    @media screen and (max-width: 800px){
+      width: 80%;
+      height: 70%;
+    }
   }
   
   & h1 {
@@ -31,6 +36,7 @@ export const Loading = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
     gap: 1rem;
 
@@ -47,6 +53,10 @@ export const Loading = styled.section`
     }
     & img {
       width: 150px;
+    }
+
+    & .empty-div{
+      display: none;
     }
   }
 `
@@ -180,6 +190,11 @@ export const FirstSection = styled.div`
     }
 
     & .img-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
       width: fit-content;
       max-width: 80%;
       max-height: 80vh;
