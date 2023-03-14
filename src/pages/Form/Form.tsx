@@ -216,11 +216,11 @@ function Form(this: any): JSX.Element {
         await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
             .then((res) => res.json())
             .then((data) => {
-                setStreet(`${data.logradouro}`);
-                setNeighborhood(`${data.bairro}`);
-                setState(data.uf)
-                setCity(data.localidade)
-                console.log(data)
+                setStreet(`${data.address.logradouro}`);
+                setNeighborhood(`${data.address.bairro}`);
+                setState(data.address.uf)
+                setCity(data.address.localidade)
+                console.log(data.address)
             });
     }
 
