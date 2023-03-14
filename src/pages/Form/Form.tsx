@@ -1213,7 +1213,7 @@ function Form(this: any): JSX.Element {
                         </div>
 
                     </div>
-                    <SendButton1 submit={handleSendCalendar}/>
+                    <SendButton1 submit={handleSendEndereco}/>
                 </div>
             </SixthSection>
 
