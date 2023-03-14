@@ -75,6 +75,7 @@ interface Contact {
         complement: string;
         city: string;
         state:string;
+        //neighborhood: string;
       },
 
     //calendar info
@@ -216,9 +217,10 @@ function Form(this: any): JSX.Element {
         await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
             .then((res) => res.json())
             .then((data) => {
-                setStreet(`${data.address.logradouro}`);
+                setStreet(`${data.address.logadouro}`);
                 setNeighborhood(`${data.address.bairro}`);
                 setState(data.address.uf)
+                //setNeighborhood(`${data.bairro}`);
                 setCity(data.address.localidade)
                 console.log(data.address)
             });
@@ -234,6 +236,7 @@ function Form(this: any): JSX.Element {
             complement: data?.address.complement, // complemento
             city: data?.address.city, // cidade
             state: data?.address.state, // estado
+            //neighborhood: data?.address.neighborhood //bairro
         }
 
         await fetch('/fillAdress', {
@@ -736,13 +739,13 @@ function Form(this: any): JSX.Element {
                                         />
                                     </div>
 
-                                    <div className='adress-input-wrapper'>
+                                    {/* <div className='adress-input-wrapper'>
                                         <label>Bairro:</label>
                                         <input
                                             value={neighborhood}
                                             onChange={(e) => setNeighborhood(e.target.value)}
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>
