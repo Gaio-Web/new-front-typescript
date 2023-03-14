@@ -551,9 +551,9 @@ function Form(this: any): JSX.Element {
             <Loading>
                 <div className={'loading-wrapper'}>
                     <h1>Carregando...</h1>
-                    <div className={'wrapper'}>
+                    {/* <div className={'wrapper'}>
                         <img src={LogoGaioMain} alt={'Logo Gaio'}/>
-                    </div>
+                    </div> */}
                 </div>
             </Loading>
         );
