@@ -111,7 +111,7 @@ function FindByPhone(): JSX.Element {
     const {id} = useParams()
 
     // const uniqueName = id!.replace(/-/g, " ")
-    const uniqueName = id!.replace(/-/g, " ");
+    const uniqueName = id!.replace(/\s+/g, "-");
     
     document.title = uniqueName
 
