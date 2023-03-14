@@ -81,6 +81,9 @@ interface Contact {
     //Color
     color: string,
 
+    //WhatsApp
+    whatsApp: string,
+
     //calendar info
     segunda: string,
     terca: string,
@@ -211,10 +214,10 @@ function Form(this: any): JSX.Element {
                 const data = await response.json();
                 console.log(color)
                 console.log(data);
-            } catch (error){
-                console.log(error);
-            }
+        } catch (error){
+            console.log(error);
         }
+    }
 
 
 
@@ -297,12 +300,30 @@ function Form(this: any): JSX.Element {
 
         if (whatsAppValid?.length !== 11) {
             setWhatsapp(`${whatsAppValid}`)
+            //console.log(whatsAppValid)
             return;
         }
     }
 
-    const handleSendWhatsApp = () => {
-        console.log(whatsApp)
+    const handleSendWhatsApp = async () => {
+        const body = {
+            phone: id,
+            whatsApp: whatsApp
+        };
+        try{
+            const response = await fetch('https://gaio-web-new-api-test.onrender.com/updateWhatsApp', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                //console.log(whatsApp)
+                console.log(data);
+        } catch (error){
+            console.log(error);
+        }
     }
 
 
