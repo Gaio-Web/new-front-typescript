@@ -547,20 +547,18 @@ function Form(this: any): JSX.Element {
     }
 
 
-
-
-    // if (loading) {
-    //     return (
-    //         <Loading>
-    //             <div className={'loading-wrapper'}>
-    //                 <h1>Carregando...</h1>
-    //                 <div className={'wrapper'}>
-    //                     <img src={LogoGaioMain} alt={'Logo Gaio'}/>
-    //                 </div>
-    //             </div>
-    //         </Loading>
-    //     );
-    // }
+    if (loading) {
+        return (
+            <Loading>
+                <div className={'loading-wrapper'}>
+                    <h1>Carregando...</h1>
+                    <div className={'wrapper'}>
+                        <img src={LogoGaioMain} alt={'Logo Gaio'}/>
+                    </div>
+                </div>
+            </Loading>
+        );
+    }
 
     if (!data) {
         return <p>Registro não encontrado</p>;

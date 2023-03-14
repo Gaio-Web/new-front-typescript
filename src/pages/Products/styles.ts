@@ -179,11 +179,22 @@ export const FirstSection = styled.div`
       text-align: center;
     }
 
+    & .img-wrapper{
+      width: fit-content;
+      max-width: 80%;
+      max-height: 80vh;
+    }
+
     & img{
-      max-width: 85%;
-      max-height: 60vh;
+      max-width: 90%;
+      max-height: 80vh;
       margin-top: 1.5rem;
       border-radius: 1rem;
+
+      @media screen and (max-width: 800px){
+        max-width: 85%;
+        max-height: 60vh;
+      }
     }
     
   }
@@ -236,13 +247,18 @@ export const SecondSection = styled.div`
       margin: 0;
     }
 
+    & .img-wrapper{
+      width: fit-content;
+      max-width: 80%;
+      max-height: 80vh;
+    }
+
     & img{
-      max-width: 85%;
-      max-height: 60vh;
+      max-width: 90%;
+      max-height: 80vh;
       margin-top: 1.5rem;
       border-radius: 1rem;
     }
-
   }
 `
 
@@ -254,6 +270,7 @@ export const ThirdSection = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f4f7fa;
+
 
   & .third-wrapper {
     width: 50%;
@@ -403,9 +420,15 @@ export const FifthSection = styled.div`
       text-align: center;
     }
 
+    & .img-wrapper{
+      width: fit-content;
+      max-width: 80%;
+      max-height: 80vh;
+    }
+
     & img{
-      max-width: 85%;
-      max-height: 60vh;
+      max-width: 90%;
+      max-height: 80vh;
       margin-top: 1.5rem;
       border-radius: 1rem;
     }

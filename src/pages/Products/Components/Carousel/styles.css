@@ -1,7 +1,6 @@
 
-  img{
+  .pgImg{
     width: 100%;
-
   }
 
   .swiper {
@@ -47,7 +46,7 @@
 
   /* mobile */
   @media (max-width: 800px){
-    img{
+    .pgImg{
       width: 100%;
   
     }

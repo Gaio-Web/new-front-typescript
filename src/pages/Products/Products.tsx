@@ -143,6 +143,14 @@ function FindByPhone(): JSX.Element {
         fetchData().then(() => console.log("Data fetched successfully!")).catch((error) => console.error(error));
     }, []);
 
+    const handleWhatsClick = () => {
+        // setShowForm(true);
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          event.preventDefault();
+          const url = `https://wa.me/${data?.phone}`;
+          window.open(url, '_blank');
+        }; 
 
     if (loading) {
         return (
@@ -165,12 +173,11 @@ function FindByPhone(): JSX.Element {
         <Container>
             <header>
                 <div className='nav'>
-                    {/* {data.photos.logo.base64 == "" ? (
+                    {data.photos.logo.base64 == "" ? (
                         <h1>{data.name}</h1>
                     ) : (
-                        //<img src={data.photos.logo.base64} alt={'logo'}/>
-                    )} */}
-                    <h1>{data.name}</h1>
+                        <img src={data.photos.logo.base64} alt={'logo'}/>
+                    )}
                 </div>
             </header>
 
@@ -178,8 +185,10 @@ function FindByPhone(): JSX.Element {
                 <div className={'first-wrapper'}>
                     <h1>{data.description}</h1>
                     <p>{data.call}</p>
-                    <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
-                    <button>VAMOS CONVERSAR!</button>
+                    <div className='img-wrapper'>
+                        <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
+                    </div>
+                    <button onClick={handleWhatsClick} >Vamos conversar!</button>
                 </div>
             </FirstSection>
 
@@ -187,8 +196,10 @@ function FindByPhone(): JSX.Element {
                 <div className={'second-wrapper'}>
                     <h1 className='sectionTitle'>O que oferecemos</h1>
                     <p>{data.products}</p>
-                    <img className='pgImg' src={data.photos.photo3.base64} alt={'foto-do-produto'}/>
-                    <button>FALE COM A GENTE</button>
+                    <div className='img-wrapper'>
+                        <img className='pgImg' src={data.photos.photo3.base64} alt={'foto-do-produto'}/>
+                    </div>
+                    <button onClick={handleWhatsClick} >fale com a gente!</button>
                 </div>
             </SecondSection>
 
@@ -313,25 +324,28 @@ function FindByPhone(): JSX.Element {
                         <p>{data.qualitydescription1}</p>
                     </div>
 
+                    <button onClick={handleWhatsClick} >Vamos conversar!</button>
+
                 </div>
             </ThirdSection>
 
-            {/*<FourthSection>*/}
-            {/*    <div className={'fourth-wrapper'}>*/}
-            {/*        <h1>Galeria de fotos</h1>*/}
-            {/*        <Carousel/>*/}
-            {/*        <button>FALE COM A GENTE</button>*/}
-            {/*    </div>*/}
-            {/*</FourthSection>*/}
+            <FourthSection>
+            <div className={'fourth-wrapper'}>
+                <h1>Galeria de fotos</h1>
+                <Carousel/>
+                   <button onClick={handleWhatsClick} >Fale com a gente</button>
+            </div>
+            </FourthSection>
 
             <FifthSection>
                 <div className={'fifth-wrapper'}>
                     <h1 className='sectionTitle'>Nossa História</h1>
                     <p>{data.history}</p>
 
-                    <img src={data.photos.photo2.base64} alt={'Foto de fundo'}/>
-                    {/*<img className='pgImg' src={Photo2} alt={'foto-da-história'}/>*/}
-                    <button>CONVERSAR POR WHATSAPP</button>
+                    <div className='img-wrapper'>
+                        <img src={data.photos.photo2.base64} alt={'Foto de fundo'}/>
+                    </div>
+                    <button onClick={handleWhatsClick} >Conversar por WhatsApp</button>
                 </div>
             </FifthSection>
 
