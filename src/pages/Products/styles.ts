@@ -210,6 +210,7 @@ export const FirstSection = styled.div`
       max-height: 80vh;
       margin: 1rem 0 1.5rem;
       border-radius: 1rem;
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     }
     
   }
@@ -283,6 +284,7 @@ export const SecondSection = styled.div`
       max-height: 80vh;
       margin-top: 1.5rem;
       border-radius: 1rem;
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     }
   }
 `
@@ -466,6 +468,7 @@ export const FifthSection = styled.div`
       max-height: 80vh;
       margin-top: 1.5rem;
       border-radius: 1rem;
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     }
 
   }
@@ -512,7 +515,7 @@ export const SeventhSection = styled.div`
         text-align: center;
         height: fit-content;
         /* padding: 1rem 0 0; */
-        width: 90vw;
+        width: 95%;
 
         border: 2px solid rgba(136,136,136,.5);
         box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);

@@ -15,8 +15,6 @@ import {
     CoverPhotoSection,
     SixthSection,
     SeventhSection,
-    HistoryPhotoSection,
-    ProductsPhotoSection,
 } from "./styles";
 
 import {InputMask, InputMaskChangeEvent} from 'primereact/inputmask';
@@ -849,11 +847,13 @@ function Form(this: any): JSX.Element {
                         <h1>Foto de capa</h1>
                         <p className='photoText'>A foto que vem depois da descrição do seu negócio.</p>
 
-                        {data.photos.photo1.base64 === null ? (
-                            <img src={foto1} alt="foto da capa"/>
-                        ) : (
-                            <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
-                        )}
+                        <div className='img-wrapper'>
+                            {data.photos.photo1.base64 === null ? (
+                                <img src={foto1} alt="foto da capa"/>
+                            ) : (
+                                <img className='pgImg' src={data.photos.photo1.base64} alt={'foto-1'}/>
+                            )}
+                        </div>
 
                         <label className='custom-file-upload'>
                             <FiUpload color={'#fff'} size={24}/>
@@ -887,12 +887,14 @@ function Form(this: any): JSX.Element {
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
 
-                        {data.photos.photo1.base64 === null ? (
-                            <img src={foto1} alt="foto da capa"/>
-                        ) : (
-                            <img src={foto1} alt="foto da capa"/>
-                            //trocar por backPhoto
-                        )}
+                        <div className='img-wrapper'>
+                            {data.photos.photo1.base64 === null ? (
+                                <img src={foto1} alt="foto da capa"/>
+                            ) : (
+                                <img src={foto1} alt="foto da capa"/>
+                                //trocar por backPhoto
+                            )}
+                        </div>
 
                         <label className='custom-file-upload'>
                             <FiUpload color={'#fff'} size={24}/>
@@ -924,11 +926,13 @@ function Form(this: any): JSX.Element {
                         {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
 
-                        {data.photos.photo1.base64 === null ? (
-                            <img src={foto1} alt="foto da capa"/>
-                        ) : (
-                            <img src={data.photos.photo1.base64} alt={'foto-1'}/>
-                        )}
+                        <div className='img-wrapper'>
+                            {data.photos.photo1.base64 === null ? (
+                                <img src={foto1} alt="foto da capa"/>
+                            ) : (
+                                <img src={data.photos.photo1.base64} alt={'foto-1'}/>
+                            )}
+                        </div>
 
                         <label className='custom-file-upload'>
                             <FiUpload color={'#fff'} size={24}/>
@@ -944,42 +948,6 @@ function Form(this: any): JSX.Element {
                         }}/>
                     </div>
                 </CoverPhotoSection>
-
-                {/* <HistoryPhotoSection>
-                    <div className='photo-section-wrapper'>
-                        <h1>Foto da sua história</h1>
-                        <p>A foto que vem depois so texto sobre sua história.</p>
-
-                        {loading3 == true ?
-                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        :
-                        <>
-                            {backPhoto === null ? <img src={foto2}/> : <img src={URL.createObjectURL(historyPhoto)}/> }
-                        </>
-                        }
-
-                        <input type="file" accept="image/*" onChange={handleHistoryPhoto} />
-                        <button onClick={handleSendHistoryPhoto}>Atualizar foto de capa</button>
-                    </div>
-                </HistoryPhotoSection>
-
-                <ProductsPhotoSection>
-                    <div className='photo-section-wrapper'>
-                        <h1>Foto de capa</h1>
-                        <p>A foto que vem depois da descrição do seu negócio.</p>
-
-                        {loading4 == true ?
-                            <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>
-                        :
-                        <>
-                            {backPhoto === null ? <img src={foto3}/> : <img src={URL.createObjectURL(offerPhoto)}/> }
-                        </>
-                        }
-
-                        <input type="file" accept="image/*" onChange={handleOfferPhoto} />
-                        <button onClick={handleSendOfferPhoto}>Atualizar foto de capa</button>
-                    </div>
-                </ProductsPhotoSection> */}
 
             </PicsSection>
 

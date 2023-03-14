@@ -273,7 +273,7 @@ export const ThirdSection = styled.div`
     align-items: center;
 
     margin: .5rem 0;
-    padding: 0;
+    padding: 3rem 2rem;
     gap: 2.5rem;
     background-color: rgb(5, 55, 124);
 
@@ -719,14 +719,20 @@ export const PicsSection = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #eee;
-  //margin: .5rem 0; 
+  margin: .5rem 0; 
+  padding: 4rem 2rem;
 
-  width: 95%;
+  width: 80%;
   //height: fit-content;
 
   border: 2px solid rgba(136,136,136,.2);
   box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
   border-radius: .5rem;
+
+  @media screen and (max-width: 800px){
+    width: 95%;
+    padding: 0;
+  }
   
   & .picsTitle {
       margin: 0;
@@ -785,10 +791,29 @@ export const CoverPhotoSection = styled.div`
       text-align: center;
     }
 
+    & .img-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      width: fit-content;
+      max-width: 70%;
+      max-height: 60vh;
+      
+      @media screen and (max-width: 800px){
+        max-width: 100%;
+        max-height: 60vh;
+      }
+    }
+
     & img{
-      width: 90%;
-      border-radius: 10px;
-      margin: 1rem 0;
+      max-width: 90%;
+      max-height: 80vh;
+      margin: 1rem 0 1.5rem;
+      border-radius: 1rem;
+
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     }
 
     .custom-file-upload {
@@ -796,7 +821,7 @@ export const CoverPhotoSection = styled.div`
       align-items: center;
       justify-content: center;
       text-align: center;
-      width: 70%;
+      width: 60%;
       margin: 1rem 0 2rem;
 
       border: 0;
@@ -808,169 +833,9 @@ export const CoverPhotoSection = styled.div`
       color: white;
       font-weight: 600;
 
-      svg{
-          margin-right: 1rem;
-      }
-
-      input{
-          display: none;
-      }
-
-      & .uploadText{
-        color: white;
-        font-size: 1rem;
-        text-align: center;
-        padding: .8rem 0;
-        margin: 0;
-      }
-    }
-  }
-`
-export const HistoryPhotoSection = styled.div`
-  width: 90%;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #eee;
-  margin: 1rem .5rem;
-
-  border: 2px solid rgba(136,136,136,.2);
-  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-  border-radius: .5rem;
-
-  & .photo-section-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1rem;
-
-
-    & h1 {
-      margin: 0;
-      color: #034AA6;
-      font-size: 28px;
-      line-height: 2.4rem;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-
       @media screen and (max-width: 800px){
-        font-size: 1.5rem;
-        line-height: 2.2rem;
+        width: 70%;
       }
-    }
-
-    & .photoText{
-      font-size: .9rem;
-      text-align: center;
-    }
-
-    & img{
-      width: 90%;
-      border-radius: 10px;
-      margin: 1rem 0;
-    }
-
-    .custom-file-upload {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 70%;
-      margin: 1rem 0;
-
-      border: 0;
-      border-radius: 10px;
-      padding: .1rem 2rem;
-      cursor: pointer;
-
-      background: #034AA3;
-      color: white;
-      font-weight: 600;
-
-      svg{
-          margin-right: 1rem;
-      }
-
-      input{
-          display: none;
-      }
-
-      & .uploadText{
-        color: white;
-        font-size: 1rem;
-        text-align: center;
-        padding: .8rem 0;
-        margin: 0;
-      }
-    }
-  }
-`
-export const ProductsPhotoSection = styled.div`
-  width: 90%;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #eee;
-  margin: 1rem .5rem;
-
-  border: 2px solid rgba(136,136,136,.2);
-  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-  border-radius: .5rem;
-
-  & .photo-section-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1rem;
-
-
-    & h1 {
-      margin: 0;
-      color: #034AA6;
-      font-size: 28px;
-      line-height: 2.4rem;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-
-      @media screen and (max-width: 800px){
-        font-size: 1.5rem;
-        line-height: 2.2rem;
-      }
-    }
-
-    & .photoText{
-      font-size: .9rem;
-      text-align: center;
-    }
-
-    & img{
-      width: 90%;
-      border-radius: 10px;
-      margin: 1rem 0;
-    }
-
-    .custom-file-upload {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 70%;
-      margin: 1rem 0;
-
-      border: 0;
-      border-radius: 10px;
-      padding: .1rem 2rem;
-      cursor: pointer;
-
-      background: #034AA3;
-      color: white;
-      font-weight: 600;
 
       svg{
           margin-right: 1rem;
