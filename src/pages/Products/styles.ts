@@ -196,20 +196,20 @@ export const FirstSection = styled.div`
       margin: 0;
       padding: 0;
       width: fit-content;
-      max-width: 80%;
-      max-height: 80vh;
+      max-width: 100%;
+      max-height: 60vh;
+      
+      @media screen and (max-width: 800px){
+        max-width: 100%;
+        max-height: 60vh;
+      }
     }
 
     & img{
       max-width: 90%;
       max-height: 80vh;
-      margin-top: 1.5rem;
+      margin: 1rem 0 1.5rem;
       border-radius: 1rem;
-
-      @media screen and (max-width: 800px){
-        max-width: 85%;
-        max-height: 60vh;
-      }
     }
     
   }
@@ -263,9 +263,19 @@ export const SecondSection = styled.div`
     }
 
     & .img-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
       width: fit-content;
-      max-width: 80%;
-      max-height: 80vh;
+      max-width: 100%;
+      max-height: 60vh;
+      
+      @media screen and (max-width: 800px){
+        max-width: 100%;
+        max-height: 60vh;
+      }
     }
 
     & img{
@@ -436,9 +446,19 @@ export const FifthSection = styled.div`
     }
 
     & .img-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
       width: fit-content;
-      max-width: 80%;
-      max-height: 80vh;
+      max-width: 100%;
+      max-height: 60vh;
+      
+      @media screen and (max-width: 800px){
+        max-width: 100%;
+        max-height: 60vh;
+      }
     }
 
     & img{
