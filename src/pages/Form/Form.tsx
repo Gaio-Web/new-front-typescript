@@ -29,9 +29,9 @@ import LogoGaioMain from '../../assets/logoGaio.png'
 
 import ReactLoading from 'react-loading'
 
-import foto1 from '../../assets/foto1.png'
-import foto2 from '../../assets/foto2.png'
-import foto3 from '../../assets/foto3.png'
+import foto1 from '../../assets/foto1.webp'
+import foto2 from '../../assets/foto2.webp'
+import foto3 from '../../assets/foto3.webp'
 
 import FileBase64 from 'react-file-base64';
 
