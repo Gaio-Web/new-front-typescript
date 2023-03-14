@@ -78,6 +78,9 @@ interface Contact {
         //neighborhood: string;
       },
 
+    //Color
+    color: string,
+
     //calendar info
     segunda: string,
     terca: string,
@@ -169,7 +172,6 @@ function Form(this: any): JSX.Element {
     }
 
 
-
     //Logo
     const [selectLogo, setSelectLogo] = useState(false)
     const [isLoading1, setLoading1] = useState(false);
@@ -177,10 +179,6 @@ function Form(this: any): JSX.Element {
     //CORES
     const [colorized, setColorized] = useState(false);
     const [color, setColor] = useState('#034AA3');
-
-    const handleSendColor = () => {
-        console.log(color)
-    }
 
     const [options, setoptions] = useState([
         {color: "#EB596E", title: 'Carmine'},
@@ -196,6 +194,28 @@ function Form(this: any): JSX.Element {
         {color: "#25D8A7", title: "Turquesa"},
         {color: "#6D6D6D", title: "Cinza"}
     ])
+
+    const handleSendColor = async () => {
+        const body = {
+            phone: id,
+            color: color
+        };
+        try{
+            const response = await fetch('https://gaio-web-new-api-test.onrender.com/updateColor', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                console.log(color)
+                console.log(data);
+            } catch (error){
+                console.log(error);
+            }
+        }
+
 
 
     //ENDERECO
