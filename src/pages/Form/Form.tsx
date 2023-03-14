@@ -200,6 +200,7 @@ function Form(this: any): JSX.Element {
 
     //ENDERECO
     const [disableAdress, setDisableAdress] = useState(false)
+    const [zip, setZip] = useState('');
     const [street, setStreet] = useState('');
     const [state, setState] = useState('');
     const [number, setNumber] = useState('');
@@ -217,28 +218,41 @@ function Form(this: any): JSX.Element {
         await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
             .then((res) => res.json())
             .then((data) => {
+                setZip(`${data.cep}`)
                 setStreet(`${data.logradouro}`);
                 //setNeighborhood(`${data.address.bairro}`);
                 setState(data.uf)
                 setCity(data.localidade)
+
                 console.log(data)
             });
     }
 
     const handleSendEndereco = async () => {
 
+        // const payload = {
+        //     phone: id,
+        //     zipCode: data?.address.zipCode, //CEP
+        //     street: data?.address.street, // rua
+        //     number: data?.address.number, // numero
+        //     complement: data?.address.complement, // complemento
+        //     city: data?.address.city, // cidade
+        //     state: data?.address.state, // estado
+        //     //neighborhood: data?.address.neighborhood //bairro
+        // }
+
         const payload = {
             phone: id,
-            zipCode: data?.address.zipCode, //CEP
-            street: data?.address.street, // rua
-            number: data?.address.number, // numero
-            complement: data?.address.complement, // complemento
-            city: data?.address.city, // cidade
-            state: data?.address.state, // estado
+            zipCode: zip, //CEP
+            street: street, // rua
+            number: number, // numero
+            complement: complement, // complemento
+            city: city, // cidade
+            state: state, // estado
             //neighborhood: data?.address.neighborhood //bairro
         }
 
-        await fetch('/fillAdress', {
+        await fetch('https://gaio-web-new-api-test.onrender.com/fillAddress', {
             method: 'POST',
             headers: {
                 'Content-Type': 'aplication/json'
@@ -247,7 +261,7 @@ function Form(this: any): JSX.Element {
         })
             .then((res) =>  res.json())
             .then((data) => {
-                console.log(data);
+                console.log(payload);
             })
             .catch((err) => console.log(err))
     }
