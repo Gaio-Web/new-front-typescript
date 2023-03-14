@@ -149,7 +149,7 @@ function Form(this: any): JSX.Element {
             }
         )
         console.log('corpo: ', body)
-        const response = await fetch(`https://gaio-web-new-api-test.onrender.com/upload/${id}`, {
+        const response = await fetch(`https://gaio-web-new-api-test.onrender.com/upload`, {
             method: "POST",
             mode: 'cors',
             headers: {
