@@ -334,13 +334,13 @@ function FindByPhone(): JSX.Element {
                 </div>
             </ThirdSection>
 
-            <FourthSection>
+            {/* <FourthSection>
             <div className={'fourth-wrapper'}>
                 <h1>Galeria de fotos</h1>
                 <Carousel/>
                    <button onClick={handleWhatsClick} >Fale com a gente</button>
             </div>
-            </FourthSection>
+            </FourthSection> */}
 
             <FifthSection>
                 <div className={'fifth-wrapper'}>
