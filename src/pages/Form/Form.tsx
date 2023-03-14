@@ -68,6 +68,15 @@ interface Contact {
         }
     }
 
+    address: {
+        zipCode: string;
+        street: string;
+        number: string;
+        complement: string;
+        city: string;
+        state:string;
+      },
+
     //calendar info
     segunda: string,
     terca: string,
@@ -218,12 +227,13 @@ function Form(this: any): JSX.Element {
     const handleSendEndereco = async () => {
 
         const payload = {
-            street: street,
-            state: state,
-            number: number,
-            complement: complement,
-            neighborhood: neighborhood,
-            city: city
+            phone: id,
+            zipCode: data?.address.zipCode, //CEP
+            street: data?.address.street, // rua
+            number: data?.address.number, // numero
+            complement: data?.address.complement, // complemento
+            city: data?.address.city, // cidade
+            state: data?.address.state, // estado
         }
 
         await fetch('/fillAdress', {
