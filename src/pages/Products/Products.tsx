@@ -158,7 +158,12 @@ function FindByPhone(): JSX.Element {
                 <div className={'loading-wrapper'}>
                     <h1>Carregando...</h1>
                     <div className={'wrapper'}>
-                        <img src={LogoGaioMain} alt={'Logo Gaio'}/>
+                        <h1 style={{color:'rgb(5, 55, 124)'}}>{data?.name}</h1>
+                        { data?.photos.logo.base64 == '' ? (
+                            <></> 
+                        ) : (
+                            <img src={data?.photos.logo.base64} alt="logo" />
+                        )}
                     </div>
                 </div>
             </Loading>
