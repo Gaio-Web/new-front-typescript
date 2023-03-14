@@ -121,7 +121,7 @@ function Form(this: any): JSX.Element {
             try {
                 setLoading(true);
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByPhone/5584991097445`
+                    `https://gaio-web-new-api-test.onrender.com/findByPhone/${data?.phone}`
                     //`http://localhost:3001/findByPhone/5584991097445`
                 );
                 setData(response.data);
