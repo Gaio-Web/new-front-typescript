@@ -121,9 +121,9 @@ function Form(this: any): JSX.Element {
             try {
                 setLoading(true);
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByPhone/5531998785300`
+                    //`https://gaio-web-new-api-test.onrender.com/findByPhone/5531998785300`
                     //`http://localhost:3001/findByPhone/5531998785300`
-                    //`https://gaio-web-new-api-test.onrender.com/findByName/${id!.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')}`
+                    `https://gaio-web-new-api-test.onrender.com/findByName/${id!.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')}`
                 );
                 setData(response.data);
             } catch (err) {
@@ -149,7 +149,7 @@ function Form(this: any): JSX.Element {
             }
         )
         console.log('corpo: ', body)
-        const response = await fetch("https://gaio-web-new-api-test.onrender.com/upload", {
+        const response = await fetch(`https://gaio-web-new-api-test.onrender.com/upload/${id}`, {
             method: "POST",
             mode: 'cors',
             headers: {
