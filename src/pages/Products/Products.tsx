@@ -111,8 +111,8 @@ function FindByPhone(): JSX.Element {
     const {id} = useParams()
 
     // const uniqueName = id!.replace(/-/g, " ")
-    const uniqueName = id!.replace(/-/g, " ").replace(/(^|\s)\S/g, (match) => match.toUpperCase()).replace(/(-\s)\S/g, (match) => match.toUpperCase());;
-    console.log('auuu: ', uniqueName)
+    const uniqueName = id!.replace(/-/g, " ");
+    
     document.title = uniqueName
 
     // // @ts-ignore
@@ -130,7 +130,7 @@ function FindByPhone(): JSX.Element {
             console.log('id: ',id);
             try {
                 const response = await axios.get<Contact>(
-                    `https://gaio-web-new-api-test.onrender.com/findByName/${id!.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')}`
+                    `https://gaio-web-new-api-test.onrender.com/findByName/${uniqueName}`
                 );
                 setData(response.data);
             } catch (error) {
@@ -144,7 +144,8 @@ function FindByPhone(): JSX.Element {
     }, []);
 
     const handleWhatsClick = () => {
-        // setShowForm(true);
+
+          // setShowForm(true);
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           event.preventDefault();
