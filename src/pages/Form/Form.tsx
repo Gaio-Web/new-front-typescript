@@ -204,7 +204,7 @@ function Form(this: any): JSX.Element {
     const [state, setState] = useState('');
     const [number, setNumber] = useState('');
     const [complement, setComplement] = useState('');
-    const [neighborhood, setNeighborhood] = useState('');
+    //const [neighborhood, setNeighborhood] = useState('');
     const [city, setCity] = useState('');
 
     const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
@@ -217,12 +217,11 @@ function Form(this: any): JSX.Element {
         await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
             .then((res) => res.json())
             .then((data) => {
-                setStreet(`${data.address.logadouro}`);
-                setNeighborhood(`${data.address.bairro}`);
-                setState(data.address.uf)
-                //setNeighborhood(`${data.bairro}`);
-                setCity(data.address.localidade)
-                console.log(data.address)
+                setStreet(`${data.logradouro}`);
+                //setNeighborhood(`${data.address.bairro}`);
+                setState(data.uf)
+                setCity(data.localidade)
+                console.log(data)
             });
     }
 
