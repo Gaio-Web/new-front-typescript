@@ -297,8 +297,8 @@ function Form(this: any): JSX.Element {
         const whatsAppValid = event?.target?.value;
 
         if (whatsAppValid?.length !== 11) {
-            setWhatsapp(`${whatsAppValid}`)
-            //console.log(whatsAppValid)
+            setWhatsapp(`55${whatsAppValid?.replace(/[()-]/g, '')}`)
+
             return;
         }
     }
@@ -317,7 +317,7 @@ function Form(this: any): JSX.Element {
                 body: JSON.stringify(body)
                 });
                 const data = await response.json();
-                //console.log(whatsApp)
+                console.log(whatsApp)
                 console.log(data);
         } catch (error){
             console.log(error);
