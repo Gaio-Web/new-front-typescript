@@ -73,7 +73,7 @@ interface Contact {
         complement: string;
         city: string;
         state:string;
-        //neighborhood: string;
+        neighborhood: string;
       },
 
     //Color
@@ -226,7 +226,7 @@ function Form(this: any): JSX.Element {
     const [state, setState] = useState('');
     const [number, setNumber] = useState('');
     const [complement, setComplement] = useState('');
-    //const [neighborhood, setNeighborhood] = useState('');
+    const [neighborhood, setNeighborhood] = useState('');
     const [city, setCity] = useState('');
 
     const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
@@ -241,7 +241,7 @@ function Form(this: any): JSX.Element {
             .then((data) => {
                 setZip(`${data.cep}`)
                 setStreet(`${data.logradouro}`);
-                //setNeighborhood(`${data.address.bairro}`);
+                setNeighborhood(`${data.address.neighborhood}`);
                 setState(data.uf)
                 setCity(data.localidade)
 
