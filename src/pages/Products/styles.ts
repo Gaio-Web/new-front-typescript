@@ -99,7 +99,8 @@ export const Container = styled.div`
       z-index: 10;
 
       & img {
-        width: 120px;
+        max-height: 50px;
+        max-width: 45 vw;
       }
 
       & h1{
@@ -197,9 +198,12 @@ export const FirstSection = styled.div`
       padding: 0;
       width: fit-content;
       max-width: 100%;
-      max-height: 60vh;
+      max-height: 70vh;
       
       @media screen and (max-width: 800px){
+        margin: 0;
+        padding: 0;
+        width: fit-content;
         max-width: 100%;
         max-height: 60vh;
       }
@@ -207,10 +211,14 @@ export const FirstSection = styled.div`
 
     & img{
       max-width: 90%;
-      max-height: 80vh;
-      margin: 1rem 0 1.5rem;
+      max-height: 70vh;
+      margin-bottom: .5rem;
       border-radius: 1rem;
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      @media screen and (max-width: 800px){
+        max-height: 80vh;
+      }
     }
     
   }
@@ -271,9 +279,12 @@ export const SecondSection = styled.div`
       padding: 0;
       width: fit-content;
       max-width: 100%;
-      max-height: 60vh;
+      max-height: 70vh;
       
       @media screen and (max-width: 800px){
+        margin: 0;
+        padding: 0;
+        width: fit-content;
         max-width: 100%;
         max-height: 60vh;
       }
@@ -281,10 +292,14 @@ export const SecondSection = styled.div`
 
     & img{
       max-width: 90%;
-      max-height: 80vh;
-      margin-top: 1.5rem;
+      max-height: 70vh;
+      margin-bottom: .5rem;
       border-radius: 1rem;
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      @media screen and (max-width: 800px){
+        max-height: 80vh;
+      }
     }
   }
 `
@@ -300,11 +315,11 @@ export const ThirdSection = styled.div`
 
 
   & .third-wrapper {
-    width: 50%;
-    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50%;
+    height: fit-content;
     padding: 4rem 2rem;
     gap: 2rem;
 
@@ -312,22 +327,7 @@ export const ThirdSection = styled.div`
       width: 100%;
       padding: 10% 5%;
     }
-
-    & .difCards{
-      display: flex;
-      width: 80%;
-      border: 2px solid rgba(136,136,136,.2);
-      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-      border-radius: .5rem;
-      flex-direction: column;
-      align-items: center;
-      padding: 3.5rem 1.5rem;
-    }
-
-    & svg{
-      width: 70px;
-    }
-
+  
     & h1{
       margin: 0;
       font-weight: 500;
@@ -338,13 +338,34 @@ export const ThirdSection = styled.div`
       line-height: 1.5;
     }
 
-    & p{
-      margin: 0;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.5;
+    & .difCards{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 80%;
+      border: 2px solid rgba(136,136,136,.2);
+      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+      border-radius: .5rem;
+      padding: 3.5rem 1.5rem;
+
+      & h3{
       text-align: center;
-      width: 90%;
+      }
+
+      & p{
+        margin: 0;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+        width: 90%;
+      }
+
+      & svg{
+        width: 70px;
+      }
     }
 
   }
@@ -455,9 +476,12 @@ export const FifthSection = styled.div`
       padding: 0;
       width: fit-content;
       max-width: 100%;
-      max-height: 60vh;
+      max-height: 70vh;
       
       @media screen and (max-width: 800px){
+        margin: 0;
+        padding: 0;
+        width: fit-content;
         max-width: 100%;
         max-height: 60vh;
       }
@@ -465,10 +489,14 @@ export const FifthSection = styled.div`
 
     & img{
       max-width: 90%;
-      max-height: 80vh;
-      margin-top: 1.5rem;
+      max-height: 70vh;
+      margin-bottom: .5rem;
       border-radius: 1rem;
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      @media screen and (max-width: 800px){
+        max-height: 80vh;
+      }
     }
 
   }
