@@ -63,6 +63,8 @@ interface Contact {
 
     color: string;
 
+    whatsApp: string;
+
     //text content
     description: string;
     products: string;
@@ -156,8 +158,16 @@ function FindByPhone(): JSX.Element {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           event.preventDefault();
-          const url = `https://wa.me/${data?.phone}`;
-          window.open(url, '_blank');
+
+        if(data?.whatsApp == ''){
+            const url = `https://wa.me/${data?.phone}`;
+            window.open(url, '_blank');
+        } else {
+            const url = `https://wa.me/${data?.whatsApp}`;
+            window.open(url, '_blank');
+        }
+          //const url = `https://wa.me/${data?.phone}`;
+          //window.open(url, '_blank');
         }; 
 
     if (loading) {
