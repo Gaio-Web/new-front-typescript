@@ -405,7 +405,13 @@ function FindByPhone(): JSX.Element {
                             )}
                         </div>
 
-                        <button className='buttonCopy' style={{backgroundColor: data.color}} onClick={() =>  navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)}>
+                        <button
+                            className='buttonCopy' 
+                            style={{backgroundColor: data.color}} 
+                            onClick={() =>  
+                                navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)
+                            }
+                        >
                             <div>
                                 <span>
                                     <p>Copiar endereço</p>
