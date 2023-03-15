@@ -317,7 +317,6 @@ function Form(this: any): JSX.Element {
                 body: JSON.stringify(body)
                 });
                 const data = await response.json();
-                console.log(whatsApp)
                 console.log(data);
         } catch (error){
             console.log(error);
@@ -419,15 +418,38 @@ function Form(this: any): JSX.Element {
     const [disabledSab, setDisabledSab] = useState(false);
     const [disabledDom, setDisabledDom] = useState(false);
 
-    const handleSendCalendar = () =>{
-        console.log(
-            `Segunda: ${segunda}, Terça: ${terca}, Quarta: ${quarta}, Quinta: ${quinta}, Sexta: ${sexta}, Sábado: ${sabado}, Domingo: ${domingo}`
-        )
+    const handleSendCalendar = async () => {
+        const body = {
+            phone: id,
 
+            segunda: segunda,
+            terca: terca,
+            quarta: quarta,
+            quinta: quinta,
+            sexta: sexta,
+            sabado: sabado,
+            domingo: domingo
+        };
+        try{
+            const response = await fetch('https://gaio-web-new-api-test.onrender.com/updateBusinessHours', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                console.log(data);
+        } catch (error){
+            console.log(error);
+        }
     }
     
 
     //SEGUNDA
+    const segunda24Checked = segunda === '24 horas';
+    const segundaFecChecked = segunda === 'Fechado';
+
     function handleSegunda(event: any) {
         setSegunda(event.target.value);
     }
@@ -452,7 +474,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeSeg(checkboxName: string) {
+        if (checkboxName === 'segunda24') {
+          handlesegunda24();
+          setDisabledSeg(segundaFecChecked);
+          console.log(segundaFecChecked)
+        } else if (checkboxName === 'segundaFec') {
+          handlesegundafec();
+          setDisabledSeg(segunda24Checked);
+          console.log(segunda)
+        }
+      }
+
     //TERCA
+    const terca24Checked = terca === '24 horas';
+    const tercaFecChecked = terca === 'Fechado';
+
     function handleTerca(event: any) {
         setTerca(event.target.value);
     }
@@ -477,7 +514,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeTer(checkboxName: string) {
+        if (checkboxName === 'terca24') {
+            handleterc24();
+          setDisabledTer(tercaFecChecked);
+          console.log(terca)
+        } else if (checkboxName === 'tercaFec') {
+            handletercfec();
+          setDisabledTer(terca24Checked);
+          console.log(terca)
+        }
+      }
+
     //QUARTA
+    const quarta24Checked = quarta === '24 horas';
+    const quartaFecChecked = quarta === 'Fechado';
+
     function handleQuarta(event: any) {
         setQuarta(event.target.value);
     }
@@ -502,7 +554,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeQuar(checkboxName: string) {
+        if (checkboxName === 'quarta24') {
+            handlequarta24();
+          setDisabledQuar(quartaFecChecked);
+          console.log(quarta)
+        } else if (checkboxName === 'quartaFec') {
+            handlequartafec();
+          setDisabledQuar(quarta24Checked);
+          console.log(quarta)
+        }
+      }
+
     //QUINTA
+    const quinta24Checked = quinta === '24 horas';
+    const quintaFecChecked = quinta === 'Fechado';
+
     function handleQuinta(event: any) {
         setQuinta(event.target.value);
     }
@@ -527,7 +594,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeQuin(checkboxName: string) {
+        if (checkboxName === 'quinta24') {
+            handlequinta24();
+          setDisabledQuin(quintaFecChecked);
+          console.log(quinta)
+        } else if (checkboxName === 'quintaFec') {
+            handlequintafec();
+          setDisabledQuin(quinta24Checked);
+          console.log(quinta)
+        }
+      }
+
     //SEXTA
+    const sexta24Checked = sexta === '24 horas';
+    const sextaFecChecked = sexta === 'Fechado';
+
     function handleSexta(event: any) {
         setQuarta(event.target.value);
     }
@@ -552,7 +634,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeSex(checkboxName: string) {
+        if (checkboxName === 'sexta24') {
+            handlesexta24();
+          setDisabledSex(sextaFecChecked);
+          console.log(sexta)
+        } else if (checkboxName === 'sextaFec') {
+            handlesextafec();
+          setDisabledSex(sexta24Checked);
+          console.log(sexta)
+        }
+      }
+
     //SABADO
+    const sabado24Checked = sabado === '24 horas';
+    const sabadoFecChecked = sabado === 'Fechado';
+
     function handleSabado(event: any) {
         setQuarta(event.target.value);
     }
@@ -577,7 +674,22 @@ function Form(this: any): JSX.Element {
         }
     }
 
+    function handleCheckboxChangeSab(checkboxName: string) {
+        if (checkboxName === 'sabado24') {
+            handlesabado24();
+          setDisabledSab(sabadoFecChecked);
+          console.log(sabado)
+        } else if (checkboxName === 'sabadoFec') {
+            handlesabadofec();
+          setDisabledSab(sabado24Checked);
+          console.log(sabado)
+        }
+      }
+
     //DOMINGO
+    const domingo24Checked = domingo === '24 horas';
+    const domingoFecChecked = domingo === 'Fechado';
+
     function handleDomingo(event: any) {
         setQuarta(event.target.value);
     }
@@ -601,6 +713,18 @@ function Form(this: any): JSX.Element {
             setDisabledDom(true)
         }
     }
+
+    function handleCheckboxChangeDom(checkboxName: string) {
+        if (checkboxName === 'domingo24') {
+            handledomingo24();
+          setDisabledDom(domingoFecChecked);
+          console.log(domingo)
+        } else if (checkboxName === 'domingoFec') {
+            handledomingofec();
+          setDisabledDom(domingo24Checked);
+          console.log(domingo)
+        }
+      }
 
     //CHAVE PIX
     const [showChavePix, setShowChavePix] = useState(false)
@@ -1000,13 +1124,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handlesegunda24}></input>
+                                        <input type="checkbox" className={'checkbox'} checked={segunda24Checked} onChange={() => handleCheckboxChangeSeg('segunda24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handlesegundafec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={segundaFecChecked} onChange={() => handleCheckboxChangeSeg('segundaFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1038,13 +1162,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handleterc24}/>
+                                        <input type="checkbox" className={'checkbox'} checked={terca24Checked} onChange={() => handleCheckboxChangeTer('terca24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handletercfec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={tercaFecChecked} onChange={() => handleCheckboxChangeTer('tercaFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1075,13 +1199,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handlequarta24}></input>
+                                        <input type="checkbox" className={'checkbox'} checked={quarta24Checked} onChange={() => handleCheckboxChangeQuar('quarta24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handlequartafec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={quartaFecChecked} onChange={() => handleCheckboxChangeQuar('quartaFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1112,13 +1236,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handlequinta24}/>
+                                        <input type="checkbox" className={'checkbox'} checked={quinta24Checked} onChange={() => handleCheckboxChangeQuin('quinta24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handlequintafec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={quintaFecChecked} onChange={() => handleCheckboxChangeQuin('quintaFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1149,13 +1273,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handlesexta24}/>
+                                        <input type="checkbox" className={'checkbox'} checked={sexta24Checked} onChange={() => handleCheckboxChangeSex('sexta24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handlesextafec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={sextaFecChecked} onChange={() => handleCheckboxChangeSex('sextaFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1186,13 +1310,13 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handlesabado24}/>
+                                        <input type="checkbox" className={'checkbox'} checked={sabado24Checked} onChange={() => handleCheckboxChangeSab('sabado24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handlesabadofec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={sabadoFecChecked} onChange={() => handleCheckboxChangeSab('sabadoFec')}/>
                                     </div>
                                 </div>
                             </div>
@@ -1227,20 +1351,20 @@ function Form(this: any): JSX.Element {
                             <div className='input-wrapper'>
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onInput={handledomingo24}/>
+                                        <input type="checkbox" className={'checkbox'} checked={domingo24Checked} onChange={() => handleCheckboxChangeDom('domingo24')}></input>
                                     </div>
                                 </div>
 
                                 <div className='input-value'>
                                     <div className={'checkbox-wrapper'}>
-                                        <input type="checkbox" className={'checkbox'} onClick={handledomingofec}/>
+                                        <input type="checkbox" className={'checkbox'} checked={domingoFecChecked} onChange={() => handleCheckboxChangeDom('domingoFec')}/>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <SendButton1 submit={handleSendEndereco}/>
+                    <SendButton1 submit={handleSendCalendar}/>
                 </div>
             </SixthSection>
 

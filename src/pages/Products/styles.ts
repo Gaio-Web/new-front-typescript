@@ -99,6 +99,7 @@ export const Container = styled.div`
       z-index: 10;
 
       & img {
+        border-radius: 10px;
         max-height: 50px;
         max-width: 45 vw;
       }
@@ -351,7 +352,10 @@ export const ThirdSection = styled.div`
       padding: 3.5rem 1.5rem;
 
       & h3{
-      text-align: center;
+        text-align: center;
+        font-weight: 600;
+        //color: #3A3A3A;
+        color: #05377C;
       }
 
       & p{

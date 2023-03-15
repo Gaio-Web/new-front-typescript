@@ -65,8 +65,8 @@ function Calendar({segunda, terca, quarta, quinta, sexta, sabado, domingo}: ICal
         <div className='sixth-wrapper'>
                     <h1 style={{color: data?.color}}>Horário de funcionamento</h1>
 
-                    <div className='table'>
-                    <div className='header'>
+                <div className='table'>
+                    <div className='header' style={{ backgroundColor: data?.color }}>
                        <h2>Horário de funcionamento</h2>
                     </div>
 

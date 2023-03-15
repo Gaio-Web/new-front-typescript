@@ -271,7 +271,7 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality1}</h3>
+                        <h3 style={{color: data?.color}}>{data.quality1}</h3>
                         <p>{data.qualitydescription1}</p>
                     </div>
 
@@ -309,7 +309,7 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality2}</h3>
+                        <h3 style={{color: data?.color}}>{data.quality2}</h3>
                         <p>{data.qualitydescription2}</p>
                     </div>
 
@@ -348,7 +348,7 @@ function FindByPhone(): JSX.Element {
                             </g>
                         </svg>
 
-                        <h3>{data.quality3}</h3>
+                        <h3 style={{color: data?.color}}>{data.quality3}</h3>
                         <p>{data.qualitydescription1}</p>
                     </div>
 
