@@ -250,8 +250,7 @@ function Form(this: any): JSX.Element {
     }
 
     const handleSendEndereco = async () => {
-
-        const payload = {
+        const body = {
             phone: id,
             zipCode: data?.address.zipCode, //CEP
             street: data?.address.street, // rua
@@ -259,32 +258,20 @@ function Form(this: any): JSX.Element {
             complement: data?.address.complement, // complemento
             city: data?.address.city, // cidade
             state: data?.address.state, // estado
-            //neighborhood: data?.address.neighborhood //bairro
+            neighborhood: data?.address.neighborhood //bairro
+        };
+        try {
+            const response = await fetch('https://gaio-web-new-api-test.onrender.com/fillAddress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'aplication/json'
+                },
+                body: JSON.stringify(body),
+            });
+            const data = await response.json();
+        }catch(error) {
+            console.log(error);
         }
-
-        // const payload = {
-        //     phone: id,
-        //     zipCode: zip, //CEP
-        //     street: street, // rua
-        //     number: number, // numero
-        //     complement: complement, // complemento
-        //     city: city, // cidade
-        //     state: state, // estado
-        //     //neighborhood: data?.address.neighborhood //bairro
-        // }
-
-        await fetch('https://gaio-web-new-api-test.onrender.com/fillAddress', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'aplication/json'
-            },
-            body: JSON.stringify(payload),
-        })
-            .then((res) =>  res.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => console.log(err))
     }
 
 
@@ -317,8 +304,6 @@ function Form(this: any): JSX.Element {
                 body: JSON.stringify(body)
                 });
                 const data = await response.json();
-                console.log(whatsApp)
-                console.log(data);
         } catch (error){
             console.log(error);
         }
