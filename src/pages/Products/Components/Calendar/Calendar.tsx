@@ -1,3 +1,6 @@
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 import { CalendarStyles } from './styles'
 
@@ -12,13 +15,55 @@ interface ICalendar {
     domingo: string;
 }
 
+interface Contact {
+    color: string;
+
+    businessName: string,
+    phone: string,
+    id: string,
+}
+
+interface Props {
+    phone: string;
+}
+
 
 function Calendar({segunda, terca, quarta, quinta, sexta, sabado, domingo}: ICalendar){
+
+    const {id} = useParams()
+
+    const [data, setData] = useState<Contact | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    const uniqueName = id!.replace(/\s+/g, "-");
+    
+    document.title = uniqueName
+
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            console.log('id: ',id);
+            try {
+                const response = await axios.get<Contact>(
+                    `https://gaio-web-new-api-test.onrender.com/findByName/${uniqueName}`
+                );
+                setData(response.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData().then(() => console.log("Data fetched successfully!")).catch((error) => console.error(error));
+    }, []);
+
+
     return(
 
         <CalendarStyles>
         <div className='sixth-wrapper'>
-                    <h1 >Horário de funcionamento</h1>
+                    <h1 style={{color: data?.color}}>Horário de funcionamento</h1>
 
                     <div className='table'>
                     <div className='header'>

@@ -60,6 +60,9 @@ interface Contact {
         city: string,
         state: string,
     }
+
+    color: string;
+
     //text content
     description: string;
     products: string;
@@ -184,7 +187,7 @@ function FindByPhone(): JSX.Element {
             <header>
                 <div className='nav'>
                     {data.photos.logo.base64 == "" ? (
-                        <h1>{data.name}</h1>
+                        <h1 style={{color: data.color}}>{data.name}</h1>
                     ) : (
                         <img src={data.photos.logo.base64} alt={'logo'}/>
                     )}
@@ -192,7 +195,7 @@ function FindByPhone(): JSX.Element {
             </header>
 
             <FirstSection>
-                <div className={'first-wrapper'}>
+                <div className={'first-wrapper'} style={{backgroundColor: data.color}}>
                     <h1>{data.call}</h1>
                     <p>{data.description}</p>
                     <div className='img-wrapper'>
@@ -208,7 +211,7 @@ function FindByPhone(): JSX.Element {
 
             <SecondSection>
                 <div className={'second-wrapper'}>
-                    <h1 className='sectionTitle'>O que oferecemos</h1>
+                    <h1 className='sectionTitle' style={{color: data.color}}>O que oferecemos</h1>
                     <p>{data.products}</p>
                     <div className='img-wrapper'>
                         {data.photos.photo3.base64 == '' ? (
@@ -229,8 +232,7 @@ function FindByPhone(): JSX.Element {
 
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.000000 64.000000"
                              preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                               stroke="none">
+                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={data.color} stroke="none">
                                 <path d="M255 601 c-84 -22 -154 -80 -196 -161 -34 -66 -33 -176 3 -245 31
                             -60 77 -105 138 -136 64 -32 176 -32 240 0 61 31 107 76 138 136 37 71 37 179
                             0 250 -49 94 -135 152 -235 160 -32 2 -71 1 -88 -4z m160 -28 c65 -22 136 -93
@@ -268,8 +270,7 @@ function FindByPhone(): JSX.Element {
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 64.000000 64.000000"
                              preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                               stroke="none">
+                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={data.color} stroke="none">
                                 <path d="M245 611 c-84 -22 -154 -80 -196 -161 -34 -66 -33 -176 3 -245 54
                             -103 146 -159 258 -159 300 0 395 403 128 540 -52 26 -144 38 -193 25z m160
                             -28 c65 -22 136 -93 158 -158 76 -222 -126 -424 -348 -348 -31 10 -67 34 -95
@@ -307,8 +308,7 @@ function FindByPhone(): JSX.Element {
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 64.000000 64.000000"
                              preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                               stroke="none">
+                            <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={data.color} stroke="none">
                                 <path d="M255 601 c-84 -22 -154 -80 -196 -161 -34 -66 -33 -176 3 -245 54
                             -103 146 -159 258 -159 300 0 395 403 128 540 -52 26 -144 38 -193 25z m160
                             -28 c65 -22 136 -93 158 -158 76 -222 -126 -424 -348 -348 -31 10 -67 34 -95
@@ -349,7 +349,7 @@ function FindByPhone(): JSX.Element {
 
             {/* <FourthSection>
             <div className={'fourth-wrapper'}>
-                <h1>Galeria de fotos</h1>
+                <h1 style={{color: data.color}}>Galeria de fotos</h1>
                 <Carousel/>
                    <button onClick={handleWhatsClick} >Fale com a gente</button>
             </div>
@@ -357,7 +357,7 @@ function FindByPhone(): JSX.Element {
 
             <FifthSection>
                 <div className={'fifth-wrapper'}>
-                    <h1 className='sectionTitle'>Nossa História</h1>
+                    <h1 className='sectionTitle' style={{color: data.color}}>Nossa História</h1>
                     <p>{data.history}</p>
 
                     <div className='img-wrapper'>
@@ -383,7 +383,7 @@ function FindByPhone(): JSX.Element {
 
             <SeventhSection>
                 <div className='seventh-wrapper'>
-                    <h1 className='sectionTitle'>Endereço</h1>
+                    <h1 className='sectionTitle' style={{color: data.color}}>Endereço</h1>
 
                     <div className='adressWrapper'>
                         <div className='userAdress'>
@@ -395,7 +395,7 @@ function FindByPhone(): JSX.Element {
                             )}
                         </div>
 
-                        <button className='buttonCopy' onClick={() =>  navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)}>
+                        <button className='buttonCopy' style={{backgroundColor: data.color}} onClick={() =>  navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)}>
                             <div>
                                 <span>
                                     <p>Copiar endereço</p>

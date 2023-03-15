@@ -340,67 +340,69 @@ function Form(this: any): JSX.Element {
     };
 
 
-    //HISTORYPHOTO
-    const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
-    const [loading3, setLoading3] = useState(false)
+    // //HISTORYPHOTO
+    // const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
+    // const [loading3, setLoading3] = useState(false)
 
-    const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const image = event.target.files;
+    // const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const image = event.target.files;
 
-        setLoading3(true)
-        if (image && image.length > 0) {
-            setHistoryPhoto(image[0]);
-            setLoading3(false)
-        }
-    }
+    //     setLoading3(true)
+    //     if (image && image.length > 0) {
+    //         setHistoryPhoto(image[0]);
+    //         setLoading3(false)
+    //     }
+    // }
 
-    const updateHistoryPhoto = async (historyPhoto: File) => {
-        const formData = new FormData();
-        formData.append('image', historyPhoto);
-        const response = await axios.post('/getName', formData);
-        return response.data;
-    };
+    // const updateHistoryPhoto = async (historyPhoto: File) => {
+    //     const formData = new FormData();
+    //     formData.append('image', historyPhoto);
+    //     const response = await axios.post('/getName', formData);
+    //     return response.data;
+    // };
 
-    const handleSendHistoryPhoto = async () => {
-        setLoading3(true);
-        if (historyPhoto !== null) {
-            await updateHistoryPhoto(historyPhoto);
-            setHistoryPhoto(null);
-        }
-        setLoading3(false);
-    };
+    // const handleSendHistoryPhoto = async () => {
+    //     setLoading3(true);
+    //     if (historyPhoto !== null) {
+    //         await updateHistoryPhoto(historyPhoto);
+    //         setHistoryPhoto(null);
+    //     }
+    //     setLoading3(false);
+    // };
 
-    //OFFERPHOTO
-    const [offerPhoto, setOfferPhoto] = useState<File | null>(null);
-    const [loading4, setLoading4] = useState(false)
+    // //OFFERPHOTO
+    // const [offerPhoto, setOfferPhoto] = useState<File | null>(null);
+    // const [loading4, setLoading4] = useState(false)
 
-    const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const image = event.target.files;
+    // const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const image = event.target.files;
 
-        setLoading4(true)
-        if (image && image.length > 0) {
-            setOfferPhoto(image[0]);
-            setLoading4(false)
-        }
-    }
+    //     setLoading4(true)
+    //     if (image && image.length > 0) {
+    //         setOfferPhoto(image[0]);
+    //         setLoading4(false)
+    //     }
+    // }
 
-    const updateOfferPhoto = async (OfferPhoto: File) => {
-        const formData = new FormData();
-        formData.append('image', OfferPhoto);
-        const response = await axios.post('/getName', formData);
-        return response.data;
-    };
+    // const updateOfferPhoto = async (OfferPhoto: File) => {
+    //     const formData = new FormData();
+    //     formData.append('image', OfferPhoto);
+    //     const response = await axios.post('/getName', formData);
+    //     return response.data;
+    // };
 
-    const handleSendOfferPhoto = async () => {
-        setLoading4(true);
-        if (offerPhoto !== null) {
-            await updateOfferPhoto(offerPhoto);
-            setOfferPhoto(null);
-        }
-        setLoading4(false);
-    };
+    // const handleSendOfferPhoto = async () => {
+    //     setLoading4(true);
+    //     if (offerPhoto !== null) {
+    //         await updateOfferPhoto(offerPhoto);
+    //         setOfferPhoto(null);
+    //     }
+    //     setLoading4(false);
+    // };
 
     //CALENDAR
+    
+    
     const [segunda, setSegunda] = useState('');
     const [terca, setTerca] = useState('');
     const [quarta, setQuarta] = useState('');
@@ -888,10 +890,10 @@ function Form(this: any): JSX.Element {
                         <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
 
                         <div className='img-wrapper'>
-                            {data.photos.photo1.base64 === null ? (
+                            {data.photos.photo2.base64 === null ? (
                                 <img src={foto1} alt="foto da capa"/>
                             ) : (
-                                <img src={foto1} alt="foto da capa"/>
+                                <img src={data.photos.photo2.base64} alt="foto da capa"/>
                                 //trocar por backPhoto
                             )}
                         </div>
@@ -928,9 +930,9 @@ function Form(this: any): JSX.Element {
 
                         <div className='img-wrapper'>
                             {data.photos.photo1.base64 === null ? (
-                                <img src={foto1} alt="foto da capa"/>
+                                <img src={foto3} alt="foto da capa"/>
                             ) : (
-                                <img src={data.photos.photo1.base64} alt={'foto-1'}/>
+                                <img src={data.photos.photo3.base64} alt={'foto-1'}/>
                             )}
                         </div>
 
