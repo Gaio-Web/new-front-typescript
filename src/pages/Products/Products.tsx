@@ -236,7 +236,7 @@ function FindByPhone(): JSX.Element {
 
             <ThirdSection>
                 <div className={'third-wrapper'}>
-                    <h1 className='sectionTitle'>Nossos diferenciais</h1>
+                    <h1 className='sectionTitle' style={{color: data.color}}>Nossos diferenciais</h1>
 
                     <div className='difCards'>
 
@@ -407,13 +407,12 @@ function FindByPhone(): JSX.Element {
 
                         <button
                             className='buttonCopy' 
-                            style={{backgroundColor: data.color}} 
                             onClick={() =>  
                                 navigator.clipboard.writeText(`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.city}, ${data.address.state}`)
                             }
                         >
                             <div>
-                                <span>
+                                <span style={{backgroundColor: data.color}} >
                                     <p>Copiar endereço</p>
                                 </span>
                             </div>
