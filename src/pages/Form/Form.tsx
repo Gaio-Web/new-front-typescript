@@ -248,7 +248,7 @@ function Form(this: any): JSX.Element {
       });
   };
 
-  const handleSendEndereco = async () => {
+  const handleSendAddress = async () => {
     const body = JSON.stringify({
       phone: id,
       zip_code: zip, // CEP
@@ -942,7 +942,7 @@ function Form(this: any): JSX.Element {
               </div>
               <button
                 onClick={() => {
-                  handleSendEndereco();
+                  handleSendAddress();
                 }}
               >
                 Enviar endereço
