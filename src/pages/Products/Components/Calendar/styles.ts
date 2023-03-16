@@ -87,7 +87,8 @@ export const CalendarStyles = styled.section`
         }
 
         h3 {
-          font-weight: 500;
+          font-weight: 400;
+          font-size: 1rem;
         }
       }
     }
