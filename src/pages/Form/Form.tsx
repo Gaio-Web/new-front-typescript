@@ -241,7 +241,7 @@ function Form(this: any): JSX.Element {
             .then((data) => {
                 setZip(`${data.cep}`)
                 setStreet(`${data.logradouro}`);
-                setNeighborhood(`${data.address.neighborhood}`);
+                setNeighborhood(`${data.bairro}`);
                 setState(data.uf)
                 setCity(data.localidade)
 
@@ -252,7 +252,7 @@ function Form(this: any): JSX.Element {
     const handleSendEndereco = async () => {
         const body = {
             phone: id,
-            zipCode: data?.address.zipCode, //CEP
+            zip_code: data?.address.zipCode, //CEP
             street: data?.address.street, // rua
             number: data?.address.number, // numero
             complement: data?.address.complement, // complemento
