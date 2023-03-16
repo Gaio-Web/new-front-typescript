@@ -3,7 +3,6 @@ import axios from 'axios';
 import {
   Container,
   FifthSection,
-  FirstSection,
   FooterSection,
   FourthSection,
   Loading,
@@ -23,11 +22,16 @@ import { Carousel } from './Components/Carousel/Carousel';
 
 import {Helmet} from "react-helmet"
 
+import { FirstSection  } from './Sections/FirstSection';
+
 import { useParams } from 'react-router-dom';
 
 import foto1 from '../../assets/foto1.png';
 import foto2 from '../../assets/foto2.png';
 import foto3 from '../../assets/foto3.png';
+
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 interface Contact {
   //Nome
@@ -117,6 +121,11 @@ interface Props {
 }
 
 function FindByPhone(): JSX.Element {
+
+  useEffect(() => {
+    Aos.init({duration: 2000});
+  }, []);
+
   const { id } = useParams();
 
   // const uniqueName = id!.replace(/-/g, " ")
@@ -207,27 +216,35 @@ function FindByPhone(): JSX.Element {
           {data.photos.logo.base64 == '' ? (
             <h1 style={{ color: data.color }}>{data.name}</h1>
           ) : (
-            <img src={data.photos.logo.base64} alt={'logo'} />
+            <img fetch-priority={'hight'} src={data.photos.logo.base64} alt={'logo'} />
           )}
         </div>
       </header>
 
-      <FirstSection style={{ backgroundColor: data.color }}>
+      {/* <FirstSection style={{ backgroundColor: data.color }}>
         <div
           className={'first-wrapper'}
         >
           <h1>{data.call}</h1>
           <p>{data.description}</p>
-          <div className="img-wrapper">
+          <div className="img-wrapper"  data-aos="fade-up">
             {data.photos.photo1.base64 == '' ? (
-              <img src={foto1} alt="Foto de capa exemplo" loading='lazy'/>
+              <img fetch-priority={'hight'} src={foto1}  alt="Foto de capa exemplo" loading='lazy'/>
             ) : (
-              <img src={data.photos.photo1.base64} alt={'foto de capa'} loading='lazy'/>
+              <img fetch-priority={'hight'} src={data.photos.photo1.base64} alt={'foto de capa'} loading='lazy'/>
             )}
           </div>
           <button onClick={handleWhatsClick}>Vamos conversar!</button>
         </div>
-      </FirstSection>
+      </FirstSection> */}
+      <FirstSection
+      backgroundColor={data.color}
+      call={data.call}
+      description={data.description}
+      photoBase64={data.photos.photo1.base64}
+      src={Photo1}
+      onClick={handleWhatsClick}
+      />
 
       <SecondSection>
         <div className={'second-wrapper'}>
@@ -235,11 +252,11 @@ function FindByPhone(): JSX.Element {
             O que oferecemos
           </h1>
           <p>{data.products}</p>
-          <div className="img-wrapper">
+          <div className="img-wrapper"  data-aos="fade-up">
             {data.photos.photo3.base64 == '' ? (
-              <img src={foto3} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
+              <img fetch-priority={'hight'} src={foto3} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
             ) : (
-              <img
+              <img fetch-priority={'hight'}
                 src={data.photos.photo3.base64}
                 alt={'foto do produto/serviço'}
                 loading='lazy'
@@ -468,11 +485,11 @@ function FindByPhone(): JSX.Element {
           </h1>
           <p>{data.history}</p>
 
-          <div className="img-wrapper">
+          <div className="img-wrapper"  data-aos="fade-up">
             {data.photos.photo2.base64 == '' ? (
-              <img src={foto2} alt="Foto exemplo da história" loading='lazy'/>
+              <img fetch-priority={'hight'} src={foto2} alt="Foto exemplo da história" loading='lazy'/>
             ) : (
-              <img src={data.photos.photo2.base64} alt={'foto da história'} loading='lazy'/>
+              <img fetch-priority={'hight'} src={data.photos.photo2.base64} alt={'foto da história'} loading='lazy'/>
             )}
           </div>
           <button onClick={handleWhatsClick}>Conversar por WhatsApp</button>
