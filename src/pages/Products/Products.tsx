@@ -446,7 +446,7 @@ function FindByPhone(): JSX.Element {
             </svg>
 
             <h3 style={{ color: data?.color }}>{data.quality3}</h3>
-            <p>{data.qualitydescription1}</p>
+            <p>{data.qualitydescription3}</p>
           </div>
 
           <button onClick={handleWhatsClick}>Vamos conversar!</button>
