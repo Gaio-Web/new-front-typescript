@@ -1,7 +1,7 @@
-import React, {useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from "swiper";
+import { EffectCards } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,10 +13,9 @@ import './styles.css';
 import { Pagination } from 'swiper';
 
 // import images
-import Photo1 from '../../../../assets/foto1.png'
-import Photo2 from '../../../../assets/foto2.png'
-import vertical from '../../../../assets/capaSerena.png'
-
+import Photo1 from '../../../../assets/foto1.png';
+import Photo2 from '../../../../assets/foto2.png';
+import vertical from '../../../../assets/capaSerena.png';
 
 function Carousel() {
   const [slidesPerView, setSlidesPerView] = useState(3);
@@ -35,38 +34,38 @@ function Carousel() {
     <>
       <Swiper
         slidesPerView={slidesPerView}
-        effect={"cards"}
+        effect={'cards'}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         loop={true}
         grabCursor={true}
-        modules={[ Pagination, EffectCards]}
+        modules={[Pagination, EffectCards]}
         className="mySwiper"
       >
         <SwiperSlide>
           <div className={'content-wrapper'}>
-            <img className='pgImg' src={vertical} alt={'foto-1'}/>
+            <img className="pgImg" src={vertical} alt={'foto-1'} />
           </div>
         </SwiperSlide>
 
         <SwiperSlide>
           <div className={'content-wrapper'}>
-          <img className='pgImg' src={Photo2} alt={'foto-2'}/>
+            <img className="pgImg" src={Photo2} alt={'foto-2'} />
           </div>
         </SwiperSlide>
 
         <SwiperSlide>
           <div className={'content-wrapper'}>
-          <img className='pgImg' src={Photo2} alt={'foto-2'}/>
+            <img className="pgImg" src={Photo2} alt={'foto-2'} />
           </div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div className={'content-wrapper'}>
-            <img className='pgImg' src={Photo2} alt={'foto-2'}/>
-            </div>
+          <div className={'content-wrapper'}>
+            <img className="pgImg" src={Photo2} alt={'foto-2'} />
+          </div>
         </SwiperSlide>
 
         {/* tem que fazer um images.map quando construir o forms e começar a receber imagens.
@@ -75,7 +74,6 @@ function Carousel() {
             <div className='imgWrapper'> <CarouselSlide src={img}/> </div>
         ))}
         </CarouselContainer> */}
-
       </Swiper>
     </>
   );
