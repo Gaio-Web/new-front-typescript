@@ -221,13 +221,13 @@ function Form(this: any): JSX.Element {
 
     //ENDERECO
     const [disableAdress, setDisableAdress] = useState(false)
-    const [zip, setZip] = useState('');
-    const [street, setStreet] = useState('');
-    const [state, setState] = useState('');
-    const [number, setNumber] = useState('');
-    const [complement, setComplement] = useState('');
-    const [neighborhood, setNeighborhood] = useState('');
-    const [city, setCity] = useState('');
+    const [zip, setZip] = useState<string>('');
+    const [street, setStreet] = useState<string>('');
+    const [state, setState] = useState<string>('');
+    const [number, setNumber] = useState<string>('');
+    const [complement, setComplement] = useState<string>('');
+    const [neighborhood, setNeighborhood] = useState<string>('');
+    const [city, setCity] = useState<string>('');
 
     const getAddress = async (event: InputMaskChangeEvent): Promise<void> => {
         const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
@@ -250,28 +250,29 @@ function Form(this: any): JSX.Element {
     }
 
     const handleSendEndereco = async () => {
-        const body = {
+        const body = JSON.stringify({
             phone: id,
-            zip_code: data?.address.zipCode, //CEP
-            street: data?.address.street, // rua
-            number: data?.address.number, // numero
-            complement: data?.address.complement, // complemento
-            city: data?.address.city, // cidade
-            state: data?.address.state, // estado
-            neighborhood: data?.address.neighborhood //bairro
-        };
-        try {
-            const response = await fetch('https://gaio-web-new-api-test.onrender.com/fillAddress', {
-                method: 'POST',
+            zip_code: zip, // CEP
+            street: street, // rua
+            number: number, // numero
+            complement: complement, // complemento
+            city: city, // cidade
+            state: state, // estado
+            neighborhood: neighborhood //bairro
+
+        });
+
+        const response = await fetch(
+            'https://gaio-web-new-api-test.onrender.com/fillAddress', {
                 headers: {
-                    'Content-Type': 'aplication/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(body),
-            });
-            const data = await response.json();
-        }catch(error) {
-            console.log(error);
-        }
+                method: "POST",
+                body: body,
+            }
+        )
+        const result = await response.json()
+        // ).then((response) => response.json().then(json => console.log(json))).catch(error => console.log(error.message))
     }
 
 
@@ -887,12 +888,21 @@ function Form(this: any): JSX.Element {
                                 </div>
 
                                 <div className='adress-wrapper'>
-                                    <div className='adress-input-wrapper'>
+                                    <div className='smaller-input-wraper'>
+                                        <div>
                                         <label>Cidade:</label>
                                         <input
                                             value={city}
                                             onChange={(text) => setCity(text.target.value)}
-                                        />
+                                            />
+                                        </div>
+                                        <div>
+                                        <label>Bairro:</label>
+                                        <input
+                                            value={neighborhood}
+                                            onChange={(text) => setNeighborhood(text.target.value)}
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className='adress-input-wrapper'>
@@ -913,7 +923,7 @@ function Form(this: any): JSX.Element {
                                 </div>
 
                             </div>
-                            <SendButton1 submit={handleSendEndereco}/>
+                            <button onClick={() => {handleSendEndereco()}}>Enviar endereço</button>
                         </>
                     )
 
