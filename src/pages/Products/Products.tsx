@@ -21,6 +21,8 @@ import Photo3 from '../../assets/foto3.png';
 
 import { Carousel } from './Components/Carousel/Carousel';
 
+import {Helmet} from "react-helmet"
+
 import { useParams } from 'react-router-dom';
 
 import foto1 from '../../assets/foto1.png';
@@ -193,6 +195,21 @@ function FindByPhone(): JSX.Element {
 
   return (
     <Container>
+      <Helmet>
+        <title>{data.name}</title>
+        <meta name="theme-color" content={data.color}/>
+        <meta property="title" content={data.name}/>
+        <meta name="description" content={data?.description} />
+        <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+
+
+        <meta name="og:title" content={data.name}/>
+        <meta property="og:description" content={data?.description} />
+        <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+
       <header>
         <div className="nav">
           {data.photos.logo.base64 == '' ? (
