@@ -618,6 +618,13 @@ export const SeventhSection = styled.div`
 `;
 
 export const FooterSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 100%;
+  height: fit-content;
+
   .footer-wrapper {
     display: flex;
     padding: 0.5rem;
