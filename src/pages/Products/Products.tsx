@@ -203,10 +203,9 @@ function FindByPhone(): JSX.Element {
         </div>
       </header>
 
-      <FirstSection>
+      <FirstSection style={{ backgroundColor: data.color }}>
         <div
           className={'first-wrapper'}
-          style={{ backgroundColor: data.color }}
         >
           <h1>{data.call}</h1>
           <p>{data.description}</p>
