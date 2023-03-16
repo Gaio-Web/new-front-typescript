@@ -222,7 +222,7 @@ function FindByPhone(): JSX.Element {
             {data.photos.photo1.base64 == '' ? (
               <img src={foto1} alt="Foto de capa exemplo" loading='lazy'/>
             ) : (
-              <img src={data.photos.photo1.base64} alt={'foto de capa'} />
+              <img src={data.photos.photo1.base64} alt={'foto de capa'} loading='lazy'/>
             )}
           </div>
           <button onClick={handleWhatsClick}>Vamos conversar!</button>
@@ -242,6 +242,7 @@ function FindByPhone(): JSX.Element {
               <img
                 src={data.photos.photo3.base64}
                 alt={'foto do produto/serviço'}
+                loading='lazy'
               />
             )}
           </div>
@@ -469,7 +470,7 @@ function FindByPhone(): JSX.Element {
 
           <div className="img-wrapper">
             {data.photos.photo2.base64 == '' ? (
-              <img src={foto2} alt="Foto exemplo da história" />
+              <img src={foto2} alt="Foto exemplo da história" loading='lazy'/>
             ) : (
               <img src={data.photos.photo2.base64} alt={'foto da história'} loading='lazy'/>
             )}
