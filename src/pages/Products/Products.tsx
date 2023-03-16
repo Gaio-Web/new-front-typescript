@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import React, { lazy } from "react"
 import axios from 'axios';
 import {
   Container,
@@ -11,6 +12,12 @@ import {
   ThirdSection,
 } from './styles';
 
+//SECTIONS
+const FirstSection = lazy(() => import ("./Sections/FirstSection").then(module => {
+  return {default: module.FirstSection}
+}))
+
+
 import { Calendar } from './Components/Calendar/Calendar';
 
 import LogoGaioMain from '../../assets/logoGaio.png';
@@ -21,8 +28,6 @@ import Photo3 from '../../assets/foto3.png';
 import { Carousel } from './Components/Carousel/Carousel';
 
 import {Helmet} from "react-helmet"
-
-import { FirstSection  } from './Sections/FirstSection';
 
 import { useParams } from 'react-router-dom';
 
@@ -237,6 +242,7 @@ function FindByPhone(): JSX.Element {
           <button onClick={handleWhatsClick}>Vamos conversar!</button>
         </div>
       </FirstSection> */}
+
       <FirstSection
       backgroundColor={data.color}
       call={data.call}
