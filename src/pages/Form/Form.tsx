@@ -601,7 +601,7 @@ function Form(this: any): JSX.Element {
   const sextaFecChecked = sexta === 'Fechado';
 
   function handleSexta(event: any) {
-    setQuarta(event.target.value);
+    setSexta(event.target.value);
   }
 
   function handlesextafec() {
@@ -641,7 +641,7 @@ function Form(this: any): JSX.Element {
   const sabadoFecChecked = sabado === 'Fechado';
 
   function handleSabado(event: any) {
-    setQuarta(event.target.value);
+    setSabado(event.target.value);
   }
 
   function handlesabadofec() {
@@ -681,7 +681,7 @@ function Form(this: any): JSX.Element {
   const domingoFecChecked = domingo === 'Fechado';
 
   function handleDomingo(event: any) {
-    setQuarta(event.target.value);
+    setDomingo(event.target.value);
   }
 
   function handledomingofec() {
