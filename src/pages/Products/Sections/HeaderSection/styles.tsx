@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 100%;
+  height: fit-content;
+
   header {
   width: 100%;
   height: 5rem;
@@ -28,11 +31,12 @@ export const Container = styled.div`
     & img {
       border-radius: 10px;
       max-height: 50px;
-      max-width: 45 vw;
+      max-width: 45vw;
     }
 
     & h1 {
       color: rgb(5, 55, 124);
+      text-align: center;
     }
   }
 }
