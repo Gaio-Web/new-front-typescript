@@ -5,15 +5,15 @@ interface ISecondSectionProp {
   photoBase64: string;
   products: string;
   src: any;
-  backgroundColor: any;
+  color: any;
   onClick: any;
 }
 
-function SecondSection({ photoBase64, products, src, backgroundColor, onClick}: ISecondSectionProp): JSX.Element{
+function SecondSection({ photoBase64, products, src, color, onClick}: ISecondSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'second-wrapper'}>
-        <h1 className="sectionTitle" style={{backgroundColor: backgroundColor}}>
+        <h1 className="sectionTitle" style={{color: color}}>
           O que oferecemos
         </h1>
         <p>{products}</p>
