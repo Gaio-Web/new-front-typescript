@@ -8,7 +8,6 @@ import {
   FourthSection,
   Loading,
   SeventhSection,
-  ThirdSection,
 } from './styles';
 
 //SECTIONS
@@ -18,6 +17,10 @@ const FirstSection = lazy(() => import ("./Sections/FiterSection/FirstSection").
 
 const SecondSection = lazy(() => import ("./Sections/SecondSection/SecondSection").then(module => {
   return {default: module.SecondSection}
+}))
+
+const ThirdSection = lazy(() => import ("./Sections/ThirdSection/ThirdSection").then(module => {
+  return {default: module.ThirdSection}
 }))
 
 
@@ -277,14 +280,14 @@ function FindByPhone(): JSX.Element {
       </SecondSection> */}
 
       <SecondSection
-        backgroundColor={data.color}
+        color={data.color}
         products={data.products}
         photoBase64={data.photos.photo3.base64}
         src={foto3}
         onClick={handleWhatsClick}
       />
 
-      <ThirdSection>
+      {/* <ThirdSection>
         <div className={'third-wrapper'}>
           <h1 className="sectionTitle" style={{ color: data.color }}>
             Nossos diferenciais
@@ -485,7 +488,18 @@ function FindByPhone(): JSX.Element {
 
           <button onClick={handleWhatsClick}>Vamos conversar!</button>
         </div>
-      </ThirdSection>
+      </ThirdSection> */}
+
+      <ThirdSection
+        color={data.color}
+        quality1={data.quality1}
+        qualitydescription1={data.qualitydescription1}
+        quality2={data.quality2}
+        qualitydescription2={data.qualitydescription2}
+        quality3={data.quality3}
+        qualitydescription3={data.qualitydescription3}
+        onClick={handleWhatsClick}
+      />
 
       {/* <FourthSection>
             <div className={'fourth-wrapper'}>
