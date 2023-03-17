@@ -44,6 +44,7 @@ export const Container = styled.div`
       align-items: center;
       margin: 0;
       padding: 0;
+      height: fit-content;
       width: fit-content;
       max-width: 100%;
       max-height: 70vh;
@@ -52,8 +53,9 @@ export const Container = styled.div`
         margin: 0;
         padding: 0;
         width: fit-content;
+        height: fit-content;
         max-width: 100%;
-        max-height: 40vh;
+        max-height: 50vh;
       }
     }
 
@@ -65,7 +67,7 @@ export const Container = styled.div`
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
 
       @media screen and (max-width: 800px) {
-        max-height: 80vh;
+        max-height: 60vh;
       }
     }
   }
