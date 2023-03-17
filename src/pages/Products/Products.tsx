@@ -204,6 +204,7 @@ function FindByPhone(): JSX.Element {
       <Loading>
         <div className={'loading-wrapper'}>
           <h1>Carregando...</h1>
+          <ReactLoading type={'spin'} color={'#fff'} height={200} width={100}/>
         </div>
       </Loading>
     );
@@ -258,11 +259,11 @@ function FindByPhone(): JSX.Element {
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <ThirdSection
           color={data.color}
-          quality1={data.quality1}
+          quality1={data.quality1.toUpperCase()}
           qualitydescription1={data.qualitydescription1}
-          quality2={data.quality2}
+          quality2={data.quality2.toUpperCase()}
           qualitydescription2={data.qualitydescription2}
-          quality3={data.quality3}
+          quality3={data.quality3.toUpperCase()}
           qualitydescription3={data.qualitydescription3}
           onClick={handleWhatsClick}
         />

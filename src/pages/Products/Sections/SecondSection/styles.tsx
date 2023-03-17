@@ -52,6 +52,7 @@ export const Container = styled.div`
       margin: 0;
       padding: 0;
       width: fit-content;
+      height: fit-content;
       max-width: 100%;
       max-height: 70vh;
 
@@ -60,7 +61,7 @@ export const Container = styled.div`
         padding: 0;
         width: fit-content;
         max-width: 100%;
-        max-height: 60vh;
+        max-height: 40vh;
       }
     }
 

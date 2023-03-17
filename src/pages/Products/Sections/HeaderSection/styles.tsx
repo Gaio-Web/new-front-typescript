@@ -37,6 +37,14 @@ export const Container = styled.div`
     & h1 {
       color: rgb(5, 55, 124);
       text-align: center;
+      max-width: 90%;
+        @media screen and (max-width: 410px){
+            font-size: 6vw;
+            line-height: 2.6rem;
+        }
+        @media screen and (max-width: 330px){
+            font-size:18px
+        }
     }
   }
 }
