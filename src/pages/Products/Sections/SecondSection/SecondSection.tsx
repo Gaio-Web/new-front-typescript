@@ -19,9 +19,9 @@ function SecondSection({ photoBase64, products, src, color, onClick}: ISecondSec
         <p>{products}</p>
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
-            <img fetch-priority={'hight'} src={src} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
+            <img fetch-priority={'auto'} src={src} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
           ) : (
-            <img fetch-priority={'hight'}
+            <img fetch-priority={'low'}
               src={photoBase64}
               alt={'foto do produto/serviço'}
               loading='lazy'

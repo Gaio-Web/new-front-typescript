@@ -20,9 +20,9 @@ function FirstSection({backgroundColor, call, description, photoBase64, src, onC
           <p>{description}</p>
           <div className="img-wrapper"  data-aos="fade-up">
             {photoBase64 == '' ? (
-              <img fetch-priority={'hight'} src={src}  alt="Foto de capa exemplo" loading='lazy'/>
+              <img fetch-priority={'auto'} src={src}  alt="Foto de capa exemplo" loading='lazy'/>
             ) : (
-              <img fetch-priority={'hight'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
+              <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
             )}
           </div>
           <button onClick={onClick}>Vamos conversar!</button>
