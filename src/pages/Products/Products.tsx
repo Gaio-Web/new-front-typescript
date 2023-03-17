@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import React, { lazy } from "react"
+import React, { lazy, Suspense } from "react"
 import axios from 'axios';
 import {
   Container,
   FourthSection,
   Loading,
 } from './styles';
+
+import ReactLoading from 'react-loading';
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ("./Sections/FirstSection/FirstSection").then(module => {
@@ -243,24 +245,28 @@ function FindByPhone(): JSX.Element {
       onClick={handleWhatsClick}
       />
 
-      <SecondSection
-        color={data.color}
-        products={data.products}
-        photoBase64={data.photos.photo3.base64}
-        src={Photo3}
-        onClick={handleWhatsClick}
-      />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <SecondSection
+          color={data.color}
+          products={data.products}
+          photoBase64={data.photos.photo3.base64}
+          src={Photo3}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
-      <ThirdSection
-        color={data.color}
-        quality1={data.quality1}
-        qualitydescription1={data.qualitydescription1}
-        quality2={data.quality2}
-        qualitydescription2={data.qualitydescription2}
-        quality3={data.quality3}
-        qualitydescription3={data.qualitydescription3}
-        onClick={handleWhatsClick}
-      />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <ThirdSection
+          color={data.color}
+          quality1={data.quality1}
+          qualitydescription1={data.qualitydescription1}
+          quality2={data.quality2}
+          qualitydescription2={data.qualitydescription2}
+          quality3={data.quality3}
+          qualitydescription3={data.qualitydescription3}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
       {/* <FourthSection>
             <div className={'fourth-wrapper'}>
@@ -270,35 +276,41 @@ function FindByPhone(): JSX.Element {
             </div>
             </FourthSection> */}
 
-      <FifthSection
-        color={data.color}
-        history={data.history}
-        photoBase64={data.photos.photo2.base64}
-        src={Photo2}
-        onClick={handleWhatsClick}
-      />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <FifthSection
+          color={data.color}
+          history={data.history}
+          photoBase64={data.photos.photo2.base64}
+          src={Photo2}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
-      <Calendar
-        segunda={`${data.segunda}`}
-        terca={`${data.terca}`}
-        quarta={`${data.quarta}`}
-        quinta={`${data.quinta}`}
-        sexta={`${data.sexta}`}
-        sabado={`${data.sabado}`}
-        domingo={`${data.domingo}`}
-      />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <Calendar
+          segunda={`${data.segunda}`}
+          terca={`${data.terca}`}
+          quarta={`${data.quarta}`}
+          quinta={`${data.quinta}`}
+          sexta={`${data.sexta}`}
+          sabado={`${data.sabado}`}
+          domingo={`${data.domingo}`}
+        />
+      </Suspense>
 
-      <SeventhSection
-        zipCode={data.address.zipCode}
-        street={data.address.street}
-        number={data.address.number}
-        city={data.address.city}
-        complement={data.address.complement}
-        state={data.address.state}
-        color={data.color}
-        backgroundColor={data.color}
-        onClick={handleWhatsClick}
-      />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <SeventhSection
+          zipCode={data.address.zipCode}
+          street={data.address.street}
+          number={data.address.number}
+          city={data.address.city}
+          complement={data.address.complement}
+          state={data.address.state}
+          color={data.color}
+          backgroundColor={data.color}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
       <FooterSection/>
     </Container>
