@@ -7,14 +7,17 @@ import {
   FooterSection,
   FourthSection,
   Loading,
-  SecondSection,
   SeventhSection,
   ThirdSection,
 } from './styles';
 
 //SECTIONS
-const FirstSection = lazy(() => import ("./Sections/FirstSection").then(module => {
+const FirstSection = lazy(() => import ("./Sections/FiterSection/FirstSection").then(module => {
   return {default: module.FirstSection}
+}))
+
+const SecondSection = lazy(() => import ("./Sections/SecondSection/SecondSection").then(module => {
+  return {default: module.SecondSection}
 }))
 
 
@@ -248,11 +251,11 @@ function FindByPhone(): JSX.Element {
       call={data.call}
       description={data.description}
       photoBase64={data.photos.photo1.base64}
-      src={Photo1}
+      src={foto1}
       onClick={handleWhatsClick}
       />
 
-      <SecondSection>
+      {/* <SecondSection>
         <div className={'second-wrapper'}>
           <h1 className="sectionTitle" style={{ color: data.color }}>
             O que oferecemos
@@ -271,7 +274,15 @@ function FindByPhone(): JSX.Element {
           </div>
           <button onClick={handleWhatsClick}>fale com a gente!</button>
         </div>
-      </SecondSection>
+      </SecondSection> */}
+
+      <SecondSection
+        backgroundColor={data.color}
+        products={data.products}
+        photoBase64={data.photos.photo3.base64}
+        src={foto3}
+        onClick={handleWhatsClick}
+      />
 
       <ThirdSection>
         <div className={'third-wrapper'}>
