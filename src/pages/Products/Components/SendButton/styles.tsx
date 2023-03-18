@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 50%;
+
   button {
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
-    gap: 0px;
-    height: 50px;
-    width: 208px;
+    justify-content: center;
+    gap: 1rem;
+    height: 3rem;
+    width: 100%;
     padding: 0 35px;
-    border: 0;
-    border-radius: 28px;
+    border: none;
+    border-radius: 8px;
 
     margin: 0;
 
@@ -21,10 +24,10 @@ export const Container = styled.div`
   }
 
   .text {
-    position: absolute;
-    left: 80px;
-    display: block;
-    white-space: nowrap;
+    /* position: absolute; */
+    /* left: 80px; */
+    /* display: block; */
+    /* white-space: nowrap; */
     font-size: 17px;
     font-weight: 600;
   }

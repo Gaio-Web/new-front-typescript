@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
@@ -32,6 +32,10 @@ import foto2 from '../../assets/foto2.webp';
 import foto3 from '../../assets/foto3.webp';
 
 import FileBase64 from 'react-file-base64';
+
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Contact {
   //text content
@@ -116,47 +120,88 @@ interface Contact {
 
 function Form(this: any): JSX.Element {
   const [image, setImage] = useState<any>('');
+  const [cover, setCover] = useState<any>('');
+  const [hist, setHist] = useState<any>('');
+  const [offer, setOffer] = useState<any>('');
+
+  const [uploaded, setUploaded] = useState<boolean>(false);
 
   const { id } = useParams();
 
   document.title = id!;
-  // console.log('id aqui: ',id);
+
   const getImage = (files: any) => {
     setImage(files);
   };
+  const getCover = (files: any) => {
+    setCover(files);
+  };
+  const getHist = (files: any) => {
+    setHist(files);
+  };
+  const getOffer = (files: any) => {
+    setOffer(files);
+  };
+
 
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    async function fetchDataForms() {
-      try {
-        setLoading(true);
-        const response = await axios.get<Contact>(
-          `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
-        );
-        setData(response.data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+  const fetchDataForms = useCallback ( async () => {
+    try {
+      const response = await axios.get<Contact>(
+        `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
+      );
+      setData(response.data);
+    } catch (err) {
+      console.error(err);
     }
+  },[])
 
+  // async function fetchDataForms() {
+    // try {
+    //   const response = await axios.get<Contact>(
+    //     `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
+    //   );
+    //   setData(response.data);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  // }
+
+  useEffect(() => {
+    // setLoading(true);
     fetchDataForms()
-      .then(() => console.log('Data fetched successfully!'))
+      .then(() => {console.log('Data fetched successfully!'), setLoading(false)})
       .catch((err) => console.error(err));
-  }, []);
+  }, [fetchDataForms]);
+
+  useEffect(() => {
+    if(uploaded == true){
+      fetchDataForms().then(() => {
+        setUploaded(false);
+        setImage('');
+        setCover('');
+        setHist('');
+        setOffer('');
+      })
+    }
+  }, [uploaded])
 
   //IMAGENS//FOTOS
   const uploadPhoto = async (photoPosition: string) => {
+    const teste = () => {
+      if(photoPosition == '4') return image.base64
+      else if(photoPosition == '1') return cover.base64
+      else if(photoPosition == '2') return hist.base64
+      else if(photoPosition == '3') return offer.base64
+    }
     const body = JSON.stringify({
       phone: id,
       photo_position: photoPosition,
-      base64: image.base64,
-      type: image.type,
+      base64: teste(),
+      type: teste(),
     });
-    console.log('corpo: ', body);
     const response = await fetch(
       'https://gaio-web-new-api-test.onrender.com/upload',
       {
@@ -168,7 +213,34 @@ function Form(this: any): JSX.Element {
         },
         body: body,
       }
-    );
+    )
+    if (response.ok) {
+      // A resposta foi bem-sucedida
+      toast.success('Imagem enviada com sucesso!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+        setUploaded(true)
+      } else {
+      // A resposta foi mal-sucedida
+      console.log('Houve um problema ao enviar a foto.');
+      toast.error('Houve um problema ao enviar a imagem!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
   };
 
   //Logo
@@ -211,8 +283,7 @@ function Form(this: any): JSX.Element {
         }
       );
       const data = await response.json();
-      console.log(color);
-      console.log(data);
+
     } catch (error) {
       console.log(error);
     }
@@ -243,8 +314,6 @@ function Form(this: any): JSX.Element {
         setNeighborhood(`${data.bairro}`);
         setState(data.uf);
         setCity(data.localidade);
-
-        console.log(data);
       });
   };
 
@@ -271,7 +340,6 @@ function Form(this: any): JSX.Element {
       }
     );
     const result = await response.json();
-    // ).then((response) => response.json().then(json => console.log(json))).catch(error => console.log(error.message))
   };
 
   //WHATSAPP
@@ -311,22 +379,9 @@ function Form(this: any): JSX.Element {
   };
 
   //FOTOS
-  //COVER PHOTO
-  const [selectedCoverPhoto, setSelectedCoverPhoto] = useState<File | null>(
-    null
-  );
+
   const [loading2, setLoading2] = useState(false);
 
-  const handleChangeCoverPhoto = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const files = event.target.files;
-    setLoading2(true);
-    if (files && files.length > 0) {
-      setSelectedCoverPhoto(files[0]);
-      setLoading2(false);
-    }
-  };
 
   // //HISTORYPHOTO
   // const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
@@ -430,7 +485,7 @@ function Form(this: any): JSX.Element {
         }
       );
       const data = await response.json();
-      console.log(data);
+
     } catch (error) {
       console.log(error);
     }
@@ -731,15 +786,12 @@ function Form(this: any): JSX.Element {
       <Loading>
         <div className={'loading-wrapper'}>
           <h1>Carregando...</h1>
-          {/* <div className={'wrapper'}>
-                        <img src={LogoGaioMain} alt={'Logo Gaio'}/>
-                    </div> */}
         </div>
       </Loading>
     );
   }
 
-  if (!data) {
+  else if (!data) {
     return <p>Registro não encontrado</p>;
   }
 
@@ -756,47 +808,62 @@ function Form(this: any): JSX.Element {
       </FirstSection>
 
       <SecondSection>
+      <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className={'second-wrapper'}>
-          <h1>Você tem uma logo que gostaria de usar no site?</h1>
-          <div className={'button-wrapper'}>
-            <button onClick={() => setSelectLogo(true)}>USAR MINHA LOGO</button>
-            <button onClick={() => setSelectLogo(false)}>NÃO USAR LOGO</button>
-          </div>
-
-          {selectLogo === false ? (
+            {data.photos.logo.base64 == '' ? (
+              <>
+            <h1>Você tem uma logo que gostaria de usar no site?</h1>
+              <div className={'button-wrapper'}>
+                <button onClick={() => setSelectLogo(true)}>USAR MINHA LOGO</button>
+                <button onClick={() => setSelectLogo(false)}>NÃO USAR LOGO</button>
+             </div>
+              </>
+            ):(<>
+            <h1>Você gostaria de mudar a sua logo?</h1>
+            </>)}
+          {selectLogo === false && data.photos.logo.base64 == '' ? (
             <></>
           ) : (
             <>
               <div className="image-update-wrapper">
-                {/* {isLoading1 == true ?
-                                    <ReactLoading type={'spin'} color={'#05377c'} height={200} width={100}/>
-                                    :
-                                    <img className='pgImg' src={data?.photos.logo.base64} alt={'foto-1'}/>
-                                } */}
-
                 {/*TROCAR POR LOGO*/}
-                {data.photos.photo1.base64 === '' ? (
-                  <img src={foto1} alt="foto da capa" />
+                <div className='teste'>
+                {data.photos.logo.base64 === '' ? (
+                  <img src={LogoGaioMain} alt="foto da logo-marca" />
                 ) : (
                   <img
                     className="pgImg"
-                    src={data.photos.photo1.base64}
-                    alt={'foto-1'}
+                    src={data.photos.logo.base64}
+                    alt={'foto da logo-marca'}
                   />
                 )}
 
-                <label className="custom-file-upload">
+                <label className="custom-file-upload" >
                   <FiUpload color={'#fff'} size={24} />
                   <FileBase64 multiple={false} onDone={getImage} />
-                  Fazer upload
+                  Escolher logo
                 </label>
+                <div className='img-preview'>
+                  {image && <img src={image.base64} alt='preview' />}
+                </div>
+                </div>
               </div>
             </>
           )}
-
           <p>Sua logo vai subsituir o nome da loja no cabeçalho do site</p>
 
-          {selectLogo === false ? (
+          {selectLogo === false && data.photos.logo.base64 == '' ? (
             <></>
           ) : (
             <SendButton1
@@ -993,7 +1060,7 @@ function Form(this: any): JSX.Element {
             </p>
 
             <div className="img-wrapper">
-              {data.photos.photo1.base64 === null ? (
+              {data.photos.photo1.base64 === '' ? (
                 <img src={foto1} alt="foto da capa" />
               ) : (
                 <img
@@ -1008,11 +1075,13 @@ function Form(this: any): JSX.Element {
               <FiUpload color={'#fff'} size={24} />
               <FileBase64
                 multiple={false}
-                onDone={getImage}
-                onChange={handleChangeCoverPhoto}
+                onDone={getCover}
               />
               <p className="uploadText">Fazer upload</p>
             </label>
+              <div className='img-preview'>
+                {cover && <img src={cover.base64} alt='preview' />}
+              </div>
 
             <SendButton1
               submit={() => {
@@ -1028,20 +1097,9 @@ function Form(this: any): JSX.Element {
             <p className="photoText">
               A foto que vem depois da descrição do seu negócio.
             </p>
-
-            {/*{loading2 ?*/}
-            {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
-            {/*    :*/}
-            {/*    <>*/}
-            {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
-            {/*    </>*/}
-            {/*}*/}
-            {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
-                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
-
             <div className="img-wrapper">
-              {data.photos.photo2.base64 === null ? (
-                <img src={foto1} alt="foto da capa" />
+              {data.photos.photo2.base64 === '' ? (
+                <img src={foto2} alt="foto da história" />
               ) : (
                 <img src={data.photos.photo2.base64} alt="foto da capa" />
                 //trocar por backPhoto
@@ -1050,10 +1108,13 @@ function Form(this: any): JSX.Element {
 
             <label className="custom-file-upload">
               <FiUpload color={'#fff'} size={24} />
-              <FileBase64 multiple={false} onDone={getImage} />
+              <FileBase64 multiple={false} onDone={getHist} />
               <p className="uploadText">Fazer upload</p>
             </label>
 
+            <div className='img-preview'>
+                {hist && <img src={hist.base64} alt='preview' />}
+              </div>
             <SendButton1
               submit={() => {
                 uploadPhoto('2');
@@ -1068,30 +1129,22 @@ function Form(this: any): JSX.Element {
             <p className="photoText">
               A foto que vem depois da descrição do seu negócio.
             </p>
-
-            {/*{loading2 ?*/}
-            {/*    <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>*/}
-            {/*    :*/}
-            {/*    <>*/}
-            {/*        {backPhoto === null ? <img src={foto1}/> : <img src={URL.createObjectURL(backPhoto)}/>}*/}
-            {/*    </>*/}
-            {/*}*/}
-            {/* <input type="file" accept="image/*" onChange={handleBackPhoto} />
-                        <button onClick={handleSendBackPhoto}>Atualizar foto de capa</button> */}
-
             <div className="img-wrapper">
-              {data.photos.photo1.base64 === null ? (
-                <img src={foto3} alt="foto da capa" />
+              {data.photos.photo3.base64 === '' ? (
+                <img src={foto3} alt="foto das ofertas" />
               ) : (
-                <img src={data.photos.photo3.base64} alt={'foto-1'} />
+                <img src={data.photos.photo3.base64} alt={'foto das ofertas'} />
               )}
             </div>
 
             <label className="custom-file-upload">
               <FiUpload color={'#fff'} size={24} />
-              <FileBase64 multiple={false} onDone={getImage} />
+              <FileBase64 multiple={false} onDone={getOffer} />
               <p className="uploadText">Fazer upload</p>
             </label>
+              <div className='img-preview'>
+                  {offer && <img src={offer.base64} alt='preview' />}
+              </div>
 
             <SendButton1
               submit={() => {
