@@ -259,11 +259,11 @@ function FindByPhone(): JSX.Element {
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <ThirdSection
           color={data.color}
-          quality1={data.quality1.toUpperCase() + data.quality2.slice(1)}
+          quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
           qualitydescription1={data.qualitydescription1}
-          quality2={data.quality2.toUpperCase() + data.quality2.slice(1)}
+          quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
           qualitydescription2={data.qualitydescription2}
-          quality3={data.quality3.toUpperCase() + data.quality2.slice(1)}
+          quality3={data.quality3.charAt(0).toUpperCase() + data.quality2.slice(1)}
           qualitydescription3={data.qualitydescription3}
           onClick={handleWhatsClick}
         />
