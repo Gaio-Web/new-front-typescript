@@ -76,7 +76,7 @@ export const FirstSection = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 1.5rem;
+    gap: 1rem;
 
     @media screen and (max-width: 800px) {
       width: 100%;
@@ -87,13 +87,11 @@ export const FirstSection = styled.div`
       margin: 0;
       color: white;
       font-size: 28px;
-      line-height: 2.4rem;
       text-align: center;
       font-family: "Montserrat", sans-serif;
 
       @media screen and (max-width: 800px) {
-        font-size: 1.6rem;
-        line-height: 2.4rem;
+        font-size: 22px;
       }
     }
 
@@ -101,11 +99,9 @@ export const FirstSection = styled.div`
       margin: 0;
       font-weight: 500;
       font-size: 17px;
-      line-height: 1.7rem;
       color: #f0f0f0;
       font-family: "Montserrat", sans-serif;
-
-      text-align: center;
+      text-align: justify;
     }
   }
 `;
@@ -117,6 +113,7 @@ export const SecondSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 2rem;
   background-color: #eee;
 
   & .second-wrapper {
@@ -125,13 +122,13 @@ export const SecondSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 3rem 2rem;
-    margin: 0.5rem 0;
     gap: 2.5rem;
 
-    border: 2px solid rgba(136, 136, 136, 0.2);
-    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-    border-radius: 0.5rem;
+    /* border: 2px solid rgba(136, 136, 136, 0.2); */
+    /* box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2); */
+    /* border-radius: 0.5rem; */
 
     @media screen and (max-width: 800px) {
       width: 85%;
@@ -179,7 +176,7 @@ export const SecondSection = styled.div`
         width: fit-content;
         max-width: 85vw;
         padding: 1.2rem 2rem;
-        border-radius: 10px;
+        border-radius: 8px;
         border: none;
         background-color: #034aa3;
         cursor: pointer;
@@ -191,29 +188,70 @@ export const SecondSection = styled.div`
         color: white;
         letter-spacing: 1px;
 
+        cursor: pointer;
+          transition: all 0.3s ease;
+
+          :hover {
+            background-color: #27464D;
+            transform: translateY(-5px); /* Transladar para cima */
+            box-shadow: 2.2px 4px 8.50px rgba(0, 0, 0, 0.25); /* Sombra */
+          }
+
         @media screen and (max-width: 800px) {
           width: 85vw;
         }
       }
     }
 
-    & .image-update-wrapper {
+    & .image-update-wrapper
+      width: 100%;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
 
+
+
+      & .teste {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media screen and (max-width: 800px) {
+          width: 100%;
+
+        }
+
+        & .img-preview {
+          width: 100%;
+          height: fit-content;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: red;
+
+          & img {
+            max-width: 40%;
+
+            @media screen and (max-width: 800px) {
+              max-width: 80%;
+        }
+          }
+        }
+      }
+
       & img {
-        max-width: 15vw;
+        max-width: 50%;
         height: auto;
         border: 1px solid gray;
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 8px;
         margin: 2rem 0;
 
         @media screen and (max-width: 800px) {
           margin: 1rem 0;
-          max-width: 50vw;
+          max-width: 80%;
         }
       }
 
@@ -222,21 +260,19 @@ export const SecondSection = styled.div`
         align-items: center;
         justify-content: center;
         text-align: center;
-        width: 85%;
+        width: 50%;
         margin: 1rem 0;
 
+        gap: 1rem;
+
         border: 0;
-        border-radius: 10px;
+        border-radius: 8px;
         padding: 0.7rem 2rem;
         cursor: pointer;
 
         background: #034aa3;
         color: white;
         font-weight: 600;
-
-        svg {
-          margin-right: 1rem;
-        }
 
         input[type="file"] {
           display: none;
@@ -261,6 +297,7 @@ export const ThirdSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(5, 55, 124);
 
   & .third-wrapper {
     width: 80%;
@@ -272,11 +309,11 @@ export const ThirdSection = styled.div`
     margin: 0.5rem 0;
     padding: 3rem 2rem;
     gap: 2.5rem;
-    background-color: rgb(5, 55, 124);
 
-    border: 2px solid rgba(136, 136, 136, 0.2);
-    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-    border-radius: 0.5rem;
+
+    /* border: 2px solid rgba(136, 136, 136, 0.2); */
+    /* box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2); */
+    /* border-radius: 0.5rem; */
 
     @media screen and (max-width: 800px) {
       width: 92%;
@@ -420,7 +457,7 @@ export const ThirdSection = styled.div`
         width: fit-content;
         max-width: 85vw;
         padding: 1.2rem 2rem;
-        border-radius: 10px;
+        border-radius: 8px;
         border: none;
         background-color: #034aa3;
         cursor: pointer;
@@ -457,10 +494,10 @@ export const FourthSection = styled.div`
     padding: 3rem 2rem;
     gap: 2.5rem;
 
-    border: 2px solid rgba(136, 136, 136, 0.2);
-    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-    border-radius: 0.5rem;
-    margin: 0.5rem 0;
+    /* border: 2px solid rgba(136, 136, 136, 0.2); */
+    /* box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2); */
+    /* border-radius: 0.5rem; */
+    /* margin: 0.5rem 0; */
 
     @media screen and (max-width: 800px) {
       width: 85%;
@@ -497,7 +534,7 @@ export const FourthSection = styled.div`
         width: fit-content;
         max-width: 85vw;
         padding: 1.2rem 2rem;
-        border-radius: 10px;
+        border-radius: 8px;
         border: none;
         background-color: #034aa3;
         cursor: pointer;
@@ -547,7 +584,7 @@ export const FourthSection = styled.div`
           height: 3rem;
           width: 95%;
           border: 1px solid black;
-          border-radius: 10px;
+          border-radius: 8px;
           padding: 0 1rem;
           color: black;
 
@@ -594,7 +631,7 @@ export const FourthSection = styled.div`
         height: 3rem;
         width: 90%;
         border: 1px solid black;
-        border-radius: 10px;
+        border-radius: 8px;
         padding: 0 1rem;
         color: black;
 
@@ -617,7 +654,7 @@ export const FifthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
+  background-color: rgb(5, 55, 124);
 
   & .fifth-wrapper {
     width: 80%;
@@ -630,10 +667,6 @@ export const FifthSection = styled.div`
     margin: 0.5rem 0;
     gap: 2.5rem;
 
-    background-color: rgb(5, 55, 124);
-    border: 2px solid rgba(136, 136, 136, 0.2);
-    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-    border-radius: 0.5rem;
 
     @media screen and (max-width: 800px) {
       width: 85%;
@@ -670,7 +703,7 @@ export const FifthSection = styled.div`
         width: fit-content;
         max-width: 85vw;
         padding: 1.2rem 2rem;
-        border-radius: 10px;
+        border-radius: 8px;
         border: none;
         background-color: #034aa3;
         cursor: pointer;
@@ -695,7 +728,7 @@ export const FifthSection = styled.div`
 
         padding: 1rem;
         border: 0;
-        border-radius: 10px;
+        border-radius: 8px;
         text-align: center;
         font-size: 0.95rem;
       }
@@ -705,20 +738,12 @@ export const FifthSection = styled.div`
 
 //Engloba toda as section que tem fotos
 export const PicsSection = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #eee;
-  margin: 0.5rem 0;
-  padding: 4rem 2rem;
-
-  width: 80%;
-  //height: fit-content;
-
-  border: 2px solid rgba(136, 136, 136, 0.2);
-  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-  border-radius: 0.5rem;
 
   @media screen and (max-width: 800px) {
     width: 95%;
@@ -742,7 +767,7 @@ export const PicsSection = styled.div`
   }
 `;
 export const CoverPhotoSection = styled.div`
-  width: 90%;
+  width: 60%;
   height: fit-content;
   display: flex;
   align-items: center;
@@ -751,9 +776,13 @@ export const CoverPhotoSection = styled.div`
   background-color: #eee;
   margin: 1rem 0.5rem;
 
-  border: 2px solid rgba(136, 136, 136, 0.2);
-  box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-  border-radius: 0.5rem;
+  border: 1px solid #c4c4c4;
+  box-shadow: 2.2px 2.2px 6.59px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  @media screen and (max-width: 800px) {
+ width: 100%;
+    }
 
   & .photo-section-wrapper {
     display: flex;
@@ -815,7 +844,7 @@ export const CoverPhotoSection = styled.div`
       margin: 1rem 0 2rem;
 
       border: 0;
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 0.1rem 2rem;
       cursor: pointer;
 
@@ -835,6 +864,8 @@ export const CoverPhotoSection = styled.div`
         display: none;
       }
 
+
+
       & .uploadText {
         color: white;
         font-size: 1rem;
@@ -843,6 +874,21 @@ export const CoverPhotoSection = styled.div`
         margin: 0;
       }
     }
+    & .img-preview {
+         width: 100%;
+          height: fit-content;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          & img {
+            max-width: 40%;
+
+            @media screen and (max-width: 800px) {
+              max-width: 80%;
+        }
+          }
+      }
   }
 `;
 
@@ -1091,7 +1137,7 @@ export const SeventhSection = styled.div`
         width: fit-content;
         max-width: 85vw;
         padding: 1.2rem 2rem;
-        border-radius: 10px;
+        border-radius: 8px;
         border: none;
         background-color: #034aa3;
         cursor: pointer;
@@ -1116,7 +1162,7 @@ export const SeventhSection = styled.div`
 
         padding: 1rem;
         border: 0;
-        border-radius: 10px;
+        border-radius: 8px;
         text-align: center;
         font-size: 0.95rem;
       }

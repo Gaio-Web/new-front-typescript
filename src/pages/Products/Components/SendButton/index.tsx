@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BiSend, BiCheck } from 'react-icons/bi';
 import { Container } from './styles';
-
+import { toast } from 'react-toastify';
 interface Props {
   submit: () => void;
 }

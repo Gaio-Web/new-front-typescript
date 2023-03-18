@@ -210,7 +210,7 @@ function FindByPhone(): JSX.Element {
     );
   }
 
-  if (!data) {
+  else if (!data) {
     return <p>Registro não encontrado</p>;
   }
 
