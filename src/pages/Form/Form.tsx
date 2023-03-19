@@ -158,17 +158,6 @@ function Form(this: any): JSX.Element {
     }
   },[])
 
-  // async function fetchDataForms() {
-    // try {
-    //   const response = await axios.get<Contact>(
-    //     `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
-    //   );
-    //   setData(response.data);
-    // } catch (err) {
-    //   console.error(err);
-    // }
-  // }
-
   useEffect(() => {
     // setLoading(true);
     fetchDataForms()
