@@ -23,13 +23,13 @@ import { FiUpload, FiSend } from 'react-icons/fi';
 
 import SendButton1 from '../Products/Components/SendButton';
 
-import LogoGaioMain from '../../assets/logoGaio.png';
+import LogoGaioMain from '/assets/logoGaio.png';
 
 import ReactLoading from 'react-loading';
 
-import foto1 from '../../assets/foto1.webp';
-import foto2 from '../../assets/foto2.webp';
-import foto3 from '../../assets/foto3.webp';
+import foto1 from '/assets/foto1.webp';
+import foto2 from '/assets/foto2.webp';
+import foto3 from '/assets/foto3.webp';
 
 import FileBase64 from 'react-file-base64';
 
@@ -216,6 +216,7 @@ function Form(this: any): JSX.Element {
     )
     if (response.ok) {
       // A resposta foi bem-sucedida
+      setUploaded(true),
       toast.success('Imagem enviada com sucesso!', {
         position: "top-center",
         autoClose: 5000,
@@ -226,7 +227,6 @@ function Form(this: any): JSX.Element {
         progress: undefined,
         theme: "colored",
         });
-        setUploaded(true)
       } else {
       // A resposta foi mal-sucedida
       console.log('Houve um problema ao enviar a foto.');
@@ -381,67 +381,6 @@ function Form(this: any): JSX.Element {
   //FOTOS
 
   const [loading2, setLoading2] = useState(false);
-
-
-  // //HISTORYPHOTO
-  // const [historyPhoto, setHistoryPhoto] = useState<File | null>(null);
-  // const [loading3, setLoading3] = useState(false)
-
-  // const handleHistoryPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     const image = event.target.files;
-
-  //     setLoading3(true)
-  //     if (image && image.length > 0) {
-  //         setHistoryPhoto(image[0]);
-  //         setLoading3(false)
-  //     }
-  // }
-
-  // const updateHistoryPhoto = async (historyPhoto: File) => {
-  //     const formData = new FormData();
-  //     formData.append('image', historyPhoto);
-  //     const response = await axios.post('/getName', formData);
-  //     return response.data;
-  // };
-
-  // const handleSendHistoryPhoto = async () => {
-  //     setLoading3(true);
-  //     if (historyPhoto !== null) {
-  //         await updateHistoryPhoto(historyPhoto);
-  //         setHistoryPhoto(null);
-  //     }
-  //     setLoading3(false);
-  // };
-
-  // //OFFERPHOTO
-  // const [offerPhoto, setOfferPhoto] = useState<File | null>(null);
-  // const [loading4, setLoading4] = useState(false)
-
-  // const handleOfferPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     const image = event.target.files;
-
-  //     setLoading4(true)
-  //     if (image && image.length > 0) {
-  //         setOfferPhoto(image[0]);
-  //         setLoading4(false)
-  //     }
-  // }
-
-  // const updateOfferPhoto = async (OfferPhoto: File) => {
-  //     const formData = new FormData();
-  //     formData.append('image', OfferPhoto);
-  //     const response = await axios.post('/getName', formData);
-  //     return response.data;
-  // };
-
-  // const handleSendOfferPhoto = async () => {
-  //     setLoading4(true);
-  //     if (offerPhoto !== null) {
-  //         await updateOfferPhoto(offerPhoto);
-  //         setOfferPhoto(null);
-  //     }
-  //     setLoading4(false);
-  // };
 
   //CALENDAR
 

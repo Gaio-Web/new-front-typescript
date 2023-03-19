@@ -229,7 +229,6 @@ export const SecondSection = styled.div`
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: red;
 
           & img {
             max-width: 40%;
