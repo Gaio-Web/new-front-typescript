@@ -3,7 +3,6 @@ import React, { lazy, Suspense } from "react"
 import axios from 'axios';
 import {
   Container,
-  //FourthSection,
   Loading,
 } from './styles';
 
@@ -239,7 +238,7 @@ function FindByPhone(): JSX.Element {
 
       <FirstSection
       backgroundColor={data.color}
-      call={data.call}
+      call={data.call.replace(/^\"|\"$/g, '')}
       description={data.description}
       photoBase64={data.photos.photo1.base64}
       src={Photo1}
@@ -260,11 +259,11 @@ function FindByPhone(): JSX.Element {
         <ThirdSection
           color={data.color}
           quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
-          qualitydescription1={data.qualitydescription1}
+          qualitydescription1={data.qualitydescription1.replace(/^\"|\"$/g, '')}
           quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
           qualitydescription2={data.qualitydescription2}
           quality3={data.quality3.charAt(0).toUpperCase() + data.quality2.slice(1)}
-          qualitydescription3={data.qualitydescription3}
+          qualitydescription3={data.qualitydescription3.replace(/^\"|\"$/g, '')}
           onClick={handleWhatsClick}
         />
       </Suspense>
@@ -280,7 +279,7 @@ function FindByPhone(): JSX.Element {
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
           color={data.color}
-          history={data.history}
+          history={data.history.replace(/^\"|\"$/g, '')}
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
           onClick={handleWhatsClick}
