@@ -13,7 +13,6 @@ import {
 	FifthSection,
 	PicsSection,
 	CoverPhotoSection,
-	SixthSection,
 	SeventhSection,
 	ImagePreview,
 } from './styles';
@@ -38,7 +37,7 @@ import FileBase64 from 'react-file-base64';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { Sixthsection } from './Sections/SixthSection/SixthSection';
+import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
 import { StyledButton } from './Components/StyledButton';
 
@@ -709,7 +708,16 @@ function Form(this: any): JSX.Element {
 				</div>
 			</FifthSection>
 
-			<Sixthsection userID={data.phone}/>
+			<CalendarSection
+				userID={data.phone}
+				mondayData={data.segunda}
+				tuesdayData={data.terca}
+				wednesdayData={data.quarta}
+				thursdayData={data.quinta}
+				fridayData={data.sexta}
+				saturdayData={data.sabado}
+				sundayData={data.domingo}
+			/>
 
 			<PicsSection>
 				<h1 className="picsTitle">Vamos editar as fotos do seu site.</h1>
