@@ -5,13 +5,13 @@ import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './Routes/animatedRoutes';
 
 function App() {
-  return (
-    <div>
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </div>
-  );
+	return (
+		<div>
+			<BrowserRouter>
+				<AnimatedRoutes />
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;

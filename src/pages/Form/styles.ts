@@ -227,6 +227,7 @@ export const SecondSection = styled.div`
           width: 100%;
           height: fit-content;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
 
@@ -482,7 +483,8 @@ export const FourthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
+
+
 
   & .fourth-wrapper {
     width: 80%;
@@ -493,15 +495,12 @@ export const FourthSection = styled.div`
     padding: 3rem 2rem;
     gap: 2.5rem;
 
-    /* border: 2px solid rgba(136, 136, 136, 0.2); */
-    /* box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2); */
-    /* border-radius: 0.5rem; */
-    /* margin: 0.5rem 0; */
-
     @media screen and (max-width: 800px) {
       width: 85%;
       padding: 10% 5%;
     }
+
+
 
     & h1 {
       margin: 0;
@@ -550,6 +549,25 @@ export const FourthSection = styled.div`
       }
     }
 
+    & .main-adress-wrapper {
+     & button {
+        width: 100%;
+        height: 3rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #0baf37;
+        margin-top: 1.5rem;
+
+        color: white;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+
+      cursor: pointer;
+    }
+    }
+
     & .adress-wrapper {
       display: flex;
       align-items: center;
@@ -559,15 +577,17 @@ export const FourthSection = styled.div`
       width: 100%;
       height: 100%;
 
+
+
       & .adress-input-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 50vw;
+        width: 100%;
 
         @media screen and (max-width: 800px) {
-          width: 75vw;
+          width: 100%;
         }
 
         & label {
@@ -899,7 +919,7 @@ export const SixthSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
+  background-color: #034aa3;
 
   & .sixth-wrapper {
     display: flex;
@@ -913,9 +933,6 @@ export const SixthSection = styled.div`
     margin: 0.5rem 0;
     gap: 1rem;
 
-    border: 2px solid rgba(136, 136, 136, 0.2);
-    box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-    border-radius: 0.5rem;
 
     @media screen and (max-width: 800px) {
       width: 90%;
@@ -928,8 +945,7 @@ export const SixthSection = styled.div`
 
     //Main title
     & h1 {
-      color: #034aa6;
-      text-decoration: underline;
+      color: white;
       text-align: center;
       margin-top: 0;
     }
@@ -941,7 +957,7 @@ export const SixthSection = styled.div`
 
       padding: 2rem 1rem;
 
-      border-radius: 20px;
+      border-radius: 16px;
 
       @media screen and (max-width: 800px) {
         width: 95%;
@@ -1039,7 +1055,6 @@ export const SixthSection = styled.div`
           & h2 {
             font-size: 1.15rem;
             color: #034aa6;
-            text-decoration: underline;
 
             @media screen and (max-width: 800px) {
               font-size: 0.8rem;
