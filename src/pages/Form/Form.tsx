@@ -15,11 +15,13 @@ import {
 	CoverPhotoSection,
 	SixthSection,
 	SeventhSection,
+	ImagePreview,
 } from './styles';
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
 import { FiUpload, FiSend } from 'react-icons/fi';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import SendButton1 from '../Products/Components/SendButton';
 
@@ -435,6 +437,16 @@ function Form(this: any): JSX.Element {
 		return <p>Registro não encontrado</p>;
 	}
 
+	const handleLinkClick = () => {
+		// setShowForm(true);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		event.preventDefault();
+		// eslint-disable-next-line quotes
+		const url = `https://meusiteai.com/${data.name.replace(/ /g, "-")}`;
+		window.open(url, '_blank');
+	};
+
 	return (
 		<Container>
 			<ToastContainer
@@ -457,6 +469,7 @@ function Form(this: any): JSX.Element {
             Agora, vamos finalizar seu site cadastrando suas fotos e as
             informações opcionais.
 					</p>
+					<button className={'send-to-site'} onClick={handleLinkClick}>Clique e veja o seu site <FaExternalLinkAlt /></button>
 				</div>
 			</FirstSection>
 
@@ -495,14 +508,14 @@ function Form(this: any): JSX.Element {
 										<FileBase64 multiple={false} onDone={getImage} />
                   Escolher logo
 									</label>
-									<div className='img-preview'>
+									<ImagePreview >
 										{image && <img src={image.base64} alt='preview' />}
 										{image ? (
 											<StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('4')} color={'#0baf37'} disabledColor='#c4c4c4'/>
 										) : (
 											<></>
 										)}
-									</div>
+									</ImagePreview>
 								</div>
 							</div>
 						</>
@@ -728,15 +741,20 @@ function Form(this: any): JSX.Element {
 							/>
 							<p className="uploadText">Fazer upload</p>
 						</label>
-						<div className='img-preview'>
+						<ImagePreview>
 							{cover && <img src={cover.base64} alt='preview' />}
-						</div>
+							{cover ? (
+								<StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('1')} color={'#0baf37'} disabledColor='#c4c4c4'/>
+							) : (
+								<></>
+							)}
+						</ImagePreview>
 
-						<SendButton1
+						{/* <SendButton1
 							submit={() => {
 								uploadPhoto('1');
-							}}
-						/>
+							}} */}
+						{/* /> */}
 					</div>
 				</CoverPhotoSection>
 				{/*history*/}
@@ -761,14 +779,22 @@ function Form(this: any): JSX.Element {
 							<p className="uploadText">Fazer upload</p>
 						</label>
 
-						<div className='img-preview'>
+						<ImagePreview >
+							{hist && <img src={hist.base64} alt='preview' />}
+							{hist ? (
+								<StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('2')} color={'#0baf37'} disabledColor='#c4c4c4'/>
+							) : (
+								<></>
+							)}
+						</ImagePreview>
+						{/* <div className='img-preview'>
 							{hist && <img src={hist.base64} alt='preview' />}
 						</div>
 						<SendButton1
 							submit={() => {
 								uploadPhoto('2');
 							}}
-						/>
+						/> */}
 					</div>
 				</CoverPhotoSection>
 				{/*offer*/}
@@ -791,15 +817,14 @@ function Form(this: any): JSX.Element {
 							<FileBase64 multiple={false} onDone={getOffer} />
 							<p className="uploadText">Fazer upload</p>
 						</label>
-						<div className='img-preview'>
+						<ImagePreview >
 							{offer && <img src={offer.base64} alt='preview' />}
-						</div>
-
-						<SendButton1
-							submit={() => {
-								uploadPhoto('3');
-							}}
-						/>
+							{offer ? (
+								<StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('3')} color={'#0baf37'} disabledColor='#c4c4c4'/>
+							) : (
+								<></>
+							)}
+						</ImagePreview>
 					</div>
 				</CoverPhotoSection>
 			</PicsSection>

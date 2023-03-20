@@ -60,6 +60,23 @@ export const Container = styled.div`
   font-family: "Montserrat", sans-serif;
 `;
 
+export const ImagePreview = styled.div`
+          width: 100%;
+          height: fit-content;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          & img {
+            max-width: 40%;
+
+            @media screen and (max-width: 800px) {
+              max-width: 80%;
+        }
+          }
+`;
+
 //welcome
 export const FirstSection = styled.div`
   width: 100%;
@@ -77,6 +94,21 @@ export const FirstSection = styled.div`
     align-items: center;
     padding: 4rem 2rem;
     gap: 1rem;
+
+    & .send-to-site {
+      width: 18rem;
+      height: 3rem;
+      border-radius: 8px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 1rem;
+      gap: 1rem;
+
+    }
 
     @media screen and (max-width: 800px) {
       width: 100%;
@@ -221,23 +253,6 @@ export const SecondSection = styled.div`
         @media screen and (max-width: 800px) {
           width: 100%;
 
-        }
-
-        & .img-preview {
-          width: 100%;
-          height: fit-content;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-
-          & img {
-            max-width: 40%;
-
-            @media screen and (max-width: 800px) {
-              max-width: 80%;
-        }
-          }
         }
       }
 
@@ -893,21 +908,7 @@ export const CoverPhotoSection = styled.div`
         margin: 0;
       }
     }
-    & .img-preview {
-         width: 100%;
-          height: fit-content;
-          display: flex;
-          align-items: center;
-          justify-content: center;
 
-          & img {
-            max-width: 40%;
-
-            @media screen and (max-width: 800px) {
-              max-width: 80%;
-        }
-          }
-      }
   }
 `;
 
