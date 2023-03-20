@@ -5,9 +5,16 @@ import SendButton1 from '../../../Products/Components/SendButton';
 
 interface ICalendarProp {
   userID: string;
+  mondayData: any;
+  tuesdayData: any;
+  wednesdayData: any;
+  thursdayData: any;
+  fridayData: any;
+  saturdayData: any;
+  sundayData: any;
 }
 
-function Sixthsection({userID}: ICalendarProp): JSX.Element{
+function CalendarSection({userID, mondayData, tuesdayData, wednesdayData, thursdayData, fridayData, saturdayData, sundayData}: ICalendarProp): JSX.Element{
 	//CALENDAR
 
 	const [segunda, setSegunda] = useState('');
@@ -373,7 +380,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={segunda}
+									value={mondayData}
 									onChange={handleSegunda}
 									disabled={disabledSeg}
 									style={
@@ -422,7 +429,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={terca}
+									value={tuesdayData}
 									onChange={handleTerca}
 									disabled={disabledTer}
 									style={
@@ -471,7 +478,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={quarta}
+									value={wednesdayData}
 									onChange={handleQuarta}
 									disabled={disabledQuar}
 									style={
@@ -520,7 +527,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={quinta}
+									value={thursdayData}
 									onChange={handleQuinta}
 									disabled={disabledQuin}
 									style={
@@ -569,7 +576,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={sexta}
+									value={fridayData}
 									onChange={handleSexta}
 									disabled={disabledSex}
 									style={
@@ -618,7 +625,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={sabado}
+									value={saturdayData}
 									onChange={handleSabado}
 									disabled={disabledSab}
 									style={
@@ -677,7 +684,7 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 								<InputMask
 									mask={'99:99h ás 99:99h'}
 									placeholder="PREENCHER"
-									value={domingo}
+									value={sundayData}
 									onChange={handleDomingo}
 									disabled={disabledDom}
 									style={
@@ -720,4 +727,4 @@ function Sixthsection({userID}: ICalendarProp): JSX.Element{
 	);
 }
 
-export { Sixthsection };
+export { CalendarSection };
