@@ -166,7 +166,7 @@ function Form(this: any): JSX.Element {
 	},[]);
 
 	useEffect(() => {
-		// setLoading(true);
+		setLoading(true);
 		fetchDataForms()
 			.then(() => {console.log('Data fetched successfully!'), setLoading(false);})
 			.catch((err) => console.error(err));
