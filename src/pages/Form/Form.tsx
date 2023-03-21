@@ -26,7 +26,7 @@ import SendButton1 from '../Products/Components/SendButton';
 
 import LogoGaioMain from '/assets/logoGaio.png';
 
-import ReactLoading from 'react-loading';
+//import ReactLoading from 'react-loading';
 
 import foto1 from '/assets/foto1.webp';
 import foto2 from '/assets/foto2.webp';
@@ -38,7 +38,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
-import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
+//import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
 import { StyledButton } from './Components/StyledButton';
 
 interface Contact {
@@ -248,7 +248,7 @@ function Form(this: any): JSX.Element {
 
   //Logo
   const [selectLogo, setSelectLogo] = useState(false);
-  const [isLoading1, setLoading1] = useState(false);
+  //const [isLoading1, setLoading1] = useState(false);
 
   //CORES
   const [colorized, setColorized] = useState(false);
@@ -410,7 +410,7 @@ function Form(this: any): JSX.Element {
 
   //FOTOS
 
-  const [loading2, setLoading2] = useState(false);
+  //const [loading2, setLoading2] = useState(false);
 
   //CHAVE PIX
   const [showChavePix, setShowChavePix] = useState(false);
@@ -538,7 +538,6 @@ function Form(this: any): JSX.Element {
 
               <div className="options">
                 {options.map((opt) => (
-                  // eslint-disable-next-line react/jsx-key
                   <div className={color === opt.color ? 'non-selected' : 'selected'} onClick={() => setColor(opt.color)} >
                     <div className="color-option" style={{ backgroundColor: opt.color }} />
                     <h1>{opt.title}</h1>
