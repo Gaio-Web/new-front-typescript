@@ -264,7 +264,7 @@ function FindByPhone(): JSX.Element {
           qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
           quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
           qualitydescription2={data.qualitydescription2}
-          quality3={data.quality3.charAt(0).toUpperCase() + data.quality2.slice(1)}
+          quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
           qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
           onClick={handleWhatsClick}
         />
