@@ -55,7 +55,7 @@ export const Container = styled.div`
         margin: 0;
         font-weight: 400;
         font-size: 16px;
-        line-height: 1.5;
+        line-height: 1.8;
         text-align: center;
         width: 90%;
       }
