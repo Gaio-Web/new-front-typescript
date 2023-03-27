@@ -41,6 +41,9 @@ import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 //import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
 import { StyledButton } from './Components/StyledButton';
 
+import storage from '../../../firebaseConfig';
+import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
+
 interface Contact {
   //text content
   description: string;
@@ -119,6 +122,7 @@ interface Contact {
   businessName: string;
   phone: string;
   name: string;
+  convertedName: string;
   id: string;
 }
 
@@ -127,6 +131,99 @@ function Form(this: any): JSX.Element {
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
+
+  const [file, setFile] = useState<any>('');
+  const [imagePreview, setImagePreview] = useState<string>('');
+
+  // Handles input change event and updates state
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(event.target.files?.[0]);
+
+    const fileImage = event.target.files?.[0];
+    if (!fileImage) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(fileImage);
+  };
+
+  const [percent, setPercent] = useState(0);
+
+  const handleUploadToFirebase = () => {
+    if (!file) {
+      alert('escolha uma imagem porra!');
+    }
+    const storageRef = ref(storage, `/${id}/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+         
+        // update progress
+        setPercent(percent);
+      },
+      (err) => console.log(err),
+      () => {
+        //download URL
+        getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+          console.log(url);
+          const body = JSON.stringify({
+            phone: id,
+            photo_position: '1',
+            base64: url,
+            type: 'image',
+          });
+          const response = await fetch(
+            'https://gaio-web-new-api-test.onrender.com/upload',
+            {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+              },
+              body: body,
+            }
+          );
+          if (response.ok) {
+            // A resposta foi bem-sucedida
+            setUploaded(true),
+            toast.success('Imagem enviada com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          } else {
+            // A resposta foi mal-sucedida
+            console.log('Houve um problema ao enviar a foto.');
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+        });
+      }
+    );
+  };
+
 
   const [uploaded, setUploaded] = useState<boolean>(false);
 
@@ -138,7 +235,7 @@ function Form(this: any): JSX.Element {
     setImage(files);
   };
   const getCover = (files: any) => {
-    setCover(files);
+    setCover(file);
   };
   const getHist = (files: any) => {
     setHist(files);
@@ -165,7 +262,7 @@ function Form(this: any): JSX.Element {
   },[]);
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     fetchDataForms()
       .then(() => {console.log('Data fetched successfully!'), setLoading(false);})
       .catch((err) => console.error(err));
@@ -175,6 +272,7 @@ function Form(this: any): JSX.Element {
     if(uploaded == true){
       fetchDataForms().then(() => {
         setUploaded(false);
+        setFile('');
         setImage('');
         setCover('');
         setHist('');
@@ -445,6 +543,9 @@ function Form(this: any): JSX.Element {
     const url = `https://meusiteai.com/${data.name.replace(/ /g, "-")}`;
     window.open(url, '_blank');
   };
+
+
+ 
 
   return (
     <Container>
@@ -740,28 +841,19 @@ function Form(this: any): JSX.Element {
               )}
             </div>
 
-            <label className="custom-file-upload">
-              <FiUpload color={'#fff'} size={24} />
-              <FileBase64
-                multiple={false}
-                onDone={getCover}
-              />
-              <p className="uploadText">Fazer upload</p>
-            </label>
-            <ImagePreview>
-              {cover && <img src={cover.base64} alt='preview' />}
-              {cover ? (
-                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('1')} color={'#0baf37'} disabledColor='#c4c4c4'/>
-              ) : (
-                <></>
+            <div className='custom-file-upload-firebase'>
+              {file ? (
+                // <button onClick={handleUploadToFirebase}>Enviar foto</button>
+                <>
+                  <img className="pgImg" src={imagePreview} alt={'foto-1'} />
+                  <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${percent}% Enviando...`} onClick={handleUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                </>
+              ):(
+                <>
+                  <label htmlFor="envio-de-imagem">Escolher foto</label>
+                  <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleChange} className='custom-file-upload-input'/></>
               )}
-            </ImagePreview>
-
-            {/* <SendButton1
-							submit={() => {
-								uploadPhoto('1');
-							}} */}
-            {/* /> */}
+            </div>
           </div>
         </CoverPhotoSection>
         {/*history*/}
