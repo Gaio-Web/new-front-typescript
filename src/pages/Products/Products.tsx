@@ -155,6 +155,8 @@ function FindByPhone(): JSX.Element {
 
   document.title = uniqueName;
 
+  const converted = id;
+
   // // @ts-ignore
   // let id:string = useParams();
   //
@@ -170,7 +172,7 @@ function FindByPhone(): JSX.Element {
       console.log('id: ', id);
       try {
         const response = await axios.get<Contact>(
-          `https://gaio-web-new-api-test.onrender.com/findByName/${uniqueName}`
+          `https://gaio-web-new-api-test.onrender.com/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {
