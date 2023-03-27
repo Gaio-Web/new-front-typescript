@@ -47,7 +47,7 @@ export const Loading = styled.section`
     & p {
       margin: 0;
       font-size: 20px;
-      font-family: Raleway, sans-serif;
+      font-family: "Montserrat", sans-serif;
     }
     & img {
       width: 150px;

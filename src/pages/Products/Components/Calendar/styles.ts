@@ -78,7 +78,7 @@ export const CalendarStyles = styled.section`
         justify-content: center;
 
         h1 {
-          font-weight: 700;
+          font-weight: 600;
           font-size: 16px;
           color: #000000;
           text-decoration: none;

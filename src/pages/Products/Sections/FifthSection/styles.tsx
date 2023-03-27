@@ -33,8 +33,8 @@ export const Container = styled.div`
     & p {
       margin: 0;
       font-weight: 400;
-      font-size: 20px;
-      line-height: 1.5;
+      font-size: 18px;
+      line-height: 33px;
       text-align: center;
     }
 
@@ -61,13 +61,12 @@ export const Container = styled.div`
 
     & img {
       max-width: 90%;
-      max-height: 70vh;
+      max-height: 60vh;
       margin-bottom: 0.5rem;
       border-radius: 1rem;
-      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
 
       @media screen and (max-width: 800px) {
-        max-height: 60vh;
+        max-height: 55vh;
       }
     }
   }
