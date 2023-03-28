@@ -353,17 +353,41 @@ function Form(this: any): JSX.Element {
 
   const [options, setoptions] = useState([
     { color: '#EB596E', title: 'Carmine' },
+    //secondary: #84DCCF or #909580 or #595358 or #6883BA
+    //accent: #006D77 or #545643 or #313628 or #3C0919
     { color: '#F4972B', title: 'Laranja' },
+    //secondary: #358600 or #264653
+    //accent: #63C132 or #2A9D8F
     { color: '#FD3997', title: 'Rosa' },
+    //secondary: #383961 or #47A8BD
+    //accent: #5F758E or #1E3888
     { color: '#5E8B7E', title: 'Verde' },
+    //secondary: #033F63 or #544E61 or #9F7E69
+    //accent: #C64191 or #9883E5 or #003459
     { color: '#00ADB5', title: 'Azul' },
+    //secondary:#1B4965 or #C97C5D or #7768AE
+    //accent: #B49A67 or #E94F37 or #E15554
     { color: '#6868AC', title: 'Lilás' },
+    //secondary: #80B192 or #C17767
+    //accent: #A30B37 or #23967F
     { color: '#6B0BE6', title: 'Roxo' },
+    //secondary: #453823 or #603A40
+    //accent: #39A2AE or #440D0F
     { color: '#000', title: 'Preto' },
+    //secondary: #8D775F or #7AA095 or #8B1E3F
+    //accent: #A71D31 or #618B4A or #DB4C40
     { color: '#B4A5A5', title: 'Areia' },
+    //secondary: #5B5941 or #381D2A
+    //accent: #3E6990 or #381D2A
     { color: '#D80C0C', title: 'Vermelho' },
+    //secondary: #44AF69 or #390040 or #32161F
+    //accent: #2B9EB3 or #730071 or #81A094
     { color: '#25D8A7', title: 'Turquesa' },
+    //secondary: #696D7D or #292F36 or #2E282A
+    //accent: #19381F or #9F7E69 or #EF3E36
     { color: '#6D6D6D', title: 'Cinza' },
+    //secondary: #2DC7FF or #1C0118
+    //accent: #0A369D or #370926
   ]);
 
   const handleSendColor = async () => {
