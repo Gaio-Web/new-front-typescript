@@ -154,7 +154,7 @@ function Form(this: any): JSX.Element {
 
   const handleUploadToFirebase = () => {
     if (!file) {
-      alert('escolha uma imagem porra!');
+      alert('escolha uma imagem!');
     }
     const storageRef = ref(storage, `/${id}/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
