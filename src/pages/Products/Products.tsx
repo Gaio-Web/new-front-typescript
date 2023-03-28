@@ -131,6 +131,7 @@ interface Contact {
   qualitydescription3: string;
 
   //client info
+  isAutonomous: string;
   businessName: string;
   phone: string;
   id: string;
@@ -249,6 +250,7 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <SecondSection
+          isAutonomous={data.isAutonomous}
           color={data.color}
           products={data.products}
           photoBase64={data.photos.photo3.base64}
@@ -259,6 +261,8 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <ThirdSection
+          isAutonomous={data.isAutonomous}
+
           quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
           qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
 
@@ -283,6 +287,7 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
+          isAutonomous={data.isAutonomous}
           color={data.color}
           history={data.history.replace(/^"|"$/g, '')}
           photoBase64={data.photos.photo2.base64}
