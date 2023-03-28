@@ -11,10 +11,9 @@ interface ISeventhSectionProp {
   state: string;
   mainColor: string;
   secondaryColor: string;
-  onClick: any;
 }
 
-function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement, onClick}: ISeventhSectionProp): JSX.Element{
+function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
   return (
     <Container>
       <div className="seventh-wrapper">
