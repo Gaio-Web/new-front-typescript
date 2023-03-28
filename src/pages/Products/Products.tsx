@@ -330,7 +330,6 @@ function FindByPhone(): JSX.Element {
           state={data.address.state}
           mainColor={data.mainColor}
           secondaryColor={data.secondaryColor}
-          onClick={handleWhatsClick}
         />
       </Suspense>
 
