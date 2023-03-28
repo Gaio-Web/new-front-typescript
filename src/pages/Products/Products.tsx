@@ -239,15 +239,8 @@ function FindByPhone(): JSX.Element {
       <HeaderSection
         photoBase64={data.photos.logo.base64}
         name={data.name}
-        color={data.color}
+        mainColor={data.mainColor}
       />
-
-      <div style={{backgroundColor: data.accentColor}}>
-        <h1>testando</h1>
-        <button onClick={()=> console.log(data.mainColor)}>teste</button>
-        <button onClick={()=> console.log(data.secondaryColor)}>teste</button>
-        <button onClick={()=> console.log(data.accentColor)}>teste</button>
-      </div>
 
       <FirstSection
         mainColor={data.mainColor}

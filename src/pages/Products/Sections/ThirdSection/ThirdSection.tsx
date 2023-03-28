@@ -215,7 +215,7 @@ function ThirdSection({ mainColor, secondaryColor, accentColor, quality1, qualit
           <p>{qualitydescription3}</p>
         </div>
 
-        <button onClick={onClick}>Vamos conversar!</button>
+        <button onClick={onClick} style={{ backgroundColor: secondaryColor }}>Vamos conversar!</button>
       </div>
     </Container>
   );
