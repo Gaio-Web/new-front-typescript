@@ -359,11 +359,11 @@ function Form(this: any): JSX.Element {
   const [accentColor, setAccentColor] = useState<string>('#034AA3');
 
   const [options, setoptions] = useState([
-    { mainColor: '#EB596E', secondaryColor: '#84DCCF', accentColor:'#006D77', title: 'Carmine' },
-    //secondary: #84DCCF or #909580 or #595358 or #6883BA
-    //accent: #006D77 or #545643 or #313628 or #3C0919
+    { mainColor: '#EB596E', secondaryColor: '#6883BA', accentColor:'#3C0919', title: 'Carmine' },
+    //secondary: #84DCCF or #595358 or #6883BA
+    //accent: #006D77 or #313628 or #3C0919
 
-    { mainColor: '#F4972B', secondaryColor: '#358600', accentColor:'#63C132', title: 'Laranja' },
+    { mainColor: '#F4972B', secondaryColor: '#264653', accentColor:'#2A9D8F', title: 'Laranja' },
     //secondary: #358600 or #264653
     //accent: #63C132 or #2A9D8F
 
@@ -371,15 +371,15 @@ function Form(this: any): JSX.Element {
     // //secondary: #383961 or #47A8BD
     // //accent: #5F758E or #1E3888
 
-    { mainColor: '#5E8B7E', secondaryColor: '#033F63', accentColor:'#C64191', title: 'Verde' },
+    { mainColor: '#5E8B7E', secondaryColor: '#9F7E69', accentColor:'#003459', title: 'Verde' },
     // //secondary: #033F63 or #544E61 or #9F7E69
     // //accent: #C64191 or #9883E5 or #003459
 
     { mainColor: '#00ADB5', secondaryColor: '#1B4965', accentColor:'#B49A67', title: 'Azul' },
-    // //secondary:#1B4965 or #C97C5D or #7768AE
-    // //accent: #B49A67 or #E94F37 or #E15554
+    // //secondary:#1B4965 or #7768AE
+    // //accent: #B49A67 or #E15554
 
-    { mainColor: '#6868AC', secondaryColor: '#80B192', accentColor:'#A30B37', title: 'Lilás' },
+    { mainColor: '#6868AC', secondaryColor: '#C17767', accentColor:'#23967F', title: 'Lilás' },
     // //secondary: #80B192 or #C17767
     // //accent: #A30B37 or #23967F
 
@@ -388,20 +388,20 @@ function Form(this: any): JSX.Element {
     // //accent: #39A2AE or #440D0F
 
     { mainColor: '#000', secondaryColor: '#8D775F', accentColor:'#A71D31', title: 'Preto' },
-    // //secondary: #8D775F or #7AA095 or #8B1E3F
-    // //accent: #A71D31 or #618B4A or #DB4C40
+    // //secondary: #8D775F or #8B1E3F
+    // //accent: #A71D31 or #DB4C40
 
     { mainColor: '#B4A5A5', secondaryColor: '#5B5941', accentColor:'#3E6990', title: 'Areia' },
     // //secondary: #5B5941 or #381D2A
     // //accent: #3E6990 or #381D2A
 
-    { mainColor: '#D80C0C', secondaryColor: '#44AF69', accentColor:'#2B9EB3', title: 'Vermelho' },
+    { mainColor: '#D80C0C', secondaryColor: '#390040', accentColor:'#730071', title: 'Vermelho' },
     // //secondary: #44AF69 or #390040 or #32161F
     // //accent: #2B9EB3 or #730071 or #81A094
 
     { mainColor: '#25D8A7', secondaryColor: '#696D7D', accentColor:'#19381F', title: 'Turquesa' },
-    // //secondary: #696D7D or #292F36 or #2E282A
-    // //accent: #19381F or #9F7E69 or #EF3E36
+    // //secondary: #696D7D or #292F36
+    // //accent: #19381F or #9F7E69
 
     { mainColor: '#6D6D6D', secondaryColor: '#2DC7FF', accentColor:'#0A369D', title: 'Cinza' },
     // //secondary: #2DC7FF or #1C0118
@@ -433,6 +433,11 @@ function Form(this: any): JSX.Element {
       console.log(error);
     }
   };
+
+  //modal cores
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   //ENDERECO
   const [disableAdress, setDisableAdress] = useState(false);
@@ -676,29 +681,50 @@ function Form(this: any): JSX.Element {
           </div>
 
           {colorized === true ? (
-            <div className="color-picker" style={{ backgroundColor: mainColor }}>
-              <h1>Escolha a cor dominante do seu site</h1>
+            <>
+              <div className="color-picker" style={{ backgroundColor: mainColor }}>
+                <h1>Escolha a paleta de cores do seu site</h1>
 
-              <div className="options">
-                {options.map((opt) => (
-                  <div className={mainColor  === opt.mainColor ? 'non-selected' : 'selected'} onClick={() => {
-                    if (opt.mainColor !== undefined && opt.secondaryColor !== undefined && opt.accentColor !== undefined) {
-                      setMainColor(opt.mainColor);
-                      setSecondaryColor(opt.secondaryColor);
-                      setAccentColor(opt.accentColor);
-                    }
-                  }} >
-                    <div className="color-option" style={{ backgroundColor: opt.mainColor }} />
-                    <h1>{opt.title}</h1>
+                <div className="options">
+                  {options.map((opt) => (
+                    <div
+                      className={mainColor  === opt.mainColor ? 'selected' : 'non-selected'}
+                      onClick={() => {
+                        if (opt.mainColor !== undefined && opt.secondaryColor !== undefined && opt.accentColor !== undefined) {
+                          setMainColor(opt.mainColor);
+                          setSecondaryColor(opt.secondaryColor);
+                          setAccentColor(opt.accentColor);
+                        }
+                      }}
+                    >
+                      <div className="color-option">
+                        <div className='mainColor' style={{ backgroundColor: opt.mainColor }}></div>
+                        <div className='secondaryColor' style={{ backgroundColor: opt.secondaryColor }}></div>
+                        <div className='accentColor' style={{ backgroundColor: opt.accentColor }}></div>
+                      </div>
+                      <h1>{opt.title}</h1>
+                    </div>
+                  ))}
+                </div>
+
+                { secondaryColor == '#034AA3' ? (
+                  <></>
+                ) : (
+                  <div className='colorDemonstration'>
+                    <div className='demonstrationWrapper'>
+                      <div className='exampleSecondary' style={{ backgroundColor: secondaryColor }}></div>
+                      <h4>Cor secundária</h4>
+                    </div>
+
+                    <div className='demonstrationWrapper'>
+                      <div className='exampleAccent' style={{ backgroundColor: accentColor }}></div>
+                      <h4>Cor de destaque</h4>
+                    </div>
                   </div>
-                ))}
+                )}
               </div>
-
-              <p>
-                Não se esqueça que o texto da tela inicial do site é branco.
-              </p>
               <SendButton1 submit={handleSendColor} />
-            </div>
+            </>
           ) : (
             <></>
           )}
