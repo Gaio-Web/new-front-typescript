@@ -134,6 +134,10 @@ interface Contact {
   businessName: string;
   phone: string;
   id: string;
+
+  mainColor: string;
+  secondaryColor: string;
+  accentColor: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -238,8 +242,16 @@ function FindByPhone(): JSX.Element {
         color={data.color}
       />
 
+      <div style={{backgroundColor: data.accentColor}}>
+        <h1>testando</h1>
+        <button onClick={()=> console.log(data.mainColor)}>teste</button>
+        <button onClick={()=> console.log(data.secondaryColor)}>teste</button>
+        <button onClick={()=> console.log(data.accentColor)}>teste</button>
+      </div>
+
       <FirstSection
-        backgroundColor={data.color}
+        mainColor={data.mainColor}
+        secondaryColor={data.secondaryColor}
         call={data.call.replace(/^"|"$/g, '')}
         description={data.description}
         photoBase64={data.photos.photo1.base64}
@@ -283,7 +295,8 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
-          color={data.color}
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
           history={data.history.replace(/^"|"$/g, '')}
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
