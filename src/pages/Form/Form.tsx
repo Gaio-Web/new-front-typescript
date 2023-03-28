@@ -165,7 +165,6 @@ function Form(this: any): JSX.Element {
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-         
         // update progress
         setPercent(percent);
       },
@@ -544,8 +543,6 @@ function Form(this: any): JSX.Element {
     window.open(url, '_blank');
   };
 
-
- 
 
   return (
     <Container>
