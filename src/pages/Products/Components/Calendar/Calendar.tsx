@@ -17,7 +17,7 @@ interface ICalendar {
 
 interface Contact {
   color: string;
-
+  isAutonomous: string;
   businessName: string;
   phone: string;
   id: string;
@@ -69,11 +69,19 @@ function Calendar({
   return (
     <CalendarStyles>
       <div className="sixth-wrapper">
-        <h1 style={{ color: data?.color }}>Horário de funcionamento</h1>
+        {data?.isAutonomous == '1' ? (
+          <h1 style={{ color: data?.color }}>Horário de atendimento</h1>
+        ) : (
+          <h2>Horário de funcionamento</h2>
+        )}
 
         <div className="table">
           <div className="header" style={{ backgroundColor: data?.color }}>
-            <h2>Horário de funcionamento</h2>
+            {data?.isAutonomous == '1' ? (
+              <h2>Horário de atendimento</h2>
+            ) : (
+              <h2>Horário de funcionamento</h2>
+            )}
           </div>
 
           <div className="line">
