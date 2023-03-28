@@ -7,15 +7,22 @@ interface IFifthSectionProp {
   src: any;
   color: any;
   onClick: any;
+  isAutonomous: string;
 }
 
-function FifthSection({ photoBase64, history, src, color, onClick}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, photoBase64, history, src, color, onClick}: IFifthSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'fifth-wrapper'}>
-        <h1 className="sectionTitle" style={{ color: color }}>
-            Nossa História
-        </h1>
+        {isAutonomous == '1' ? (
+          <h1 className="sectionTitle" style={{ color: color }}>
+            Minha História
+          </h1>
+        ):(
+          <h1 className="sectionTitle" style={{ color: color }}>
+          Nossa História
+          </h1>
+        )}
         <p>{history}</p>
 
         <div className="img-wrapper"  data-aos="fade-up">

@@ -10,15 +10,22 @@ interface IThirdSectionProp {
   qualitydescription2: string;
   quality3: string;
   qualitydescription3: string;
+  isAutonomous: string;
 }
 
-function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, color, onClick}: IThirdSectionProp): JSX.Element{
+function ThirdSection({isAutonomous, quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, color, onClick}: IThirdSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'third-wrapper'}>
-        <h1 className="sectionTitle" style={{ color: color }}>
-        Nossos diferenciais
-        </h1>
+        {isAutonomous == '1' ? (
+          <h1 className="sectionTitle" style={{ color: color }}>
+          Meus diferenciais
+          </h1>
+        ):(
+          <h1 className="sectionTitle" style={{ color: color }}>
+          Nossos diferenciais
+          </h1>
+        )}
 
         <div className="difCards">
           <svg
