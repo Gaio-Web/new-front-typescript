@@ -261,7 +261,8 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <SecondSection
-          color={data.color}
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
           products={data.products}
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
@@ -271,6 +272,10 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <ThirdSection
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
+          secondaryColor={data.secondaryColor}
+
           quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
           qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
 
@@ -280,7 +285,6 @@ function FindByPhone(): JSX.Element {
           quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
           qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
 
-          color={data.color}
           onClick={handleWhatsClick}
         />
       </Suspense>
@@ -324,8 +328,8 @@ function FindByPhone(): JSX.Element {
           city={data.address.city}
           complement={data.address.complement}
           state={data.address.state}
-          color={data.color}
-          backgroundColor={data.color}
+          mainColor={data.mainColor}
+          secondaryColor={data.secondaryColor}
           onClick={handleWhatsClick}
         />
       </Suspense>
