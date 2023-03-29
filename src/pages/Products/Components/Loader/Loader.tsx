@@ -27,7 +27,7 @@ const Loader = () => {
       } else {
         setCounter(counter + 1);
       }
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [counter]);
@@ -53,7 +53,7 @@ const Loader = () => {
   }, [counter]);
 
   const changeImage = (counter: number) => {
-    const image = images[counter];
+    const image = images[Math.floor(Math.random() * images.length)];
 
     return (
       <div className="image">

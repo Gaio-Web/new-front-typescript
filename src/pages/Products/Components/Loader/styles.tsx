@@ -16,7 +16,7 @@ export const Container = styled.section`
     font-size: 40px;
     text-align: center;
     transform-origin: bottom center;
-    animation: 3s rotate infinite;
+    animation: 2s rotate infinite;
     opacity: 0;
   }
 
