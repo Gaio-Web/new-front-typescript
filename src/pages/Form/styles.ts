@@ -133,7 +133,7 @@ export const FirstSection = styled.div`
       font-size: 17px;
       color: #f0f0f0;
       font-family: "Montserrat", sans-serif;
-      text-align: justify;
+      text-align: center;
     }
   }
 `;

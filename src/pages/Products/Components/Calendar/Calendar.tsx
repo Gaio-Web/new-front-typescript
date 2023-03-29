@@ -19,7 +19,7 @@ interface Contact {
   mainColor: string;
   secondaryColor: string;
   accentColor: string;
-
+  isAutonomous: string;
   businessName: string;
   phone: string;
   id: string;
@@ -71,11 +71,19 @@ function Calendar({
   return (
     <CalendarStyles>
       <div className="sixth-wrapper">
-        <h1 style={{ color: data?.mainColor }}>Horário de funcionamento</h1>
+        {data?.isAutonomous == '1' ? (
+          <h1 style={{ color: data?.mainColor }}>Horário de atendimento</h1>
+        ) : (
+          <h2>Horário de funcionamento</h2>
+        )}
 
         <div className="table">
           <div className="header" style={{ backgroundColor: data?.secondaryColor }}>
-            <h2>Horário de funcionamento</h2>
+            {data?.isAutonomous == '1' ? (
+              <h2>Horário de atendimento</h2>
+            ) : (
+              <h2>Horário de funcionamento</h2>
+            )}
           </div>
 
           <div className="line">
