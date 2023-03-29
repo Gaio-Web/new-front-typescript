@@ -6,13 +6,14 @@ interface IFirstSectionProp {
   description: string;
   photoBase64: string;
   src: any;
-  backgroundColor: any;
   onClick: any;
+  mainColor: string;
+  secondaryColor: string;
 }
 
-function FirstSection({backgroundColor, call, description, photoBase64, src, onClick}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick}: IFirstSectionProp): JSX.Element {
   return (
-    <Container style={{backgroundColor: backgroundColor}}>
+    <Container style={{backgroundColor: mainColor}}>
       <div
         className={'first-wrapper'}
       >
@@ -25,7 +26,7 @@ function FirstSection({backgroundColor, call, description, photoBase64, src, onC
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
-        <button onClick={onClick}>Vamos conversar!</button>
+        <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>
       </div>
     </Container>
   );

@@ -2,7 +2,9 @@ import React from 'react';
 import { Container } from './styles';
 
 interface IThirdSectionProp {
-  color: any;
+  mainColor: string;
+  secondaryColor: string;
+  accentColor: string;
   onClick: any;
   quality1: string;
   qualitydescription1: string;
@@ -12,11 +14,11 @@ interface IThirdSectionProp {
   qualitydescription3: string;
 }
 
-function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, color, onClick}: IThirdSectionProp): JSX.Element{
+function ThirdSection({ mainColor, secondaryColor, accentColor, quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, onClick}: IThirdSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'third-wrapper'}>
-        <h1 className="sectionTitle" style={{ color: color }}>
+        <h1 className="sectionTitle" style={{ color: mainColor }}>
         Nossos diferenciais
         </h1>
 
@@ -29,7 +31,7 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={color}
+              fill={accentColor}
               stroke="none"
             >
               <path
@@ -80,7 +82,7 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
             </g>
           </svg>
 
-          <h3 style={{ color: color }}>{quality1}</h3>
+          <h3 style={{ color: secondaryColor }}>{quality1}</h3>
           <p>{qualitydescription1}</p>
         </div>
 
@@ -93,7 +95,7 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={color}
+              fill={accentColor}
               stroke="none"
             >
               <path
@@ -144,7 +146,7 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
             </g>
           </svg>
 
-          <h3 style={{ color: color }}>{quality2}</h3>
+          <h3 style={{ color: secondaryColor }}>{quality2}</h3>
           <p>{qualitydescription2}</p>
         </div>
 
@@ -157,7 +159,7 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={color}
+              fill={accentColor}
               stroke="none"
             >
               <path
@@ -209,11 +211,11 @@ function ThirdSection({ quality1, qualitydescription1, quality2, qualitydescript
             </g>
           </svg>
 
-          <h3 style={{ color: color }}>{quality3}</h3>
+          <h3 style={{ color: secondaryColor }}>{quality3}</h3>
           <p>{qualitydescription3}</p>
         </div>
 
-        <button onClick={onClick}>Vamos conversar!</button>
+        <button onClick={onClick} style={{ backgroundColor: secondaryColor }}>Vamos conversar!</button>
       </div>
     </Container>
   );

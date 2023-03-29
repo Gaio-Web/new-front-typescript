@@ -379,11 +379,11 @@ export const ThirdSection = styled.div`
         background-color: white;
         width: 95%;
         height: 100%;
-        padding: 1.5rem 1rem;
+        padding: 1.5rem .5rem;
         box-sizing: border-box;
         border-radius: 8px;
         flex-wrap: wrap;
-        gap: 1.3rem;
+        gap: 2.4rem;
 
         .selected {
           display: flex;
@@ -393,17 +393,40 @@ export const ThirdSection = styled.div`
           flex-direction: column;
 
           .color-option {
-            width: 44.12px;
-            height: 44.12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 70px;
+            height: 70px;
             border-radius: 4px;
+            background-color: transparent;
+            box-sizing: border-box;
+            border: 3px solid #034aa6;
+            overflow: hidden;
+
+            & .mainColor{
+              width: 33.3%;
+              height: 100%;
+            }
+
+            & .secondaryColor{
+              width: 33.3%;
+              height: 100%;
+            }
+
+            & .accentColor{
+              width: 33.3%;
+              height: 100%;
+            }
           }
 
           h1 {
-            font-weight: 400;
+            font-weight: 500;
             font-size: 14px;
             color: #000000;
             text-align: center;
-            padding-bottom: 0;
+            padding: .7rem 0 0;
           }
         }
 
@@ -415,21 +438,79 @@ export const ThirdSection = styled.div`
           flex-direction: column;
 
           .color-option {
-            width: 44.12px;
-            height: 44.12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 70px;
+            height: 70px;
             border-radius: 4px;
-            box-sizing: border-box;
-            border: 3px solid #034aa6;
+            background-color: transparent;
+            overflow: hidden;
+
+            & .mainColor{
+              width: 33.3%;
+              height: 100%;
+            }
+
+            & .secondaryColor{
+              width: 33.3%;
+              height: 100%;
+            }
+
+            & .accentColor{
+              width: 33.3%;
+              height: 100%;
+            }
+
           }
 
           h1 {
-            font-weight: 400;
+            font-weight: 500;
             font-size: 14px;
             color: #000000;
             text-align: center;
-            padding-bottom: 0;
+            padding: .7rem 0 0;
           }
         }
+      }
+
+      & .colorDemonstration{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 95%;
+        gap: 2rem;
+        padding: 1rem 0;
+
+        & .demonstrationWrapper{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: 1rem;
+
+          & .exampleSecondary{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 10rem;
+          }
+
+          & .exampleAccent{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 10rem;
+          }
+
+          & h4{
+            font-weight: 500;
+            text-align: center;
+            color: #ffffff;
+            margin: 0;
+          }
+        }
+
       }
 
       p {

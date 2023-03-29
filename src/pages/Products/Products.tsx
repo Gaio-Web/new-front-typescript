@@ -6,7 +6,11 @@ import {
   Loading,
 } from './styles';
 
+import Loader from './Components/Loader/Loader';
+
 import ReactLoading from 'react-loading';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
@@ -134,6 +138,10 @@ interface Contact {
   businessName: string;
   phone: string;
   id: string;
+
+  mainColor: string;
+  secondaryColor: string;
+  accentColor: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -202,12 +210,47 @@ function FindByPhone(): JSX.Element {
     }
   };
 
+
+
   if (loading) {
     return (
       <Loading>
         <div className={'loading-wrapper'}>
-          <h1>Carregando...</h1>
-          <ReactLoading type={'spin'} color={'#fff'} height={200} width={100}/>
+          <Stack spacing={1}>
+            <div className='skeletonHeaderWrapper'>
+              <Skeleton variant="rectangular" width={1500} height={80} />
+            </div>
+
+            <div className='skeletonTitleWrapper'>
+              <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+
+            <div className='skeletonImageWrapper'>
+              <Skeleton className='skeletonImage' variant="rounded" height={250} />
+            </div>
+
+            <div className='skeletonButtonWrapper'>
+              <Skeleton className='skeletonButton' variant="rounded" height={60} />
+            </div>
+          </Stack>
+
+          <div className='fadeWhite'>
+            <Loader/>
+          </div>
+
         </div>
       </Loading>
     );
@@ -237,11 +280,12 @@ function FindByPhone(): JSX.Element {
       <HeaderSection
         photoBase64={data.photos.logo.base64}
         name={data.name}
-        color={data.color}
+        mainColor={data.mainColor}
       />
 
       <FirstSection
-        backgroundColor={data.color}
+        mainColor={data.mainColor}
+        secondaryColor={data.secondaryColor}
         call={data.call.replace(/^"|"$/g, '')}
         description={data.description}
         photoBase64={data.photos.photo1.base64}
@@ -251,7 +295,8 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <SecondSection
-          color={data.color}
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
           products={data.products}
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
@@ -261,6 +306,10 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <ThirdSection
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
+          secondaryColor={data.secondaryColor}
+
           quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
           qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
 
@@ -270,7 +319,6 @@ function FindByPhone(): JSX.Element {
           quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
           qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
 
-          color={data.color}
           onClick={handleWhatsClick}
         />
       </Suspense>
@@ -279,13 +327,14 @@ function FindByPhone(): JSX.Element {
             <div className={'fourth-wrapper'}>
                 <h1 style={{color: data.color}}>Galeria de fotos</h1>
                 <Carousel/>
-                   <button onClick={handleWhatsClick} >Fale com a gente</button>
+                  <button onClick={handleWhatsClick} >Fale com a gente</button>
             </div>
             </FourthSection> */}
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
-          color={data.color}
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
           history={data.history.replace(/^"|"$/g, '')}
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
@@ -313,9 +362,8 @@ function FindByPhone(): JSX.Element {
           city={data.address.city}
           complement={data.address.complement}
           state={data.address.state}
-          color={data.color}
-          backgroundColor={data.color}
-          onClick={handleWhatsClick}
+          mainColor={data.mainColor}
+          secondaryColor={data.secondaryColor}
         />
       </Suspense>
 

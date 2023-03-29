@@ -16,7 +16,9 @@ interface ICalendar {
 }
 
 interface Contact {
-  color: string;
+  mainColor: string;
+  secondaryColor: string;
+  accentColor: string;
 
   businessName: string;
   phone: string;
@@ -69,10 +71,10 @@ function Calendar({
   return (
     <CalendarStyles>
       <div className="sixth-wrapper">
-        <h1 style={{ color: data?.color }}>Horário de funcionamento</h1>
+        <h1 style={{ color: data?.mainColor }}>Horário de funcionamento</h1>
 
         <div className="table">
-          <div className="header" style={{ backgroundColor: data?.color }}>
+          <div className="header" style={{ backgroundColor: data?.secondaryColor }}>
             <h2>Horário de funcionamento</h2>
           </div>
 
