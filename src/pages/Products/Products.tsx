@@ -210,8 +210,6 @@ function FindByPhone(): JSX.Element {
     }
   };
 
-
-
   if (loading) {
     return (
       <Loading>
