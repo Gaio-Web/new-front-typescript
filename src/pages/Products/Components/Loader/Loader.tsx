@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFighterJet, faGamepad, faHeadphones, faCubes, faPaw, faRocket, faTicket, faPieChart } from '@fortawesome/free-solid-svg-icons';
 
 const images = [
-  <FontAwesomeIcon icon={faFighterJet} />,
-  <FontAwesomeIcon icon={faGamepad} />,
-  <FontAwesomeIcon icon={faHeadphones} />,
-  <FontAwesomeIcon icon={faCubes} />,
-  <FontAwesomeIcon icon={faPaw} />,
-  <FontAwesomeIcon icon={faRocket} />,
-  <FontAwesomeIcon icon={faTicket} />,
-  <FontAwesomeIcon icon={faPieChart} />,
+  faFighterJet,
+  faGamepad,
+  faHeadphones,
+  faCubes,
+  faPaw,
+  faRocket,
+  faTicket,
+  faPieChart,
 ];
 
 const Loader = () => {
@@ -26,7 +26,7 @@ const Loader = () => {
       } else {
         setCounter(counter + 1);
       }
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [counter]);
@@ -35,8 +35,7 @@ const Loader = () => {
     changeImage(counter);
   }, [counter]);
 
-  function changeImage(counter: number) {
-
+  const changeImage = (counter: number) => {
     const colors = [
       '#EB596E',
       '#6883BA',
@@ -57,14 +56,12 @@ const Loader = () => {
 
     const image = images[counter];
 
-    const imageElement = (
-      <div className="image" style={{ backgroundColor: randomColor }}>
-        {image}
+    return (
+      <div className="image">
+        <FontAwesomeIcon icon={image} color={randomColor} />
       </div>
     );
-
-    return imageElement;
-  }
+  };
 
   const loading = () => {
     for(let i = 0; i <= 100; i++) {
