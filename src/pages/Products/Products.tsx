@@ -135,6 +135,7 @@ interface Contact {
   qualitydescription3: string;
 
   //client info
+  isAutonomous: string;
   businessName: string;
   phone: string;
   id: string;
@@ -293,6 +294,7 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <SecondSection
+          isAutonomous={data.isAutonomous}
           mainColor={data.mainColor}
           accentColor={data.accentColor}
           products={data.products}
@@ -307,6 +309,8 @@ function FindByPhone(): JSX.Element {
           mainColor={data.mainColor}
           accentColor={data.accentColor}
           secondaryColor={data.secondaryColor}
+
+          isAutonomous={data.isAutonomous}
 
           quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
           qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
@@ -331,6 +335,7 @@ function FindByPhone(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
+          isAutonomous={data.isAutonomous}
           mainColor={data.mainColor}
           accentColor={data.accentColor}
           history={data.history.replace(/^"|"$/g, '')}
