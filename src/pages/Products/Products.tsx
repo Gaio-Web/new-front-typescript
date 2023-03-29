@@ -279,7 +279,7 @@ function FindByPhone(): JSX.Element {
       <HeaderSection
         photoBase64={data.photos.logo.base64}
         name={data.name}
-        mainColor={data.mainColor}
+        secondaryColor={data.secondaryColor}
       />
 
       <FirstSection
