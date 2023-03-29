@@ -53,7 +53,9 @@ const Loader = () => {
   }, [counter]);
 
   const changeImage = (counter: number) => {
-    const image = images[Math.floor(Math.random() * images.length)];
+    //const image = (images[Math.floor(Math.random() * images.length)]);
+    const index = (counter + 1) % images.length;
+    const image = images[index];
 
     return (
       <div className="image">
