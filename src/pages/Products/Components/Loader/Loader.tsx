@@ -22,16 +22,9 @@ const Loader = () => {
   const [iconIndex, setIconIndex] = useState<number>(Math.floor(Math.random() * images.length));
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (counter === images.length - 1) {
-        setCounter(0);
-      } else {
-        setCounter(counter + 1);
-      }
-    }, 2000);
-
-    return () => clearInterval(interval);
+    setIconIndex(Math.floor(Math.random() * images.length));
   }, [counter]);
+
 
   useEffect(() => {
     const colors = [
@@ -53,8 +46,17 @@ const Loader = () => {
     setColor(colors[Math.floor(Math.random() * colors.length)]);
   }, [counter]);
 
-  const changeImage = (counter: number) => {
-    //const image = (images[Math.floor(Math.random() * images.length)]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prevCounter) =>
+        prevCounter === images.length - 1 ? 0 : prevCounter + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [iconIndex]);
+
+  const changeImage = () => {
     const index = (counter + iconIndex) % images.length;
     const image = images[index];
 
@@ -80,7 +82,7 @@ const Loader = () => {
   return (
     <Container>
       <div className="loader">
-        {changeImage(counter)}
+        {changeImage()}
         <span>{num}%</span>
       </div>
     </Container>
