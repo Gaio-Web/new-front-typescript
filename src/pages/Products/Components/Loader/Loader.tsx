@@ -19,10 +19,11 @@ const Loader = () => {
   const [counter, setCounter] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
   const [color, setColor] = useState<string>('');
+  const [iconIndex, setIconIndex] = useState<number>(Math.floor(Math.random() * images.length));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (counter === 7) {
+      if (counter === images.length - 1) {
         setCounter(0);
       } else {
         setCounter(counter + 1);
@@ -54,7 +55,7 @@ const Loader = () => {
 
   const changeImage = (counter: number) => {
     //const image = (images[Math.floor(Math.random() * images.length)]);
-    const index = (counter + 1) % images.length;
+    const index = (counter + iconIndex) % images.length;
     const image = images[index];
 
     return (
