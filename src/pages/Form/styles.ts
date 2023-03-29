@@ -252,6 +252,40 @@ export const SecondSection = styled.div`
           width: 100%;
 
         }
+
+        .custom-file-upload-firebase {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & input[type="file"] {
+        display: none;
+      }
+
+      label {
+        display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 60%;
+      height: 3rem;
+      margin: 1rem 0 2rem;
+
+      border: 0;
+      border-radius: 8px;
+      padding: 0.1rem 2rem;
+      cursor: pointer;
+
+      background: #034aa3;
+      color: white;
+      font-weight: 600;
+
+      @media screen and (max-width: 800px) {
+        width: 70%;
+      }
+      }
+    }
       }
 
       & img {
