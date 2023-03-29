@@ -42,7 +42,7 @@ import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 import { StyledButton } from './Components/StyledButton';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
+import {ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
 
 interface Contact {
   //text content
@@ -128,36 +128,147 @@ interface Contact {
 
 function Form(this: any): JSX.Element {
   const [image, setImage] = useState<any>('');
+  const [logo, setLogo] = useState<any>('');
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
+  const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
-  const [file, setFile] = useState<any>('');
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [logoPreview, setLogoPreview] = useState<string>('');
 
-  // Handles input change event and updates state
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(event.target.files?.[0]);
+  useEffect(() => {
+    const listAllImagesFromFolder = () => {
+      setImagesurls([]);
+      // List everything inside a folder with given path
+      const listRef = ref(storage, `${id}`);
+      listAll(listRef).then((res) => {
+        res.items.forEach((itemRef) => {
+          // All the items under listRef.
+          getDownloadURL(itemRef).then((url) => {
+            setImagesurls((state) => [...state, url]);
+          });
+        });
+      });
+    };
 
-    const fileImage = event.target.files?.[0];
-    if (!fileImage) {
+    listAllImagesFromFolder();
+    console.log('chamou aqui');
+  }, []);
+
+
+
+  const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogo(event.target.files?.[0]);
+
+    const LogoImage = event.target.files?.[0];
+    if (!LogoImage) {
       return;
     }
     const reader = new FileReader();
     reader.onload = () => {
-      setImagePreview(reader.result as string);
+      setLogoPreview(reader.result as string);
     };
-    reader.readAsDataURL(fileImage);
+    reader.readAsDataURL(LogoImage);
+  };
+
+  const [logoPercent, setLogoPercent] = useState(0);
+
+  const handleLogoUploadToFirebase = () => {
+    if (!logo) {
+      alert('escolha uma imagem!');
+    }
+    const storageRef = ref(storage, `/${id}/${logo.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, logo);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const logoPercent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // update progress
+        setLogoPercent(logoPercent);
+      },
+      (err) => console.log(err),
+      () => {
+        //download URL
+        getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+          console.log(url);
+          const body = JSON.stringify({
+            phone: id,
+            photo_position: '4',
+            base64: url,
+            type: 'image',
+          });
+          const response = await fetch(
+            'https://gaio-web-new-api-test.onrender.com/upload',
+            {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+              },
+              body: body,
+            }
+          );
+          if (response.ok) {
+            // A resposta foi bem-sucedida
+            setUploaded(true),
+            toast.success('Imagem enviada com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          } else {
+            // A resposta foi mal-sucedida
+            console.log('Houve um problema ao enviar a foto.');
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+        });
+      }
+    );
+  };
+
+
+  const [coverPreview, setCoverPreview] = useState<string>('');
+
+  const handleCoverChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCover(event.target.files?.[0]);
+
+    const coverImage = event.target.files?.[0];
+    if (!coverImage) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setCoverPreview(reader.result as string);
+    };
+    reader.readAsDataURL(coverImage);
   };
 
   const [percent, setPercent] = useState(0);
 
-  const handleUploadToFirebase = () => {
-    if (!file) {
+  const handleCoverUploadToFirebase = () => {
+    if (!cover) {
       alert('escolha uma imagem!');
     }
-    const storageRef = ref(storage, `/${id}/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const storageRef = ref(storage, `/${id}/${cover.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, cover);
 
     uploadTask.on(
       'state_changed',
@@ -223,6 +334,185 @@ function Form(this: any): JSX.Element {
     );
   };
 
+  const [histPreview, setHistPreview] = useState<string | undefined>(undefined);
+  // Handles input change event and updates state
+  const handleHistChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHist(event.target.files?.[0]);
+
+    const histImage = event.target.files?.[0];
+    if (!histImage) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setHistPreview(reader.result as string);
+    };
+    reader.readAsDataURL(histImage);
+  };
+
+  const [histPercent, setHistPercent] = useState(0);
+
+  const handleHistUploadToFirebase = () => {
+    if (!hist) {
+      alert('escolha uma imagem!');
+    }
+    const storageRef = ref(storage, `/${id}/${hist.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, hist);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const histPercent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // update progress
+        setHistPercent(histPercent);
+      },
+      (err) => console.log(err),
+      () => {
+      //download URL
+        getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+          console.log(url);
+          const body = JSON.stringify({
+            phone: id,
+            photo_position: '2',
+            base64: url,
+            type: 'image',
+          });
+          const response = await fetch(
+            'https://gaio-web-new-api-test.onrender.com/upload',
+            {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+              },
+              body: body,
+            }
+          );
+          if (response.ok) {
+          // A resposta foi bem-sucedida
+            setUploaded(true),
+            toast.success('Imagem enviada com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          } else {
+          // A resposta foi mal-sucedida
+            console.log('Houve um problema ao enviar a foto.');
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+        });
+      }
+    );
+  };
+
+  const [offerPreview, setOfferPreview] = useState<string>('');
+
+  const handleOfferChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOffer(event.target.files?.[0]);
+
+    const offerImage = event.target.files?.[0];
+    if (!offerImage) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setOfferPreview(reader.result as string);
+    };
+    reader.readAsDataURL(offerImage);
+  };
+
+  const [offerPercent, setOfferPercent] = useState(0);
+
+  const handleOfferUploadToFirebase = () => {
+    if (!offer) {
+      alert('escolha uma imagem!');
+    }
+    const storageRef = ref(storage, `/${id}/${offer.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, offer);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const offerPercent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // update progress
+        setOfferPercent(offerPercent);
+      },
+      (err) => console.log(err),
+      () => {
+        //download URL
+        getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+          console.log(url);
+          const body = JSON.stringify({
+            phone: id,
+            photo_position: '3',
+            base64: url,
+            type: 'image',
+          });
+          const response = await fetch(
+            'https://gaio-web-new-api-test.onrender.com/upload',
+            {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+              },
+              body: body,
+            }
+          );
+          if (response.ok) {
+            // A resposta foi bem-sucedida
+            setUploaded(true),
+            toast.success('Imagem enviada com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          } else {
+            // A resposta foi mal-sucedida
+            console.log('Houve um problema ao enviar a foto.');
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+        });
+      }
+    );
+  };
+
+
 
   const [uploaded, setUploaded] = useState<boolean>(false);
 
@@ -232,15 +522,6 @@ function Form(this: any): JSX.Element {
 
   const getImage = (files: any) => {
     setImage(files);
-  };
-  const getCover = (files: any) => {
-    setCover(file);
-  };
-  const getHist = (files: any) => {
-    setHist(files);
-  };
-  const getOffer = (files: any) => {
-    setOffer(files);
   };
 
 
@@ -271,8 +552,8 @@ function Form(this: any): JSX.Element {
     if(uploaded == true){
       fetchDataForms().then(() => {
         setUploaded(false);
-        setFile('');
         setImage('');
+        setLogo('');
         setCover('');
         setHist('');
         setOffer('');
@@ -280,72 +561,8 @@ function Form(this: any): JSX.Element {
     }
   }, [uploaded]);
 
-  //IMAGENS//FOTOS
-  const uploadPhoto = async (photoPosition: string) => {
-    const teste = () => {
-      if(photoPosition == '4')  {
-        return image.base64;
-      }
-      else if(photoPosition == '1') {
-        return cover.base64;
-      }
-      else if(photoPosition == '2') {
-        return hist.base64;
-      }
-      else if(photoPosition == '3') {
-        return offer.base64;
-      }
-    };
-    const body = JSON.stringify({
-      phone: id,
-      photo_position: photoPosition,
-      base64: teste(),
-      type: teste(),
-    });
-    const response = await fetch(
-      'https://gaio-web-new-api-test.onrender.com/upload',
-      {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-        body: body,
-      }
-    );
-    if (response.ok) {
-      // A resposta foi bem-sucedida
-      setUploaded(true),
-      toast.success('Imagem enviada com sucesso!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-    } else {
-      // A resposta foi mal-sucedida
-      console.log('Houve um problema ao enviar a foto.');
-      toast.error('Houve um problema ao enviar a imagem!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-    }
-  };
-
   //Logo
   const [selectLogo, setSelectLogo] = useState(false);
-  //const [isLoading1, setLoading1] = useState(false);
 
   //CORES
   const [colorized, setColorized] = useState(false);
@@ -599,20 +816,19 @@ function Form(this: any): JSX.Element {
                       alt={'foto da logo-marca'}
                     />
                   )}
+                </div>
 
-                  <label className="custom-file-upload" >
-                    <FiUpload color={'#fff'} size={24} />
-                    <FileBase64 multiple={false} onDone={getImage} />
-                  Escolher logo
-                  </label>
-                  <ImagePreview >
-                    {image && <img src={image.base64} alt='preview' />}
-                    {image ? (
-                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('4')} color={'#0baf37'} disabledColor='#c4c4c4'/>
-                    ) : (
-                      <></>
-                    )}
-                  </ImagePreview>
+                <div className='custom-file-upload-firebase'>
+                  {logo ? (
+                    <>
+                      <img className="pgImg" src={logoPreview} alt={'foto-1'} />
+                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${logoPercent}% Enviando...`} onClick={handleLogoUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                    </>
+                  ):(
+                    <>
+                      <label htmlFor="envio-de-logo">Escolher foto</label>
+                      <input type="file" name="envio-de-logo" id="envio-de-logo" accept="image/*" onChange={handleLogoChange} className='custom-file-upload-input'/></>
+                  )}
                 </div>
               </div>
             </>
@@ -816,6 +1032,13 @@ function Form(this: any): JSX.Element {
         sundayData={data.domingo}
       />
 
+      <div style={{backgroundColor: 'green', width: '100%', height: '25rem', display: 'flex'}}>
+        {imgsUrls.map((url: string) => (
+          <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
+        ))}
+      </div>
+
+
       <PicsSection>
         <h1 className="picsTitle">Vamos editar as fotos do seu site.</h1>
         {/*back*/}
@@ -839,16 +1062,16 @@ function Form(this: any): JSX.Element {
             </div>
 
             <div className='custom-file-upload-firebase'>
-              {file ? (
-                // <button onClick={handleUploadToFirebase}>Enviar foto</button>
+              {cover ? (
                 <>
-                  <img className="pgImg" src={imagePreview} alt={'foto-1'} />
-                  <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${percent}% Enviando...`} onClick={handleUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                  <img className="pgImg" src={coverPreview} alt={'foto-1'} />
+                  <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${percent}% Enviando...`} onClick={handleCoverUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
                 </>
               ):(
                 <>
                   <label htmlFor="envio-de-imagem">Escolher foto</label>
-                  <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleChange} className='custom-file-upload-input'/></>
+                  {/* <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></> */}
+                  <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></>
               )}
             </div>
           </div>
@@ -865,32 +1088,22 @@ function Form(this: any): JSX.Element {
                 <img src={foto2} alt="foto da história" />
               ) : (
                 <img src={data.photos.photo2.base64} alt="foto da capa" />
-              //trocar por backPhoto
               )}
             </div>
 
-            <label className="custom-file-upload">
-              <FiUpload color={'#fff'} size={24} />
-              <FileBase64 multiple={false} onDone={getHist} />
-              <p className="uploadText">Fazer upload</p>
-            </label>
-
-            <ImagePreview >
-              {hist && <img src={hist.base64} alt='preview' />}
+            <div className='custom-file-upload-firebase'>
               {hist ? (
-                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('2')} color={'#0baf37'} disabledColor='#c4c4c4'/>
-              ) : (
-                <></>
+                // <button onClick={handleUploadToFirebase}>Enviar foto</button>
+                <>
+                  <img className="pgImg" src={histPreview} alt={'foto da história'} />
+                  <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${histPercent}% Enviando...`} onClick={handleHistUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                </>
+              ):(
+                <>
+                  <label htmlFor="envio-de-hist">Escolher foto</label>
+                  <input type="file" name="envio-de-imagem" id="envio-de-hist" accept="image/*" onChange={handleHistChange} className='custom-file-upload-input'/></>
               )}
-            </ImagePreview>
-            {/* <div className='img-preview'>
-							{hist && <img src={hist.base64} alt='preview' />}
-						</div>
-						<SendButton1
-							submit={() => {
-								uploadPhoto('2');
-							}}
-						/> */}
+            </div>
           </div>
         </CoverPhotoSection>
         {/*offer*/}
@@ -908,22 +1121,25 @@ function Form(this: any): JSX.Element {
               )}
             </div>
 
-            <label className="custom-file-upload">
-              <FiUpload color={'#fff'} size={24} />
-              <FileBase64 multiple={false} onDone={getOffer} />
-              <p className="uploadText">Fazer upload</p>
-            </label>
-            <ImagePreview >
-              {offer && <img src={offer.base64} alt='preview' />}
+            <div className='custom-file-upload-firebase'>
               {offer ? (
-                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder='Eviando...' onClick={() => uploadPhoto('3')} color={'#0baf37'} disabledColor='#c4c4c4'/>
-              ) : (
-                <></>
+                <>
+                  <img className="pgImg" src={offerPreview} alt={'foto ds ofertas'} />
+                  <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${offerPercent}% Enviando...`} onClick={handleOfferUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                </>
+              ):(
+                <>
+                  <label htmlFor="envio-de-offer">Escolher foto</label>
+                  <input type="file" name="envio-de-imagem" id="envio-de-offer" accept="image/*" onChange={handleOfferChange} className='custom-file-upload-input'/></>
               )}
-            </ImagePreview>
+            </div>
           </div>
         </CoverPhotoSection>
       </PicsSection>
+
+      <div>
+
+      </div>
 
       <SeventhSection>
         <div className="seventh-wrapper">
