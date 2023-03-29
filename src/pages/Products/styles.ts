@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Loading = styled.section`
   width: 100%;
   height: 100vh;
-  background-color: rgb(5, 55, 124);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,48 +12,76 @@ export const Loading = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 50%;
-    gap: 2rem;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
 
     @media screen and (max-width: 800px) {
-      width: 80%;
-      height: 70%;
-    }
-  }
-
-  & h1 {
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    font-size: 32px;
-    color: white;
-  }
-
-  & .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-
-    background-color: white;
-    border-radius: 18px;
-
-    padding: 1rem 1.5rem;
-
-    & p {
-      margin: 0;
-      font-size: 20px;
-      font-family: "Montserrat", sans-serif;
-    }
-    & img {
-      width: 150px;
+      width: 100%;
+      height: 100%;
     }
 
-    & .empty-div {
-      display: none;
+    & .skeletonHeaderWrapper{
+      width: 95vw;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    & .skeletonTitleWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      & span{
+        width: 80%;
+      }
+    }
+
+    & .skeletonTextWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      & .skeletonText{
+        width: 80%;
+      }
+    }
+
+    & .skeletonImageWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 2rem 0;
+
+      & .skeletonImage{
+        @media screen and (max-width: 800px) {
+          width: 60%;
+          height: 100%;
+        }
+        width: 40%;
+      }
+    }
+
+    & .skeletonButtonWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      & .skeletonButton{
+        width: 80%;
+      }
+    }
+
+    & .fadeWhite{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255, .6) 70%, rgba(255,255,255, 1));
+
     }
   }
 `;
