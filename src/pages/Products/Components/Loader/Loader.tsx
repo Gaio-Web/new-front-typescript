@@ -18,24 +18,21 @@ const images = [
 const Loader = () => {
   const [counter, setCounter] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
+  const [color, setColor] = useState<string>('');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(counter === 7) {
+      if (counter === 7) {
         setCounter(0);
       } else {
         setCounter(counter + 1);
       }
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [counter]);
 
   useEffect(() => {
-    changeImage(counter);
-  }, [counter]);
-
-  const changeImage = (counter: number) => {
     const colors = [
       '#EB596E',
       '#6883BA',
@@ -52,19 +49,21 @@ const Loader = () => {
       '#25D8A7'
     ];
 
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    setColor(colors[Math.floor(Math.random() * colors.length)]);
+  }, [counter]);
 
+  const changeImage = (counter: number) => {
     const image = images[counter];
 
     return (
       <div className="image">
-        <FontAwesomeIcon icon={image} color={randomColor} />
+        <FontAwesomeIcon icon={image} color={color} />
       </div>
     );
   };
 
   const loading = () => {
-    for(let i = 0; i <= 100; i++) {
+    for (let i = 0; i <= 100; i++) {
       setTimeout(() => {
         setNum(i);
       }, i * 120);
