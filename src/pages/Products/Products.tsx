@@ -215,15 +215,40 @@ function FindByPhone(): JSX.Element {
       <Loading>
         <div className={'loading-wrapper'}>
           <Stack spacing={1}>
-            <Skeleton variant="rectangular" width={210} height={60} />
+            <div className='skeletonHeaderWrapper'>
+              <Skeleton variant="rectangular" width={1500} height={80} />
+            </div>
 
-            <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
-            <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+            <div className='skeletonTitleWrapper'>
+              <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
+            </div>
 
-            <Skeleton variant="rounded" width={210} height={60} />
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
 
-            <Skeleton variant="rounded" width={210} height={60} />
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+
+            <div className='skeletonImageWrapper'>
+              <Skeleton className='skeletonImage' variant="rounded" height={250} />
+            </div>
+
+            <div className='skeletonButtonWrapper'>
+              <Skeleton className='skeletonButton' variant="rounded" height={60} />
+            </div>
           </Stack>
+
+          <div className='fadeWhite'>
+            <Loader/>
+          </div>
+
         </div>
       </Loading>
     );
@@ -234,153 +259,114 @@ function FindByPhone(): JSX.Element {
   }
 
   return (
-    <Loading>
-      <div className={'loading-wrapper'}>
-        <Stack spacing={1}>
-          <div className='skeletonHeaderWrapper'>
-            <Skeleton variant="rectangular" width={1500} height={80} />
-          </div>
-
-          <div className='skeletonTitleWrapper'>
-            <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
-          </div>
-
-          <div className='skeletonTextWrapper'>
-            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-          </div>
-
-          <div className='skeletonTextWrapper'>
-            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-          </div>
-
-          <div className='skeletonTextWrapper'>
-            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-          </div>
+    <Container>
+      <Helmet>
+        <title>{data.name}</title>
+        <meta name="theme-color" content={data.color}/>
+        <meta property="title" content={data.name}/>
+        <meta name="description" content={data?.description} />
+        <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
 
 
-          <div className='skeletonImageWrapper'>
-            <Skeleton className='skeletonImage' variant="rounded" height={250} />
-          </div>
-
-          <div className='skeletonButtonWrapper'>
-            <Skeleton className='skeletonButton' variant="rounded" height={60} />
-          </div>
-        </Stack>
-
-        <div className='fadeWhite'>
-          <Loader/>
-        </div>
-
-      </div>
-    </Loading>
-  // <Container>
-    //   <Helmet>
-    //     <title>{data.name}</title>
-    //     <meta name="theme-color" content={data.color}/>
-    //     <meta property="title" content={data.name}/>
-    //     <meta name="description" content={data?.description} />
-    //     <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+        <meta name="og:title" content={data.name}/>
+        <meta property="og:description" content={data?.description} />
+        <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+        <meta property="og:type" content="website" />
+      </Helmet>
 
 
-  //     <meta name="og:title" content={data.name}/>
-  //     <meta property="og:description" content={data?.description} />
-  //     <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
-  //     <meta property="og:type" content="website" />
-  //   </Helmet>
+      <HeaderSection
+        photoBase64={data.photos.logo.base64}
+        name={data.name}
+        mainColor={data.mainColor}
+      />
 
+      <FirstSection
+        mainColor={data.mainColor}
+        secondaryColor={data.secondaryColor}
+        call={data.call.replace(/^"|"$/g, '')}
+        description={data.description}
+        photoBase64={data.photos.photo1.base64}
+        src={Photo1}
+        onClick={handleWhatsClick}
+      />
 
-  //   <HeaderSection
-  //     photoBase64={data.photos.logo.base64}
-  //     name={data.name}
-  //     mainColor={data.mainColor}
-  //   />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <SecondSection
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
+          products={data.products}
+          photoBase64={data.photos.photo3.base64}
+          src={Photo3}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
-  //   <FirstSection
-  //     mainColor={data.mainColor}
-  //     secondaryColor={data.secondaryColor}
-  //     call={data.call.replace(/^"|"$/g, '')}
-  //     description={data.description}
-  //     photoBase64={data.photos.photo1.base64}
-  //     src={Photo1}
-  //     onClick={handleWhatsClick}
-  //   />
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <ThirdSection
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
+          secondaryColor={data.secondaryColor}
 
-  //   <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-  //     <SecondSection
-  //       mainColor={data.mainColor}
-  //       accentColor={data.accentColor}
-  //       products={data.products}
-  //       photoBase64={data.photos.photo3.base64}
-  //       src={Photo3}
-  //       onClick={handleWhatsClick}
-  //     />
-  //   </Suspense>
+          quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
+          qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
 
-  //   <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-  //     <ThirdSection
-  //       mainColor={data.mainColor}
-  //       accentColor={data.accentColor}
-  //       secondaryColor={data.secondaryColor}
+          quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
+          qualitydescription2={data.qualitydescription2.replace(/^"|"$/g, '')}
 
-  //       quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
-  //       qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
+          quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
+          qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
 
-  //       quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
-  //       qualitydescription2={data.qualitydescription2.replace(/^"|"$/g, '')}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
-  //       quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
-  //       qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
+      {/* <FourthSection>
+            <div className={'fourth-wrapper'}>
+                <h1 style={{color: data.color}}>Galeria de fotos</h1>
+                <Carousel/>
+                  <button onClick={handleWhatsClick} >Fale com a gente</button>
+            </div>
+            </FourthSection> */}
 
-  //       onClick={handleWhatsClick}
-  //     />
-  //   </Suspense>
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <FifthSection
+          mainColor={data.mainColor}
+          accentColor={data.accentColor}
+          history={data.history.replace(/^"|"$/g, '')}
+          photoBase64={data.photos.photo2.base64}
+          src={Photo2}
+          onClick={handleWhatsClick}
+        />
+      </Suspense>
 
-  //   {/* <FourthSection>
-  //         <div className={'fourth-wrapper'}>
-  //             <h1 style={{color: data.color}}>Galeria de fotos</h1>
-  //             <Carousel/>
-  //                <button onClick={handleWhatsClick} >Fale com a gente</button>
-  //         </div>
-  //         </FourthSection> */}
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <Calendar
+          segunda={`${data.segunda}`}
+          terca={`${data.terca}`}
+          quarta={`${data.quarta}`}
+          quinta={`${data.quinta}`}
+          sexta={`${data.sexta}`}
+          sabado={`${data.sabado}`}
+          domingo={`${data.domingo}`}
+        />
+      </Suspense>
 
-  //   <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-  //     <FifthSection
-  //       mainColor={data.mainColor}
-  //       accentColor={data.accentColor}
-  //       history={data.history.replace(/^"|"$/g, '')}
-  //       photoBase64={data.photos.photo2.base64}
-  //       src={Photo2}
-  //       onClick={handleWhatsClick}
-  //     />
-  //   </Suspense>
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <SeventhSection
+          zipCode={data.address.zipCode}
+          street={data.address.street}
+          number={data.address.number}
+          city={data.address.city}
+          complement={data.address.complement}
+          state={data.address.state}
+          mainColor={data.mainColor}
+          secondaryColor={data.secondaryColor}
+        />
+      </Suspense>
 
-  //   <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-  //     <Calendar
-  //       segunda={`${data.segunda}`}
-  //       terca={`${data.terca}`}
-  //       quarta={`${data.quarta}`}
-  //       quinta={`${data.quinta}`}
-  //       sexta={`${data.sexta}`}
-  //       sabado={`${data.sabado}`}
-  //       domingo={`${data.domingo}`}
-  //     />
-  //   </Suspense>
-
-  //   <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-  //     <SeventhSection
-  //       zipCode={data.address.zipCode}
-  //       street={data.address.street}
-  //       number={data.address.number}
-  //       city={data.address.city}
-  //       complement={data.address.complement}
-  //       state={data.address.state}
-  //       mainColor={data.mainColor}
-  //       secondaryColor={data.secondaryColor}
-  //     />
-  //   </Suspense>
-
-  //   <FooterSection/>
-  // </Container>
+      <FooterSection/>
+    </Container>
   );
 }
 
