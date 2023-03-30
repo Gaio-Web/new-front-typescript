@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -11,10 +10,12 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper';
+//import { EffectCards } from 'swiper';
 
 // import images
 import Photo1 from '../../../../assets/foto1.png';
 import Photo2 from '../../../../assets/foto2.png';
+import Photo3 from '../../../../assets/foto3.png';
 import vertical from '../../../../assets/capaSerena.png';
 
 function Carousel() {
@@ -33,15 +34,15 @@ function Carousel() {
   return (
     <>
       <Swiper
-        slidesPerView={slidesPerView}
-        effect={'cards'}
+        slidesPerView={'auto'}
+        //effect={'cards'}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         loop={true}
         grabCursor={true}
-        modules={[Pagination, EffectCards]}
+        modules={[Pagination]}
         className="mySwiper"
       >
         <SwiperSlide>
@@ -52,13 +53,13 @@ function Carousel() {
 
         <SwiperSlide>
           <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
+            <img className="pgImg" src={Photo1} alt={'foto-2'} />
           </div>
         </SwiperSlide>
 
         <SwiperSlide>
           <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
+            <img className="pgImg" src={Photo3} alt={'foto-2'} />
           </div>
         </SwiperSlide>
 
