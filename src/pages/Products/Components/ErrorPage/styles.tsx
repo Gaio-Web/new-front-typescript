@@ -19,6 +19,17 @@ export const Container = styled.section`
     color: white;
   }
 
+
+    & .secondTypewriterWrapper{
+    font-size: 4rem;
+    text-align: center;
+
+    @media screen and (max-width: 800px){
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
+
   & h3{
     font-size: 1.1rem;
     font-weight: 500;
