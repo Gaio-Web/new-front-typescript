@@ -1,31 +1,38 @@
 import { Container } from './styles';
 import Typewriter from 'typewriter-effect';
+import foto from '../../../../assets/Component45.png';
 
 const typewriter404 = () => {
   return(
     <Container>
-      <div className='typewriterWrapper' style={{backgroundColor:'black'}}>
+      <ul className="background">
+        <div className='imgWrapper'>
+          <img className='imagem' src={foto} alt="não encontrado" />
+        </div>
 
-        <Typewriter
-          onInit={(typewriter) => {
-            typewriter.typeString('404')
-              .pauseFor(300)
-              .callFunction(() => {
-                const cursor = document.querySelector('.Typewriter__cursor') as HTMLElement;
-                if (cursor) {
-                  cursor.style.display = 'none';
-                }
-              })
-              .start();
-          }}
-        />
+        <div className='firstTypewriterWrapper'>
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter.typeString('Oooops!')
+                .pauseFor(300)
+                .callFunction(() => {
+                  const cursor = document.querySelector('.Typewriter__cursor') as HTMLElement;
+                  if (cursor) {
+                    cursor.style.display = 'none';
+                  }
+                })
+                .start();
+            }}
+          />
+        </div>
 
         <div className='secondTypewriterWrapper'>
           <Typewriter
             onInit={(typewriter) => {
               setTimeout(() => {
-                typewriter.typeString('Página não encontrada!')
-                  .pauseFor(300)
+                typewriter.typeString('Parece que a página que você está procurando não está disponível!')
+                  .pauseFor(800)
+                  .changeDelay(8000)
                   .callFunction( function() {
                     const cursor = document.querySelector('.Typewriter__cursor') as HTMLElement;
                     if (cursor) {
@@ -38,13 +45,19 @@ const typewriter404 = () => {
           />
         </div>
 
-        <h3>Confira se o link acessado está correto!</h3>
+        <div className='buttonWrapper'>
+          <button><a href="https://wa.me/+5516996333736">Suporte</a></button>
+        </div>
 
-        <button>
-          <a href='https://wa.me/+5516996333736'>Suporte</a>
-        </button>
-
-      </div>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </Container>
   );
 };
