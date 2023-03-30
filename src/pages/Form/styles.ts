@@ -817,13 +817,15 @@ export const GaleryTest = styled.div`
     background-color: green;
     width: 100vw;
     height: fit-content;
-    padding: 1rem;
+    padding: 1rem 3rem;
 
     @media screen and (max-width: 800px) {
       align-items: center;
       justify-content: space-between;
       flex-direction: column;
       flex-wrap: nowrap;
+
+      padding: 1rem;
     }
 
 
