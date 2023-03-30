@@ -40,7 +40,9 @@ const typewriter404 = () => {
 
         <h3>Confira se o link acessado está correto!</h3>
 
-        <button>Suporte</button>
+        <button>
+          <a href='https://wa.me/+5516996333736'>Suporte</a>
+        </button>
 
       </div>
     </Container>

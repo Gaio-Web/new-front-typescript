@@ -48,4 +48,9 @@ export const Container = styled.section`
       background-color: #2a70cc;
     }
   }
+
+  a{
+    color: white;
+    text-decoration: none;
+  }
 `;
