@@ -74,7 +74,7 @@ function Calendar({
         {data?.isAutonomous == '1' ? (
           <h1 style={{ color: data?.mainColor }}>Horário de atendimento</h1>
         ) : (
-          <h2>Horário de funcionamento</h2>
+          <h1>Horário de funcionamento</h1>
         )}
 
         <div className="table">
