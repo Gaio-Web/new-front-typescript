@@ -15,6 +15,7 @@ import {
   CoverPhotoSection,
   SeventhSection,
   ImagePreview,
+  GaleryTest
 } from './styles';
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
@@ -40,6 +41,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 //import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
 import { StyledButton } from './Components/StyledButton';
+
+import { BsFillTrash3Fill } from 'react-icons/bs';
 
 import storage from '../../../firebaseConfig';
 import {ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
@@ -1032,12 +1035,18 @@ function Form(this: any): JSX.Element {
         sundayData={data.domingo}
       />
 
-      <div style={{backgroundColor: 'green', width: '100%', height: '25rem', display: 'flex'}}>
-        {imgsUrls.map((url: string) => (
-          <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
-        ))}
-      </div>
+      <GaleryTest>
+        <div className='galeryWrapper'>
 
+          {imgsUrls.map((url: string) => (
+            <div className='imageWrapper'>
+              <img src={url} alt="imagens"/>
+              <BsFillTrash3Fill style={{color:'green', paddingRight:'1rem'}}/>
+            </div>
+          ))}
+
+        </div>
+      </GaleryTest>
 
       <PicsSection>
         <h1 className="picsTitle">Vamos editar as fotos do seu site.</h1>
@@ -1136,10 +1145,6 @@ function Form(this: any): JSX.Element {
           </div>
         </CoverPhotoSection>
       </PicsSection>
-
-      <div>
-
-      </div>
 
       <SeventhSection>
         <div className="seventh-wrapper">

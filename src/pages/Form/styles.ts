@@ -803,6 +803,72 @@ export const FifthSection = styled.div`
   }
 `;
 
+//GALERIA
+export const GaleryTest = styled.div`
+  .galeryWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    box-sizing: border-box;
+    background-color: green;
+    width: 100vw;
+    height: fit-content;
+    padding: 1rem;
+
+    @media screen and (max-width: 800px) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+
+
+    & .imageWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background-color: #eee;
+      border: 0;
+      border-radius: 8px;
+      width: 46%;
+      padding: 1rem;
+
+      min-height: 30vh;
+
+      font-size: 3rem;
+
+      @media screen and (max-width: 800px) {
+        width: 90%;
+        padding: 1rem;
+
+        min-height: 40vh;
+        min-height: 8vh;
+
+        font-size: 2rem;
+      }
+    }
+
+    & img{
+      max-width: 50%;
+      max-height: 30vh;
+      border: 0;
+      border-radius: 8px;
+      margin: 0;
+
+      @media screen and (max-width: 800px) {
+        max-width: 50%;
+        max-height: 30vh;
+      }
+    }
+  }
+
+`;
+
 //Engloba toda as section que tem fotos
 export const PicsSection = styled.div`
   width: 100%;
@@ -833,6 +899,7 @@ export const PicsSection = styled.div`
     }
   }
 `;
+
 export const CoverPhotoSection = styled.div`
   width: 60%;
   height: fit-content;
