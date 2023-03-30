@@ -4,7 +4,10 @@ import axios from 'axios';
 import {
   Container,
   Loading,
+  FourthSection
 } from './styles';
+
+import { Carousel } from './Components/Carousel/Carousel';
 
 import ReactLoading from 'react-loading';
 
@@ -275,13 +278,13 @@ function FindByPhone(): JSX.Element {
         />
       </Suspense>
 
-      {/* <FourthSection>
-            <div className={'fourth-wrapper'}>
-                <h1 style={{color: data.color}}>Galeria de fotos</h1>
-                <Carousel/>
-                   <button onClick={handleWhatsClick} >Fale com a gente</button>
-            </div>
-            </FourthSection> */}
+      <FourthSection>
+        <div className={'fourth-wrapper'}>
+          <h1 style={{color: data.color}}>Galeria de fotos</h1>
+          <Carousel/>
+          <button onClick={handleWhatsClick} >Fale com a gente</button>
+        </div>
+      </FourthSection>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
