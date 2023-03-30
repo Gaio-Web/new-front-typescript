@@ -111,7 +111,7 @@ export const Container = styled.section`
       z-index: 10;
 
       @media screen and (max-width: 800px) {
-        top: 8%;
+        top: 2%;
       }
     }
 
@@ -131,7 +131,7 @@ export const Container = styled.section`
 
       @media screen and (max-width: 800px) {
         width: 100%;
-        top: 24%;
+        top: 17%;
       }
     }
 
@@ -155,7 +155,7 @@ export const Container = styled.section`
 
       @media screen and (max-width: 800px) {
         width: 100%;
-        top: 58%;
+        top: 49%;
 
         background: rgba(25,29,70,.5);
       }
@@ -189,7 +189,7 @@ export const Container = styled.section`
         font-weight: 500;
         padding: 1.1rem 3rem;
 
-        top: 85%;
+        top: 75%;
       }
     }
 
