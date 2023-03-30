@@ -7,6 +7,7 @@ import {
 } from './styles';
 
 import Loader from './Components/Loader/Loader';
+import Typewriter from './Components/ErrorPage';
 
 import ReactLoading from 'react-loading';
 import Skeleton from '@mui/material/Skeleton';
@@ -256,7 +257,9 @@ function FindByPhone(): JSX.Element {
   }
 
   else if (!data) {
-    return <p>Registro não encontrado</p>;
+    return (
+      <Typewriter/>
+    );
   }
 
   return (
