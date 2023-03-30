@@ -155,7 +155,7 @@ export const Container = styled.section`
 
       @media screen and (max-width: 800px) {
         width: 100%;
-        top: 49%;
+        top: 51%;
 
         background: rgba(25,29,70,.5);
       }
@@ -189,7 +189,7 @@ export const Container = styled.section`
         font-weight: 500;
         padding: 1.1rem 3rem;
 
-        top: 75%;
+        top: 77%;
       }
     }
 
