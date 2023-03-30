@@ -27,6 +27,7 @@ export const Container = styled.section`
     @media screen and (max-width: 800px){
       font-size: 3rem;
       text-align: center;
+      min-height: 20vh;
     }
   }
 
