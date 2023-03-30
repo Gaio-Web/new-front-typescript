@@ -817,7 +817,7 @@ export const GaleryTest = styled.div`
     background-color: green;
     width: 100vw;
     height: fit-content;
-    padding: 1rem 3rem;
+    padding: 2rem 3rem;
 
     @media screen and (max-width: 800px) {
       align-items: center;
