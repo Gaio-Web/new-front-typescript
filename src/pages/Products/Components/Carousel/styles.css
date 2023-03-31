@@ -21,14 +21,7 @@
 }
 
 .content-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  max-width: 80vw;
-
-  min-height: 40vh;
-  max-height: 65vh;
 }
 
 
