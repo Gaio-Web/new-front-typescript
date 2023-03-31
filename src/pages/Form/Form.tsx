@@ -184,18 +184,38 @@ function Form(this: any): JSX.Element {
             setGalleryImagesPercent(galleryImagesPercent);
           },
           (error) => {
-            // handle upload error
             console.log('deu erro:', error);
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
           },
           () => {
-            // handle upload success
+            setUploaded(true),
             console.log('deu certo');
+            toast.success('Imagens enviadas com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
           }
         );
       }
     } catch (error) {
-      // handle general error
       console.log('deu erro:', error);
+    } finally {
+
     }
   };
 
@@ -1092,14 +1112,24 @@ function Form(this: any): JSX.Element {
           {imgsUrls.map((url: string) => (
             <div className='imageWrapper'>
               <img src={url} alt="imagens"/>
-              <i style={{width: '26px', height: '26px', backgroundColor: 'gray', display: 'flex', alignItems: 'center', justifyContent: 'center'}} onClick={() => deleteImg(url)}>
-                <BsFillTrash3Fill style={{color:'red' }} size={'22px'}/>
+              <i onClick={() => deleteImg(url)}>
+                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'24px'}/>
               </i>
             </div>
           ))}
-          <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
-          <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
-          <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+          <div className='custom-file-upload-firebase'>
+            {galleryImages ? (
+              <>
+                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+              </>
+            ):(
+              <>
+                <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+                <input type='file' name='gallery-upload' id='gallery-upload' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
+              </>
+            )
+            }
+          </div>
         </div>
       </GaleryTest>
 

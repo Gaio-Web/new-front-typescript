@@ -805,66 +805,115 @@ export const FifthSection = styled.div`
 
 //GALERIA
 export const GaleryTest = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background-color: #eee;
+
+  .custom-file-upload-firebase {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & input[type="file"] {
+        display: none;
+      }
+
+      label {
+        display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 60%;
+      height: 3rem;
+      margin: 1rem 0 2rem;
+
+      border: 0;
+      border-radius: 8px;
+      padding: 0.1rem 2rem;
+      cursor: pointer;
+
+      background: #034aa3;
+      color: white;
+      font-weight: 600;
+
+      @media screen and (max-width: 800px) {
+        width: 80%;
+      }
+      }
+  }
+
   .galeryWrapper{
+    width: 80%;
+    box-sizing: border-box;
+    height: fit-content;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
-
-    box-sizing: border-box;
-    background-color: green;
-    width: 100vw;
-    height: fit-content;
-    padding: 2rem 3rem;
+    padding: 1.5rem;
 
     @media screen and (max-width: 800px) {
+      width: 95%;
       align-items: center;
       justify-content: space-between;
       flex-direction: column;
       flex-wrap: nowrap;
-
-      padding: 1rem;
+      box-sizing: border-box;
+      padding: 0;
     }
 
 
     & .imageWrapper{
+      background-color: rgba(0,0,0,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      background-color: #eee;
       border: 0;
       border-radius: 8px;
       width: 46%;
+      height: auto;
+      /* min-height: 10rem; */
+      /* max-height: 10rem; */
       padding: 1rem;
-
-      min-height: 30vh;
 
       font-size: 3rem;
 
       @media screen and (max-width: 800px) {
-        width: 90%;
-        padding: 1rem;
-
-        min-height: 40vh;
-        min-height: 8vh;
-
-        font-size: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        box-sizing: border-box;
       }
-    }
 
-    & img{
-      max-width: 50%;
-      max-height: 30vh;
-      border: 0;
-      border-radius: 8px;
-      margin: 0;
 
-      @media screen and (max-width: 800px) {
+      & img{
         max-width: 50%;
-        max-height: 30vh;
+        height: 100%;
+        /* width: auto; */
+        border-radius: 8px;
+
+        @media screen and (max-width: 800px) {
+          max-width: 50%;
+        }
+      }
+
+      & i {
+        padding: 0.2rem;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
       }
     }
   }
@@ -1041,7 +1090,6 @@ export const CoverPhotoSection = styled.div`
         margin: 0;
       }
     }
-
   }
 `;
 
