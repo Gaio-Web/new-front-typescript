@@ -814,7 +814,7 @@ export const GaleryTest = styled.div`
     gap: 1rem;
 
     box-sizing: border-box;
-    background-color: green;
+    background-color: #eee;
     width: 100vw;
     height: fit-content;
     padding: 2rem 3rem;
@@ -835,7 +835,8 @@ export const GaleryTest = styled.div`
       justify-content: space-between;
 
       background-color: #eee;
-      border: 0;
+      border: 1px solid #c4c4c4;
+      box-shadow: 2.2px 2.2px 6.59px rgba(0, 0, 0, 0.25);
       border-radius: 8px;
       width: 46%;
       padding: 1rem;

@@ -53,7 +53,7 @@ function Carousel({firebaseUrl}:ICarouselProps) {
         {firebaseUrl.map((url: string) => (
           <SwiperSlide>
             <div className={'content-wrapper'}>
-              <img src={url}/>
+              <img  src={url}/>
             </div>
           </SwiperSlide>
         ))}

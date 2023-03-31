@@ -1036,15 +1036,18 @@ function Form(this: any): JSX.Element {
       />
 
       <GaleryTest>
-        <div className='galeryWrapper'>
+        <div className='sectionWrapper'>
+          <h1>Vamos editar sua galeria de fotos</h1>
 
-          {imgsUrls.map((url: string) => (
-            <div className='imageWrapper'>
-              <img src={url} alt="imagens"/>
-              <BsFillTrash3Fill style={{color:'green', paddingRight:'1rem'}}/>
-            </div>
-          ))}
 
+          <div className='galeryWrapper'>
+            {imgsUrls.map((url: string) => (
+              <div className='imageWrapper'>
+                <img src={url} alt="imagens"/>
+                <BsFillTrash3Fill style={{color:'rgb(5, 55, 124)', paddingRight:'1rem'}}/>
+              </div>
+            ))}
+          </div>
         </div>
       </GaleryTest>
 
