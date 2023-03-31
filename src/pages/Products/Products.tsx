@@ -4,9 +4,15 @@ import axios from 'axios';
 import {
   Container,
   Loading,
+  FourthSection
 } from './styles';
 
+import { Carousel } from './Components/Carousel/Carousel';
+
 import ReactLoading from 'react-loading';
+
+import storage from '../../../firebaseConfig';
+import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
@@ -202,6 +208,27 @@ function FindByPhone(): JSX.Element {
     }
   };
 
+  const [imgsUrls, setImagesurls] = useState<string[]>([]);
+
+  useEffect(() => {
+    const listAllImagesFromFolder = () => {
+      setImagesurls([]);
+      // List everything inside a folder with given path
+      const listRef = ref(storage, `/${data?.phone}`);
+      listAll(listRef).then((res) => {
+        res.items.forEach((itemRef) => {
+          // All the items under listRef.
+          getDownloadURL(itemRef).then((url) => {
+            setImagesurls((state) => [...state, url]);
+          });
+        });
+      });
+    };
+
+    listAllImagesFromFolder();
+    console.log('chamou aqui');
+  }, []);
+
   if (loading) {
     return (
       <Loading>
@@ -275,13 +302,15 @@ function FindByPhone(): JSX.Element {
         />
       </Suspense>
 
-      {/* <FourthSection>
-            <div className={'fourth-wrapper'}>
-                <h1 style={{color: data.color}}>Galeria de fotos</h1>
-                <Carousel/>
-                   <button onClick={handleWhatsClick} >Fale com a gente</button>
-            </div>
-            </FourthSection> */}
+      <FourthSection>
+        <div className={'fourth-wrapper'}>
+          <h1 style={{color: data.color}}>Galeria de fotos</h1>
+          <Carousel
+            firebaseUrl={imgsUrls}
+          />
+          <button onClick={handleWhatsClick} >Fale com a gente</button>
+        </div>
+      </FourthSection>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
