@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -53,11 +52,12 @@ function Carousel({firebaseUrl}:ICarouselProps) {
 
         {firebaseUrl.map((url: string) => (
           <SwiperSlide>
-
-            <img className='pgImg' src={url} alt='alt'/>
-
+            <div className={'content-wrapper'}>
+              <img src={url}/>
+            </div>
           </SwiperSlide>
         ))}
+
       </Swiper>
     </>
   );

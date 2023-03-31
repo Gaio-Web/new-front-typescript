@@ -224,7 +224,7 @@ function FindByPhone(): JSX.Element {
     const listAllImagesFromFolder = () => {
       setImagesurls([]);
       // List everything inside a folder with given path
-      const listRef = ref(storage, `/${data?.phone}/gallery`);
+      const listRef = ref(storage, `/${data?.phone}`);
       listAll(listRef).then((res) => {
         res.items.forEach((itemRef) => {
           // All the items under listRef.
