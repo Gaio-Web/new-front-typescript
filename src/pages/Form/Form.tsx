@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
@@ -45,7 +45,7 @@ import { StyledButton } from './Components/StyledButton';
 import { BsFillTrash3Fill } from 'react-icons/bs';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
+import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes, deleteObject } from 'firebase/storage';
 
 interface Contact {
   //text content
@@ -138,29 +138,89 @@ function Form(this: any): JSX.Element {
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
+  const [gallery, setGallery] = useState<any>('');
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [logoPreview, setLogoPreview] = useState<string>('');
 
+
+  const isMounted = useRef(false);
   useEffect(() => {
-    const listAllImagesFromFolder = () => {
-      setImagesurls([]);
-      // List everything inside a folder with given path
-      const listRef = ref(storage, `${id}`);
-      listAll(listRef).then((res) => {
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          getDownloadURL(itemRef).then((url) => {
-            setImagesurls((state) => [...state, url]);
+    if (!isMounted.current) {
+      isMounted.current = true;
+      const listAllImagesFromFolder = () => {
+        setImagesurls([]);
+        // List everything inside a folder with given path
+        const listRef = ref(storage, `${id}/gallery`);
+        listAll(listRef).then((res) => {
+          res.items.forEach((itemRef) => {
+            // All the items under listRef.
+            getDownloadURL(itemRef).then((url) => {
+              setImagesurls((state) => [...state, url]);
+            });
           });
         });
-      });
-    };
+      };
 
-    listAllImagesFromFolder();
-    console.log('chamou aqui');
+      listAllImagesFromFolder();
+      console.log('chamou aqui');
+    }
   }, []);
 
+
+  const [galleryImages, setGalleryImages] = useState<any>('');
+  const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
+
+  const uploadGallery = async () => {
+    try {
+      for (let i = 0; i < galleryImages.length; i++){
+        const imageRef = ref(storage, `${id}/gallery/${galleryImages[i].name}`);
+        const result = uploadBytesResumable(imageRef, galleryImages[i]);
+
+        result.on(
+          'state_changed',
+          (snapshot) => {
+            const galleryImagesPercent = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            // update progress
+            setGalleryImagesPercent(galleryImagesPercent);
+          },
+          (error) => {
+            console.log('deu erro:', error);
+            toast.error('Houve um problema ao enviar a imagem!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          },
+          () => {
+            setUploaded(true),
+            console.log('deu certo');
+            toast.success('Imagens enviadas com sucesso!', {
+              position: 'top-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+        );
+      }
+    } catch (error) {
+      console.log('deu erro:', error);
+    } finally {
+
+    }
+  };
 
 
   const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -519,6 +579,17 @@ function Form(this: any): JSX.Element {
   };
 
 
+  const deleteImg = (refUrl: string) => {
+    const imageRef = ref(storage, refUrl);
+    deleteObject(imageRef)
+      .then(() => setUploaded(true))
+      .catch((error) => {
+        console.log('Failed to delete image: ', error);
+      });
+  };
+
+  // Delete the file
+
 
   const [uploaded, setUploaded] = useState<boolean>(false);
 
@@ -558,6 +629,7 @@ function Form(this: any): JSX.Element {
     if(uploaded == true){
       fetchDataForms().then(() => {
         setUploaded(false);
+        setGalleryImages('');
         setImage('');
         setLogo('');
         setCover('');
@@ -1113,17 +1185,27 @@ function Form(this: any): JSX.Element {
       />
 
       <GaleryTest>
-        <div className='sectionWrapper'>
-          <h1>Vamos editar sua galeria de fotos</h1>
-
-
-          <div className='galeryWrapper'>
-            {imgsUrls.map((url: string) => (
-              <div className='imageWrapper'>
-                <img src={url} alt="imagens"/>
-                <BsFillTrash3Fill style={{color:'rgb(5, 55, 124)', paddingRight:'1rem'}}/>
-              </div>
-            ))}
+        <div className='galeryWrapper'>
+          {imgsUrls.map((url: string) => (
+            <div className='imageWrapper'>
+              <img src={url} alt="imagens"/>
+              <i onClick={() => deleteImg(url)}>
+                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'24px'}/>
+              </i>
+            </div>
+          ))}
+          <div className='custom-file-upload-firebase'>
+            {galleryImages ? (
+              <>
+                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+              </>
+            ):(
+              <>
+                <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+                <input type='file' name='gallery-upload' id='gallery-upload' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
+              </>
+            )
+            }
           </div>
         </div>
       </GaleryTest>
@@ -1159,7 +1241,6 @@ function Form(this: any): JSX.Element {
               ):(
                 <>
                   <label htmlFor="envio-de-imagem">Escolher foto</label>
-                  {/* <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></> */}
                   <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></>
               )}
             </div>
