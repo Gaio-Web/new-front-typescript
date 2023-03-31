@@ -11,13 +11,19 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper';
+//import { EffectCards } from 'swiper';
 
 // import images
 import Photo1 from '../../../../assets/foto1.png';
 import Photo2 from '../../../../assets/foto2.png';
+import Photo3 from '../../../../assets/foto3.png';
 import vertical from '../../../../assets/capaSerena.png';
 
-function Carousel() {
+interface ICarouselProps{
+  firebaseUrl:any;
+}
+
+function Carousel({firebaseUrl}:ICarouselProps) {
   const [slidesPerView, setSlidesPerView] = useState(3);
 
   useEffect(() => {
@@ -33,47 +39,25 @@ function Carousel() {
   return (
     <>
       <Swiper
-        slidesPerView={slidesPerView}
-        effect={'cards'}
+        slidesPerView={'auto'}
+        //effect={'cards'}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         loop={true}
         grabCursor={true}
-        modules={[Pagination, EffectCards]}
+        modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={vertical} alt={'foto-1'} />
-          </div>
-        </SwiperSlide>
 
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
+        {firebaseUrl.map((url: string) => (
+          <SwiperSlide>
 
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
+            <img className='pgImg' src={url} alt='alt'/>
 
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
-
-        {/* tem que fazer um images.map quando construir o forms e começar a receber imagens.
-        <CarouselContainer>
-        {images.map(img => (
-            <div className='imgWrapper'> <CarouselSlide src={img}/> </div>
+          </SwiperSlide>
         ))}
-        </CarouselContainer> */}
       </Swiper>
     </>
   );

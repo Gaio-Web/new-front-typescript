@@ -162,6 +162,62 @@ export const Container = styled.div`
   }
 `;
 
+//Galeria de fotos
+export const FourthSection = styled.div`
+  background-color: #fafafa;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .fourth-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 3rem;
+    gap: 2rem;
+
+    @media screen and (max-width: 800px) {
+      width: 80%;
+      padding: 10% 5%;
+    }
+
+    & h1 {
+      margin: 0;
+      font-weight: 500;
+      font-size: 42px;
+      color: #05377c;
+      text-align: center;
+      margin-top: 2rem;
+
+      @media screen and (max-width: 800px) {
+        margin-top: 0;
+      }
+    }
+
+    & button {
+      cursor: pointer;
+      background-color: rgb(41, 182, 10);
+      box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
+
+      border: 0;
+
+      width: 100%;
+      height: 55px;
+
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 16px;
+    }
+  }
+`;
+
 // //Banner
 // export const FirstSection = styled.div`
 //   width: 100%;
