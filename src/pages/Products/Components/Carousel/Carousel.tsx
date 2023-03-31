@@ -18,7 +18,11 @@ import Photo2 from '../../../../assets/foto2.png';
 import Photo3 from '../../../../assets/foto3.png';
 import vertical from '../../../../assets/capaSerena.png';
 
-function Carousel() {
+interface ICarouselProps{
+  firebaseUrl:any;
+}
+
+function Carousel({firebaseUrl}:ICarouselProps) {
   const [slidesPerView, setSlidesPerView] = useState(3);
 
   useEffect(() => {
@@ -45,36 +49,15 @@ function Carousel() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={vertical} alt={'foto-1'} />
-          </div>
-        </SwiperSlide>
 
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo1} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo3} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className={'content-wrapper'}>
-            <img className="pgImg" src={Photo2} alt={'foto-2'} />
-          </div>
-        </SwiperSlide>
-
-        {/* tem que fazer um images.map quando construir o forms e começar a receber imagens.
-        <CarouselContainer>
-        {images.map(img => (
-            <div className='imgWrapper'> <CarouselSlide src={img}/> </div>
+        {firebaseUrl.map((url: string) => (
+          <SwiperSlide>
+            <div className={'content-wrapper'}>
+              <img src={url}/>
+            </div>
+          </SwiperSlide>
         ))}
-        </CarouselContainer> */}
+
       </Swiper>
     </>
   );
