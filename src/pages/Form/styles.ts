@@ -252,6 +252,40 @@ export const SecondSection = styled.div`
           width: 100%;
 
         }
+
+        .custom-file-upload-firebase {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & input[type="file"] {
+        display: none;
+      }
+
+      label {
+        display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 60%;
+      height: 3rem;
+      margin: 1rem 0 2rem;
+
+      border: 0;
+      border-radius: 8px;
+      padding: 0.1rem 2rem;
+      cursor: pointer;
+
+      background: #034aa3;
+      color: white;
+      font-weight: 600;
+
+      @media screen and (max-width: 800px) {
+        width: 70%;
+      }
+      }
+    }
       }
 
       & img {
@@ -850,6 +884,75 @@ export const FifthSection = styled.div`
   }
 `;
 
+//GALERIA
+export const GaleryTest = styled.div`
+  .galeryWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    box-sizing: border-box;
+    background-color: #eee;
+    width: 100vw;
+    height: fit-content;
+    padding: 2rem 3rem;
+
+    @media screen and (max-width: 800px) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      flex-wrap: nowrap;
+
+      padding: 1rem;
+    }
+
+
+    & .imageWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background-color: #eee;
+      border: 1px solid #c4c4c4;
+      box-shadow: 2.2px 2.2px 6.59px rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      width: 46%;
+      padding: 1rem;
+
+      min-height: 30vh;
+
+      font-size: 3rem;
+
+      @media screen and (max-width: 800px) {
+        width: 90%;
+        padding: 1rem;
+
+        min-height: 40vh;
+        min-height: 8vh;
+
+        font-size: 2rem;
+      }
+    }
+
+    & img{
+      max-width: 50%;
+      max-height: 30vh;
+      border: 0;
+      border-radius: 8px;
+      margin: 0;
+
+      @media screen and (max-width: 800px) {
+        max-width: 50%;
+        max-height: 30vh;
+      }
+    }
+  }
+
+`;
+
 //Engloba toda as section que tem fotos
 export const PicsSection = styled.div`
   width: 100%;
@@ -880,6 +983,7 @@ export const PicsSection = styled.div`
     }
   }
 `;
+
 export const CoverPhotoSection = styled.div`
   width: 60%;
   height: fit-content;
