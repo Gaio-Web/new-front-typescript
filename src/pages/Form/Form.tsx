@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
@@ -140,23 +140,28 @@ function Form(this: any): JSX.Element {
 
   const [logoPreview, setLogoPreview] = useState<string>('');
 
+
+  const isMounted = useRef(false);
   useEffect(() => {
-    const listAllImagesFromFolder = () => {
-      setImagesurls([]);
-      // List everything inside a folder with given path
-      const listRef = ref(storage, `/${id}/gallery`);
-      listAll(listRef).then((res) => {
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          getDownloadURL(itemRef).then((url) => {
-            setImagesurls((state) => [...state, url]);
+    if (!isMounted.current) {
+      isMounted.current = true;
+      const listAllImagesFromFolder = () => {
+        setImagesurls([]);
+        // List everything inside a folder with given path
+        const listRef = ref(storage, `${id}/gallery`);
+        listAll(listRef).then((res) => {
+          res.items.forEach((itemRef) => {
+            // All the items under listRef.
+            getDownloadURL(itemRef).then((url) => {
+              setImagesurls((state) => [...state, url]);
+            });
           });
         });
-      });
-    };
+      };
 
-    listAllImagesFromFolder();
-    console.log('chamou aqui');
+      listAllImagesFromFolder();
+      console.log('chamou aqui');
+    }
   }, []);
 
 
@@ -550,47 +555,11 @@ function Form(this: any): JSX.Element {
     );
   };
 
-  const [galleryPreview, setGalleryPreview] = useState<string>('');
-
-  const handleGalleryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGallery(event.target.files?.[0]);
-
-    const galleryImage = event.target.files?.[0];
-    if (!galleryImage) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setGalleryPreview(reader.result as string);
-    };
-    reader.readAsDataURL(galleryImage);
-  };
-
-  const [galleryPercent, setGalleryPercent] = useState(0);
-
-  const handleGalleryUploadToFirebase = () => {
-    if (!offer) {
-      alert('escolha uma imagem!');
-    }
-    const storageRef = ref(storage, `/${id}/gallery/${offer.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, offer);
-
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const galleryPercent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        // update progress
-        setGalleryPercent(galleryPercent);
-      },
-      (err) => console.log(err),
-    );
-  };
 
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
     deleteObject(imageRef)
+      .then(() => setUploaded(true))
       .catch((error) => {
         console.log('Failed to delete image: ', error);
       });
@@ -1120,7 +1089,6 @@ function Form(this: any): JSX.Element {
 
       <GaleryTest>
         <div className='galeryWrapper'>
-
           {imgsUrls.map((url: string) => (
             <div className='imageWrapper'>
               <img src={url} alt="imagens"/>
