@@ -42,7 +42,7 @@ import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 import { StyledButton } from './Components/StyledButton';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll } from 'firebase/storage';
+import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
 
 interface Contact {
   //text content
@@ -132,6 +132,7 @@ function Form(this: any): JSX.Element {
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
+  const [gallery, setGallery] = useState<any>('');
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [logoPreview, setLogoPreview] = useState<string>('');
@@ -140,7 +141,7 @@ function Form(this: any): JSX.Element {
     const listAllImagesFromFolder = () => {
       setImagesurls([]);
       // List everything inside a folder with given path
-      const listRef = ref(storage, `${id}`);
+      const listRef = ref(storage, `/${id}/gallery`);
       listAll(listRef).then((res) => {
         res.items.forEach((itemRef) => {
           // All the items under listRef.
@@ -155,6 +156,40 @@ function Form(this: any): JSX.Element {
     console.log('chamou aqui');
   }, []);
 
+
+  const [galleryImages, setGalleryImages] = useState<any>('');
+  const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
+
+  const uploadGallery = async () => {
+    try {
+      for (let i = 0; i < galleryImages.length; i++){
+        const imageRef = ref(storage, `${id}/gallery/${galleryImages[i].name}`);
+        const result = uploadBytesResumable(imageRef, galleryImages[i]);
+
+        result.on(
+          'state_changed',
+          (snapshot) => {
+            const galleryImagesPercent = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            // update progress
+            setGalleryImagesPercent(galleryImagesPercent);
+          },
+          (error) => {
+            // handle upload error
+            console.log('deu erro:', error);
+          },
+          () => {
+            // handle upload success
+            console.log('deu certo');
+          }
+        );
+      }
+    } catch (error) {
+      // handle general error
+      console.log('deu erro:', error);
+    }
+  };
 
 
   const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -512,6 +547,44 @@ function Form(this: any): JSX.Element {
     );
   };
 
+  const [galleryPreview, setGalleryPreview] = useState<string>('');
+
+  const handleGalleryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGallery(event.target.files?.[0]);
+
+    const galleryImage = event.target.files?.[0];
+    if (!galleryImage) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setGalleryPreview(reader.result as string);
+    };
+    reader.readAsDataURL(galleryImage);
+  };
+
+  const [galleryPercent, setGalleryPercent] = useState(0);
+
+  const handleGalleryUploadToFirebase = () => {
+    if (!offer) {
+      alert('escolha uma imagem!');
+    }
+    const storageRef = ref(storage, `/${id}/gallery/${offer.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, offer);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const galleryPercent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // update progress
+        setGalleryPercent(galleryPercent);
+      },
+      (err) => console.log(err),
+    );
+  };
+
 
 
   const [uploaded, setUploaded] = useState<boolean>(false);
@@ -552,6 +625,7 @@ function Form(this: any): JSX.Element {
     if(uploaded == true){
       fetchDataForms().then(() => {
         setUploaded(false);
+        setGalleryImages('');
         setImage('');
         setLogo('');
         setCover('');
@@ -1032,12 +1106,28 @@ function Form(this: any): JSX.Element {
         sundayData={data.domingo}
       />
 
-      <div style={{backgroundColor: 'green', width: '100%', height: '25rem', display: 'flex'}}>
-        {imgsUrls.map((url: string) => (
-          <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
-        ))}
-      </div>
 
+      {/* <div style={{backgroundColor: 'green', width: '100%', height: 'fit-content', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', alignItems: 'center', boxSizing: 'border-box'}}>
+        {imgsUrls.map((url: string) => (
+          <div style={{ backgroundColor: '#eee', width: '90%', padding: '1rem'}}>
+            <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
+          </div>
+        ))}
+        <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+        <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={handleGalleryChange} multiple/>
+        <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryPercent}% Enviando...`} onClick={handleGalleryUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+      </div> */}
+
+      <div style={{backgroundColor: 'green', width: '100%', height: 'fit-content', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', alignItems: 'center', boxSizing: 'border-box'}}>
+        {imgsUrls.map((url: string) => (
+          <div style={{ backgroundColor: '#eee', width: '90%', padding: '1rem'}}>
+            <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
+          </div>
+        ))}
+        <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+        <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
+        <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+      </div>
 
       <PicsSection>
         <h1 className="picsTitle">Vamos editar as fotos do seu site.</h1>
