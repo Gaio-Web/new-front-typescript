@@ -15,6 +15,7 @@ import {
   CoverPhotoSection,
   SeventhSection,
   ImagePreview,
+  GaleryTest
 } from './styles';
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
@@ -41,8 +42,10 @@ import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
 //import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
 import { StyledButton } from './Components/StyledButton';
 
+import { BsFillTrash3Fill } from 'react-icons/bs';
+
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
+import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes, deleteObject } from 'firebase/storage';
 
 interface Contact {
   //text content
@@ -585,6 +588,15 @@ function Form(this: any): JSX.Element {
     );
   };
 
+  const deleteImg = (refUrl: string) => {
+    const imageRef = ref(storage, refUrl);
+    deleteObject(imageRef)
+      .catch((error) => {
+        console.log('Failed to delete image: ', error);
+      });
+  };
+
+  // Delete the file
 
 
   const [uploaded, setUploaded] = useState<boolean>(false);
@@ -1106,28 +1118,22 @@ function Form(this: any): JSX.Element {
         sundayData={data.domingo}
       />
 
+      <GaleryTest>
+        <div className='galeryWrapper'>
 
-      {/* <div style={{backgroundColor: 'green', width: '100%', height: 'fit-content', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', alignItems: 'center', boxSizing: 'border-box'}}>
-        {imgsUrls.map((url: string) => (
-          <div style={{ backgroundColor: '#eee', width: '90%', padding: '1rem'}}>
-            <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
-          </div>
-        ))}
-        <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
-        <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={handleGalleryChange} multiple/>
-        <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryPercent}% Enviando...`} onClick={handleGalleryUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
-      </div> */}
-
-      <div style={{backgroundColor: 'green', width: '100%', height: 'fit-content', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', alignItems: 'center', boxSizing: 'border-box'}}>
-        {imgsUrls.map((url: string) => (
-          <div style={{ backgroundColor: '#eee', width: '90%', padding: '1rem'}}>
-            <img src={url} alt="imagens"  style={{width: '150px', height: 'auto', margin: '0'}}/>
-          </div>
-        ))}
-        <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
-        <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
-        <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
-      </div>
+          {imgsUrls.map((url: string) => (
+            <div className='imageWrapper'>
+              <img src={url} alt="imagens"/>
+              <i style={{width: '26px', height: '26px', backgroundColor: 'gray', display: 'flex', alignItems: 'center', justifyContent: 'center'}} onClick={() => deleteImg(url)}>
+                <BsFillTrash3Fill style={{color:'red' }} size={'22px'}/>
+              </i>
+            </div>
+          ))}
+          <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+          <input type='file' name='gallery-upload' id='gallery-uplaod' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
+          <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+        </div>
+      </GaleryTest>
 
       <PicsSection>
         <h1 className="picsTitle">Vamos editar as fotos do seu site.</h1>
@@ -1160,7 +1166,6 @@ function Form(this: any): JSX.Element {
               ):(
                 <>
                   <label htmlFor="envio-de-imagem">Escolher foto</label>
-                  {/* <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></> */}
                   <input type="file" name="envio-de-imagem" id="envio-de-imagem" accept="image/*" onChange={handleCoverChange} className='custom-file-upload-input'/></>
               )}
             </div>
@@ -1226,10 +1231,6 @@ function Form(this: any): JSX.Element {
           </div>
         </CoverPhotoSection>
       </PicsSection>
-
-      <div>
-
-      </div>
 
       <SeventhSection>
         <div className="seventh-wrapper">
