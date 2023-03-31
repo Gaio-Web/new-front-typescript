@@ -266,7 +266,7 @@ function FindByPhone(): JSX.Element {
     <Container>
       <Helmet>
         <title>{data.name}</title>
-        <meta name="theme-color" content={data.color}/>
+        <meta name="theme-color" content={data.mainColor}/>
         <meta property="title" content={data.name}/>
         <meta name="description" content={data?.description} />
         <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
