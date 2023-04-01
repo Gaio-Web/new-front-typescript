@@ -65,7 +65,7 @@ function Carousel({firebaseUrl}:ICarouselProps) {
       <Swiper
         slidesPerView={'auto'}
         //effect={'cards'}
-        //spaceBetween={30}
+        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
@@ -78,7 +78,7 @@ function Carousel({firebaseUrl}:ICarouselProps) {
         {firebaseUrl.map((url: string) => (
           <SwiperSlide>
             <div className={'content-wrapper'}>
-              <img src={url}/>
+              <img className='pgImg' style={{margin:'0'}} src={url}/>
             </div>
           </SwiperSlide>
         ))}
