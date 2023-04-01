@@ -23,24 +23,49 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl}:ICarouselProps) {
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  if (!firebaseUrl) {
+    return(
+      <>
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newSlidesPerView = window.outerWidth <= 500 ? 1 : 3;
-      setSlidesPerView(newSlidesPerView);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+        <Swiper
+          slidesPerView={'auto'}
+          //effect={'cards'}
+          //spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          loop={true}
+          grabCursor={true}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className={'content-wrapper'}>
+              <img src={Photo1}/>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={'content-wrapper'}>
+              <img src={Photo1}/>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={'content-wrapper'}>
+              <img src={Photo1}/>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </>
+    );
+  }
+
 
   return (
     <>
       <Swiper
         slidesPerView={'auto'}
         //effect={'cards'}
-        spaceBetween={30}
+        //spaceBetween={30}
         pagination={{
           clickable: true,
         }}
