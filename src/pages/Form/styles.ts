@@ -893,7 +893,7 @@ export const GaleryTest = styled.div`
   justify-content: center;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  background-color: #eee;
+   background-color: rgb(5, 55, 124);
 
   .custom-file-upload-firebase {
       width: 100%;
@@ -936,7 +936,6 @@ export const GaleryTest = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -954,20 +953,14 @@ export const GaleryTest = styled.div`
 
 
     & .imageWrapper{
-      background-color: rgba(0,0,0,0.08);
+      background-color: #eee;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      border: 0;
       border-radius: 8px;
       width: 46%;
-      height: auto;
-      /* min-height: 10rem; */
-      /* max-height: 10rem; */
+      height: 10rem;
       padding: 1rem;
-
-      font-size: 3rem;
 
       @media screen and (max-width: 800px) {
         width: 100%;
@@ -977,24 +970,25 @@ export const GaleryTest = styled.div`
 
 
       & img{
-        max-width: 50%;
+        max-width: 80%;
+        width: auto;
         height: 100%;
-        /* width: auto; */
+        box-sizing: border-box;
         border-radius: 8px;
+        box-shadow: 2.2px 2.2px 6.59px rgba(0, 0, 0, 0.25);
 
         @media screen and (max-width: 800px) {
-          max-width: 50%;
+           height: 100%;
         }
       }
 
       & i {
-        padding: 0.2rem;
-        width: 30px;
-        height: 30px;
+        padding: 0.8rem;
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
-
       }
     }
   }

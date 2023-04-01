@@ -167,7 +167,6 @@ function Form(this: any): JSX.Element {
     }
   }, []);
 
-
   const [galleryImages, setGalleryImages] = useState<any>('');
   const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
 
@@ -217,8 +216,6 @@ function Form(this: any): JSX.Element {
       }
     } catch (error) {
       console.log('deu erro:', error);
-    } finally {
-
     }
   };
 
@@ -578,6 +575,8 @@ function Form(this: any): JSX.Element {
     );
   };
 
+  const isDisplayed = true;
+
 
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
@@ -587,9 +586,6 @@ function Form(this: any): JSX.Element {
         console.log('Failed to delete image: ', error);
       });
   };
-
-  // Delete the file
-
 
   const [uploaded, setUploaded] = useState<boolean>(false);
 
@@ -1190,7 +1186,7 @@ function Form(this: any): JSX.Element {
             <div className='imageWrapper'>
               <img src={url} alt="imagens"/>
               <i onClick={() => deleteImg(url)}>
-                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'24px'}/>
+                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'35px'}/>
               </i>
             </div>
           ))}
