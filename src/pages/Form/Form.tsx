@@ -580,11 +580,35 @@ function Form(this: any): JSX.Element {
 
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
+    setImagesurls((prevState: any) => prevState.filter((prevUrl: any) => prevUrl !== refUrl));
     deleteObject(imageRef)
       .then(() => setUploaded(true))
       .catch((error) => {
-        console.log('Failed to delete image: ', error);
+        toast.error('Houve um problema ao deletar a imagem!', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      })
+      .finally(() =>{
+        console.log('deu certo');
+        toast.success('Imagem excluída com sucesso!', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
       });
+
   };
 
   const [uploaded, setUploaded] = useState<boolean>(false);
