@@ -907,21 +907,21 @@ export const GaleryTest = styled.div`
 
       label {
         display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 60%;
-      height: 3rem;
-      margin: 1rem 0 2rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 60%;
+        height: 3rem;
+        margin: 1rem 0 2rem;
 
-      border: 0;
-      border-radius: 8px;
-      padding: 0.1rem 2rem;
-      cursor: pointer;
+        border: 0;
+        border-radius: 8px;
+        padding: 0.1rem 2rem;
+        cursor: pointer;
 
-      background: #034aa3;
-      color: white;
-      font-weight: 600;
+        background: #034aa3;
+        color: white;
+        font-weight: 600;
 
       @media screen and (max-width: 800px) {
         width: 80%;
@@ -972,13 +972,17 @@ export const GaleryTest = styled.div`
       & img{
         max-width: 80%;
         width: auto;
-        height: 100%;
+        height: auto;
+        max-height: 100%;
         box-sizing: border-box;
         border-radius: 8px;
         box-shadow: 2.2px 2.2px 6.59px rgba(0, 0, 0, 0.25);
 
         @media screen and (max-width: 800px) {
-           height: 100%;
+          max-width: 80%;
+          width: auto;
+          height: auto;
+          max-height: 100%;
         }
       }
 
