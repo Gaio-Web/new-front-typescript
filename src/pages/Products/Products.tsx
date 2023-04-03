@@ -13,6 +13,9 @@ import ReactLoading from 'react-loading';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+
+import UnsplashCoverImage from './Components/UnsplashAPI/UnsplashAPI';
+
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
   return {default: module.FirstSection};
@@ -144,6 +147,10 @@ interface Contact {
   mainColor: string;
   secondaryColor: string;
   accentColor: string;
+
+
+  alt_description: string;
+  urls: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -278,11 +285,19 @@ function FindByPhone(): JSX.Element {
         <meta property="og:type" content="website" />
       </Helmet>
 
-
       <HeaderSection
         photoBase64={data.photos.logo.base64}
         name={data.name}
         secondaryColor={data.secondaryColor}
+      />
+
+      <UnsplashCoverImage
+        data={{
+          alt_description: 'office',
+          urls: {
+            small: 'https://example.com/image.jpg',
+          },
+        }}
       />
 
       <FirstSection
