@@ -2,6 +2,13 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
+
+interface Props {
+  phone: string;
+  urlToSend: string;
+}
+
+
 interface ApiResponse {
   results: any[]; // replace `any` with the actual type of the response data
 }
@@ -11,6 +18,7 @@ interface AxiosHook {
   isLoading: boolean;
   error: string;
   fetchData: (url: string) => Promise<void>;
+  // handleSendUnsplashImage?: (()=>{phone:Props, urlToSend:Props});
 }
 
 const useAxios = (param: string): AxiosHook => {
@@ -35,6 +43,27 @@ const useAxios = (param: string): AxiosHook => {
   useEffect(() => {
     fetchData(param);
   }, [param]);
+
+  // const handleSendUnsplashImage = async () => {
+  //   const body = JSON.stringify({
+  //     phone: phone,
+  //     photo_position: '1',
+  //     base64: urlToSend,
+  //     type: 'image',
+  //   });
+  //   const response = await fetch(
+  //     'https://gaio-web-new-api-test.onrender.com/upload',
+  //     {
+  //       method: 'POST',
+  //       mode: 'cors',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Access-Control-Allow-Origin': '*',
+  //       },
+  //       body: body,
+  //     }
+  //   );
+  // };
 
   return {
     response,
