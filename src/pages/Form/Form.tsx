@@ -589,7 +589,7 @@ function Form(this: any): JSX.Element {
     // @ts-ignore
     event.preventDefault();
     // eslint-disable-next-line quotes
-    const url = `https://meusiteai.com/${data.name.replace(/ /g, "-")}`;
+    const url = `https://meusiteai.com/${data.convertedName.replace(/ /g, "-")}`;
     window.open(url, '_blank');
   };
 
