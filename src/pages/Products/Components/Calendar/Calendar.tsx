@@ -78,7 +78,7 @@ function Calendar({
         )}
 
         <div className="table">
-          <div className="header" style={{ backgroundColor: data?.mainColor }}>
+          <div className="header" style={{ backgroundColor: data?.secondaryColor }}>
             {data?.isAutonomous == '1' ? (
               <h2>Horário de atendimento</h2>
             ) : (
