@@ -1182,6 +1182,7 @@ function Form(this: any): JSX.Element {
 
       <GaleryTest>
         <div className='galeryWrapper'>
+          <h1>Vamos adicionar fotos na sua galeria</h1>
           {imgsUrls.map((url: string) => (
             <div className='imageWrapper'>
               <img src={url} alt="imagens"/>

@@ -912,7 +912,7 @@ export const GaleryTest = styled.div`
         text-align: center;
         width: 60%;
         height: 3rem;
-        margin: 1rem 0 2rem;
+        margin: 2rem 0 2rem;
 
         border: 0;
         border-radius: 8px;
@@ -951,6 +951,18 @@ export const GaleryTest = styled.div`
       padding: 0;
     }
 
+    & h1{
+      width: 90%;
+      text-align: center;
+      color: white;
+      font-size: 28px;
+      padding-bottom: 1rem;
+
+      @media screen and (max-width: 800px) {
+        font-size: 24px;
+      }
+    }
+
 
     & .imageWrapper{
       background-color: #eee;
@@ -963,7 +975,7 @@ export const GaleryTest = styled.div`
       padding: 1rem;
 
       @media screen and (max-width: 800px) {
-        width: 100%;
+        width: 95%;
         padding: 0.5rem;
         box-sizing: border-box;
       }
