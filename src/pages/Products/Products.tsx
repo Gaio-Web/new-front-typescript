@@ -357,6 +357,9 @@ function FindByPhone(): JSX.Element {
           sexta={`${data.sexta}`}
           sabado={`${data.sabado}`}
           domingo={`${data.domingo}`}
+          mainColor={data.mainColor}
+          secondaryColor={data.secondaryColor}
+          isAutonomous={data.isAutonomous}
         />
       </Suspense>
 
