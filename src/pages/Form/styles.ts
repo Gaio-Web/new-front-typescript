@@ -61,20 +61,20 @@ export const Container = styled.div`
 `;
 
 export const ImagePreview = styled.div`
-          width: 100%;
-          height: fit-content;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-          & img {
-            max-width: 40%;
+    & img {
+      max-width: 40%;
 
-            @media screen and (max-width: 800px) {
-              max-width: 80%;
-        }
-          }
+      @media screen and (max-width: 800px) {
+        max-width: 80%;
+  }
+    }
 `;
 
 //welcome
@@ -963,8 +963,8 @@ export const GaleryTest = styled.div`
       border-radius: 8px;
       width: 46%;
       height: auto;
-      /* min-height: 10rem; */
-      /* max-height: 10rem; */
+      min-height: 25vh;
+      max-height: 30vh;
       padding: 1rem;
 
       font-size: 3rem;
