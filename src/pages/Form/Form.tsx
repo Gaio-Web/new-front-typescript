@@ -4,7 +4,10 @@ import { json, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import  Resizer from 'react-image-file-resizer';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
+import ReactLoading from 'react-loading';
 
 import {ApiURL} from '../../../apiConfig';
 
@@ -1347,7 +1350,19 @@ function Form(this: any): JSX.Element {
       <GaleryTest>
         {isGalleryLoading ? (
           <>
-            <h1>Loading motherfucker</h1>
+            {/* <Stack spacing={1}>
+              <div className='skeletonImageWrapper'>
+                <Skeleton variant="rectangular" width={500} height={150}  sx={{ bgcolor: '#e0e0e0' }}/>
+              </div>
+              <div className='skeletonImageWrapper'>
+                <Skeleton variant="rectangular" width={500} height={150} sx={{ bgcolor: '#e0e0e0' }}/>
+              </div>
+              <div className='skeletonImageWrapper'>
+                <Skeleton variant="rectangular" width={500} height={150} sx={{ bgcolor: '#e0e0e0' }}/>
+              </div>
+            </Stack> */}
+
+            <ReactLoading type={'spin'} color={'#e0e0e0'} height={200} width={100}/>
           </>
         ):(
           <>
