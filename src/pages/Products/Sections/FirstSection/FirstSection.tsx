@@ -17,9 +17,7 @@ interface IFirstSectionProp {
 function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
   return (
     <Container style={{backgroundColor: mainColor}}>
-      <div
-        className={'first-wrapper'}
-      >
+      <div className={'first-wrapper'}>
         <h1>{call}</h1>
         <p>{description}</p>
         <div className="img-wrapper"  data-aos="fade-up">
