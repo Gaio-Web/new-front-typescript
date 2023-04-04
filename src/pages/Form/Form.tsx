@@ -225,7 +225,7 @@ function Form(this: any): JSX.Element {
 
               setTimeout(() => {
                 listAllImagesFromFolder;
-              }, 8000);
+              }, 5000);
             }
           },
           (error) => {
