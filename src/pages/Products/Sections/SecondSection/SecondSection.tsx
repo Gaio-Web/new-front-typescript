@@ -26,8 +26,6 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
         <p>{products}</p>
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
-            <img fetch-priority={'auto'} src={src} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
-          ) : (
             <UnsplashProductsImage
               data={{
                 alt_description: 'office',
@@ -37,6 +35,8 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
                 productsKeyWords:productsKeyWords
               }}
             />
+          ) : (
+            <img fetch-priority={'auto'} src={src} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
           )}
         </div>
         <button onClick={onClick} style={{backgroundColor: accentColor}}>fale com a gente!</button>
