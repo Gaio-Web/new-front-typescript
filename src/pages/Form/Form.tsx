@@ -8,9 +8,8 @@ import Stack from '@mui/material/Stack';
 import Loader from '../Products/Components/Loader/Loader';
 import Typewriter from '../Products/Components/ErrorPage';
 
-import  Resizer from 'react-image-file-resizer';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
+import Resizer from 'react-image-file-resizer';
+
 
 import ReactLoading from 'react-loading';
 
@@ -314,18 +313,17 @@ function Form(this: any): JSX.Element {
               setIsMounted(true);
               listAllImagesFromFolder();
 
-              // Set a timeout to execute the function after all components are mounted
               setTimeout(() => {
                 listAllImagesFromFolder();
                 setTimeout(() => {
                   setIsGalleryLoading(false);
-                }, 2000); // 2 second timeout before setting setIsGalleryLoading to false
+                }, 2000);
               }, 0);
             }
           },
           (error) => {
-            console.log('error:', error);
-            toast.error('There was a problem uploading the image!', {
+
+            toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente', {
               position: 'top-center',
               autoClose: 1500,
               hideProgressBar: false,
@@ -338,7 +336,6 @@ function Form(this: any): JSX.Element {
           },
           () => {
             setUploaded(true),
-            console.log('success');
             toast.success('Images uploaded successfully!', {
               position: 'top-center',
               autoClose: 1500,
@@ -353,7 +350,7 @@ function Form(this: any): JSX.Element {
         );
       }
     } catch (error) {
-      toast.error('There was a problem uploading the image!', {
+      toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente!', {
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: false,
@@ -723,14 +720,21 @@ function Form(this: any): JSX.Element {
     );
   };
 
-  const isDisplayed = true;
-
-
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
     setImagesurls((prevState: any) => prevState.filter((prevUrl: any) => prevUrl !== refUrl));
     deleteObject(imageRef)
-      .then(() => setUploaded(true))
+      .then(() =>
+        toast.warning('Imagem excluída com sucesso!', {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        }))
       .catch((error) => {
         toast.error('Houve um problema ao deletar a imagem!', {
           position: 'top-center',
@@ -742,24 +746,11 @@ function Form(this: any): JSX.Element {
           progress: undefined,
           theme: 'colored',
         });
-      })
-      .finally(() =>{
-        console.log('deu certo');
-        toast.success('Imagem excluída com sucesso!', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
       });
-
   };
 
   const [uploaded, setUploaded] = useState<boolean>(false);
+  const [galleryUploaded, setGalleryUploaded] = useState<boolean>(false);
 
   const { id } = useParams();
 
@@ -775,7 +766,6 @@ function Form(this: any): JSX.Element {
 
 
   const fetchDataForms = useCallback ( async () => {
-    setLoading(true);
     try {
       const response = await axios.get<Contact>(
         `${ApiURL}/findByPhone/${id}`
@@ -787,7 +777,7 @@ function Form(this: any): JSX.Element {
   },[]);
 
   useEffect(() => {
-    // setLoading(true);
+    setLoading(true);
     fetchDataForms()
       .then(() => {console.log('Data fetched successfully!'), setLoading(false);})
       .catch((err) => console.error(err));
@@ -1053,7 +1043,6 @@ function Form(this: any): JSX.Element {
             <div className='skeletonTextWrapper'>
               <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
             </div>
-
 
             <div className='skeletonImageWrapper'>
               <Skeleton className='skeletonImage' variant="rounded" height={250} />

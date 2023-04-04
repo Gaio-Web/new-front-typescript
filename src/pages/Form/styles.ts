@@ -888,6 +888,7 @@ export const FifthSection = styled.div`
 export const GaleryTest = styled.div`
   width: 100%;
   height: fit-content;
+  min-height: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
