@@ -895,6 +895,43 @@ export const GaleryTest = styled.div`
   padding-bottom: 1.5rem;
    background-color: rgb(5, 55, 124);
 
+       & .imageWrapper{
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      width: 46%;
+      height: 10rem;
+      padding: 1rem;
+
+      @media screen and (max-width: 800px) {
+        width: 95%;
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+
+
+      & .loading-wrapper{
+       width: 50%;
+       height: 100%;
+       background-color: rgba(0,0,0,0.05);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+      }
+
+      & i {
+        padding: 0.8rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+
   .custom-file-upload-firebase {
       width: 100%;
       display: flex;

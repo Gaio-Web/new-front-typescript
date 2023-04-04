@@ -322,7 +322,7 @@ function Form(this: any): JSX.Element {
             console.log('error:', error);
             toast.error('There was a problem uploading the image!', {
               position: 'top-center',
-              autoClose: 5000,
+              autoClose: 1500,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -336,7 +336,7 @@ function Form(this: any): JSX.Element {
             console.log('success');
             toast.success('Images uploaded successfully!', {
               position: 'top-center',
-              autoClose: 5000,
+              autoClose: 1500,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -350,7 +350,7 @@ function Form(this: any): JSX.Element {
     } catch (error) {
       toast.error('There was a problem uploading the image!', {
         position: 'top-center',
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -729,7 +729,7 @@ function Form(this: any): JSX.Element {
       .catch((error) => {
         toast.error('Houve um problema ao deletar a imagem!', {
           position: 'top-center',
-          autoClose: 5000,
+          autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -742,7 +742,7 @@ function Form(this: any): JSX.Element {
         console.log('deu certo');
         toast.success('Imagem excluída com sucesso!', {
           position: 'top-center',
-          autoClose: 5000,
+          autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -1350,19 +1350,14 @@ function Form(this: any): JSX.Element {
       <GaleryTest>
         {isGalleryLoading ? (
           <>
-            {/* <Stack spacing={1}>
-              <div className='skeletonImageWrapper'>
-                <Skeleton variant="rectangular" width={500} height={150}  sx={{ bgcolor: '#e0e0e0' }}/>
+            <div className='imageWrapper'>
+              <div className='loading-wrapper'>
+                <ReactLoading type={'spin'} color={'#034aa6'} height={200} width={100}/>
               </div>
-              <div className='skeletonImageWrapper'>
-                <Skeleton variant="rectangular" width={500} height={150} sx={{ bgcolor: '#e0e0e0' }}/>
-              </div>
-              <div className='skeletonImageWrapper'>
-                <Skeleton variant="rectangular" width={500} height={150} sx={{ bgcolor: '#e0e0e0' }}/>
-              </div>
-            </Stack> */}
-
-            <ReactLoading type={'spin'} color={'#e0e0e0'} height={200} width={100}/>
+              <i>
+                <BsFillTrash3Fill style={{color:'gray' }} size={'35px'}/>
+              </i>
+            </div>
           </>
         ):(
           <>
