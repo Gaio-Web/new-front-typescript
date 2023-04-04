@@ -42,7 +42,7 @@ function UnsplasHistoryImage ({ data }: { data: ImageData }) {
   return(
     <ImageContext.Provider value={value}>
       <Container>
-        {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[2]} />}
+        {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[0]} />}
       </Container>
     </ImageContext.Provider>
   );
