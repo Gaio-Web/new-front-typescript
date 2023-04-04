@@ -11,10 +11,10 @@ interface IFifthSectionProp {
   isAutonomous: string;
   mainColor: string;
   accentColor: string;
-  historyKeyWords: string;
+  coverKeyWords: string;
 }
 
-function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, historyKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'fifth-wrapper'}>
@@ -37,7 +37,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
                 urls: {
                   small: 'https://example.com/image.jpg',
                 },
-                historyKeyWords: historyKeyWords
+                coverKeyWords: coverKeyWords
               }}
             />
           ) : (
