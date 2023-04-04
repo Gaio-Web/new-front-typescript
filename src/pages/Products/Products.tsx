@@ -13,9 +13,6 @@ import ReactLoading from 'react-loading';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
-
-import UnsplashCoverImage from './Components/UnsplashAPI/UnsplashAPI';
-
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
   return {default: module.FirstSection};
@@ -148,9 +145,12 @@ interface Contact {
   secondaryColor: string;
   accentColor: string;
 
-
   alt_description: string;
   urls: string;
+
+  coverKeyWords: string;
+  historyKeyWords: string;
+  productsKeyWords: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -291,15 +291,6 @@ function FindByPhone(): JSX.Element {
         secondaryColor={data.secondaryColor}
       />
 
-      <UnsplashCoverImage
-        data={{
-          alt_description: 'office',
-          urls: {
-            small: 'https://example.com/image.jpg',
-          },
-        }}
-      />
-
       <FirstSection
         mainColor={data.mainColor}
         secondaryColor={data.secondaryColor}
@@ -308,6 +299,7 @@ function FindByPhone(): JSX.Element {
         photoBase64={data.photos.photo1.base64}
         src={Photo1}
         onClick={handleWhatsClick}
+        coverKeyWords={data.coverKeyWords}
       />
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -319,6 +311,7 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
           onClick={handleWhatsClick}
+          productsKeyWords={data.productsKeyWords}
         />
       </Suspense>
 
@@ -360,6 +353,7 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
           onClick={handleWhatsClick}
+          historyKeyWords={data.historyKeyWords}
         />
       </Suspense>
 
