@@ -178,13 +178,13 @@ function Form(this: any): JSX.Element {
         file,
         maxWidth,
         maxHeight,
-        'JPEG',
+        'PNG',
         80,
         0,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         (uri: string) => {
-          const blob = new Blob([uri], { type: 'image/jpeg' });
+          const blob = new Blob([uri], { type: 'image/png' });
           resolve(blob);
         },
         'blob'
@@ -192,13 +192,96 @@ function Form(this: any): JSX.Element {
     });
   };
 
+  //ATILA
+  // const uploadGallery = async () => {
+  //   setIsMounted(false);
+  //   try {
+  //     let totalPercent = 0;
+  //     for (let i = 0; i < galleryImages.length; i++) {
+  //       const file = galleryImages[i];
+  //       // Redimensiona a imagem
+  //       const resizedImageBlob = await resizeImage(file, 800, 600);
+  //       const resizedImageFile = new File([resizedImageBlob], file.name);
+
+  //       const imageRef = ref(storage, `${id}/gallery/${resizedImageFile.name}`);
+  //       const result = uploadBytesResumable(imageRef, resizedImageFile);
+
+  //       result.on(
+  //         'state_changed',
+  //         (snapshot) => {
+  //           const galleryImagesPercent = Math.round(
+  //             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //           );
+
+  //           totalPercent += galleryImagesPercent;
+  //           const galleryImagesAvgPercent = Math.round(totalPercent / galleryImages.length);
+  //           setGalleryImagesPercent(galleryImagesAvgPercent);
+
+  //           if (galleryImagesPercent < 100) {
+  //             setIsGalleryLoading(true);
+  //           } else if (galleryImagesPercent >= 100) {
+  //             setIsGalleryLoading(false);
+  //             setIsMounted(true);
+  //             listAllImagesFromFolder();
+
+  //             setTimeout(() => {
+  //               listAllImagesFromFolder;
+  //             }, 5000);
+  //           }
+  //         },
+  //         (error) => {
+  //           console.log('deu erro:', error);
+  //           toast.error('Houve um problema ao enviar a imagem!', {
+  //             position: 'top-center',
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true,
+  //             progress: undefined,
+  //             theme: 'colored',
+  //           });
+  //         },
+  //         () => {
+  //           setUploaded(true),
+  //           console.log('deu certo');
+  //           toast.success('Imagens enviadas com sucesso!', {
+  //             position: 'top-center',
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true,
+  //             progress: undefined,
+  //             theme: 'colored',
+  //           });
+  //         }
+  //       );
+  //     }
+  //   } catch (error) {
+  //     toast.error('Houve um problema ao enviar a imagem!', {
+  //       position: 'top-center',
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: 'colored',
+  //     });
+  //   }
+  // };
+
+  console.log('oi');
+
   const uploadGallery = async () => {
     setIsMounted(false);
+    setIsGalleryLoading(true);
     try {
       let totalPercent = 0;
       for (let i = 0; i < galleryImages.length; i++) {
         const file = galleryImages[i];
-        // Redimensiona a imagem
+        // Resize image
         const resizedImageBlob = await resizeImage(file, 800, 600);
         const resizedImageFile = new File([resizedImageBlob], file.name);
 
@@ -223,14 +306,18 @@ function Form(this: any): JSX.Element {
               setIsMounted(true);
               listAllImagesFromFolder();
 
+              // Set a timeout to execute the function after all components are mounted
               setTimeout(() => {
-                listAllImagesFromFolder;
-              }, 5000);
+                listAllImagesFromFolder();
+                setTimeout(() => {
+                  setIsGalleryLoading(false);
+                }, 2000); // 2 second timeout before setting setIsGalleryLoading to false
+              }, 0);
             }
           },
           (error) => {
-            console.log('deu erro:', error);
-            toast.error('Houve um problema ao enviar a imagem!', {
+            console.log('error:', error);
+            toast.error('There was a problem uploading the image!', {
               position: 'top-center',
               autoClose: 5000,
               hideProgressBar: false,
@@ -243,8 +330,8 @@ function Form(this: any): JSX.Element {
           },
           () => {
             setUploaded(true),
-            console.log('deu certo');
-            toast.success('Imagens enviadas com sucesso!', {
+            console.log('success');
+            toast.success('Images uploaded successfully!', {
               position: 'top-center',
               autoClose: 5000,
               hideProgressBar: false,
@@ -258,7 +345,7 @@ function Form(this: any): JSX.Element {
         );
       }
     } catch (error) {
-      toast.error('Houve um problema ao enviar a imagem!', {
+      toast.error('There was a problem uploading the image!', {
         position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
@@ -270,6 +357,7 @@ function Form(this: any): JSX.Element {
       });
     }
   };
+
 
   const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLogo(event.target.files?.[0]);
