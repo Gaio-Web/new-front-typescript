@@ -3,6 +3,11 @@ import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
 
+import  Resizer from 'react-image-file-resizer';
+
+
+import {ApiURL} from '../../../apiConfig';
+
 import {
   Loading,
   Container,
@@ -14,13 +19,11 @@ import {
   PicsSection,
   CoverPhotoSection,
   SeventhSection,
-  ImagePreview,
   GaleryTest
 } from './styles';
 
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 
-import { FiUpload, FiSend } from 'react-icons/fi';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import SendButton1 from '../Products/Components/SendButton';
@@ -33,13 +36,11 @@ import foto1 from '/assets/foto1.webp';
 import foto2 from '/assets/foto2.webp';
 import foto3 from '/assets/foto3.webp';
 
-import FileBase64 from 'react-file-base64';
-
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
-//import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
+
 import { StyledButton } from './Components/StyledButton';
 
 import { BsFillTrash3Fill } from 'react-icons/bs';
@@ -138,43 +139,71 @@ function Form(this: any): JSX.Element {
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
-  const [gallery, setGallery] = useState<any>('');
+
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [logoPreview, setLogoPreview] = useState<string>('');
 
 
-  const isMounted = useRef(false);
-  useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
-      const listAllImagesFromFolder = () => {
-        setImagesurls([]);
-        // List everything inside a folder with given path
-        const listRef = ref(storage, `${id}/gallery`);
-        listAll(listRef).then((res) => {
-          res.items.forEach((itemRef) => {
-            // All the items under listRef.
-            getDownloadURL(itemRef).then((url) => {
-              setImagesurls((state) => [...state, url]);
-            });
-          });
-        });
-      };
 
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  const listAllImagesFromFolder = async () => {
+    try {
+      setImagesurls([]);
+      const listRef = ref(storage, `${id}/gallery`);
+      const res = await listAll(listRef);
+      const urls = await Promise.all(res.items.map(getDownloadURL));
+      setImagesurls(urls);
+    } catch (error) {
+      console.log('Erro ao listar imagens:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
       listAllImagesFromFolder();
-      console.log('chamou aqui');
     }
   }, []);
 
   const [galleryImages, setGalleryImages] = useState<any>('');
   const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
 
+  const [isGalleryLoading, setIsGalleryLoading] = useState<boolean>(false);
+
+  const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<Blob> => {
+    return new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        maxWidth,
+        maxHeight,
+        'JPEG',
+        80,
+        0,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        (uri: string) => {
+          const blob = new Blob([uri], { type: 'image/jpeg' });
+          resolve(blob);
+        },
+        'blob'
+      );
+    });
+  };
+
   const uploadGallery = async () => {
+    setIsMounted(false);
     try {
-      for (let i = 0; i < galleryImages.length; i++){
-        const imageRef = ref(storage, `${id}/gallery/${galleryImages[i].name}`);
-        const result = uploadBytesResumable(imageRef, galleryImages[i]);
+      let totalPercent = 0;
+      for (let i = 0; i < galleryImages.length; i++) {
+        const file = galleryImages[i];
+        // Redimensiona a imagem
+        const resizedImageBlob = await resizeImage(file, 800, 600);
+        const resizedImageFile = new File([resizedImageBlob], file.name);
+
+        const imageRef = ref(storage, `${id}/gallery/${resizedImageFile.name}`);
+        const result = uploadBytesResumable(imageRef, resizedImageFile);
 
         result.on(
           'state_changed',
@@ -182,8 +211,22 @@ function Form(this: any): JSX.Element {
             const galleryImagesPercent = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
-            // update progress
-            setGalleryImagesPercent(galleryImagesPercent);
+
+            totalPercent += galleryImagesPercent;
+            const galleryImagesAvgPercent = Math.round(totalPercent / galleryImages.length);
+            setGalleryImagesPercent(galleryImagesAvgPercent);
+
+            if (galleryImagesPercent < 100) {
+              setIsGalleryLoading(true);
+            } else if (galleryImagesPercent >= 100) {
+              setIsGalleryLoading(false);
+              setIsMounted(true);
+              listAllImagesFromFolder();
+
+              setTimeout(() => {
+                listAllImagesFromFolder;
+              }, 5000);
+            }
           },
           (error) => {
             console.log('deu erro:', error);
@@ -215,10 +258,18 @@ function Form(this: any): JSX.Element {
         );
       }
     } catch (error) {
-      console.log('deu erro:', error);
+      toast.error('Houve um problema ao enviar a imagem!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
-
 
   const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLogo(event.target.files?.[0]);
@@ -264,7 +315,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -278,6 +329,7 @@ function Form(this: any): JSX.Element {
           if (response.ok) {
             // A resposta foi bem-sucedida
             setUploaded(true),
+
             toast.success('Imagem enviada com sucesso!', {
               position: 'top-center',
               autoClose: 5000,
@@ -354,7 +406,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -443,7 +495,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -532,7 +584,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -630,7 +682,7 @@ function Form(this: any): JSX.Element {
   const fetchDataForms = useCallback ( async () => {
     try {
       const response = await axios.get<Contact>(
-        `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
+        `${ApiURL}/findByPhone/${id}`
       );
       setData(response.data);
     } catch (err) {
@@ -729,7 +781,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        'https://gaio-web-new-api-test.onrender.com/updateColor',
+        `${ApiURL}/updateColor`,
         {
           method: 'POST',
           headers: {
@@ -792,7 +844,7 @@ function Form(this: any): JSX.Element {
     });
 
     const response = await fetch(
-      'https://gaio-web-new-api-test.onrender.com/fillAddress',
+      `${ApiURL}/fillAddress`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -852,7 +904,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        'https://gaio-web-new-api-test.onrender.com/updateWhatsApp',
+        `${ApiURL}/updateWhatsApp`,
         {
           method: 'POST',
           headers: {
@@ -967,7 +1019,7 @@ function Form(this: any): JSX.Element {
                   {logo ? (
                     <>
                       <img className="pgImg" src={logoPreview} alt={'foto-1'} />
-                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${logoPercent}% Enviando...`} onClick={handleLogoUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${logoPercent}% Enviando...`} onClick={() => handleLogoUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
                     </>
                   ):(
                     <>
@@ -1205,30 +1257,38 @@ function Form(this: any): JSX.Element {
       />
 
       <GaleryTest>
-        <div className='galeryWrapper'>
-          <h1>Vamos adicionar fotos na sua galeria</h1>
-          {imgsUrls.map((url: string) => (
-            <div className='imageWrapper'>
-              <img src={url} alt="imagens"/>
-              <i onClick={() => deleteImg(url)}>
-                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'35px'}/>
-              </i>
+        {isGalleryLoading ? (
+          <>
+            <h1>Loading motherfucker</h1>
+          </>
+        ):(
+          <>
+            <div className='galeryWrapper'>
+              <h1>Vamos adicionar fotos na sua galeria</h1>
+              {imgsUrls.map((url: string) => (
+                <div className='imageWrapper'>
+                  <img src={url} alt="imagens"/>
+                  <i onClick={() => deleteImg(url)}>
+                    <BsFillTrash3Fill style={{color:'#ef233c' }} size={'35px'}/>
+                  </i>
+                </div>
+              ))}
+              <div className='custom-file-upload-firebase'>
+                {galleryImages ? (
+                  <>
+                    <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                  </>
+                ):(
+                  <>
+                    <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
+                    <input type='file' name='gallery-upload' id='gallery-upload' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
+                  </>
+                )
+                }
+              </div>
             </div>
-          ))}
-          <div className='custom-file-upload-firebase'>
-            {galleryImages ? (
-              <>
-                <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${galleryImagesPercent}% Enviando...`} onClick={uploadGallery} color={'#0baf37'} disabledColor='#c4c4c4'/>
-              </>
-            ):(
-              <>
-                <label htmlFor='gallery-upload'>Escolher fotos que irão para galeria</label>
-                <input type='file' name='gallery-upload' id='gallery-upload' accept='image/*' onChange={(event) => { setGalleryImages(event.target.files); }} multiple/>
-              </>
-            )
-            }
-          </div>
-        </div>
+          </>
+        )}
       </GaleryTest>
 
       <PicsSection>
