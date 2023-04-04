@@ -31,8 +31,6 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
 
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
-            <img fetch-priority={'auto'} src={src} alt="Foto exemplo da história" loading='lazy'/>
-          ) : (
             <UnsplasHistoryImage
               data={{
                 alt_description: 'office',
@@ -42,6 +40,8 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
                 historyKeyWords: historyKeyWords
               }}
             />
+          ) : (
+            <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
         <button onClick={onClick} style={{ backgroundColor: accentColor }}>Conversar por WhatsApp</button>
