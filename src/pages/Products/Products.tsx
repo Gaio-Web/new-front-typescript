@@ -310,8 +310,8 @@ function FindByPhone(): JSX.Element {
           products={data.products}
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
-          // onClick={handleWhatsClick}
-          onClick={() => {console.log(data.productsKeyWords);}}
+          onClick={handleWhatsClick}
+          // onClick={() => {console.log(data.productsKeyWords);}}
           productsKeyWords={data.productsKeyWords}
         />
       </Suspense>
