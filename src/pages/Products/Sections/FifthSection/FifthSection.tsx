@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container } from './styles';
 
+import UnsplasHistoryImage from '../../Components/UnsplashAPI/UnsplashHistory';
+
 interface IFifthSectionProp {
   photoBase64: string;
   history: string;
@@ -9,9 +11,10 @@ interface IFifthSectionProp {
   isAutonomous: string;
   mainColor: string;
   accentColor: string;
+  historyKeyWords: string;
 }
 
-function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, historyKeyWords}: IFifthSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'fifth-wrapper'}>
@@ -30,7 +33,15 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
           {photoBase64 == '' ? (
             <img fetch-priority={'auto'} src={src} alt="Foto exemplo da história" loading='lazy'/>
           ) : (
-            <img fetch-priority={'low'} src={photoBase64} alt={'foto da história'} loading='lazy'/>
+            <UnsplasHistoryImage
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                historyKeyWords: historyKeyWords
+              }}
+            />
           )}
         </div>
         <button onClick={onClick} style={{ backgroundColor: accentColor }}>Conversar por WhatsApp</button>
