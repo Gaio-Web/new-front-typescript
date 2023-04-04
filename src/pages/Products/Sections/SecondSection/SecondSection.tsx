@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container } from './styles';
 
+import UnsplashProductsImage from '../../Components/UnsplashAPI/UnsplashProducts';
+
 interface ISecondSectionProp {
   photoBase64: string;
   products: string;
@@ -9,9 +11,10 @@ interface ISecondSectionProp {
   isAutonomous: any;
   mainColor: string;
   accentColor: string;
+  coverKeyWords: string;
 }
 
-function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'second-wrapper'}>
@@ -23,16 +26,21 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
         <p>{products}</p>
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
-            <img fetch-priority={'auto'} src={src} alt="Foto de exemplo do produto ou serviço" loading='lazy'/>
-          ) : (
-            <img fetch-priority={'low'}
-              src={photoBase64}
-              alt={'foto do produto/serviço'}
-              loading='lazy'
+            <UnsplashProductsImage
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords:coverKeyWords
+              }}
             />
+          ) : (
+            <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
         <button onClick={onClick} style={{backgroundColor: accentColor}}>fale com a gente!</button>
+        {/* <button onClick={onClick}> teste</button> */}
       </div>
     </Container>
   );

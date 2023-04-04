@@ -150,6 +150,13 @@ interface Contact {
   mainColor: string;
   secondaryColor: string;
   accentColor: string;
+
+  alt_description: string;
+  urls: string;
+
+  coverKeyWords: string;
+  historyKeyWords: string;
+  productsKeyWords: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -305,7 +312,6 @@ function FindByPhone(): JSX.Element {
         <meta property="og:type" content="website" />
       </Helmet>
 
-
       <HeaderSection
         photoBase64={data.photos.logo.base64}
         name={data.name}
@@ -320,6 +326,7 @@ function FindByPhone(): JSX.Element {
         photoBase64={data.photos.photo1.base64}
         src={Photo1}
         onClick={handleWhatsClick}
+        coverKeyWords={data.coverKeyWords}
       />
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -331,6 +338,8 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
           onClick={handleWhatsClick}
+          // onClick={() => {console.log(data.productsKeyWords);}}
+          coverKeyWords={data.coverKeyWords}
         />
       </Suspense>
 
@@ -374,6 +383,7 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
           onClick={handleWhatsClick}
+          coverKeyWords={data.coverKeyWords}
         />
       </Suspense>
 
@@ -386,6 +396,9 @@ function FindByPhone(): JSX.Element {
           sexta={`${data.sexta}`}
           sabado={`${data.sabado}`}
           domingo={`${data.domingo}`}
+          mainColor={data.mainColor}
+          secondaryColor={data.secondaryColor}
+          isAutonomous={data.isAutonomous}
         />
       </Suspense>
 
