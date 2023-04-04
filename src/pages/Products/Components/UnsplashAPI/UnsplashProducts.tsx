@@ -10,6 +10,7 @@ interface ImageData {
     small: string;
   };
   alt_description: string;
+  productsKeyWords: string;
 }
 
 interface ImageContextData {
@@ -27,10 +28,9 @@ export const ImageContext = createContext<ImageContextData>({
   fetchData: () => Promise.resolve()
 });
 
-function UnsplashCoverImage ({ data }: { data: ImageData }) {
+function UnsplashProductsImage ({ data }: { data: ImageData }) {
   // const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&query=office&client_id=${process.env.UNSPLASH_ACCESS_KEY}`);
-  const { response, isLoading, error, fetchData } = useAxios('search/photos?page=1&orientation=portrait&query=Makeup+beauty+store&client_id=gz6269fjUdh2U2Ne7qlX0jBilMNMnCPSGToMMVGuH0o');
-
+  const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&orientation=portrait&query=${data.productsKeyWords}&client_id=gz6269fjUdh2U2Ne7qlX0jBilMNMnCPSGToMMVGuH0o`);
 
   const value: ImageContextData = {
     response,
@@ -48,4 +48,4 @@ function UnsplashCoverImage ({ data }: { data: ImageData }) {
   );
 }
 
-export default UnsplashCoverImage;
+export default UnsplashProductsImage;

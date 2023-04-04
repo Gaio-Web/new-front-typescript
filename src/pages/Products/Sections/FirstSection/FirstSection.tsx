@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container } from './styles';
 
+import UnsplashCoverImage from '../../Components/UnsplashAPI/UnsplashCover';
+
 interface IFirstSectionProp {
   call: string;
   description: string;
@@ -9,9 +11,10 @@ interface IFirstSectionProp {
   onClick: any;
   mainColor: string;
   secondaryColor: string;
+  coverKeyWords: string;
 }
 
-function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
   return (
     <Container style={{backgroundColor: mainColor}}>
       <div
@@ -21,7 +24,15 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
         <p>{description}</p>
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
-            <img fetch-priority={'auto'} src={src}  alt="Foto de capa exemplo" loading='lazy'/>
+            <UnsplashCoverImage
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords: coverKeyWords
+              }}
+            />
           ) : (
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
