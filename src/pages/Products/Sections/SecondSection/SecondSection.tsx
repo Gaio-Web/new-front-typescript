@@ -11,10 +11,10 @@ interface ISecondSectionProp {
   isAutonomous: any;
   mainColor: string;
   accentColor: string;
-  productsKeyWords: string;
+  coverKeyWords: string;
 }
 
-function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, productsKeyWords}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
   return (
     <Container>
       <div className={'second-wrapper'}>
@@ -32,7 +32,7 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
                 urls: {
                   small: 'https://example.com/image.jpg',
                 },
-                productsKeyWords:productsKeyWords
+                coverKeyWords:coverKeyWords
               }}
             />
           ) : (

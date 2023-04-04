@@ -312,7 +312,7 @@ function FindByPhone(): JSX.Element {
           src={Photo3}
           onClick={handleWhatsClick}
           // onClick={() => {console.log(data.productsKeyWords);}}
-          productsKeyWords={data.productsKeyWords}
+          coverKeyWords={data.coverKeyWords}
         />
       </Suspense>
 
@@ -354,7 +354,7 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo2.base64}
           src={Photo2}
           onClick={handleWhatsClick}
-          historyKeyWords={data.historyKeyWords}
+          coverKeyWords={data.coverKeyWords}
         />
       </Suspense>
 
