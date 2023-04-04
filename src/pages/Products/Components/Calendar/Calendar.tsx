@@ -13,6 +13,9 @@ interface ICalendar {
   sexta: string;
   sabado: string;
   domingo: string;
+  mainColor: string;
+  secondaryColor: string;
+  isAutonomous: string;
 }
 
 interface Contact {
@@ -37,6 +40,9 @@ function Calendar({
   sexta,
   sabado,
   domingo,
+  mainColor,
+  secondaryColor,
+  isAutonomous
 }: ICalendar) {
   const { id } = useParams();
 
@@ -71,15 +77,15 @@ function Calendar({
   return (
     <CalendarStyles>
       <div className="sixth-wrapper">
-        {data?.isAutonomous == '1' ? (
-          <h1 style={{ color: data?.mainColor }}>Horário de atendimento</h1>
+        {isAutonomous == '1' ? (
+          <h1 style={{ color: mainColor }}>Horário de atendimento</h1>
         ) : (
-          <h1 style={{ color: data?.mainColor }}>Horário de funcionamento</h1>
+          <h1 style={{ color: mainColor }}>Horário de funcionamento</h1>
         )}
 
         <div className="table">
-          <div className="header" style={{ backgroundColor: data?.secondaryColor }}>
-            {data?.isAutonomous == '1' ? (
+          <div className="header" style={{ backgroundColor: secondaryColor }}>
+            {isAutonomous == '1' ? (
               <h2>Horário de atendimento</h2>
             ) : (
               <h2>Horário de funcionamento</h2>

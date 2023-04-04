@@ -2,6 +2,11 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+
+import Loader from '../Products/Components/Loader/Loader';
+import Typewriter from '../Products/Components/ErrorPage';
 
 import  Resizer from 'react-image-file-resizer';
 import Skeleton from '@mui/material/Skeleton';
@@ -769,8 +774,8 @@ function Form(this: any): JSX.Element {
   const [loading, setLoading] = useState<boolean>(false);
 
 
-
   const fetchDataForms = useCallback ( async () => {
+    setLoading(true);
     try {
       const response = await axios.get<Contact>(
         `${ApiURL}/findByPhone/${id}`
@@ -1028,14 +1033,50 @@ function Form(this: any): JSX.Element {
     return (
       <Loading>
         <div className={'loading-wrapper'}>
-          <h1>Carregando...</h1>
+          <Stack spacing={1}>
+            <div className='skeletonHeaderWrapper'>
+              <Skeleton variant="rectangular" width={1500} height={80} />
+            </div>
+
+            <div className='skeletonTitleWrapper'>
+              <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+            <div className='skeletonTextWrapper'>
+              <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
+            </div>
+
+
+            <div className='skeletonImageWrapper'>
+              <Skeleton className='skeletonImage' variant="rounded" height={250} />
+            </div>
+
+            <div className='skeletonButtonWrapper'>
+              <Skeleton className='skeletonButton' variant="rounded" height={60} />
+            </div>
+          </Stack>
+
+          <div className='fadeWhite'>
+            <Loader/>
+          </div>
+
         </div>
       </Loading>
     );
   }
 
   else if (!data) {
-    return <p>Registro não encontrado</p>;
+    return(
+      <Typewriter/>
+    );
   }
 
   const handleLinkClick = () => {
