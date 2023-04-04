@@ -41,7 +41,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
               }}
             />
           ) : (
-            <img fetch-priority={'auto'} src={src} alt="Foto exemplo da história" loading='lazy'/>
+            <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
         <button onClick={onClick} style={{ backgroundColor: accentColor }}>Conversar por WhatsApp</button>
