@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { Container } from './styles';
+//import { Container } from './styles';
 import React,{ createContext } from 'react';
 import useAxios from '../../../../hooks/useAxios';
 import ReactLoading from 'react-loading';
@@ -47,5 +47,13 @@ function UnsplasHistoryImage ({ data }: { data: ImageData }) {
     </ImageContext.Provider>
   );
 }
+
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default UnsplasHistoryImage;
