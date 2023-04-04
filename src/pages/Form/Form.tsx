@@ -3,6 +3,8 @@ import { json, useParams } from 'react-router-dom';
 
 import axios from 'axios';
 
+import {ApiURL} from '../../../apiConfig';
+
 import {
   Loading,
   Container,
@@ -33,13 +35,11 @@ import foto1 from '/assets/foto1.webp';
 import foto2 from '/assets/foto2.webp';
 import foto3 from '/assets/foto3.webp';
 
-import FileBase64 from 'react-file-base64';
-
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { CalendarSection } from './Sections/CalendarSection/CalendarSection';
-//import { LoadingComponent } from '../Components/LoadingComponent/LoadingComponent';
+
 import { StyledButton } from './Components/StyledButton';
 
 import { BsFillTrash3Fill } from 'react-icons/bs';
@@ -138,7 +138,7 @@ function Form(this: any): JSX.Element {
   const [cover, setCover] = useState<any>('');
   const [hist, setHist] = useState<any>('');
   const [offer, setOffer] = useState<any>('');
-  const [gallery, setGallery] = useState<any>('');
+
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [logoPreview, setLogoPreview] = useState<string>('');
@@ -264,7 +264,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -354,7 +354,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -443,7 +443,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -532,7 +532,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            'https://gaio-web-new-api-test.onrender.com/upload',
+            `${ApiURL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -630,7 +630,7 @@ function Form(this: any): JSX.Element {
   const fetchDataForms = useCallback ( async () => {
     try {
       const response = await axios.get<Contact>(
-        `https://gaio-web-new-api-test.onrender.com/findByPhone/${id}`
+        `${ApiURL}/findByPhone/${id}`
       );
       setData(response.data);
     } catch (err) {
@@ -729,7 +729,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        'https://gaio-web-new-api-test.onrender.com/updateColor',
+        `${ApiURL}/updateColor`,
         {
           method: 'POST',
           headers: {
@@ -792,7 +792,7 @@ function Form(this: any): JSX.Element {
     });
 
     const response = await fetch(
-      'https://gaio-web-new-api-test.onrender.com/fillAddress',
+      `${ApiURL}/fillAddress`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -852,7 +852,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        'https://gaio-web-new-api-test.onrender.com/updateWhatsApp',
+        `${ApiURL}/updateWhatsApp`,
         {
           method: 'POST',
           headers: {
