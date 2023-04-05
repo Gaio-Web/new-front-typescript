@@ -364,7 +364,7 @@ function FindByPhone(): JSX.Element {
         />
       </Suspense>
 
-      <FourthSection>
+      {/* <FourthSection>
         <div className={'fourth-wrapper'}>
           <h1 style={{color: data.color}}>Galeria de fotos</h1>
           <Carousel
@@ -372,7 +372,7 @@ function FindByPhone(): JSX.Element {
           />
           <button onClick={handleWhatsClick} >Fale com a gente</button>
         </div>
-      </FourthSection>
+      </FourthSection> */}
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection
