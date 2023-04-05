@@ -240,7 +240,7 @@ function Form(this: any): JSX.Element {
             }
           },
           (error) => {
-
+            console.log('deu erro aqui: ', error);
             toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente', {
               position: 'top-center',
               autoClose: 1500,
@@ -269,6 +269,7 @@ function Form(this: any): JSX.Element {
         );
       }
     } catch (error) {
+      console.log('deu erro aqui: ', error);
       toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente!', {
         position: 'top-center',
         autoClose: 1500,
