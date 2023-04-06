@@ -10,7 +10,10 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper';
-//import { EffectCards } from 'swiper';
+
+import UnsplashGallery1 from '../UnsplashAPI/UnsplashGallery1';
+import UnsplashGallery2 from '../UnsplashAPI/UnsplashGallery2';
+import UnsplashGallery3 from '../UnsplashAPI/UnsplashGallery3';
 
 // import images
 import Photo1 from '../../../../assets/foto1.png';
@@ -20,9 +23,10 @@ import vertical from '../../../../assets/capaSerena.png';
 
 interface ICarouselProps{
   firebaseUrl:any;
+  coverKeyWords: string;
 }
 
-function Carousel({firebaseUrl}:ICarouselProps) {
+function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
   if (firebaseUrl == '') {
     return(
       <>
@@ -39,18 +43,42 @@ function Carousel({firebaseUrl}:ICarouselProps) {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className={'content-wrapper'}>
-              <img src={Photo1}/>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery1
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords
+                }}
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className={'content-wrapper'}>
-              <img src={Photo1}/>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery2
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords
+                }}
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className={'content-wrapper'}>
-              <img src={Photo1}/>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery3
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords
+                }}
+              />
             </div>
           </SwiperSlide>
         </Swiper>
