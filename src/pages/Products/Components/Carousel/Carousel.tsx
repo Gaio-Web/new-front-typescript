@@ -27,13 +27,13 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
-  if (firebaseUrl == '') {
-    return(
+  // works
+  //if (firebaseUrl == '') {
+  if (firebaseUrl.length === 0) {
+    return (
       <>
         <Swiper
           slidesPerView={'auto'}
-          //effect={'cards'}
-          //spaceBetween={30}
           pagination={{
             clickable: true,
           }}
@@ -50,7 +50,7 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
                   urls: {
                     small: 'https://example.com/image.jpg',
                   },
-                  coverKeyWords: coverKeyWords
+                  coverKeyWords: coverKeyWords,
                 }}
               />
             </div>
@@ -63,7 +63,7 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
                   urls: {
                     small: 'https://example.com/image.jpg',
                   },
-                  coverKeyWords: coverKeyWords
+                  coverKeyWords: coverKeyWords,
                 }}
               />
             </div>
@@ -76,7 +76,7 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
                   urls: {
                     small: 'https://example.com/image.jpg',
                   },
-                  coverKeyWords: coverKeyWords
+                  coverKeyWords: coverKeyWords,
                 }}
               />
             </div>
@@ -84,34 +84,32 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
         </Swiper>
       </>
     );
+  } else {
+    return (
+      <>
+        <Swiper
+          slidesPerView={'auto'}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          loop={true}
+          grabCursor={true}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {firebaseUrl.length > 0 &&
+            firebaseUrl.map((url: string) => (
+              <SwiperSlide key={url}>
+                <div className={'content-wrapper'}>
+                  <img className="pgImg" style={{ margin: '0' }} src={url} />
+                </div>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </>
+    );
   }
-
-  return (
-    <>
-      <Swiper
-        slidesPerView={'auto'}
-        //effect={'cards'}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        loop={true}
-        grabCursor={true}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-
-        {firebaseUrl.map((url: string) => (
-          <SwiperSlide key={url}>
-            <div className={'content-wrapper'} >
-              <img className='pgImg' style={{margin:'0'}} src={url}/>
-            </div>
-          </SwiperSlide>
-        ))}
-
-      </Swiper>
-    </>
-  );
 }
 
 export { Carousel };
