@@ -204,13 +204,15 @@ export const FourthSection = styled.div`
       background-color: rgb(41, 182, 10);
       box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
+      font-family: "Montserrat", sans-serif;
+
       border: 0;
 
-      width: 100%;
+      width: 50%;
       height: 55px;
 
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       font-weight: 600;
       text-transform: uppercase;
       border-radius: 16px;

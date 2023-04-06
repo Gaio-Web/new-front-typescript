@@ -383,7 +383,7 @@ function FindByPhone(): JSX.Element {
           <div className={'fourth-wrapper'} ref={componentRef}>
             <h1 style={{color: data.color}}>Galeria de fotos</h1>
             <Carousel firebaseUrl={imgsUrls}/>
-            <button onClick={handleWhatsClick} >Fale com a gente</button>
+            <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button>
           </div>
         </FourthSection>
       </Suspense>
