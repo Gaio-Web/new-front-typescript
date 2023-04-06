@@ -95,8 +95,8 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
           className="mySwiper"
         >
           {firebaseUrl.length > 0 &&
-                  firebaseUrl.map((url: string) => (
-                    <SwiperSlide key={url}>
+                  firebaseUrl.map((url: string, index: any) => (
+                    <SwiperSlide >
                       <div className={'content-wrapper'}>
                         <img className="pgImg" style={{ margin: '0' }} src={url} />
                       </div>

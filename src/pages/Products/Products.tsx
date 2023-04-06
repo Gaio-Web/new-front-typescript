@@ -235,7 +235,7 @@ function FindByPhone(): JSX.Element {
   const componentRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
 
-  const [haveURL, setHaveURL] = useState<number>(0);
+  const [haveURL, setHaveURL] = useState<number>(1);
 
   const listAllImagesFromFolder = async () => {
     let result = undefined;
@@ -259,15 +259,15 @@ function FindByPhone(): JSX.Element {
 
   useEffect(() => {
     setImagesLoaded(false);
-    listAllImagesFromFolder().then((urls) => {
-      if (urls) {
-
-        setImagesurls(urls);
-        setImagesLoaded(true);
-
-        setTimeout(() => {setHaveURL(urls.length);}, 1000);
-      }
-    });
+    setTimeout(() => {
+      listAllImagesFromFolder().then((urls) => {
+        if (urls) {
+          setImagesurls(urls);
+          setImagesLoaded(true);
+          setHaveURL(urls.length);
+        }
+      });
+    }, 1000);
   }, [data]);
 
   useEffect(() => {
