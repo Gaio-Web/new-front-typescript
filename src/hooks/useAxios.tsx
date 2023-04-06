@@ -44,27 +44,6 @@ const useAxios = (param: string): AxiosHook => {
     fetchData(param);
   }, [param]);
 
-  // const handleSendUnsplashImage = async () => {
-  //   const body = JSON.stringify({
-  //     phone: phone,
-  //     photo_position: '1',
-  //     base64: urlToSend,
-  //     type: 'image',
-  //   });
-  //   const response = await fetch(
-  //     'https://gaio-web-new-api-test.onrender.com/upload',
-  //     {
-  //       method: 'POST',
-  //       mode: 'cors',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Access-Control-Allow-Origin': '*',
-  //       },
-  //       body: body,
-  //     }
-  //   );
-  // };
-
   return {
     response,
     isLoading,
