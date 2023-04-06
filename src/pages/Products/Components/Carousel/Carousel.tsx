@@ -27,8 +27,6 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
-  // works
-  //if (firebaseUrl == '') {
   if (firebaseUrl.length === 0) {
     return (
       <>
@@ -82,9 +80,10 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
             </div>
           </SwiperSlide>
         </Swiper>
+        <button onClick={()=>{console.log(firebaseUrl);}}>teste</button>
       </>
     );
-  } else {
+  } else{
     return (
       <>
         <Swiper
@@ -107,6 +106,7 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
               </SwiperSlide>
             ))}
         </Swiper>
+        <button onClick={()=>{console.log(firebaseUrl.lenght);}}>teste</button>
       </>
     );
   }
