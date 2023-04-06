@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
 
-  padding-bottom: 90px;
+  padding-bottom: 60px;
 }
 
 .swiper-wrapper{
@@ -44,7 +44,7 @@
 }
 
 .content-wrapper-gallery img{
-  max-height: 75vh;
+  height: 60vh;
 }
 
 .pgImg {
