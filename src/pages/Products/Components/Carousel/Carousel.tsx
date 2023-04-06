@@ -23,7 +23,7 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl}:ICarouselProps) {
-  if (!firebaseUrl) {
+  if (firebaseUrl == '') {
     return(
       <>
         <Swiper
@@ -57,7 +57,6 @@ function Carousel({firebaseUrl}:ICarouselProps) {
       </>
     );
   }
-
 
   return (
     <>
