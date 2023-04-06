@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import React, { lazy, Suspense } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper';
 import axios from 'axios';
 import {
   Container,
   Loading,
   FourthSection
 } from './styles';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './styles.css';
+
+import 'swiper/css/virtual';
 
 import { Carousel } from './Components/Carousel/Carousel';
 
@@ -63,6 +71,7 @@ import { useParams } from 'react-router-dom';
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { ApiURL } from '../../../apiConfig';
 
 interface Contact {
   //Nome
@@ -192,10 +201,9 @@ function FindByPhone(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      console.log('id: ', id);
       try {
         const response = await axios.get<Contact>(
-          `https://gaio-web-new-api-test.onrender.com/findByConvertedName/${converted}`
+          `${ApiURL}/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {
@@ -206,8 +214,12 @@ function FindByPhone(): JSX.Element {
     }
 
     fetchData()
-      .then(() => console.log('Data fetched successfully!'))
-      .catch((error) => console.error(error));
+      .then(() => {
+        console.log('Data fetched successfully!');
+
+      })
+      .catch((error) => console.error(error))
+      .finally(() => listAllImagesFromFolder());
   }, []);
 
   const handleWhatsClick = () => {
@@ -226,25 +238,37 @@ function FindByPhone(): JSX.Element {
   };
 
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  const componentRef = useRef(null);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
+
+  const listAllImagesFromFolder = async () => {
+    let result = undefined;
+    try {
+      const listRef = ref(storage, `${data?.phone}/gallery`);
+      const res = await listAll(listRef);
+      const urls = await Promise.all(res.items.map(getDownloadURL));
+
+      result = urls;
+
+    } catch (error) {
+      console.log('Erro ao listar imagens:', error);
+    } finally {
+      // eslint-disable-next-line no-unsafe-finally
+      return(result);
+    }
+  };
 
   useEffect(() => {
-    const listAllImagesFromFolder = () => {
-      setImagesurls([]);
-      // List everything inside a folder with given path
-      const listRef = ref(storage, `/${data?.phone}/gallery`);
-      listAll(listRef).then((res) => {
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          getDownloadURL(itemRef).then((url) => {
-            setImagesurls((state) => [...state, url]);
-          });
-        });
-      });
-    };
-
-    listAllImagesFromFolder();
-    console.log('chamou aqui');
-  }, []);
+    setImagesLoaded(false); // Reseta a flag de carregamento das imagens
+    listAllImagesFromFolder().then((urls) => {
+      if (urls) {
+        setImagesurls(urls);
+        setImagesLoaded(true);
+      }
+    });
+  }, [data]);
 
   if (loading) {
     return (
@@ -305,7 +329,6 @@ function FindByPhone(): JSX.Element {
         <meta name="description" content={data?.description} />
         <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
 
-
         <meta name="og:title" content={data.name}/>
         <meta property="og:description" content={data?.description} />
         <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
@@ -338,7 +361,6 @@ function FindByPhone(): JSX.Element {
           photoBase64={data.photos.photo3.base64}
           src={Photo3}
           onClick={handleWhatsClick}
-          // onClick={() => {console.log(data.productsKeyWords);}}
           coverKeyWords={data.coverKeyWords}
         />
       </Suspense>
@@ -364,15 +386,37 @@ function FindByPhone(): JSX.Element {
         />
       </Suspense>
 
-      {/* <FourthSection>
-        <div className={'fourth-wrapper'}>
-          <h1 style={{color: data.color}}>Galeria de fotos</h1>
-          <Carousel
-            firebaseUrl={imgsUrls}
-          />
-          <button onClick={handleWhatsClick} >Fale com a gente</button>
-        </div>
-      </FourthSection> */}
+      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+        <FourthSection>
+          <div className={'fourth-wrapper'} ref={componentRef}>
+            <h1 style={{color: data.color}}>Galeria de fotos</h1>
+            <Swiper
+              observer={true}
+              observeParents={true}
+              slidesPerView={'auto'}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+              loop={true}
+              grabCursor={true}
+              modules={[Pagination]}
+              className="mySwiper"
+            >
+              {imgsUrls.map((url: string, index) => {
+                return (
+                  <SwiperSlide key={index} virtualIndex={index}>
+                    <div className={'content-wrapper'} >
+                      <img className='pgImg' style={{margin:'0'}} src={url} alt={`Imagem ${index}`}/>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <button onClick={handleWhatsClick} >Fale com a gente</button>
+          </div>
+        </FourthSection>
+      </Suspense>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FifthSection

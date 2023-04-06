@@ -26,7 +26,6 @@ function Carousel({firebaseUrl}:ICarouselProps) {
   if (!firebaseUrl) {
     return(
       <>
-
         <Swiper
           slidesPerView={'auto'}
           //effect={'cards'}
@@ -77,7 +76,7 @@ function Carousel({firebaseUrl}:ICarouselProps) {
 
         {firebaseUrl.map((url: string) => (
           <SwiperSlide>
-            <div className={'content-wrapper'}>
+            <div className={'content-wrapper'} >
               <img className='pgImg' style={{margin:'0'}} src={url}/>
             </div>
           </SwiperSlide>
