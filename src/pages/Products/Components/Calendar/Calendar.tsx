@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import { CalendarStyles } from './styles';
+import { ApiURL } from '../../../../../apiConfig';
 
 interface ICalendar {
   //horário funcionamento
@@ -53,13 +54,15 @@ function Calendar({
 
   document.title = uniqueName;
 
+  const converted = id;
+
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       console.log('id: ', id);
       try {
         const response = await axios.get<Contact>(
-          `https://gaio-web-new-api-test.onrender.com/findByName/${uniqueName}`
+          `${ApiURL}/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {

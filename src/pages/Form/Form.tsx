@@ -148,7 +148,6 @@ function Form(this: any): JSX.Element {
   const [offer, setOffer] = useState<any>('');
 
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
-
   const [logoPreview, setLogoPreview] = useState<string>('');
 
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
 import { Container } from './syles';
 import SendButton1 from '../../../Products/Components/SendButton';
+import { ApiURL } from '../../../../../apiConfig';
 
 interface ICalendarProp {
   userID: string;
@@ -46,7 +47,7 @@ function CalendarSection({userID, mondayData, tuesdayData, wednesdayData, thursd
     };
     try {
       const response = await fetch(
-        'https://gaio-web-new-api-test.onrender.com/updateBusinessHours',
+        `${ApiURL}/updateBusinessHours`,
         {
           method: 'POST',
           headers: {
