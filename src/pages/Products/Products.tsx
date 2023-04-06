@@ -235,12 +235,17 @@ function FindByPhone(): JSX.Element {
   const componentRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
 
+  const [haveURL, setHaveURL] = useState<number>(0);
+
   const listAllImagesFromFolder = async () => {
     let result = undefined;
+    let urls = null;
     try {
       const listRef = ref(storage, `${data?.phone}/gallery`);
       const res = await listAll(listRef);
-      const urls = await Promise.all(res.items.map(getDownloadURL));
+      urls = await Promise.all(res.items.map(getDownloadURL));
+
+      console.log('tem url? ', urls.length);
 
       result = urls;
 
@@ -253,13 +258,20 @@ function FindByPhone(): JSX.Element {
   };
 
   useEffect(() => {
-    setImagesLoaded(false); // Reseta a flag de carregamento das imagens
+    setImagesLoaded(false);
     listAllImagesFromFolder().then((urls) => {
       if (urls) {
+
         setImagesurls(urls);
         setImagesLoaded(true);
+
+        setTimeout(() => {setHaveURL(urls.length);}, 1000);
       }
     });
+  }, [data]);
+
+  useEffect(() => {
+    console.log('segundo: ', imgsUrls);
   }, [data]);
 
   if (loading) {
@@ -382,7 +394,7 @@ function FindByPhone(): JSX.Element {
         <FourthSection>
           <div className={'fourth-wrapper'} ref={componentRef}>
             <h1 style={{color: data.color}}>Galeria de fotos</h1>
-            <Carousel firebaseUrl={imgsUrls} coverKeyWords={data.coverKeyWords}/>
+            <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
             <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button>
           </div>
         </FourthSection>

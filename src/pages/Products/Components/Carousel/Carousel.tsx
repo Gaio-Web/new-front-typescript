@@ -22,14 +22,15 @@ import Photo3 from '../../../../assets/foto3.png';
 import vertical from '../../../../assets/capaSerena.png';
 
 interface ICarouselProps{
-  firebaseUrl:any;
+  firebaseUrl?: any;
   coverKeyWords: string;
+  haveURL: number;
 }
 
-function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
-  if (firebaseUrl.length === 0) {
-    return (
-      <>
+function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
+  return (
+    <>
+      {haveURL === 0 ? (
         <Swiper
           slidesPerView={'auto'}
           pagination={{
@@ -80,12 +81,8 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
             </div>
           </SwiperSlide>
         </Swiper>
-        <button onClick={()=>{console.log(firebaseUrl);}}>teste</button>
-      </>
-    );
-  } else{
-    return (
-      <>
+      ) : (
+
         <Swiper
           slidesPerView={'auto'}
           spaceBetween={30}
@@ -98,18 +95,18 @@ function Carousel({firebaseUrl, coverKeyWords}:ICarouselProps) {
           className="mySwiper"
         >
           {firebaseUrl.length > 0 &&
-            firebaseUrl.map((url: string) => (
-              <SwiperSlide key={url}>
-                <div className={'content-wrapper'}>
-                  <img className="pgImg" style={{ margin: '0' }} src={url} />
-                </div>
-              </SwiperSlide>
-            ))}
+                  firebaseUrl.map((url: string) => (
+                    <SwiperSlide key={url}>
+                      <div className={'content-wrapper'}>
+                        <img className="pgImg" style={{ margin: '0' }} src={url} />
+                      </div>
+                    </SwiperSlide>
+                  ))}
         </Swiper>
-        <button onClick={()=>{console.log(firebaseUrl.lenght);}}>teste</button>
-      </>
-    );
-  }
+
+      )}
+    </>
+  );
 }
 
 export { Carousel };
