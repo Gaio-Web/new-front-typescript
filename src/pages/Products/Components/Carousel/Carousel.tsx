@@ -75,7 +75,7 @@ function Carousel({firebaseUrl}:ICarouselProps) {
       >
 
         {firebaseUrl.map((url: string) => (
-          <SwiperSlide>
+          <SwiperSlide key={url}>
             <div className={'content-wrapper'} >
               <img className='pgImg' style={{margin:'0'}} src={url}/>
             </div>

@@ -1,19 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import React, { lazy, Suspense } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
 import axios from 'axios';
 import {
   Container,
   Loading,
   FourthSection
 } from './styles';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import './styles.css';
-
-import 'swiper/css/virtual';
 
 import { Carousel } from './Components/Carousel/Carousel';
 
@@ -390,29 +382,7 @@ function FindByPhone(): JSX.Element {
         <FourthSection>
           <div className={'fourth-wrapper'} ref={componentRef}>
             <h1 style={{color: data.color}}>Galeria de fotos</h1>
-            <Swiper
-              observer={true}
-              observeParents={true}
-              slidesPerView={'auto'}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              loop={true}
-              grabCursor={true}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-              {imgsUrls.map((url: string, index) => {
-                return (
-                  <SwiperSlide key={index} virtualIndex={index}>
-                    <div className={'content-wrapper'} >
-                      <img className='pgImg' style={{margin:'0'}} src={url} alt={`Imagem ${index}`}/>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+            <Carousel firebaseUrl={imgsUrls}/>
             <button onClick={handleWhatsClick} >Fale com a gente</button>
           </div>
         </FourthSection>
