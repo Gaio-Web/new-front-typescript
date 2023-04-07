@@ -179,7 +179,7 @@ function Form(this: any): JSX.Element {
   const [isGalleryLoading, setIsGalleryLoading] = useState<boolean>(false);
 
   const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<Blob> => {
-    return new Promise((resolve) => {
+    return new Promise((resolve) =>
       Resizer.imageFileResizer(
         file,
         maxWidth,
@@ -194,8 +194,8 @@ function Form(this: any): JSX.Element {
           resolve(blob);
         },
         'blob'
-      );
-    });
+      )
+    );
   };
 
   const uploadGallery = async () => {
@@ -239,6 +239,7 @@ function Form(this: any): JSX.Element {
             }
           },
           (error) => {
+            setIsGalleryLoading(false);
             console.log('deu erro aqui: ', error);
             toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente', {
               position: 'top-center',
@@ -268,6 +269,7 @@ function Form(this: any): JSX.Element {
         );
       }
     } catch (error) {
+      setIsGalleryLoading(false);
       console.log('deu erro aqui: ', error);
       toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente!', {
         position: 'top-center',

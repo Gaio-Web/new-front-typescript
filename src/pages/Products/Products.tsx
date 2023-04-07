@@ -15,7 +15,7 @@ import Typewriter from './Components/ErrorPage';
 import ReactLoading from 'react-loading';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
+import {ref, getDownloadURL, listAll } from 'firebase/storage';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
@@ -230,7 +230,6 @@ function FindByPhone(): JSX.Element {
   };
 
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const componentRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
