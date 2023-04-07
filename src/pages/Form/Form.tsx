@@ -1294,7 +1294,7 @@ function Form(this: any): JSX.Element {
           <>
             <div className='imageWrapper'>
               <div className='loading-wrapper'>
-                <ReactLoading type={'spin'} color={'#034aa6'} height={200} width={100}/>
+                <ReactLoading type={'spin'} color={'#034aa6'} height={100} width={100}/>
               </div>
               <i>
                 <BsFillTrash3Fill style={{color:'gray' }} size={'35px'}/>
