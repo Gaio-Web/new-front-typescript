@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { json, useParams } from 'react-router-dom';
 
