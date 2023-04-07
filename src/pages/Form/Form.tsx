@@ -4,6 +4,8 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { json, useParams } from 'react-router-dom';
 
+import imageCompression from 'browser-image-compression';
+
 import axios from 'axios';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
@@ -181,26 +183,6 @@ function Form(this: any): JSX.Element {
 
   const [isGalleryLoading, setIsGalleryLoading] = useState<boolean>(false);
 
-  const resizeImage = (file: File, maxWidth: number, maxHeight: number): Promise<Blob> => {
-    return new Promise((resolve) =>
-      Resizer.imageFileResizer(
-        file,
-        maxWidth,
-        maxHeight,
-        'PNG',
-        80,
-        0,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        (uri: string) => {
-          const blob = new Blob([uri], { type: 'image/png' });
-          resolve(blob);
-        },
-        'blob'
-      )
-    );
-  };
-
   const uploadGallery = async () => {
     setIsMounted(false);
     setIsGalleryLoading(true);
@@ -208,12 +190,18 @@ function Form(this: any): JSX.Element {
       let totalPercent = 0;
       for (let i = 0; i < galleryImages.length; i++) {
         const file = galleryImages[i];
-        // Redimensiona a imagem
-        const resizedImageBlob = await resizeImage(file, 800, 600);
-        const resizedImageFile = new File([resizedImageBlob], file.name);
 
-        const imageRef = ref(storage, `${id}/gallery/${resizedImageFile.name}`);
-        const result = uploadBytesResumable(imageRef, resizedImageFile);
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 720,
+          useWebWorker: true,
+        };
+
+        const compressedFile = await imageCompression(file, options);
+
+
+        const imageRef = ref(storage, `${id}/gallery/${compressedFile.name}`);
+        const result = uploadBytesResumable(imageRef, compressedFile);
 
         result.on(
           'state_changed',
