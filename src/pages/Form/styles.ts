@@ -167,6 +167,41 @@ export const SecondSection = styled.div`
       padding: 10% 5%;
     }
 
+
+    .custom-file-upload-firebase {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & input[type="file"] {
+        display: none;
+      }
+
+      label {
+        display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 60%;
+      height: 3rem;
+      margin: 1rem 0 2rem;
+
+      border: 0;
+      border-radius: 8px;
+      padding: 0.1rem 2rem;
+      cursor: pointer;
+
+      background: #034aa3;
+      color: white;
+      font-weight: 600;
+
+      @media screen and (max-width: 800px) {
+        width: 70%;
+      }
+      }
+    }
+
     & h1 {
       margin: 0;
       color: rgb(5, 55, 124);
@@ -235,7 +270,7 @@ export const SecondSection = styled.div`
       }
     }
 
-    & .image-update-wrapper
+    & .image-update-wrapper {
       width: 100%;
       height: auto;
       display: flex;
@@ -334,7 +369,7 @@ export const SecondSection = styled.div`
         }
       }
     }
-
+  }
 `;
 
 //Cores
