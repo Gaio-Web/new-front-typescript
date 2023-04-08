@@ -243,9 +243,6 @@ function FindByPhone(): JSX.Element {
       const listRef = ref(storage, `${data?.phone}/gallery`);
       const res = await listAll(listRef);
       urls = await Promise.all(res.items.map(getDownloadURL));
-
-      console.log('tem url? ', urls.length);
-
       result = urls;
 
     } catch (error) {

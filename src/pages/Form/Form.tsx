@@ -253,7 +253,7 @@ function Form(this: any): JSX.Element {
           },
           () => {
             setUploaded(true),
-            toast.success('Imagens enviadas com sucesso!', {
+            toast.success('Imagen enviada com sucesso!', {
               position: 'top-center',
               autoClose: 1500,
               hideProgressBar: false,
