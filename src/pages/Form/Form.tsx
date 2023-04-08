@@ -167,7 +167,16 @@ function Form(this: any): JSX.Element {
       const urls = await Promise.all(res.items.map(getDownloadURL));
       setImagesurls(urls);
     } catch (error) {
-      console.log('Erro ao listar imagens:', error);
+      toast.error(`Houve um erro ao listar as imagens, tente novamente mais tarde! ${error}`, {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
 
@@ -231,8 +240,7 @@ function Form(this: any): JSX.Element {
           },
           (error) => {
             setIsGalleryLoading(false);
-            console.log('deu erro aqui: ', error);
-            toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente', {
+            toast.error(`Houve um erro ao enviar as imagens, recarregue a página e tente novamente, ${error}`, {
               position: 'top-center',
               autoClose: 1500,
               hideProgressBar: false,
@@ -245,7 +253,6 @@ function Form(this: any): JSX.Element {
           },
           () => {
             setUploaded(true),
-            console.log('deu certo');
             toast.success('Imagens enviadas com sucesso!', {
               position: 'top-center',
               autoClose: 1500,
@@ -261,8 +268,7 @@ function Form(this: any): JSX.Element {
       }
     } catch (error) {
       setIsGalleryLoading(false);
-      console.log('deu erro aqui: ', error);
-      toast.error('Houve um erro ao enviar as imagens, recarregue a página e tente novamente!', {
+      toast.error(`Houve um erro ao enviar as imagens, recarregue a página e tente novamente!, ${error}`, {
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: false,
@@ -274,7 +280,6 @@ function Form(this: any): JSX.Element {
       });
     }
   };
-
 
   const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLogo(event.target.files?.[0]);
@@ -312,7 +317,6 @@ function Form(this: any): JSX.Element {
       () => {
         //download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          console.log(url);
           const body = JSON.stringify({
             phone: id,
             photo_position: '4',
@@ -334,7 +338,6 @@ function Form(this: any): JSX.Element {
           if (response.ok) {
             // A resposta foi bem-sucedida
             setUploaded(true),
-
             toast.success('Imagem enviada com sucesso!', {
               position: 'top-center',
               autoClose: 5000,
@@ -347,7 +350,6 @@ function Form(this: any): JSX.Element {
             });
           } else {
             // A resposta foi mal-sucedida
-            console.log('Houve um problema ao enviar a foto.');
             toast.error('Houve um problema ao enviar a imagem!', {
               position: 'top-center',
               autoClose: 5000,
@@ -403,7 +405,6 @@ function Form(this: any): JSX.Element {
       () => {
         //download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          console.log(url);
           const body = JSON.stringify({
             phone: id,
             photo_position: '1',
@@ -437,7 +438,6 @@ function Form(this: any): JSX.Element {
             });
           } else {
             // A resposta foi mal-sucedida
-            console.log('Houve um problema ao enviar a foto.');
             toast.error('Houve um problema ao enviar a imagem!', {
               position: 'top-center',
               autoClose: 5000,
@@ -492,7 +492,6 @@ function Form(this: any): JSX.Element {
       () => {
       //download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          console.log(url);
           const body = JSON.stringify({
             phone: id,
             photo_position: '2',
@@ -526,7 +525,6 @@ function Form(this: any): JSX.Element {
             });
           } else {
           // A resposta foi mal-sucedida
-            console.log('Houve um problema ao enviar a foto.');
             toast.error('Houve um problema ao enviar a imagem!', {
               position: 'top-center',
               autoClose: 5000,
@@ -581,7 +579,6 @@ function Form(this: any): JSX.Element {
       () => {
         //download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          console.log(url);
           const body = JSON.stringify({
             phone: id,
             photo_position: '3',
@@ -615,7 +612,6 @@ function Form(this: any): JSX.Element {
             });
           } else {
             // A resposta foi mal-sucedida
-            console.log('Houve um problema ao enviar a foto.');
             toast.error('Houve um problema ao enviar a imagem!', {
               position: 'top-center',
               autoClose: 5000,
@@ -692,7 +688,18 @@ function Form(this: any): JSX.Element {
     setLoading(true);
     fetchDataForms()
       .then(() => {console.log('Data fetched successfully!'), setLoading(false);})
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error(`Houve um erro ao carregar a página, tente novamente mais tarde, ${err}`, {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
   }, [fetchDataForms]);
 
   useEffect(() => {
@@ -788,11 +795,19 @@ function Form(this: any): JSX.Element {
           body: JSON.stringify(body),
         }
       );
-      console.log(`1:${mainColor}, 2:${secondaryColor}, 3:${accentColor}`);
       const data = await response.json();
 
     } catch (error) {
-      console.log(error);
+      toast.error(`Houve um erro ao enviar as cores, recarregue a página e tente novamente!, ${error}`, {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
 
@@ -866,7 +881,6 @@ function Form(this: any): JSX.Element {
       });
     } else {
       // A resposta foi mal-sucedida
-      console.log('Houve um problema ao enviar a foto.');
       toast.error('Houve um problema ao salvar o endereço!', {
         position: 'top-center',
         autoClose: 5000,
@@ -913,7 +927,16 @@ function Form(this: any): JSX.Element {
       );
       const data = await response.json();
     } catch (error) {
-      console.log(error);
+      toast.error(`Houve um erro ao atualizar o whatsapp, recarregue a página e tente novamente!, ${error}`, {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
 
@@ -1052,11 +1075,21 @@ function Form(this: any): JSX.Element {
                   {logo ? (
                     <>
                       <img className="pgImg" src={logoPreview} alt={'foto-1'} />
-                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${logoPercent}% Enviando...`} onClick={() => handleLogoUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
+                      <StyledButton fetched={uploaded} placeHolder='Enviar' clickedPlaceHolder={`${logoPercent}% Enviando...`} onClick={handleLogoUploadToFirebase} color={'#0baf37'} disabledColor='#c4c4c4'/>
                     </>
                   ):(
                     <>
-                      <label htmlFor="envio-de-logo">Escolher foto</label>
+
+                      {data.photos.logo.base64 === '' ? (
+                        <label htmlFor="envio-de-logo">
+                          Escolher logo
+                        </label>
+                      ):(
+                        <label htmlFor="envio-de-logo">
+                          Mudar logo
+                        </label>
+                      )}
+
                       <input type="file" name="envio-de-logo" id="envio-de-logo" accept="image/*" onChange={handleLogoChange} className='custom-file-upload-input'/></>
                   )}
                 </div>
