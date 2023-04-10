@@ -389,7 +389,7 @@ function FindByPhone(): JSX.Element {
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FourthSection>
           <div className={'fourth-wrapper'} ref={componentRef}>
-            <h1 style={{color: data.color}}>Galeria de fotos</h1>
+            <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
             <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
             <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button>
           </div>
