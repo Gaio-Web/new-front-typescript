@@ -44,7 +44,8 @@
 }
 
 .content-wrapper-gallery img{
-  height: 60vh;
+  max-height: 60vh;
+  max-width: 80vw;
 }
 
 .pgImg {
