@@ -216,6 +216,10 @@ export const FourthSection = styled.div`
       font-weight: 600;
       text-transform: uppercase;
       border-radius: 16px;
+
+      @media screen and (max-width: 800px) {
+        width: 110%;
+      }
     }
   }
 `;
