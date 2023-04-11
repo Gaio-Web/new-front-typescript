@@ -33,6 +33,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
       {haveURL === 0 ? (
         <Swiper
           slidesPerView={'auto'}
+          spaceBetween={30}
           pagination={{
             clickable: true,
           }}
@@ -98,7 +99,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                   firebaseUrl.map((url: string, index: any) => (
                     <SwiperSlide >
                       <div className={'content-wrapper'}>
-                        <img className="pgImg" style={{ margin: '0 10px' }} src={url} />
+                        <img className="pgImg"  src={url} />
                       </div>
                     </SwiperSlide>
                   ))}
