@@ -1,4 +1,4 @@
-import imageStyles from './imageStyles.css';
+import './imageStyles.css';
 
 interface ImageProps {
   data: {
@@ -11,7 +11,9 @@ interface ImageProps {
 
 const Image: React.FC<ImageProps> = ({ data }) => {
   return (
-    <img src={data.urls.small} alt={data.alt_description} style={{borderRadius:'8px'}}/>
+    <div className='imgWrapper'>
+      <img src={data.urls.small} alt={data.alt_description} style={{borderRadius:'8px'}}/>
+    </div>
   );
 };
 
