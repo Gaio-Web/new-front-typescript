@@ -35,7 +35,7 @@ export const Container = styled.div`
     & p {
       margin: 0;
       font-weight: 400;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 33px;
       text-align: center;
       font-family: "Montserrat", sans-serif;
