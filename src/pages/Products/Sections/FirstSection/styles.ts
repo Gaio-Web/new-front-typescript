@@ -33,6 +33,7 @@ export const Container = styled.div`
 
       @media screen and (max-width: 410px) {
         font-size: 6vw;
+        padding: 0;
       }
       @media screen and (max-width: 330px) {
         font-size: 18px;
@@ -42,7 +43,7 @@ export const Container = styled.div`
     & p {
       margin: 0;
       font-weight: 500;
-      font-size: 17px;
+      font-size: 16px;
       color: #f0f0f0;
       line-height: 33px;
       font-family: "Montserrat", sans-serif;
