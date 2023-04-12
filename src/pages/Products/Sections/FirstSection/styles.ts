@@ -42,6 +42,7 @@ export const Container = styled.div`
 
     & p {
       margin: 0;
+      padding: 0 1rem;
       font-weight: 500;
       font-size: 16px;
       color: #f0f0f0;
