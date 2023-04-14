@@ -77,7 +77,14 @@
     padding-bottom: 50px;
   }
 
-  .content-wrapper-gallery img{
-    max-height: 40vh;
+  .content-wrapper {
+    max-width: 85vw;
+
+    min-height: 48vh;
+    max-height: 60vh;
+  }
+
+  .pgImg {
+    height: 95%;
   }
 }
