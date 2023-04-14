@@ -12,7 +12,7 @@
 
   height: fit-content;
   min-height: 50vh;
-  max-height: 70vh;
+  max-height: 75vh;
   width: 100%;
 }
 
@@ -81,10 +81,10 @@
     max-width: 85vw;
 
     min-height: 48vh;
-    max-height: 60vh;
+    max-height: 70vh;
   }
 
   .pgImg {
-    height: 95%;
+    height: 90%;
   }
 }
