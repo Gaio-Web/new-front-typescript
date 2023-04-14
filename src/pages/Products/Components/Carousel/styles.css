@@ -56,8 +56,8 @@
   display: block;
   width: fit-content;
   height: 100%;
-  /* object-fit: cover; */
-  object-fit: contain;
+  object-fit: cover;
+  /* object-fit: contain; */
   border-radius: 20px;
 }
 
@@ -75,5 +75,9 @@
     height: 100%;
 
     padding-bottom: 50px;
+  }
+
+  .content-wrapper-gallery img{
+    max-height: 50vh;
   }
 }
