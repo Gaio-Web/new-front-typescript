@@ -49,6 +49,7 @@
 .content-wrapper-gallery img{
   max-height: 60vh;
   max-width: 80vw;
+  border-radius: 20px;
 }
 
 .pgImg {
@@ -57,6 +58,7 @@
   height: 100%;
   /* object-fit: cover; */
   object-fit: contain;
+  border-radius: 20px;
 }
 
 .swiper-3d .swiper-slide-shadow {
