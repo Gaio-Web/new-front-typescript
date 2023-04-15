@@ -54,7 +54,7 @@
 
 .pgImg {
   display: block;
-  width: fit-content;
+  /* width: fit-content; */
   height: 100%;
   object-fit: cover;
   /* object-fit: contain; */
