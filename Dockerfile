@@ -1,7 +1,7 @@
 FROM node:alpine
 WORKDIR /app
 COPY package.json .
-RUN npm i
+RUN yarn install
 COPY . .
 EXPOSE 5173
 CMD ["yarn", "dev"]
