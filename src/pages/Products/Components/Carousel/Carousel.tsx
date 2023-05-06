@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import './styles.css';
 
 // import required modules
-import { Pagination } from 'swiper';
+import { Pagination, Autoplay } from 'swiper';
 
 import UnsplashGallery1 from '../UnsplashAPI/UnsplashGallery1';
 import UnsplashGallery2 from '../UnsplashAPI/UnsplashGallery2';
@@ -92,7 +92,11 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
           }}
           loop={true}
           grabCursor={true}
-          modules={[Pagination]}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: true,
+          }}
+          modules={[Autoplay]}
           className="mySwiper"
         >
           {firebaseUrl.length > 0 &&
