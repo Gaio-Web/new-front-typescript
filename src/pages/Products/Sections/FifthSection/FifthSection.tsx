@@ -17,7 +17,7 @@ interface IFifthSectionProp {
 function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
   return (
     <Container>
-      <div className={'fifth-wrapper'}>
+      <div id='fifthSection' className={'fifth-wrapper'}>
         {isAutonomous == '1' ? (
           <h1 className="sectionTitle" style={{ color: mainColor }}>
             Minha História

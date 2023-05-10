@@ -17,7 +17,7 @@ interface ISecondSectionProp {
 function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
   return (
     <Container>
-      <div className={'second-wrapper'}>
+      <div id='secondSection' className={'second-wrapper'}>
         {isAutonomous == '1' ? (
           <h1 className="sectionTitle" style={{color: mainColor}}>O que ofereço</h1>
         ) : (

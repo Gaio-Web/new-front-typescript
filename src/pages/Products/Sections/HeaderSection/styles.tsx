@@ -30,8 +30,8 @@ export const Container = styled.div`
 
     & img {
       border-radius: 10px;
-      max-height: 50px;
-      max-width: 45vw;
+      max-height: 75px;
+      max-width: 55vw;
     }
 
     & h1 {
