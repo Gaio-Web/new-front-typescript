@@ -18,7 +18,7 @@ interface IThirdSectionProp {
 function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, onClick}: IThirdSectionProp): JSX.Element{
   return (
     <Container>
-      <div className={'third-wrapper'}>
+      <div id='thirdSection'className={'third-wrapper'}>
         {isAutonomous == '1' ? (
           <h1 className="sectionTitle" style={{ color: mainColor }}>
           Meus diferenciais

@@ -16,7 +16,7 @@ interface ISeventhSectionProp {
 function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
   return (
     <Container>
-      <div className="seventh-wrapper">
+      <div id='seventhSection' className="seventh-wrapper">
         <h1 className="sectionTitle" style={{ color: mainColor }}>
           Endereço
         </h1>
