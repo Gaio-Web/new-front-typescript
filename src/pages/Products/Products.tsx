@@ -63,7 +63,6 @@ import { useParams } from 'react-router-dom';
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import { ApiURL } from '../../../apiConfig';
 
 interface Contact {
   //Nome
@@ -195,7 +194,7 @@ function FindByPhone(): JSX.Element {
       setLoading(true);
       try {
         const response = await axios.get<Contact>(
-          `${ApiURL}/findByConvertedName/${converted}`
+          `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {
@@ -339,6 +338,7 @@ function FindByPhone(): JSX.Element {
         photoBase64={data.photos.logo.base64}
         name={data.name}
         secondaryColor={data.secondaryColor}
+        navColor={data.color}
       />
 
       <FirstSection
