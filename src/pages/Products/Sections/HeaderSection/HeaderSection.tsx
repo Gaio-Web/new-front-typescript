@@ -5,14 +5,14 @@ interface IHeaderSectionProp {
   photoBase64: string;
   secondaryColor: string;
   name: string
-
+  navColor: string;
 }
 
-function HeaderSection({ photoBase64, name, secondaryColor}: IHeaderSectionProp): JSX.Element{
+function HeaderSection({ photoBase64, name, secondaryColor, navColor}: IHeaderSectionProp): JSX.Element{
   return (
     <Container>
       <header>
-        <div className="nav">
+        <div className="nav" style={{ backgroundColor: `${navColor}` }}>
           {photoBase64 == '' ? (
             <h1 style={{ color: secondaryColor }}>{name}</h1>
           ) : (

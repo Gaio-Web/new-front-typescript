@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import { CalendarStyles } from './styles';
-import { ApiURL } from '../../../../../apiConfig';
 
 interface ICalendar {
   //horário funcionamento
@@ -62,7 +61,7 @@ function Calendar({
       console.log('id: ', id);
       try {
         const response = await axios.get<Contact>(
-          `${ApiURL}/findByConvertedName/${converted}`
+          `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {

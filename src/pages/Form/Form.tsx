@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { json, useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import imageCompression from 'browser-image-compression';
 
@@ -13,12 +13,8 @@ import Stack from '@mui/material/Stack';
 import Loader from '../Products/Components/Loader/Loader';
 import Typewriter from '../Products/Components/ErrorPage';
 
-import Resizer from 'react-image-file-resizer';
-
 
 import ReactLoading from 'react-loading';
-
-import {ApiURL} from '../../../apiConfig';
 
 import {
   Loading,
@@ -58,7 +54,7 @@ import { StyledButton } from './Components/StyledButton';
 import { BsFillTrash3Fill } from 'react-icons/bs';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes, deleteObject } from 'firebase/storage';
+import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
 
 interface Contact {
   //text content
@@ -324,7 +320,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            `${ApiURL}/upload`,
+            `${import.meta.env.VITE_MAIN_API_URL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -412,7 +408,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            `${ApiURL}/upload`,
+            `${import.meta.env.VITE_MAIN_API_URL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -499,7 +495,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            `${ApiURL}/upload`,
+            `${import.meta.env.VITE_MAIN_API_URL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -586,7 +582,7 @@ function Form(this: any): JSX.Element {
             type: 'image',
           });
           const response = await fetch(
-            `${ApiURL}/upload`,
+            `${import.meta.env.VITE_MAIN_API_URL}/upload`,
             {
               method: 'POST',
               mode: 'cors',
@@ -676,7 +672,7 @@ function Form(this: any): JSX.Element {
   const fetchDataForms = useCallback ( async () => {
     try {
       const response = await axios.get<Contact>(
-        `${ApiURL}/findByPhone/${id}`
+        `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/${id}`
       );
       setData(response.data);
     } catch (err) {
@@ -786,7 +782,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        `${ApiURL}/updateColor`,
+        `${import.meta.env.VITE_MAIN_API_URL}/updateColor`,
         {
           method: 'POST',
           headers: {
@@ -857,7 +853,7 @@ function Form(this: any): JSX.Element {
     });
 
     const response = await fetch(
-      `${ApiURL}/fillAddress`,
+      `${import.meta.env.VITE_MAIN_API_URL}/fillAddress`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -916,7 +912,7 @@ function Form(this: any): JSX.Element {
     };
     try {
       const response = await fetch(
-        `${ApiURL}/updateWhatsApp`,
+        `${import.meta.env.VITE_MAIN_API_URL}/updateWhatsApp`,
         {
           method: 'POST',
           headers: {
