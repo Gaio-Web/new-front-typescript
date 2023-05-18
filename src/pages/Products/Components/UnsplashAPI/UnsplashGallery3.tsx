@@ -31,7 +31,7 @@ export const ImageContext = createContext<ImageContextData>({
 
 function UnsplashGallery3 ({ data }: { data: ImageData }) {
   // const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&query=office&client_id=${process.env.UNSPLASH_ACCESS_KEY}`);
-  const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&orientation=portrait&query=${data.coverKeyWords}&client_id=import.meta.env.VITE_UNSPLASH_ACCESS_KEY`);
+  const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&orientation=portrait&query=${data.coverKeyWords}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`);
 
   const value: ImageContextData = {
     response,
