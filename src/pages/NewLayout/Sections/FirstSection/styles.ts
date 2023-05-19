@@ -13,7 +13,7 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     min-height: 20rem;
-    padding: 5%;
+    padding: 10%;
     /* background-color: red; */
     display: flex;
     flex-direction: column;

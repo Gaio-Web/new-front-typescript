@@ -6,9 +6,12 @@ export const Container = styled.header`
   background-color: white;
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   box-sizing: border-box;
   justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
 
   & img {
       max-height: 75px;
@@ -17,7 +20,7 @@ export const Container = styled.header`
 
   & h1 {
       color: rgb(5, 55, 124);
-      font-size: 20px;
+      font-size: 24px;
       margin: 0;
       font-family: 'Ubuntu', sans-serif;
       font-weight: 600;
@@ -33,6 +36,7 @@ export const Container = styled.header`
     width: 100%;
     height: 100%;
     background-color: transparent;
+
     /* width: 100%;
     height: fit-content;
     max-height: 7vh;
@@ -45,5 +49,9 @@ export const Container = styled.header`
     z-index: 10; */
 
 
+  }
+
+  @media screen and (max-width: 600px) {
+  padding: 1rem;
   }
 `;
