@@ -12,7 +12,7 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     min-height: 20rem;
-    padding: 5%;
+    padding: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
