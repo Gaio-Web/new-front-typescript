@@ -13,7 +13,7 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     min-height: 20rem;
-    padding: 10%;
+    padding: 5% 10%;
     /* background-color: red; */
     display: flex;
     flex-direction: column;
@@ -43,11 +43,21 @@ export const Container = styled.div`
 
     & .img-wrapper {
       width: 50%;
+      height: 50%;
       display: flex;
       align-items: end;
       justify-content: flex-end;
+
+      & img {
+        width: 600px;
+      }
     }
   }
+
+  & .btn-2 {
+    display: none;
+  }
+
   }
 
 @media screen and (max-width: 600px) {
@@ -57,8 +67,16 @@ export const Container = styled.div`
     & .main-content-wrapper {
       flex-direction: column;
 
+      & button {
+        display: none;
+      }
+
       & .call-n-desc {
         width: 100%;
+
+        & button {
+          display: none;
+        }
       }
 
       & .img-wrapper {
@@ -66,10 +84,15 @@ export const Container = styled.div`
         margin-top: 2rem;
       align-items: center;
       justify-content: center;
+
+        & img {
+        width: 100%;
+      }
       }
     }
 
-    & button {
+    & .btn-2 {
+      display: block;
       width: 100%;
     }
   }

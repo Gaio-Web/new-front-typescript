@@ -92,11 +92,11 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
           }}
           loop={true}
           grabCursor={true}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,
-          }}
-          modules={[Autoplay]}
+          // autoplay={{
+          //   delay: 2000,
+          //   disableOnInteraction: true,
+          // }}
+          // modules={[Autoplay]}
           className="mySwiper"
         >
           {firebaseUrl.length > 0 &&

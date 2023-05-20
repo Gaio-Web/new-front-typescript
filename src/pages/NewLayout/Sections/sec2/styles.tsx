@@ -38,6 +38,10 @@ export const Container = styled.div`
         display: flex;
         align-items: end;
         justify-content: flex-end;
+
+        & img {
+          width: 600px
+        }
       }
 
       & .btn-2 {
@@ -48,7 +52,7 @@ export const Container = styled.div`
   @media screen and (max-width: 600px) {
 
     & .second-wrapper {
-      padding: 10% 5%;
+    padding: 10% 5%;
     flex-direction: column;
 
     & .title-n-prod {
@@ -60,9 +64,14 @@ export const Container = styled.div`
     }
 
     & .img-wrapper {
+      width: 100%;
       margin-top: 20px;
       align-items: center;
       justify-content: center;
+
+      & img {
+        width: 100%;
+      }
     }
 
     & .btn-2 {

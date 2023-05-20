@@ -22,6 +22,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
           <div className='call-n-desc'>
             <h1>{call}</h1>
             <p>{description}</p>
+            <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>Vamos conversar!</button>
           </div>
           <div className="img-wrapper"  data-aos="fade-up">
             {photoBase64 == '' ? (
@@ -41,7 +42,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
         </div>
 
 
-        <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>
+        <button onClick={onClick} style={{backgroundColor: secondaryColor}} className='btn-2'>Vamos conversar!</button>
       </div>
     </Container>
   );

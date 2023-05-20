@@ -12,7 +12,7 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     min-height: 20rem;
-    padding: 10%;
+    padding: 10% 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,8 +43,8 @@ export const Container = styled.div`
       justify-content: center;
       gap: 1rem;
       width: 90%;
-      border: 2px solid rgba(136, 136, 136, 0.2);
-      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
+      border: 1px solid #c4c4c43f;
+      box-shadow: 0px 5px 4px 0 rgba(68, 67, 67, 0.2);
       border-radius: 0.5rem;
       padding: 3.5rem 1.5rem;
 
