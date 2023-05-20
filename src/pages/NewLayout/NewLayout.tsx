@@ -20,19 +20,19 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
 //SECTIONS LAZY LOADING
-const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
+const FirstSection = lazy(() => import ('./Sections/sec1/FirstSection').then(module => {
   return {default: module.FirstSection};
 }));
 
-const SecondSection = lazy(() => import ('./Sections/SecondSection/SecondSection').then(module => {
+const SecondSection = lazy(() => import ('./Sections/sec2/SecondSection').then(module => {
   return {default: module.SecondSection};
 }));
 
-const ThirdSection = lazy(() => import ('./Sections/ThirdSection/ThirdSection').then(module => {
+const ThirdSection = lazy(() => import ('./Sections/sec3/ThirdSection').then(module => {
   return {default: module.ThirdSection};
 }));
 
-const FifthSection = lazy(() => import ('./Sections/FifthSection/FifthSection').then(module => {
+const FifthSection = lazy(() => import ('./Sections/sec5/FifthSection').then(module => {
   return {default: module.FifthSection};
 }));
 
@@ -63,6 +63,7 @@ import { useParams } from 'react-router-dom';
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import Slider from './Components/NewCarousel/NewCarousel';
 
 interface Contact {
   //Nome
@@ -372,10 +373,9 @@ function NewLayout(): JSX.Element {
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
         <FourthSection>
-          <div className={'fourth-wrapper'} ref={componentRef}>
-            <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
-            <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
-            <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button>
+          <h1>Galeria de fotos</h1>
+          <div className='fourth-wrapper'>
+            <Slider firebaseUrl={imgsUrls}/>
           </div>
         </FourthSection>
       </Suspense>
