@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import Swipe from '../../assets/Gifs/animation_500_lhwe2pfh.gif';
+
 export const Container = styled.section`
   width: 100%;
   height: 100vh;
@@ -93,12 +95,19 @@ export const Loading = styled.section`
 
 export const FourthSection = styled.div`
   background-color: #fafafa;
+  /* background-color: red; */
   width: 100%;
   height: fit-content;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* background-image: url(${Swipe});
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: bottom right; */
 
     & h1 {
         font-family: 'Inter', sans-serif;
@@ -119,6 +128,8 @@ export const FourthSection = styled.div`
   }
 
   @media screen and (max-width: 600px) {
+
+
     height: 850px;
     & .fourth-wrapper {
       padding: 5%;
