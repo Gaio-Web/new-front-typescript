@@ -10,8 +10,13 @@ interface SliderProps {
 
 const SliderContainer = styled.div`
   width: 100%;
-  height: fit-content;
-  padding-left: 5%;
+  height: 100%;
+  padding-left: 80%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
   box-sizing: border-box;
   overflow-x: scroll;
@@ -30,10 +35,11 @@ const SliderContainer = styled.div`
 `;
 
 const SliderWrapper = styled.div`
+  width: fit-content;
   display: flex;
+  align-items: center;
   flex-wrap: nowrap;
   gap: 2rem;
-  background-color: blue;
 `;
 
 const Slide = styled.img`
@@ -42,14 +48,21 @@ const Slide = styled.img`
   max-width: 600px;
   flex-shrink: 0; */
 
-  display: block;
-  width: fit-content;
-  height: 100%;
+  /* width: auto; */
+  /* height: 100%; */
   /* max-height: 50%; */
-  max-height: 65vh;
-  object-fit: cover;
+  /* display: block; */
+  /* width: fit-content; */
+  /* height: 100%; */
+
+  /* max-height: 45vh; */
+  /* object-fit: contain; */
+  height: 100%;
   object-fit: contain;
-  border-radius: 20px;
+  border-radius: 8px;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const SwiperGif = styled.img`
@@ -68,7 +81,7 @@ const SwiperGif = styled.img`
   }
 `;
 
-const Slider: React.FC<SliderProps> = ({ firebaseUrl }) => {
+const NewSlider: React.FC<SliderProps> = ({ firebaseUrl }) => {
     const sliderRef = useRef<HTMLDivElement>(null);
 
     const [isDragging, setIsDragging] = useState(false);
@@ -119,20 +132,22 @@ const Slider: React.FC<SliderProps> = ({ firebaseUrl }) => {
             onWheel={handleWheel}
         >
             <SliderWrapper>
+
                 {/* {images.map((image, index) => (
-          <Slide key={index} src={image} alt={`Slide ${index + 1}`} />
-        ))} */}
+              <Slide key={index} src={image} alt={`Slide ${index + 1}`} />
+            ))} */}
                 {firebaseUrl.length > 0 &&
                   firebaseUrl.map((image: string, index: any) => (
-                      <SliderWrapper key={index}>
-                          <Slide src={image} alt={`Slide ${index + 1}`}/>
-                      </SliderWrapper>
-                  ))}
-                {/* <SwiperGif src={Swipe} alt='swiper' /> */}
 
+                      <Slide src={image} alt={`Slide ${index + 1}`} key={index}/>
+
+                  ))}
             </SliderWrapper>
+            {/* <SwiperGif src={Swipe} alt='swiper' /> */}
+
+
         </SliderContainer>
     );
 };
 
-export default Slider;
+export default NewSlider;

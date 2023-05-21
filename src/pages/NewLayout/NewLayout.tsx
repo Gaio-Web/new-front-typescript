@@ -19,6 +19,25 @@ import {ref, getDownloadURL, listAll } from 'firebase/storage';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+import { Contact } from './types';
+
+import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
+
+//import LogoGaioMain from '../../assets/logoGaio.png';
+import Photo1 from '../../assets/foto1.png';
+import Photo2 from '../../assets/foto2.png';
+import Photo3 from '../../assets/foto3.png';
+
+//import { Carousel } from './Components/Carousel/Carousel';
+
+import {Helmet} from 'react-helmet';
+
+import { useParams } from 'react-router-dom';
+
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import NewSlider from './Components/NewCarousel/NewCarousel';
+
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/sec1/FirstSection').then(module => {
     return {default: module.FirstSection};
@@ -36,7 +55,7 @@ const FifthSection = lazy(() => import ('./Sections/sec5/FifthSection').then(mod
     return {default: module.FifthSection};
 }));
 
-const Calendar = lazy(() => import ('../Products/Components/Calendar/Calendar').then(module => {
+const NewCalendar = lazy(() => import ('./Components/NewCalendar/NewCalendar').then(module => {
     return {default: module.Calendar};
 }));
 
@@ -47,118 +66,6 @@ const SeventhSection = lazy(() => import ('./Sections/SeventhSection/SevenSectio
 const FooterSection = lazy(() => import ('./Sections/FooterSection/FooterSection').then(module => {
     return {default: module.FooterSection};
 }));
-
-import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
-
-//import LogoGaioMain from '../../assets/logoGaio.png';
-import Photo1 from '../../assets/foto1.png';
-import Photo2 from '../../assets/foto2.png';
-import Photo3 from '../../assets/foto3.png';
-
-//import { Carousel } from './Components/Carousel/Carousel';
-
-import {Helmet} from 'react-helmet';
-
-import { useParams } from 'react-router-dom';
-
-import Aos from 'aos';
-import 'aos/dist/aos.css';
-import Slider from './Components/NewCarousel/NewCarousel';
-
-interface Contact {
-  //Nome
-  name: string;
-
-  // PHOTOS
-  photos: {
-    photo1: {
-      base64: string;
-      type: string;
-    };
-    photo2: {
-      base64: string;
-      type: string;
-    };
-    photo3: {
-      base64: string;
-      type: string;
-    };
-    logo: {
-      base64: string;
-      type: string;
-    };
-  };
-
-  // Address
-  address: {
-    zipCode: string;
-    street: string;
-    number: string;
-    complement: string;
-    city: string;
-    state: string;
-  };
-
-  color: string;
-
-  whatsApp: string;
-
-  //text content
-  description: string;
-  products: string;
-  call: string;
-  history: string;
-
-  //Images
-  logo: File;
-  historyPhoto: string;
-  offerPhoto: string;
-  gallery: string;
-
-  //calendar info
-  segunda: string;
-  terca: string;
-  quarta: string;
-  quinta: string;
-  sexta: string;
-  sabado: string;
-  domingo: string;
-
-  //?
-  name_quality1: string;
-  name_quality2: string;
-  name_quality3: string;
-
-  //qualities
-  qualities1: string;
-  qualities2: string;
-  qualities3: string;
-
-  quality1: string;
-  quality2: string;
-  quality3: string;
-
-  qualitydescription1: string;
-  qualitydescription2: string;
-  qualitydescription3: string;
-
-  //client info
-  isAutonomous: string;
-  businessName: string;
-  phone: string;
-  id: string;
-
-  mainColor: string;
-  secondaryColor: string;
-  accentColor: string;
-
-  alt_description: string;
-  urls: string;
-
-  coverKeyWords: string;
-  historyKeyWords: string;
-  productsKeyWords: string;
-}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {
@@ -173,19 +80,12 @@ function NewLayout(): JSX.Element {
 
     const { id } = useParams();
 
-    // const uniqueName = id!.replace(/-/g, " ")
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const uniqueName = id!.replace(/\s+/g, '-');
 
     document.title = uniqueName;
 
     const converted = id;
-
-    // // @ts-ignore
-    // let id:string = useParams();
-    //
-    // const setNewString = id.replace(/-/g,"");
-    // document.title = setNewString
 
     const [data, setData] = useState<Contact | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -215,7 +115,6 @@ function NewLayout(): JSX.Element {
     }, []);
 
     const handleWhatsClick = () => {
-    // setShowForm(true);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
         event.preventDefault();
@@ -231,7 +130,6 @@ function NewLayout(): JSX.Element {
 
     const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
-    const componentRef = useRef(null);
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
 
     const [haveURL, setHaveURL] = useState<number>(1);
@@ -323,6 +221,19 @@ function NewLayout(): JSX.Element {
     return (
         <Container>
 
+            <Helmet>
+                <title>{data.name}</title>
+                <meta name="theme-color" content={data.mainColor}/>
+                <meta property="title" content={data.name}/>
+                <meta name="description" content={data?.description} />
+                <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+
+                <meta name="og:title" content={data.name}/>
+                <meta property="og:description" content={data?.description} />
+                <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+                <meta property="og:type" content="website" />
+            </Helmet>
+
             <HeaderSection
                 name={'Atilinha dos códigos'}
             />
@@ -375,11 +286,54 @@ function NewLayout(): JSX.Element {
                 <FourthSection>
                     <h1>Galeria de fotos</h1>
                     <div className='fourth-wrapper'>
-                        <Slider firebaseUrl={imgsUrls}/>
+                        <NewSlider firebaseUrl={imgsUrls}/>
                     </div>
-                    <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor, width: '90%'}}>Fale com a gente</button>
+                    <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
                 </FourthSection>
             </Suspense>
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <FifthSection
+                    isAutonomous={data.isAutonomous}
+                    mainColor={data.mainColor}
+                    accentColor={data.accentColor}
+                    history={data.history.replace(/^"|"$/g, '')}
+                    photoBase64={data.photos.photo2.base64}
+                    src={Photo2}
+                    onClick={handleWhatsClick}
+                    coverKeyWords={data.coverKeyWords}
+                />
+            </Suspense>
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <NewCalendar
+                    segunda={`${data.segunda}`}
+                    terca={`${data.terca}`}
+                    quarta={`${data.quarta}`}
+                    quinta={`${data.quinta}`}
+                    sexta={`${data.sexta}`}
+                    sabado={`${data.sabado}`}
+                    domingo={`${data.domingo}`}
+                    mainColor={data.mainColor}
+                    secondaryColor={data.secondaryColor}
+                    isAutonomous={data.isAutonomous}
+                />
+            </Suspense>
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <SeventhSection
+                    zipCode={data.address.zipCode}
+                    street={data.address.street}
+                    number={data.address.number}
+                    city={data.address.city}
+                    complement={data.address.complement}
+                    state={data.address.state}
+                    mainColor={data.mainColor}
+                    secondaryColor={data.secondaryColor}
+                />
+            </Suspense>
+
+            <FooterSection/>
 
         </Container>
     );

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-import { CalendarStyles } from './styles';
+import { Container } from './styles';
 
 interface ICalendar {
   //horário funcionamento
@@ -43,7 +43,7 @@ function Calendar({
     mainColor,
     secondaryColor,
     isAutonomous
-}: ICalendar) {
+}: ICalendar): JSX.Element {
     const { id } = useParams();
 
     const [data, setData] = useState<Contact | null>(null);
@@ -77,7 +77,7 @@ function Calendar({
     }, []);
 
     return (
-        <CalendarStyles>
+        <Container>
             <div className="sixth-wrapper">
                 {isAutonomous == '1' ? (
                     <h1 style={{ color: mainColor }}>Horário de atendimento</h1>
@@ -158,7 +158,7 @@ function Calendar({
                     </div>
                 </div>
             </div>
-        </CalendarStyles>
+        </Container>
     );
 }
 

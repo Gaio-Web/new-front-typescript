@@ -101,8 +101,15 @@ export const FourthSection = styled.div`
   min-height: 92vh;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  padding-top: 2%;
+  padding-bottom: 2%;
   align-items: center;
   justify-content: center;
+
+  & .btn {
+      width: 40%;
+    }
 
   /* background-image: url(${Swipe});
   background-size: 10%;
@@ -116,7 +123,7 @@ export const FourthSection = styled.div`
         margin-bottom: 1rem;
       }
   & .fourth-wrapper {
-    width: 100%;
+    width: 90%;
     height: fit-content;
     min-height: 20rem;
     /* padding: 10%; */
@@ -131,9 +138,15 @@ export const FourthSection = styled.div`
 
 
     height: 850px;
+
+    & .btn {
+      width: 90%;
+    }
+
     & .fourth-wrapper {
       padding: 5%;
       box-sizing: border-box;
+      max-height: none;
       /* overflow: hidden; */
 
     & h1 {

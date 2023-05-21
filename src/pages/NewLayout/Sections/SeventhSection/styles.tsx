@@ -28,6 +28,7 @@ export const Container = styled.div`
       font-size: 42px;
       color: #05377c;
       text-align: center;
+      font-family: 'Inter', sans-serif;
     }
 
     .adressWrapper {
@@ -44,11 +45,12 @@ export const Container = styled.div`
 
       border: 2px solid rgba(136, 136, 136, 0.5);
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-      border-radius: 20px;
+      border-radius: 12px;
 
       .userAdress {
         padding: 0 1rem 0.5rem;
         line-height: 2.5rem;
+        font-family: "Montserrat", sans-serif;
       }
 
       .buttonCopy {
@@ -62,7 +64,7 @@ export const Container = styled.div`
 
         width: 100%;
         height: 50px;
-        border-radius: 20px;
+        border-radius: 12px;
         overflow: hidden;
       }
 
@@ -70,13 +72,13 @@ export const Container = styled.div`
         transform: translateY(0px);
         width: 105%;
         height: 103%;
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy,
       .buttonCopy div {
         transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy div span {
@@ -85,27 +87,27 @@ export const Container = styled.div`
         justify-content: center;
         height: 100%;
         width: 100.5%;
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy div:nth-child(1) {
-        border-radius: 20px;
+        border-radius: 12px;
         background-color: #05377c;
       }
 
       .buttonCopy div:nth-child(2) {
         background-color: #29b60a;
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy:hover {
         box-shadow: 0 0.625em 1em 0 rgba(33, 220, 98, 0.35);
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy:hover div {
         transform: translateY(-50px);
-        border-radius: 20px;
+        border-radius: 12px;
       }
 
       .buttonCopy p {
@@ -117,7 +119,7 @@ export const Container = styled.div`
 
       .buttonCopy:active {
         transform: scale(0.95);
-        border-radius: 20px;
+        border-radius: 12px;
       }
     }
   }
