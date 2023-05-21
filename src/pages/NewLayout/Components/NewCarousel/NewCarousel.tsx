@@ -10,7 +10,7 @@ interface SliderProps {
 
 const SliderContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   padding-left: 5%;
 
   box-sizing: border-box;
@@ -33,6 +33,7 @@ const SliderWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
+  background-color: blue;
 `;
 
 const Slide = styled.img`
@@ -52,83 +53,86 @@ const Slide = styled.img`
 `;
 
 const SwiperGif = styled.img`
-  z-index: 999;
+  z-index: 99;
   position: absolute;
   margin-top: 35rem;
   margin-left: 90rem;
   width: 150px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: red;
 
   @media screen and (max-width: 600px) {
     margin-top: 31rem;
-  margin-left: 24rem;
+    margin-left: 50%;
   }
 `;
 
 const Slider: React.FC<SliderProps> = ({ firebaseUrl }) => {
-  const sliderRef = useRef<HTMLDivElement>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStartX, setDragStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStartX, setDragStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setDragStartX(event.clientX - sliderRef.current!.offsetLeft);
-    setScrollLeft(sliderRef.current!.scrollLeft);
-  };
+    const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+        setIsDragging(true);
+        setDragStartX(event.clientX - sliderRef.current!.offsetLeft);
+        setScrollLeft(sliderRef.current!.scrollLeft);
+    };
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    event.preventDefault();
-    const dragX = event.clientX - sliderRef.current!.offsetLeft;
-    const dragOffset = dragX - dragStartX;
+    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!isDragging) return;
+        event.preventDefault();
+        const dragX = event.clientX - sliderRef.current!.offsetLeft;
+        const dragOffset = dragX - dragStartX;
     sliderRef.current!.scrollLeft = scrollLeft - dragOffset;
-  };
+    };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
 
-  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-    const scrollDistance = event.deltaY;
-    const scrollDirection = Math.sign(scrollDistance);
+    const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+        const scrollDistance = event.deltaY;
+        const scrollDirection = Math.sign(scrollDistance);
 
-    if (sliderRef.current) {
-      const isHorizontalScroll = Math.abs(event.deltaX) > Math.abs(event.deltaY);
-      const isAtScrollBoundary =
+        if (sliderRef.current) {
+            const isHorizontalScroll = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+            const isAtScrollBoundary =
         (scrollDirection === -1 && sliderRef.current.scrollLeft === 0) ||
         (scrollDirection === 1 && sliderRef.current.scrollLeft + sliderRef.current.clientWidth === sliderRef.current.scrollWidth);
 
-      if (isHorizontalScroll && !isAtScrollBoundary) {
-        event.preventDefault();
-        sliderRef.current.scrollLeft += scrollDirection * 100; // Ajuste a velocidade da rolagem horizontal aqui
-      }
-    }
-  };
+            if (isHorizontalScroll && !isAtScrollBoundary) {
+                event.preventDefault();
+                sliderRef.current.scrollLeft += scrollDirection * 100;
+            }
+        }
+    };
 
-  return (
-    <SliderContainer
-      ref={sliderRef}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onWheel={handleWheel}
-    >
-      <SliderWrapper>
-        {/* {images.map((image, index) => (
+    return (
+        <SliderContainer
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onWheel={handleWheel}
+        >
+            <SliderWrapper>
+                {/* {images.map((image, index) => (
           <Slide key={index} src={image} alt={`Slide ${index + 1}`} />
         ))} */}
-        {firebaseUrl.length > 0 &&
+                {firebaseUrl.length > 0 &&
                   firebaseUrl.map((image: string, index: any) => (
-                    <SliderWrapper >
-                      <Slide src={image} alt={`Slide ${index + 1}`}/>
-                    </SliderWrapper>
+                      <SliderWrapper key={index}>
+                          <Slide src={image} alt={`Slide ${index + 1}`}/>
+                      </SliderWrapper>
                   ))}
-        <SwiperGif src={Swipe} alt='swiper' />
+                {/* <SwiperGif src={Swipe} alt='swiper' /> */}
 
-      </SliderWrapper>
-    </SliderContainer>
-  );
+            </SliderWrapper>
+        </SliderContainer>
+    );
 };
 
 export default Slider;
