@@ -10,11 +10,11 @@ interface ImageProps {
 }
 
 const Image: React.FC<ImageProps> = ({ data }) => {
-  return (
-    <div className='imgWrapper'>
-      <img src={data.urls.small} alt={data.alt_description} style={{borderRadius:'8px'}}/>
-    </div>
-  );
+    return (
+        <div className='imgWrapper'>
+            <img src={data.urls.small} alt={data.alt_description} style={{borderRadius:'8px'}}/>
+        </div>
+    );
 };
 
 export default Image;

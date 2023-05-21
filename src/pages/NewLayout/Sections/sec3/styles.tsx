@@ -16,6 +16,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
 
     & h1 {
@@ -29,7 +30,6 @@ export const Container = styled.div`
     }
 
     & .cards-wrapper {
-
       width: 100%;
       height: fit-content;
       display: flex;
@@ -46,7 +46,7 @@ export const Container = styled.div`
       border: 1px solid #c4c4c43f;
       box-shadow: 0px 5px 4px 0 rgba(68, 67, 67, 0.2);
       border-radius: 0.5rem;
-      padding: 3.5rem 1.5rem;
+      padding: 3rem 1rem;
 
       & h3 {
         font-family: 'Inter', sans-serif;
