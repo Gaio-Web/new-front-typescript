@@ -410,23 +410,25 @@ function FindByPhone(): JSX.Element {
       </Suspense>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-        {data.historyPhoto === '' ?
-          ( <Calendar
-            segunda={`${data.segunda}`}
-            terca={`${data.terca}`}
-            quarta={`${data.quarta}`}
-            quinta={`${data.quinta}`}
-            sexta={`${data.sexta}`}
-            sabado={`${data.sabado}`}
-            domingo={`${data.domingo}`}
-            mainColor={data.mainColor}
-            secondaryColor={data.secondaryColor}
-            isAutonomous={data.isAutonomous}
-          />
+        {data.photos.photo3.type === 'image' || data.photos.photo3.type === '' ?
+          (
+
+            <Calendar
+              segunda={`${data.segunda}`}
+              terca={`${data.terca}`}
+              quarta={`${data.quarta}`}
+              quinta={`${data.quinta}`}
+              sexta={`${data.sexta}`}
+              sabado={`${data.sabado}`}
+              domingo={`${data.domingo}`}
+              mainColor={data.mainColor}
+              secondaryColor={data.secondaryColor}
+              isAutonomous={data.isAutonomous}
+            />
           ):(
             <ImageSchedule style={{backgroundColor: data.businessName}}>
               <div className='img-wrapper'>
-                <img src={data.historyPhoto} alt='horarios'/>
+                <img src={data.photos.photo3.type} alt='horarios'/>
               </div>
             </ImageSchedule>
           )}
