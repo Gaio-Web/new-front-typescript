@@ -317,7 +317,7 @@ function Form(this: any): JSX.Element {
             phone: id,
             photo_position: '4',
             base64: url,
-            type: 'image',
+            type: '',
           });
           const response = await fetch(
             `${import.meta.env.VITE_MAIN_API_URL}/upload`,
@@ -405,7 +405,7 @@ function Form(this: any): JSX.Element {
             phone: id,
             photo_position: '1',
             base64: url,
-            type: 'image',
+            type: '',
           });
           const response = await fetch(
             `${import.meta.env.VITE_MAIN_API_URL}/upload`,
@@ -492,7 +492,7 @@ function Form(this: any): JSX.Element {
             phone: id,
             photo_position: '2',
             base64: url,
-            type: 'image',
+            type: '',
           });
           const response = await fetch(
             `${import.meta.env.VITE_MAIN_API_URL}/upload`,
@@ -579,7 +579,7 @@ function Form(this: any): JSX.Element {
             phone: id,
             photo_position: '3',
             base64: url,
-            type: 'image',
+            type: '',
           });
           const response = await fetch(
             `${import.meta.env.VITE_MAIN_API_URL}/upload`,
