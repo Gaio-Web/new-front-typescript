@@ -224,6 +224,40 @@ export const FourthSection = styled.div`
   }
 `;
 
+export const ImageSchedule = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F7EF22;
+
+  & .img-wrapper {
+    width: 100%;
+    height: fit-content;
+    min-height: 20rem;
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & img {
+      width: 70%;
+      object-fit: contain;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    & .img-wrapper {
+      padding: 5% 10%;
+
+      & img {
+        width: 100%;
+      }
+    }
+  }
+`;
+
 
 
 
