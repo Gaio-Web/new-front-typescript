@@ -4,7 +4,8 @@ import axios from 'axios';
 import {
   Container,
   Loading,
-  FourthSection
+  FourthSection,
+  ImageSchedule
 } from './styles';
 
 import { Carousel } from './Components/Carousel/Carousel';
@@ -86,6 +87,10 @@ interface Contact {
       base64: string;
       type: string;
     };
+    schedules: {
+      base64: string;
+      type: string;
+    };
   };
 
   // Address
@@ -107,12 +112,6 @@ interface Contact {
   products: string;
   call: string;
   history: string;
-
-  //Images
-  logo: File;
-  historyPhoto: string;
-  offerPhoto: string;
-  gallery: string;
 
   //calendar info
   segunda: string;
@@ -265,9 +264,9 @@ function FindByPhone(): JSX.Element {
     }, 1000);
   }, [data]);
 
-  useEffect(() => {
-    console.log('segundo: ', imgsUrls);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log('segundo: ', imgsUrls);
+  // }, [data]);
 
   if (loading) {
     return (
@@ -410,18 +409,27 @@ function FindByPhone(): JSX.Element {
       </Suspense>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-        <Calendar
-          segunda={`${data.segunda}`}
-          terca={`${data.terca}`}
-          quarta={`${data.quarta}`}
-          quinta={`${data.quinta}`}
-          sexta={`${data.sexta}`}
-          sabado={`${data.sabado}`}
-          domingo={`${data.domingo}`}
-          mainColor={data.mainColor}
-          secondaryColor={data.secondaryColor}
-          isAutonomous={data.isAutonomous}
-        />
+        {data.photos.schedules.base64 === '' ?
+          ( <Calendar
+            segunda={`${data.segunda}`}
+            terca={`${data.terca}`}
+            quarta={`${data.quarta}`}
+            quinta={`${data.quinta}`}
+            sexta={`${data.sexta}`}
+            sabado={`${data.sabado}`}
+            domingo={`${data.domingo}`}
+            mainColor={data.mainColor}
+            secondaryColor={data.secondaryColor}
+            isAutonomous={data.isAutonomous}
+          />
+          ):(
+            <ImageSchedule>
+              <div className='img-wrapper'>
+
+                <img src={data.photos.schedules.base64} alt='horarios'/>
+              </div>
+            </ImageSchedule>
+          )}
       </Suspense>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
