@@ -89,7 +89,7 @@ interface Contact {
     };
     schedules: {
       base64: string;
-      type: string;
+      BGcolor: string;
     };
   };
 
@@ -423,9 +423,8 @@ function FindByPhone(): JSX.Element {
             isAutonomous={data.isAutonomous}
           />
           ):(
-            <ImageSchedule>
+            <ImageSchedule style={{backgroundColor: data.photos.schedules.BGcolor}}>
               <div className='img-wrapper'>
-
                 <img src={data.photos.schedules.base64} alt='horarios'/>
               </div>
             </ImageSchedule>

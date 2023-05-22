@@ -230,7 +230,6 @@ export const ImageSchedule = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F7EF22;
 
   & .img-wrapper {
     width: 100%;
