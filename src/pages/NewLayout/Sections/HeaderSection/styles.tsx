@@ -14,44 +14,61 @@ export const Container = styled.header`
   padding-right: 10%;
 
   & img {
-      max-height: 75px;
-      max-width: 55vw;
-    }
+    max-height: 75px;
+    max-width: 55vw;
+  }
 
   & h1 {
-      color: rgb(5, 55, 124);
-      font-size: 24px;
-      margin: 0;
-      font-family: 'Ubuntu', sans-serif;
-      font-weight: 600;
+    color: rgb(5, 55, 124);
+    font-size: 24px;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
+  }
+
+  & .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 0.675rem;
+
+    & i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        size: 80px;
+      }
     }
 
-  & i {
-    svg {
-    size: 80px;
-  }
-}
+    & a {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      font-size: 20px;
 
-  & .nav {
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
+      :hover {
+        text-decoration: underline;
+        cursor: pointer;
+        color: #294dff;
+      }
+    }
 
-    /* width: 100%;
-    height: fit-content;
-    max-height: 7vh;
-    min-height: 7vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    z-index: 10; */
-
-
+    :hover {
+      cursor: pointer;
+    }
   }
 
   @media screen and (max-width: 600px) {
-  padding: 1rem;
+    padding: 1rem;
+
+    & .icon {
+      & p {
+        display: none;
+      }
+    }
   }
 `;

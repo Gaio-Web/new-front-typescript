@@ -92,4 +92,6 @@ export interface Contact {
   coverKeyWords: string;
   historyKeyWords: string;
   productsKeyWords: string;
+
+  instagram: string;
 }
