@@ -89,7 +89,7 @@ interface Contact {
     };
     schedules: {
       base64: string;
-      BGcolor?: string;
+      type?: string;
     };
   };
 
@@ -410,9 +410,8 @@ function FindByPhone(): JSX.Element {
       </Suspense>
 
       <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-        {data.photos.photo3.type === 'image' || data.photos.photo3.type === '' ?
+        {data.photos.schedules.base64 === '' ?
           (
-
             <Calendar
               segunda={`${data.segunda}`}
               terca={`${data.terca}`}
@@ -426,9 +425,9 @@ function FindByPhone(): JSX.Element {
               isAutonomous={data.isAutonomous}
             />
           ):(
-            <ImageSchedule style={{backgroundColor: data.businessName}}>
+            <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
               <div className='img-wrapper'>
-                <img src={data.photos.photo3.type} alt='horarios'/>
+                <img src={data.photos.schedules.base64} alt='horarios'/>
               </div>
             </ImageSchedule>
           )}
