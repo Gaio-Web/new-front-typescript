@@ -235,7 +235,8 @@ function NewLayout(): JSX.Element {
             </Helmet>
 
             <HeaderSection
-                name={'Atilinha dos códigos'}
+                name={data.name}
+                insta={data.instagram}
             />
 
             <FirstSection
