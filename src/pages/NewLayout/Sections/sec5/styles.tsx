@@ -13,10 +13,10 @@ export const Container = styled.div`
     height: fit-content;
     min-height: 20rem;
     padding: 5% 10%;
-    /* background-color: red; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
+    gap: 3rem;
 
     & .btn {
         margin-top: 1.5rem;

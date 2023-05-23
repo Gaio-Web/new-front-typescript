@@ -8,6 +8,9 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  word-wrap: break-word;
+  word-break: break-all;
+
   & .seventh-wrapper {
     width: 50%;
     height: fit-content;

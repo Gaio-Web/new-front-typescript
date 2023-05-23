@@ -14,6 +14,7 @@ export const Container = styled.div`
     min-height: 20rem;
     padding: 2% 10%;
     display: flex;
+    flex-direction: row-reverse;
     /* flex-direction: column; */
     align-items: center;
 
@@ -37,7 +38,7 @@ export const Container = styled.div`
         width: 50%;
         display: flex;
         align-items: end;
-        justify-content: flex-end;
+        /* justify-content: flex-end; */
 
         & img {
           width: auto;

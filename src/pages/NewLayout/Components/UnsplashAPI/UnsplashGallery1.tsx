@@ -42,11 +42,20 @@ function UnsplashGallery1 ({ data }: { data: ImageData }) {
 
   return(
     <ImageContext.Provider value={value}>
-      {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[3]} />}
+      <Container>
+        {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[2]} />}
+      </Container>
     </ImageContext.Provider>
   );
 }
 
+import styled from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 500px;
+`;
 
 export default UnsplashGallery1;
