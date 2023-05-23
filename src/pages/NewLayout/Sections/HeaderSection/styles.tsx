@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   width: 100%;
-  height: 5rem;
+  min-height: 5rem;
+  height: fit-content;
   background-color: white;
   display: flex;
   align-items: center;
@@ -43,12 +44,14 @@ export const Container = styled.header`
       }
     }
 
-    & a {
+    & p {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
       letter-spacing: 0.5px;
       font-size: 20px;
+      color: red;
+      text-decoration: none;
 
       :hover {
         text-decoration: underline;

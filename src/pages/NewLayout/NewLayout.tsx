@@ -4,10 +4,9 @@ import axios from 'axios';
 import {
     Container,
     Loading,
-    FourthSection
+    FourthSection,
+    ImageSchedule
 } from './styles';
-
-import { Carousel } from './Components/Carousel/Carousel';
 
 import Loader from './Components/Loader/Loader';
 import Typewriter from './Components/ErrorPage';
@@ -235,6 +234,7 @@ function NewLayout(): JSX.Element {
             </Helmet>
 
             <HeaderSection
+                photoBase64={data.photos.logo.base64}
                 name={data.name}
                 insta={data.instagram}
             />
@@ -307,18 +307,27 @@ function NewLayout(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <NewCalendar
-                    segunda={`${data.segunda}`}
-                    terca={`${data.terca}`}
-                    quarta={`${data.quarta}`}
-                    quinta={`${data.quinta}`}
-                    sexta={`${data.sexta}`}
-                    sabado={`${data.sabado}`}
-                    domingo={`${data.domingo}`}
-                    mainColor={data.mainColor}
-                    secondaryColor={data.secondaryColor}
-                    isAutonomous={data.isAutonomous}
-                />
+            {data.photos.schedules.base64 === '' ?
+          (
+            <NewCalendar
+              segunda={`${data.segunda}`}
+              terca={`${data.terca}`}
+              quarta={`${data.quarta}`}
+              quinta={`${data.quinta}`}
+              sexta={`${data.sexta}`}
+              sabado={`${data.sabado}`}
+              domingo={`${data.domingo}`}
+              mainColor={data.mainColor}
+              secondaryColor={data.secondaryColor}
+              isAutonomous={data.isAutonomous}
+            />
+          ):(
+            <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+              <div className='img-wrapper'>
+                <img src={data.photos.schedules.base64} alt='horarios'/>
+              </div>
+            </ImageSchedule>
+          )}
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>

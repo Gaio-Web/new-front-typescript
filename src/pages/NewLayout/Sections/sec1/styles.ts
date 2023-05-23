@@ -33,11 +33,13 @@ export const Container = styled.div`
       & h1 {
         font-family: 'Inter', sans-serif;
         font-size: 26px;
+        color: #f0f0f0;
       }
 
       & p {
         font-family: "Montserrat", sans-serif;
         font-size: 20px;
+        color: #f0f0f0;
       }
     }
 
@@ -49,7 +51,9 @@ export const Container = styled.div`
       justify-content: flex-end;
 
       & img {
-        width: 600px;
+        width: auto;
+        max-width: 600px;
+        max-height: 600px;
       }
     }
   }
