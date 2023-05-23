@@ -63,7 +63,7 @@ export const Container = styled.div`
         font-family: "Montserrat", sans-serif;
         font-size: 20px;
         line-height: 1.8;
-        text-align: center;
+        text-align: justify;
         width: 90%;
       }
 

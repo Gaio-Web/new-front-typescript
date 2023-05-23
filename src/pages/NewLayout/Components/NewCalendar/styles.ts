@@ -11,7 +11,7 @@ export const Container = styled.section`
 
     background-color: #fafafa;
 
-    padding: 4rem 2rem;
+    /* padding: 4rem 2rem; */
 
     @media screen and (max-width: 800px) {
       padding: 10% 5%;

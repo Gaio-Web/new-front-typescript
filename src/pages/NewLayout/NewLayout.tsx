@@ -240,13 +240,14 @@ function NewLayout(): JSX.Element {
             />
 
             <FirstSection
-                mainColor={data.accentColor}
+                mainColor={data.mainColor}
                 secondaryColor={data.secondaryColor}
                 call={data.call.replace(/^"|"$/g, '')}
                 description={data.description}
                 photoBase64={data.photos.photo1.base64}
                 src={Photo1}
                 coverKeyWords={data.coverKeyWords}
+                onClick={handleWhatsClick}
             />
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
