@@ -29,15 +29,17 @@ const SliderContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    padding-left: 0;
+    /* padding-left: 80%; */
   }
 
 `;
 
 const SliderWrapper = styled.div`
-  width: fit-content;
+  width: 100%;
+  /* height: 100%; */
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: nowrap;
   gap: 2rem;
 `;
@@ -60,6 +62,7 @@ const Slide = styled.img`
   height: 100%;
   object-fit: contain;
   border-radius: 8px;
+  max-height: 500px;
   @media screen and (max-width: 600px) {
     width: 100%;
   }
@@ -138,9 +141,7 @@ const NewSlider: React.FC<SliderProps> = ({ firebaseUrl }) => {
             ))} */}
                 {firebaseUrl.length > 0 &&
                   firebaseUrl.map((image: string, index: any) => (
-
-                      <Slide src={image} alt={`Slide ${index + 1}`} key={index}/>
-
+                      <Slide src={image} alt={`Slide ${index + 1}`} key={index} style={{backgroundColor: firebaseUrl.length >= 3 ? 'red' : 'green'}}/>
                   ))}
             </SliderWrapper>
             {/* <SwiperGif src={Swipe} alt='swiper' /> */}
