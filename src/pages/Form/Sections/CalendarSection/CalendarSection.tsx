@@ -344,7 +344,7 @@ function CalendarSection({userID, mondayData, tuesdayData, wednesdayData, thursd
 
     return (
         <Container>
-            <div className="sixth-wrapper">
+            <div className="sixth-wrapper" >
                 <h1>Horário de funcionamento</h1>
 
                 <div className="table">

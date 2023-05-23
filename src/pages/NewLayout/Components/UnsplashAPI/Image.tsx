@@ -1,4 +1,5 @@
-import './imageStyles.css';
+import React from 'react';
+import styled from 'styled-components';
 
 interface ImageProps {
   data: {
@@ -11,10 +12,22 @@ interface ImageProps {
 
 const Image: React.FC<ImageProps> = ({ data }) => {
   return (
-    <div className='imgWrapper'>
-      <img src={data.urls.small} alt={data.alt_description} style={{borderRadius:'8px'}}/>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+      <img src={data.urls.small} alt={data.alt_description} style={{ maxHeight: '500px', objectFit: 'contain', width: '100%'}}/>
     </div>
   );
 };
 
 export default Image;
+
+const ImgWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+  }
+`;

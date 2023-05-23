@@ -98,4 +98,5 @@ export interface Contact {
   productsKeyWords: string;
 
   instagram: string;
+  origin: string;
 }

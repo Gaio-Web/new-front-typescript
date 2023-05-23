@@ -288,7 +288,7 @@ function NewLayout(): JSX.Element {
                 <FourthSection>
                     <h1>Galeria de fotos</h1>
                     <div className='fourth-wrapper'>
-                        <NewSlider firebaseUrl={imgsUrls}/>
+                        <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
                     </div>
                     <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
                 </FourthSection>
