@@ -28,90 +28,90 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
-  return (
-    <>
-      {haveURL === 0 ? (
-        <Swiper
-          slidesPerView={'auto'}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          loop={true}
-          grabCursor={true}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <div className={'content-wrapper-gallery'}>
-              <UnsplashGallery1
-                data={{
-                  alt_description: 'office',
-                  urls: {
-                    small: 'https://example.com/image.jpg',
-                  },
-                  coverKeyWords: coverKeyWords,
-                }}
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={'content-wrapper-gallery'}>
-              <UnsplashGallery2
-                data={{
-                  alt_description: 'office',
-                  urls: {
-                    small: 'https://example.com/image.jpg',
-                  },
-                  coverKeyWords: coverKeyWords,
-                }}
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={'content-wrapper-gallery'}>
-              <UnsplashGallery3
-                data={{
-                  alt_description: 'office',
-                  urls: {
-                    small: 'https://example.com/image.jpg',
-                  },
-                  coverKeyWords: coverKeyWords,
-                }}
-              />
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      ) : (
-
-        <Swiper
-          slidesPerView={'auto'}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          loop={true}
-          grabCursor={true}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,
-          }}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
-          {firebaseUrl.length > 0 &&
-                  firebaseUrl.map((url: string, index: any) => (
-                    <SwiperSlide >
-                      <div className={'content-wrapper'}>
-                        <img className="pgImg"  src={url} />
-                      </div>
+    return (
+        <>
+            {haveURL === 0 ? (
+                <Swiper
+                    slidesPerView={'auto'}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    loop={true}
+                    grabCursor={true}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    <SwiperSlide>
+                        <div className={'content-wrapper-gallery'}>
+                            <UnsplashGallery1
+                                data={{
+                                    alt_description: 'office',
+                                    urls: {
+                                        small: 'https://example.com/image.jpg',
+                                    },
+                                    coverKeyWords: coverKeyWords,
+                                }}
+                            />
+                        </div>
                     </SwiperSlide>
-                  ))}
-        </Swiper>
+                    <SwiperSlide>
+                        <div className={'content-wrapper-gallery'}>
+                            <UnsplashGallery2
+                                data={{
+                                    alt_description: 'office',
+                                    urls: {
+                                        small: 'https://example.com/image.jpg',
+                                    },
+                                    coverKeyWords: coverKeyWords,
+                                }}
+                            />
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className={'content-wrapper-gallery'}>
+                            <UnsplashGallery3
+                                data={{
+                                    alt_description: 'office',
+                                    urls: {
+                                        small: 'https://example.com/image.jpg',
+                                    },
+                                    coverKeyWords: coverKeyWords,
+                                }}
+                            />
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+            ) : (
 
-      )}
-    </>
-  );
+                <Swiper
+                    slidesPerView={'auto'}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    loop={true}
+                    grabCursor={true}
+                    autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: true,
+                    }}
+                    modules={[Autoplay]}
+                    className="mySwiper"
+                >
+                    {firebaseUrl.length > 0 &&
+                  firebaseUrl.map((url: string, index: any) => (
+                      <SwiperSlide key={index}>
+                          <div className={'content-wrapper'}>
+                              <img className="pgImg"  src={url} />
+                          </div>
+                      </SwiperSlide>
+                  ))}
+                </Swiper>
+
+            )}
+        </>
+    );
 }
 
 export { Carousel };

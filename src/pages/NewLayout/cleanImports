@@ -1,0 +1,67 @@
+import React, { useEffect, useState } from 'react';
+
+import Photo1 from '../../assets/foto1.png';
+
+import { Container } from './styles';
+import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
+import { FirstSection } from './Sections/FirstSection/FirstSection';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+import storage from '../../../firebaseConfig';
+import {ref, getDownloadURL, listAll } from 'firebase/storage';
+
+import { Contact } from './types';
+
+function NewLayout(): JSX.Element {
+  const [data, setData] = useState<Contact | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const { id } = useParams();
+
+  const uniqueName = id!.replace(/\s+/g, '-');
+
+  document.title = uniqueName;
+
+  const converted = id;
+
+  const listAllImagesFromFolder = async () => {
+    let result = undefined;
+    let urls = null;
+    try {
+      const listRef = ref(storage, `${data?.phone}/gallery`);
+      const res = await listAll(listRef);
+      urls = await Promise.all(res.items.map(getDownloadURL));
+      result = urls;
+
+    } catch (error) {
+      console.log('Erro ao listar imagens:', error);
+    } finally {
+      // eslint-disable-next-line no-unsafe-finally
+      return(result);
+    }
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const response = await axios.get<Contact>(
+          `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${converted}`
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData()
+      .then(() => {
+        console.log('Data fetched successfully!');
+
+      })
+      .catch((error) => console.error(error))
+      .finally(() => listAllImagesFromFolder());
+  }, []);
