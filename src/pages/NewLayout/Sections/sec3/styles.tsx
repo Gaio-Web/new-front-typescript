@@ -21,7 +21,7 @@ export const Container = styled.div`
 
     & h1 {
       margin: 0;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 42px;
       color: #05377c;
       text-align: center;

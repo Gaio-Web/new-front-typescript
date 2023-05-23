@@ -21,6 +21,10 @@ export interface Contact {
       base64: string;
       type: string;
     };
+    schedules: {
+      base64: string;
+      type?: string;
+    };
   };
 
   // Address
