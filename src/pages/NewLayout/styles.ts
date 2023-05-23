@@ -144,7 +144,7 @@ export const FourthSection = styled.div`
     }
 
     & .fourth-wrapper {
-      padding: 5%;
+      padding: 0;
       box-sizing: border-box;
       max-height: none;
       /* overflow: hidden; */
