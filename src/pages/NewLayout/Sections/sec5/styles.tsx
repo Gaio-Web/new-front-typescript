@@ -18,21 +18,34 @@ export const Container = styled.div`
     align-items: center;
     gap: 3rem;
 
-    & .btn {
+    & .content-wrapper {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+      & .btn {
         margin-top: 1.5rem;
       }
 
+    }
+
+    & .btn-2 {
+        display: none;
+      }
+
+
     & .img-wrapper {
-      width: 100%;
-      height: 32rem;
-      /* background-color: red; */
+      width: 50%;
+      /* height: fit-content;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center; */
 
       & img {
         /* display: none; */
-        height: 100%;
+        /* height: 100%; */
+        width: 100%;
       }
     }
 
@@ -51,13 +64,29 @@ export const Container = styled.div`
   @media screen and (max-width: 600px) {
     & .fifth-wrapper {
       padding: 10% 5%;
+      flex-direction: column;
+      gap: 1rem;
+
+
+    & .content-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
 
       & .btn {
+        display: none;
+      }
+
+    }
+
+      & .btn-2 {
         width: 100%;
+        display: block;
       }
 
       & .img-wrapper {
-        /* width: 100%; */
+        width: 100%;
         height: fit-content;
 
         & img {

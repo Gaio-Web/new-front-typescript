@@ -13,7 +13,7 @@ interface ImageProps {
 const Image: React.FC<ImageProps> = ({ data }) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
-      <img src={data.urls.small} alt={data.alt_description} style={{ maxHeight: '500px', objectFit: 'contain', width: '100%'}}/>
+      <img src={data.urls.small} alt={data.alt_description} style={{ maxHeight: '600px'}}/>
     </div>
   );
 };
