@@ -3,22 +3,22 @@ import React, { lazy, Suspense } from 'react';
 import axios from 'axios';
 import {
   Container,
-  Loading,
   FourthSection,
   ImageSchedule
 } from './styles';
 
 import { Carousel } from './Components/Carousel/Carousel';
-
-import Loader from './Components/Loader/Loader';
-import Typewriter from './Components/ErrorPage';
+import Typewriter from '../Components/ErrorPage';
 
 import ReactLoading from 'react-loading';
 
 import storage from '../../../firebaseConfig';
 import {ref, getDownloadURL, listAll } from 'firebase/storage';
-import Skeleton from '@mui/material/Skeleton';
+
 import Stack from '@mui/material/Stack';
+import Skeleton from '@mui/material/Skeleton';
+
+
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
@@ -64,6 +64,8 @@ import { useParams } from 'react-router-dom';
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import Loader from '../Components/Loader/Loader';
+import { LoadingPage } from '../Components/LoadingPage';
 
 interface Contact {
   //Nome
@@ -271,45 +273,7 @@ function FindByPhone(): JSX.Element {
 
     if (loading) {
         return (
-            <Loading>
-                <div className={'loading-wrapper'}>
-                    <Stack spacing={1}>
-                        <div className='skeletonHeaderWrapper'>
-                            <Skeleton variant="rectangular" width={1500} height={80} />
-                        </div>
-
-                        <div className='skeletonTitleWrapper'>
-                            <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-
-                        <div className='skeletonImageWrapper'>
-                            <Skeleton className='skeletonImage' variant="rounded" height={250} />
-                        </div>
-
-                        <div className='skeletonButtonWrapper'>
-                            <Skeleton className='skeletonButton' variant="rounded" height={60} />
-                        </div>
-                    </Stack>
-
-                    <div className='fadeWhite'>
-                        <Loader/>
-                    </div>
-
-                </div>
-            </Loading>
+            <LoadingPage />
         );
     }
 

@@ -10,8 +10,8 @@ import axios from 'axios';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
-import Loader from '../Products/Components/Loader/Loader';
-import Typewriter from '../Products/Components/ErrorPage';
+import Loader from '../Components/Loader/Loader';
+import Typewriter from '../Components/ErrorPage';
 
 
 import ReactLoading from 'react-loading';

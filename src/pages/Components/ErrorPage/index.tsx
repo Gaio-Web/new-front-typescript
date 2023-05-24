@@ -1,6 +1,6 @@
 import { Container } from './styles';
 import Typewriter from 'typewriter-effect';
-import foto from '../../../../assets/Component45.png';
+import foto from '../../../assets/Component45.png';
 
 const typewriter404 = () => {
   return(
