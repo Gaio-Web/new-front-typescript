@@ -1,33 +1,29 @@
 import { useEffect, useState, useRef } from 'react';
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import axios from 'axios';
 import {
     Container,
-    Loading,
     FourthSection,
     ImageSchedule
 } from './styles';
 
-import Loader from '../Components/Loader/Loader';
+import { FirstSection, FifthSection, FooterSection, NewCalendar, SecondSection, SeventhSection, ThirdSection } from './LazyLoading';
+
+
 import Typewriter from '../Components/ErrorPage';
 
 import ReactLoading from 'react-loading';
 
 import storage from '../../../firebaseConfig';
 import {ref, getDownloadURL, listAll } from 'firebase/storage';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
 
 import { Contact } from './types';
 
 import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
 
-//import LogoGaioMain from '../../assets/logoGaio.png';
 import Photo1 from '../../assets/foto1.png';
 import Photo2 from '../../assets/foto2.png';
 import Photo3 from '../../assets/foto3.png';
-
-//import { Carousel } from './Components/Carousel/Carousel';
 
 import {Helmet} from 'react-helmet';
 
@@ -37,35 +33,6 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
-
-//SECTIONS LAZY LOADING
-const FirstSection = lazy(() => import ('./Sections/sec1/FirstSection').then(module => {
-    return {default: module.FirstSection};
-}));
-
-const SecondSection = lazy(() => import ('./Sections/sec2/SecondSection').then(module => {
-    return {default: module.SecondSection};
-}));
-
-const ThirdSection = lazy(() => import ('./Sections/sec3/ThirdSection').then(module => {
-    return {default: module.ThirdSection};
-}));
-
-const FifthSection = lazy(() => import ('./Sections/sec5/FifthSection').then(module => {
-    return {default: module.FifthSection};
-}));
-
-const NewCalendar = lazy(() => import ('./Components/NewCalendar/NewCalendar').then(module => {
-    return {default: module.Calendar};
-}));
-
-const SeventhSection = lazy(() => import ('./Sections/SeventhSection/SevenSection').then(module => {
-    return {default: module.SeventhSection};
-}));
-
-const FooterSection = lazy(() => import ('./Sections/FooterSection/FooterSection').then(module => {
-    return {default: module.FooterSection};
-}));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {
@@ -176,10 +143,12 @@ function NewLayout(): JSX.Element {
       );
   }
 
+
     return (
         <Container>
             <Helmet>
                 <title>{data.name}</title>
+                <meta />
                 <meta name="theme-color" content={data.mainColor}/>
                 <meta property="title" content={data.name}/>
                 <meta name="description" content={data?.description} />
