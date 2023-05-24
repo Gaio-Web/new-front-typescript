@@ -15,10 +15,6 @@ import ReactLoading from 'react-loading';
 import storage from '../../../firebaseConfig';
 import {ref, getDownloadURL, listAll } from 'firebase/storage';
 
-import Stack from '@mui/material/Stack';
-import Skeleton from '@mui/material/Skeleton';
-
-
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {

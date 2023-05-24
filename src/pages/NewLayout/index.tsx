@@ -17,7 +17,7 @@ import ReactLoading from 'react-loading';
 import storage from '../../../firebaseConfig';
 import {ref, getDownloadURL, listAll } from 'firebase/storage';
 
-import { Contact } from './types';
+import { Contact } from '../../types';
 
 import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
 
