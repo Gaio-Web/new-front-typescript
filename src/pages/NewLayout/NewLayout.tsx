@@ -8,8 +8,8 @@ import {
     ImageSchedule
 } from './styles';
 
-import Loader from './Components/Loader/Loader';
-import Typewriter from './Components/ErrorPage';
+import Loader from '../Components/Loader/Loader';
+import Typewriter from '../Components/ErrorPage';
 
 import ReactLoading from 'react-loading';
 
@@ -36,6 +36,7 @@ import { useParams } from 'react-router-dom';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
+import { LoadingPage } from '../Components/LoadingPage';
 
 //SECTIONS LAZY LOADING
 const FirstSection = lazy(() => import ('./Sections/sec1/FirstSection').then(module => {
@@ -163,63 +164,20 @@ function NewLayout(): JSX.Element {
         }, 1000);
     }, [data]);
 
-    useEffect(() => {
-        console.log('segundo: ', imgsUrls);
-    }, [data]);
-
     if (loading) {
-        return (
-            <Loading>
-                <div className={'loading-wrapper'}>
-                    <Stack spacing={1}>
-                        <div className='skeletonHeaderWrapper'>
-                            <Skeleton variant="rectangular" width={1500} height={80} />
-                        </div>
-
-                        <div className='skeletonTitleWrapper'>
-                            <Skeleton className='skeletonTitle' variant="text" sx={{ fontSize: '8rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-                        <div className='skeletonTextWrapper'>
-                            <Skeleton className='skeletonText' variant="text" sx={{ fontSize: '1.5rem' }} />
-                        </div>
-
-
-                        <div className='skeletonImageWrapper'>
-                            <Skeleton className='skeletonImage' variant="rounded" height={250} />
-                        </div>
-
-                        <div className='skeletonButtonWrapper'>
-                            <Skeleton className='skeletonButton' variant="rounded" height={60} />
-                        </div>
-                    </Stack>
-
-                    <div className='fadeWhite'>
-                        <Loader/>
-                    </div>
-
-                </div>
-            </Loading>
-        );
+      return (
+        <LoadingPage />
+      )
     }
 
     else if (!data) {
-        return (
-            <Typewriter/>
-        );
-    }
+      return (
+          <Typewriter/>
+      );
+  }
 
     return (
         <Container>
-
             <Helmet>
                 <title>{data.name}</title>
                 <meta name="theme-color" content={data.mainColor}/>
