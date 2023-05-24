@@ -14,7 +14,6 @@ export const Container = styled.div`
     height: fit-content;
     min-height: 20rem;
     padding: 5% 10%;
-    /* background-color: red; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,13 +21,12 @@ export const Container = styled.div`
     & .main-content-wrapper {
     width: 100%;
     height: 100%;
-    /* background-color: green; */
     display: flex;
+    align-items: center;
     margin-bottom: 2rem;
 
     & .call-n-desc {
       width: 50%;
-      /* background-color: blue; */
 
       & h1 {
         font-family: 'Inter', sans-serif;
@@ -45,13 +43,14 @@ export const Container = styled.div`
 
     & .img-wrapper {
       width: 50%;
-      height: 50%;
+      height: 100%;
       display: flex;
       align-items: end;
       justify-content: flex-end;
 
       & img {
-        width: auto;
+        width: 100%;
+        height: 100%;
         max-width: 600px;
         max-height: 600px;
       }

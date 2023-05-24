@@ -12,15 +12,14 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     min-height: 20rem;
-    padding: 10%;
+    padding: 5% 10%;
     display: flex;
     flex-direction: row-reverse;
-    /* flex-direction: column; */
     align-items: center;
 
     & .title-n-prod {
       width: 50%;
-
+      margin-left: 1rem;
       & h1 {
         font-family: 'Inter', sans-serif;
         font-size: 26px;
@@ -38,10 +37,9 @@ export const Container = styled.div`
         width: 50%;
         display: flex;
         align-items: end;
-        /* justify-content: flex-end; */
 
         & img {
-          width: auto;
+          width: 100%;
         max-width: 600px;
         max-height: 600px;
         }
