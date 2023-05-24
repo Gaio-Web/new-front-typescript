@@ -16,7 +16,7 @@ interface SliderProps {
 const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding-left: 80%;
+  /* padding-left: 80%; */
 
   display: flex;
   align-items: center;
@@ -26,6 +26,9 @@ const SliderContainer = styled.div`
   box-sizing: border-box;
   overflow-x: scroll;
   overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  scroll-padding: 3.5rem 0;
 
   cursor: grab;
 
@@ -40,20 +43,23 @@ const SliderContainer = styled.div`
 `;
 
 const SliderWrapper = styled.div`
+  scroll-snap-type: x mandatory;
   width: 100%;
   /* height: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: 2rem;
+  gap: 1rem;
+
+  @media screen and (max-width: 600px) {
+    justify-content: start;
+  }
 `;
 
 const Slide = styled.img`
   /* width: auto;
-  height: 300px;
   max-width: 600px;
-  flex-shrink: 0; */
 
   /* width: auto; */
   /* height: 100%; */
@@ -63,13 +69,13 @@ const Slide = styled.img`
   /* height: 100%; */
 
   /* max-height: 45vh; */
-  /* object-fit: contain; */
   height: 100%;
   object-fit: contain;
   border-radius: 8px;
   max-height: 500px;
   @media screen and (max-width: 600px) {
     width: 100%;
+    height: 100%;
   }
 `;
 

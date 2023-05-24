@@ -44,10 +44,10 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
                             }}
                         />
                     ) : (
-                        // <p>hue</p>
                         <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     )}
                 </div>
+                <button onClick={onClick} style={{ backgroundColor: accentColor }} className='btn-2'>Conversar por WhatsApp</button>
             </div>
         </Container>
     );
