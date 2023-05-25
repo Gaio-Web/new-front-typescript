@@ -9,6 +9,8 @@ import axios from 'axios';
 
 import { LoadingPage } from '../pages/Components/LoadingPage';
 
+import GaioMainPage from '../pages/GaioMainPage';
+
 export default function AnimatedRoutes() {
   const location = useLocation();
 
@@ -53,6 +55,7 @@ export default function AnimatedRoutes() {
             )
           }
       <Route path="/forms/:id" element={<Form />} />
+      <Route path='/' element={<GaioMainPage />} />
     </Routes>
   );
 }
