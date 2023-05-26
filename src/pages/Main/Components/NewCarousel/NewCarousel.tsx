@@ -1,11 +1,5 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-
-import Swipe from '../../../../assets/Gifs/animation_500_lhwe2pfh.gif';
-import UnsplashGallery1 from '../../../Products/Components/UnsplashAPI/UnsplashGallery1';
-import UnsplashGallery2 from '../UnsplashAPI/UnsplashGallery2';
-import UnsplashGallery3 from '../UnsplashAPI/UnsplashGallery3';
-
 interface SliderProps {
   images?: string[];
   firebaseUrl?: any;
@@ -136,46 +130,6 @@ const NewSlider: React.FC<SliderProps> = ({ firebaseUrl, coverKeyWords, haveURL 
     };
 
     return (
-      <>
-      {haveURL === 0 ? (
-                <SliderContainer
-                ref={sliderRef}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onWheel={handleWheel}
-            >
-                <SliderWrapper>
-                    <UnsplashGallery1
-                      data={{
-                        alt_description: 'office',
-                        urls: {
-                          small: 'https://example.com/image.jpg',
-                        },
-                        coverKeyWords: coverKeyWords,
-                      }}
-                    />
-                    <UnsplashGallery2
-                      data={{
-                        alt_description: 'office',
-                        urls: {
-                          small: 'https://example.com/image.jpg',
-                        },
-                        coverKeyWords: coverKeyWords,
-                      }}
-                    />
-                    <UnsplashGallery3
-                      data={{
-                        alt_description: 'office',
-                        urls: {
-                          small: 'https://example.com/image.jpg',
-                        },
-                        coverKeyWords: coverKeyWords,
-                      }}
-                    />
-                </SliderWrapper>
-            </SliderContainer>
-      ) : (
         <SliderContainer
         ref={sliderRef}
         onMouseDown={handleMouseDown}
@@ -190,9 +144,7 @@ const NewSlider: React.FC<SliderProps> = ({ firebaseUrl, coverKeyWords, haveURL 
               ))}
         </SliderWrapper>
     </SliderContainer>
-      ) }
-      </>
-    );
+      )
 };
 
 export default NewSlider;

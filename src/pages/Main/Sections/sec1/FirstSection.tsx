@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container } from './styles';
 
-import UnsplashCoverImage from '../../Components/UnsplashAPI/UnsplashCover';
-
 interface IFirstSectionProp {
   call: string | undefined;
   description: string | undefined;
@@ -25,19 +23,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                         <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>Vamos conversar!</button>
                     </div>
                     <div className="img-wrapper"  data-aos="fade-up">
-                        {photoBase64 == '' ? (
-                            <UnsplashCoverImage
-                                data={{
-                                    alt_description: 'office',
-                                    urls: {
-                                        small: 'https://example.com/image.jpg',
-                                    },
-                                    coverKeyWords: coverKeyWords
-                                }}
-                            />
-                        ) : (
-                            <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
-                        )}
+                        <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     </div>
                 </div>
 

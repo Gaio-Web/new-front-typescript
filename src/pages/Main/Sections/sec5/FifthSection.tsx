@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container } from './styles';
 
-import UnsplasHistoryImage from '../../Components/UnsplashAPI/UnsplashHistory';
-
 interface IFifthSectionProp {
   photoBase64: string;
   history: string;
@@ -33,19 +31,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
                   <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
-                    {photoBase64 == '' ? (
-                        <UnsplasHistoryImage
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords: coverKeyWords
-                            }}
-                        />
-                    ) : (
-                        <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
-                    )}
+                  <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                 </div>
                 <button onClick={onClick} style={{ backgroundColor: accentColor }} className='btn-2'>Conversar por WhatsApp</button>
             </div>

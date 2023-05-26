@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container } from './styles';
 
-import UnsplashProductsImage from '../../Components/UnsplashAPI/UnsplashProducts';
-
 interface ISecondSectionProp {
   photoBase64: string;
   products: string;
@@ -29,19 +27,7 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
                     <button onClick={onClick} style={{backgroundColor: accentColor, color: 'white', marginTop: '20px', width: '100%'}} className='btn-1'>Fale com a gente!</button>
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
-                    {photoBase64 == '' ? (
-                        <UnsplashProductsImage
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords:coverKeyWords
-                            }}
-                        />
-                    ) : (
-                        <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
-                    )}
+                  <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                 </div>
                 <button onClick={onClick} style={{backgroundColor: accentColor, marginTop: '2rem', width: '100%'}} className='btn-2'>Fale com a gente!</button>
                 {/* <button onClick={onClick}> teste</button> */}
