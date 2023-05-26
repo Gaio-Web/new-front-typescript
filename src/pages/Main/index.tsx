@@ -33,6 +33,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
+import { businessName } from '../../global/site.config';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {
@@ -53,7 +54,7 @@ function GaioMainPage(): JSX.Element {
             setLoading(true);
             try {
                 const response = await axios.get<Contact>(
-                    `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/gaio-web`
+                    `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${businessName}`
                 );
                 setData(response.data);
             } catch (error) {
