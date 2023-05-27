@@ -130,8 +130,8 @@ useEffect(() => {
               </div>
             ))}
           </ImageList>
-          <StyledButton width="larger" children="Escolher fotos"/>
       </IMGContainer>
+          <StyledButton width="larger" children="Escolher fotos"/>
 
 
     </Container>

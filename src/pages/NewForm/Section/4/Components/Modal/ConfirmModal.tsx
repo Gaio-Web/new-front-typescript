@@ -19,11 +19,13 @@ function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl}:
     // @ts-ignore
     <Container isVisible={confirmModalIsVisible}>
       <Wrapper>
+        <div className="content-wrapper">
         <div className="header">
           <IoClose size={40} onClick={setConfirmModalIsVisible} style={{paddingRight: '10px'}}/>
           <h2>Deseja realmente apagar esta foto?</h2>
         </div>
         <img src={imgUrl}/>
+        </div>
         <BtnWrapper>
           <StyledButton children="cancelar" width="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
           <StyledButton children="confirmar" width="small" />
@@ -51,7 +53,7 @@ const Container = styled.section`
   box-sizing: border-box;
 
   overflow: hidden;
-  background: transparent;
+  background: rgba(0,0,0,0.1);
   backdrop-filter: blur(3px);
 
   opacity: 0;
@@ -106,9 +108,17 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
+  box-shadow: 0px -5px 100px rgba(0, 0, 0, 1);
 
-  & .header {
+  & .content-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+
+    & .header {
     width: 100%;
     height: fit-content;
     padding: 0.8rem 0;
@@ -123,13 +133,17 @@ const Wrapper = styled.div`
     }
 
   }
-  & img {
-    width: auto;
-    max-width: 100%;
-    max-height: 50%;
-    margin-top: 1rem;
-    border-radius: 8px;
+    & img {
+      width: auto;
+      max-width: 100%;
+      max-height: 90%;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
   }
+
+
+
 `
 
 const BtnWrapper = styled.div`
