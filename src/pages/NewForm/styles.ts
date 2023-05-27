@@ -1,20 +1,23 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: inherit;
-  height: 100vh;
-  background-color: #eee;
-  display: flex;
-`;
-
-export const Main = styled.main`
+export const Container = styled.section`
   width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items:center;
-  box-sizing: border-box;
+  background-color: #eee;
+  `;
 
-`;
+export const Main = styled.main`
+  height: fit-content;
+
+  padding: 0.5rem;
+  margin-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+`

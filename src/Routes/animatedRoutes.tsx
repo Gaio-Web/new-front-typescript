@@ -16,33 +16,33 @@ export default function AnimatedRoutes() {
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-      async function fetchData() {
-        setLoading(true);
-          try {
-              const response = await axios.get<Contact>(
-                  `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${location.pathname.replace(/^\/(.*)/, "$1")}`
-              );
-              setData(response.data);
-          } catch (error) {
-              console.error(error);
-          } finally {
-            setLoading(false);
-          }
-        }
-          fetchData()
-          .then(() => {
-              console.log('Data fetched!!');
+  // useEffect(() => {
+  //     async function fetchData() {
+  //       setLoading(true);
+  //         try {
+  //             const response = await axios.get<Contact>(
+  //                 `${import.meta.env.VITE_MAIN_API_URL}/findByConvertedName/${location.pathname.replace(/^\/(.*)/, "$1")}`
+  //             );
+  //             setData(response.data);
+  //         } catch (error) {
+  //             console.error(error);
+  //         } finally {
+  //           setLoading(false);
+  //         }
+  //       }
+  //         fetchData()
+  //         .then(() => {
+  //             console.log('Data fetched!!');
 
-          })
-          .catch((error) => console.error(error))
-      }, [])
+  //         })
+  //         .catch((error) => console.error(error))
+  //     }, [])
 
-      if (loading) {
-        return (
-           <LoadingPage />
-        );
-    }
+  //     if (loading) {
+  //       return (
+  //          <LoadingPage />
+  //       );
+  //   }
 
   return (
     <Routes location={location} key={location.pathname}>

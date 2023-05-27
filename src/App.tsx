@@ -6,11 +6,9 @@ import AnimatedRoutes from './Routes/animatedRoutes';
 
 function App() {
   return (
-    <div>
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
-    </div>
   );
 }
 
