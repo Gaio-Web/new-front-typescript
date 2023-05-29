@@ -15,6 +15,9 @@ export const Container = styled.div`
 
   & .title {
     margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+    gap: 10px;
   }
 `;
 
@@ -29,6 +32,7 @@ width: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
+gap: 1rem;
 
 
 > img {

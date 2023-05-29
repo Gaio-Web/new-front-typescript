@@ -42,7 +42,7 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JS
       />
       <Header>
       <h1 style={{ fontSize: '26px', color: 'white'}}>Galeria de fotos</h1>
-      <IoClose size={45} onClick={setModalIsVisible}/>
+      <IoClose size={45} onClick={setModalIsVisible} color="white"/>
       </Header>
       <p style={{ fontSize: '18px', color: 'white'}}>Toque na foto para remover</p>
       <IMGWrapper>
@@ -90,8 +90,8 @@ const Container = styled.section`
 
   overflow: hidden;
 
-  background: rgba(17, 18, 17, 0.95);
-  background: rgb(5, 55, 124) 95%;
+  background: rgba(5, 55, 124, 0.9);
+  backdrop-filter: blur(1);
 
   opacity: 0;
   pointer-events: none;

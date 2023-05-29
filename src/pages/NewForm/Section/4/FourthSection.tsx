@@ -15,14 +15,11 @@ import { IMGContainer } from './styles'
 
 import storage from "../../../../../firebaseConfig";
 
-interface IFirstSecPops {
-  call: string | undefined;
-  description: string | undefined;
-  imgsUrls: string | undefined;
-  isLoading: any;
+interface IFourthSecProps {
+  phone: any;
 }
 
-function FourthSection(): JSX.Element {
+function FourthSection({phone}: IFourthSecProps): JSX.Element {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [clicked, setClicked] = useState(false);
@@ -60,6 +57,8 @@ function FourthSection(): JSX.Element {
             });
         });
 };
+
+const id = phone;
 
 const listAllImagesFromFolder = async () => {
   try {
@@ -132,8 +131,6 @@ useEffect(() => {
           </ImageList>
       </IMGContainer>
           <StyledButton width="larger" children="Escolher fotos"/>
-
-
     </Container>
     </>
   )
