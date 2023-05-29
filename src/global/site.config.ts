@@ -1,2 +1,2 @@
-export const number = '5516981837170';
-export const businessName = 'bjj-school'
+export const number = '5511934609871';
+export const businessName = 'loca-tudo-cortes-e-furos-em-concretos'
