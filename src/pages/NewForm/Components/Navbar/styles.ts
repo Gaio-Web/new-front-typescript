@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.section`
   position: fixed;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(4px);
   width: 100%;
   height: 100%;
   top: 0;
@@ -15,13 +15,27 @@ export const Container = styled.section`
   justify-content: center;
 
   background: rgba(17, 18, 17, 0.95);
-  background: linear-gradient(34deg, rgba(255,255,255,0.8) 0%, rgb(5, 55, 124) 95%);
+  background: linear-gradient(34deg, rgba(255,255,255,0.8) 10%, rgb(5, 55, 124) 95%);
 
   opacity: 0;
   pointer-events: none;
   transform: translateY(50px);
 
   transition: .5s;
+
+  & .option {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+
+    transition: all ease 0.3s;
+
+    :hover {
+      font-size: 26px;
+    }
+  }
 
   > svg {
     position: absolute;

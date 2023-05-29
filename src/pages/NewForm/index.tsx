@@ -10,6 +10,7 @@ import { FormHeader } from "./Section/Header/Header";
 import { SecondSection } from "./Section/2/SecondSection";
 import { ThirdSection } from "./Section/3/ThirdSection";
 import { FourthSection } from "./Section/4/FourthSection";
+import { FifthSection } from "./Section/5/FifthSection";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -21,7 +22,7 @@ function NewForm(): JSX.Element {
   const fetchDataForms = useCallback ( async () => {
       try {
           const response = await axios.get<Contact>(
-              `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/5531900000000`
+              `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/5516981837170`
           );
           setData(response.data);
       } catch (err) {
@@ -49,6 +50,7 @@ function NewForm(): JSX.Element {
 
   return (
     <Container>
+
       <Navbar
         menuIsVisible={menuIsVisible}
         setMenuIsVisible={setMenuIsVisible}
@@ -56,15 +58,15 @@ function NewForm(): JSX.Element {
 
        <Header setMenuIsVisible={setMenuIsVisible}/>
 
-
       <Main>
        <FormHeader
         name={data?.name}
         img={data?.photos.logo.base64}
+        isLoading={loading}
        />
 
-
         <FirstSection
+          userID={"5584991097445"}
           call={data?.call}
           description={data?.description}
           img={data?.photos.photo1.base64}
@@ -79,16 +81,23 @@ function NewForm(): JSX.Element {
 
         <ThirdSection
           quality1={data?.quality1}
-          qualitydescription1={data?.qualitydescription1}
           quality2={data?.quality2}
-          qualitydescription2={data?.qualitydescription2}
           quality3={data?.quality3}
+          qualitydescription1={data?.qualitydescription1}
+          qualitydescription2={data?.qualitydescription2}
           qualitydescription3={data?.qualitydescription3}
           isLoading={loading}
         />
 
         <FourthSection
+          phone={data?.phone}
+        />
 
+        <FifthSection
+          call={data?.call}
+          history={data?.history}
+          img={data?.photos.photo2.base64}
+          isLoading={loading}
         />
 
       </Main>

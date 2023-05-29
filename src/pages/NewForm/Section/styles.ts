@@ -62,6 +62,10 @@ export const TextWrapper = styled.div`
   gap: 10px;
 
   transition: all 0.3s ease;
+
+  & p {
+    text-align: justify;
+  }
 `;
 
 
