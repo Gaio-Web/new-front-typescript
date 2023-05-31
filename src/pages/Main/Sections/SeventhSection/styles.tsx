@@ -3,16 +3,19 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background-color: #f4f7fa;
   width: 100%;
+
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
+
   word-wrap: break-word;
   word-break: break-all;
 
   & .seventh-wrapper {
-    width: 50%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;

@@ -46,6 +46,8 @@ export const Container = styled.div`
         /* display: none; */
         /* height: 100%; */
         width: 100%;
+        max-width: 500px;
+        border-radius: 8px;
       }
     }
 

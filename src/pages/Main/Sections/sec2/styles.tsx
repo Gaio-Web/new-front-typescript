@@ -42,6 +42,7 @@ export const Container = styled.div`
           width: 100%;
         max-width: 600px;
         max-height: 600px;
+        border-radius: 8px;
         }
       }
 

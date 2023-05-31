@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import React, { Suspense } from 'react';
 import axios from 'axios';
 import {
+  AddressContainer,
     Container,
     FourthSection,
     ImageSchedule
@@ -227,46 +228,47 @@ function GaioMainPage(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-            {data.photos.schedules.base64 === '' ?
-          (
-            <NewCalendar
-              segunda={`${data.segunda}`}
-              terca={`${data.terca}`}
-              quarta={`${data.quarta}`}
-              quinta={`${data.quinta}`}
-              sexta={`${data.sexta}`}
-              sabado={`${data.sabado}`}
-              domingo={`${data.domingo}`}
-              mainColor={data.mainColor}
-              secondaryColor={data.secondaryColor}
-              isAutonomous={data.isAutonomous}
-            />
-          ):(
             <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+              <h1>Horários de funcionamento</h1>
               <div className='img-wrapper'>
                 <img src={data.photos.schedules.base64} alt='horarios'/>
+                <img src={data.photos.schedules.type} alt='horarios'/>
               </div>
             </ImageSchedule>
-          )}
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+              <AddressContainer>
+              <h1 className="sectionTitle" style={{ color: data.mainColor }}>
+                  Endereço
+                </h1>
                 <SeventhSection
-                    zipCode={data.address.zipCode}
-                    street={data.address.street}
-                    number={data.address.number}
-                    city={data.address.city}
-                    complement={data.address.complement}
-                    state={data.address.state}
+                    zipCode={'14096-630'}
+                    street={'Rua José Pierri'}
+                    number={'95'}
+                    city={'Ribeirão Preto'}
+                    neighborhood={'Nova Ribeira'}
+                    state={'SP'}
                     mainColor={data.mainColor}
                     secondaryColor={data.secondaryColor}
-                />
+
+                    zipCode2={'14110-000'}
+                    street2={'Rua José Carlos Pati'}
+                    number2={'63'}
+                    city2={'Ribeirão Preto'}
+                    neighborhood2={'Santa Genebra'}
+                    state2={'SP'}
+                    mainColor2={data.mainColor}
+                    secondaryColor2={data.secondaryColor}
+                    />
+              </AddressContainer>
             </Suspense>
 
             <FooterSection/>
-
         </Container>
     );
 }
 
 export default GaioMainPage;
+
+// Rua José Carlos Pati, 63 - Santa Genebra, Ribeirão Preto - SP, 14110-000
