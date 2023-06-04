@@ -3,6 +3,7 @@ import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '..
 import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
+import { Modal } from "./Components/Modal";
 
 interface IThirdSecPops {
 
@@ -15,6 +16,10 @@ interface IThirdSecPops {
   qualitydescription3: string | undefined;
 
   isLoading: any;
+
+  userID: any;
+
+  title: string | undefined;
 }
 
 function ThirdSection(
@@ -26,10 +31,14 @@ function ThirdSection(
     qualitydescription2,
     qualitydescription3,
     isLoading,
+    userID,
+    title,
   }: IThirdSecPops): JSX.Element {
 
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const customBorder = "1px solid #c4c4c4";
   const customPadding = "1rem"
@@ -46,17 +55,28 @@ function ThirdSection(
 
   return (
     <Container >
+      <Modal
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={() => setModalIsVisible(false)}
+        userID={userID}
+      />
       <Header>
         <h1>Terceira sessão</h1>
-        <FaEdit/>
+        <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
       <TextWrapper>
         <h4>Título da sessão</h4>
-        <p>Nossos diferenciais</p>
+        {
+          title == '' ? (
+            <p>Nossos diferenciais</p>
+          ) : (
+            <p>{title}</p>
+          )
+        }
       </TextWrapper>
 
     <TextWrapper style={{ border: customBorder, padding: customPadding, boxSizing: customSizing, borderRadius: '8px'}}>
-      <h3 style={{color: 'rgba(0,0,0,0.45)'}}>Diferencial 1</h3>
+        <h3 style={{color: 'rgba(0,0,0,0.45)'}}>Diferencial 1</h3>
       <h4>{quality1}</h4>
       <LoadingComponent
         loading={isLoading}

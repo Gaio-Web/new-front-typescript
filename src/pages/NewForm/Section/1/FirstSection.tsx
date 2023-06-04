@@ -9,6 +9,7 @@ import storage from "../../../../../firebaseConfig";
 import { toast } from "react-toastify";
 import { StyledInput } from "../../../../global/PhotoInput";
 import axios from "axios";
+import { Modal } from "./Components/Modal";
 
 interface IFirstSecPops {
   call: string | undefined;
@@ -24,6 +25,10 @@ function FirstSection({ call, description, img, isLoading, userID }: IFirstSecPo
   const [uploaded, setUploaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  userID = '5584991097445'
+
   const { id } = userID;
 
   const handleClick = () => {
@@ -35,100 +40,16 @@ function FirstSection({ call, description, img, isLoading, userID }: IFirstSecPo
     setColor(event.target.value);
   };
 
-  const [cover, setCover] = useState<any>('');
-  const [coverPreview, setCoverPreview] = useState<string>('');
-
-  const handleCoverChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setCover(event.target.files?.[0]);
-
-      const coverImage = event.target.files?.[0];
-      if (!coverImage) {
-          return;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-          setCoverPreview(reader.result as string);
-      };
-      reader.readAsDataURL(coverImage);
-  };
-
-  const [percent, setPercent] = useState(0);
-
-  const handleCoverUploadToFirebase = () => {
-      if (!cover) {
-          alert('escolha uma imagem!');
-      }
-      const storageRef = ref(storage, `/${id}/${cover.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, cover);
-
-      uploadTask.on(
-          'state_changed',
-          (snapshot) => {
-              const percent = Math.round(
-                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-              );
-              // update progress
-              setPercent(percent);
-          },
-          (err) => console.log(err),
-          () => {
-              //download URL
-              getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-                  const body = JSON.stringify({
-                      phone: id,
-                      photo_position: '1',
-                      base64: url,
-                      type: 'image',
-                  });
-                  const response = await fetch(
-                      `${import.meta.env.VITE_MAIN_API_URL}/upload`,
-                      {
-                          method: 'POST',
-                          mode: 'cors',
-                          headers: {
-                              'Content-Type': 'application/json',
-                              'Access-Control-Allow-Origin': '*',
-                          },
-                          body: body,
-                      }
-                  );
-                  if (response.ok) {
-                      // A resposta foi bem-sucedida
-                      setUploaded(true),
-                      toast.success('Imagem enviada com sucesso!', {
-                          position: 'top-center',
-                          autoClose: 5000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: 'colored',
-                      });
-                  } else {
-                      // A resposta foi mal-sucedida
-                      toast.error('Houve um problema ao enviar a imagem!', {
-                          position: 'top-center',
-                          autoClose: 5000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: 'colored',
-                      });
-                  }
-              });
-          }
-      );
-  };
-
-
   return (
     <Container >
+      <Modal
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={() => setModalIsVisible(false)}
+        userID={userID}
+      />
       <Header>
         <h1>Primeira sessão</h1>
-        <FaEdit/>
+        <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
 
       <TextWrapper>

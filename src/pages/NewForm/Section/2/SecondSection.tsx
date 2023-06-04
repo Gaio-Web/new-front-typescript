@@ -3,16 +3,22 @@ import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '..
 import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
+import { Modal } from "./Components/Modal";
 
 interface ISecondSecPops {
   products: string | undefined;
   img: string | undefined;
   isLoading: any;
+  userID: string | undefined;
 }
 
-function SecondSection({ products, img, isLoading }: ISecondSecPops): JSX.Element {
+function SecondSection({ products, img, isLoading, userID }: ISecondSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
+
+  userID = '5584991097445'
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -25,9 +31,14 @@ function SecondSection({ products, img, isLoading }: ISecondSecPops): JSX.Elemen
 
   return (
     <Container >
+      <Modal
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={() => setModalIsVisible(false)}
+        userID={userID}
+      />
       <Header>
         <h1>Segunda sessão</h1>
-        <FaEdit/>
+        <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
 
       <TextWrapper>

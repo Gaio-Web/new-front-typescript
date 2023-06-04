@@ -11,7 +11,7 @@ function Navbar({ menuIsVisible, setMenuIsVisible }: any) {
   return (
     // @ts-ignore
     <Container isVisible={menuIsVisible} >
-      <IoClose size={45} onClick={() => setMenuIsVisible(false)}/>
+      <IoClose size={45} onClick={() => setMenuIsVisible(false)} color='white'/>
       <nav>
         <a href="#" className='option'>Primeira sessão</a>
         <a href="#" className='option'>Segunda sessão</a>

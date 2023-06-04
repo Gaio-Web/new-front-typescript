@@ -29,6 +29,8 @@ function FourthSection({phone}: IFourthSecProps): JSX.Element {
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
+  const id = phone
+
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
     setImagesurls((prevState: any) => prevState.filter((prevUrl: any) => prevUrl !== refUrl));
@@ -58,12 +60,10 @@ function FourthSection({phone}: IFourthSecProps): JSX.Element {
         });
 };
 
-const id = phone;
-
 const listAllImagesFromFolder = async () => {
   try {
       setImagesurls([]);
-      const listRef = ref(storage, `5516981837170/gallery`);
+      const listRef = ref(storage, `${id}/gallery`);
       const res = await listAll(listRef);
       const urls = await Promise.all(res.items.map(getDownloadURL));
       setImagesurls(urls);
@@ -137,13 +137,3 @@ useEffect(() => {
 }
 
 export { FourthSection }
-
-//
-      {/* {imgsUrls.map((url: string) => (
-        <div className='imageWrapper' key={url}>
-            <img src={url} alt="imagens"/>
-            <i onClick={() => deleteImg(url)}>
-                <BsFillTrash3Fill style={{color:'#ef233c' }} size={'35px'}/>
-            </i>
-        </div>
-      ))} */}

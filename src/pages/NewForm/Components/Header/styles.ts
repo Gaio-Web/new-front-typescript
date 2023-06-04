@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Container = styled.header<{ small: boolean }>`
   width: 100%;
   height: ${({ small }) => (small ? '40px' : '5rem')};
-  background: rgb(5, 55, 124);
+  background: rgba(255,255,255, 0.8);
+
+  backdrop-filter: blur(2px);
 
   padding: 1rem;
   display: flex;

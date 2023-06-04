@@ -12,18 +12,27 @@ interface ISecondSectionProp {
   mainColor: string;
   accentColor: string;
   coverKeyWords: string;
+  secondTitle: string;
 }
 
-function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords, secondTitle}: ISecondSectionProp): JSX.Element{
     return (
         <Container>
             <div id='secondSection' className={'second-wrapper'}>
                 <div className='title-n-prod'>
-                    {isAutonomous == '1' ? (
-                        <h1 className="sectionTitle" style={{color: mainColor}}>O que ofereço</h1>
+                  {
+                    secondTitle == '' ? (
+                        <>
+                        {isAutonomous == '1' ? (
+                                  <h1 className="sectionTitle" style={{color: mainColor}}>O que ofereço</h1>
+                              ) : (
+                                  <h1 className="sectionTitle" style={{color: mainColor}}>O que oferecemos</h1>
+                              )}
+                        </>
                     ) : (
-                        <h1 className="sectionTitle" style={{color: mainColor}}>O que oferecemos</h1>
-                    )}
+                      <h1 className="sectionTitle" style={{color: mainColor}}>{secondTitle}</h1>
+                    )
+                  }
                     <p>{products}</p>
 
                     <button onClick={onClick} style={{backgroundColor: accentColor, color: 'white', marginTop: '20px', width: '100%'}} className='btn-1'>Fale com a gente!</button>
