@@ -187,6 +187,7 @@ function NewLayout(): JSX.Element {
                     src={Photo3}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    secondTitle={data.secondTitle}
                 />
             </Suspense>
 

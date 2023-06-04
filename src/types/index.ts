@@ -99,4 +99,8 @@ export interface Contact {
 
   instagram: string;
   origin: string;
+
+  secondTitle: string;
+  thirdTitle: string;
+  fifthTitle: string;
 }

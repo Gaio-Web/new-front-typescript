@@ -38,7 +38,7 @@ export function Header({ setMenuIsVisible }: any) {
       </section>
 
       <section>
-        <GiHamburgerMenu onClick={() => setMenuIsVisible(true)} className="mobile" size={'24px'} color="white"/>
+        <GiHamburgerMenu onClick={() => setMenuIsVisible(true)} className="mobile" size={smallNavbar ? '18' : '24px'} color="rgb(5, 55, 124)"/>
       </section>
     </Container>
   )

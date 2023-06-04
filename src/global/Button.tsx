@@ -2,15 +2,18 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 interface IButtonProp {
-  width?: 'small' | 'larger';
-  children: React.ReactNode;
-  bgColor?: string;
+  width?: 'small' | 'larger'; // small: 50%; larger: 100%
+  children: React.ReactNode;  // button label content
+  bgColor?: string;           // background color
   onClick?: any;
+  type?: any;                 // button type e.g.: 'submit'
+  mt?: string;                // margin top
+  mb?: string;                // margin bottom
 }
 
-function StyledButton({ width, children, bgColor, onClick }: IButtonProp): JSX.Element {
+function StyledButton({ width, children, bgColor, onClick, type, mt, mb }: IButtonProp): JSX.Element {
   return (
-    <Button width={width} style={{ backgroundColor: bgColor }} onClick={onClick}>
+    <Button width={width} style={{ backgroundColor: bgColor, marginTop: mt, marginBottom: mb }} onClick={onClick} type={type}>
       { children }
     </Button>
   )
@@ -26,7 +29,7 @@ const Button = styled.button<IButtonProp>`
     return 'auto';
   }};
   border: 1px solid #c4c4c42e;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: rgb(41, 182, 10);
   color: white;
   font-weight: 600;

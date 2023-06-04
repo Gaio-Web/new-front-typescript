@@ -4,17 +4,22 @@ import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { Skeleton } from "@mui/material";
 import { LoadingComponent } from "../../Components/Skeleton";
+import { Modal } from "./Components/Modal";
 
 interface IFirstSecPops {
   call: string | undefined;
   history: string | undefined;
   img: string | undefined;
   isLoading: any;
+  userID: any;
+  title: string | undefined;
 }
 
-function FifthSection({ call, history, img, isLoading }: IFirstSecPops): JSX.Element {
+function FifthSection({ call, history, img, isLoading, userID, title }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -26,15 +31,26 @@ function FifthSection({ call, history, img, isLoading }: IFirstSecPops): JSX.Ele
   };
 
   return (
-    <Container >
+    <Container>
+      <Modal
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={() => setModalIsVisible(false)}
+        userID={userID}
+      />
       <Header>
         <h1>Quinta sessão</h1>
-        <FaEdit/>
+        <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
 
       <TextWrapper>
         <h4>Título da sessão</h4>
-        <p>Nossa história</p>
+        {
+          title == '' ? (
+            <p>Nossa história</p>
+          ) : (
+            <p>{title}</p>
+          )
+        }
       </TextWrapper>
 
     <TextWrapper>

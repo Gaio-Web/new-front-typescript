@@ -5,12 +5,14 @@ import { toast } from "react-toastify";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Header } from "./Components/Header/Header";
 import { FirstSection } from "./Section/1/FirstSection";
-import { Contact } from "../../types";
 import { FormHeader } from "./Section/Header/Header";
 import { SecondSection } from "./Section/2/SecondSection";
 import { ThirdSection } from "./Section/3/ThirdSection";
 import { FourthSection } from "./Section/4/FourthSection";
 import { FifthSection } from "./Section/5/FifthSection";
+
+import { Contact } from "../../types";
+import { useParams } from "react-router-dom";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -18,11 +20,14 @@ function NewForm(): JSX.Element {
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { id } = useParams();
+
+  document.title = id!;
 
   const fetchDataForms = useCallback ( async () => {
       try {
           const response = await axios.get<Contact>(
-              `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/5516981837170`
+              `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/${id}`
           );
           setData(response.data);
       } catch (err) {
@@ -66,7 +71,7 @@ function NewForm(): JSX.Element {
        />
 
         <FirstSection
-          userID={"5584991097445"}
+          userID={data?.phone}
           call={data?.call}
           description={data?.description}
           img={data?.photos.photo1.base64}
@@ -74,6 +79,7 @@ function NewForm(): JSX.Element {
         />
 
         <SecondSection
+          userID={data?.phone}
           products={data?.products}
           img={data?.photos.photo3.base64}
           isLoading={loading}
@@ -87,6 +93,8 @@ function NewForm(): JSX.Element {
           qualitydescription2={data?.qualitydescription2}
           qualitydescription3={data?.qualitydescription3}
           isLoading={loading}
+          userID={data?.phone}
+          title={data?.thirdTitle}
         />
 
         <FourthSection
@@ -98,6 +106,8 @@ function NewForm(): JSX.Element {
           history={data?.history}
           img={data?.photos.photo2.base64}
           isLoading={loading}
+          userID={data?.phone}
+          title={data?.fifthTitle}
         />
 
       </Main>
