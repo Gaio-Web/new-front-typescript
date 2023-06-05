@@ -8,16 +8,20 @@ function Navbar({ menuIsVisible, setMenuIsVisible }: any) {
     document.body.style.overflowY = menuIsVisible ? 'hidden' : 'auto';
   }, [menuIsVisible]);
 
+  const handleClick = () => {
+    setMenuIsVisible(false);
+  }
+
   return (
     // @ts-ignore
     <Container isVisible={menuIsVisible} >
-      <IoClose size={45} onClick={() => setMenuIsVisible(false)} color='white'/>
+      <IoClose size={45} onClick={handleClick} color='white'/>
       <nav>
-        <a href="#" className='option'>Primeira sessão</a>
-        <a href="#" className='option'>Segunda sessão</a>
-        <a href="#" className='option'>Terceira sessão</a>
-        <a href="#" className='option'>Quarta sessão</a>
-        <a href="#" className='option'>Sexta sessão</a>
+        <a href="#first" className='option' onClick={handleClick}>Primeira sessão</a>
+        <a href="#second" className='option' onClick={handleClick}>Segunda sessão</a>
+        <a href="#third" className='option' onClick={handleClick}>Terceira sessão</a>
+        <a href="#fourth" className='option' onClick={handleClick}>Quarta sessão</a>
+        <a href="#fifth" className='option' onClick={handleClick}>Sexta sessão</a>
       </nav>
     </Container>
   )

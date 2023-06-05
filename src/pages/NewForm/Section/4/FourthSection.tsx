@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '../styles';
+import { Container, Header, TextWrapper } from '../styles';
 import { FaEdit } from 'react-icons/fa';
-import { BsFillTrash3Fill } from 'react-icons/bs';
 import { StyledButton } from "../../../../global/Button";
-import { Skeleton, ImageList, ImageListItem } from "@mui/material";
-import { LoadingComponent } from "../../Components/Skeleton";
+import { ImageList } from "@mui/material";
 
 import { Modal} from "./Components/Modal/Modal";
 
@@ -17,9 +15,10 @@ import storage from "../../../../../firebaseConfig";
 
 interface IFourthSecProps {
   phone: any;
+  id: any;
 }
 
-function FourthSection({phone}: IFourthSecProps): JSX.Element {
+function FourthSection({phone, id}: IFourthSecProps): JSX.Element {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [clicked, setClicked] = useState(false);
@@ -28,8 +27,6 @@ function FourthSection({phone}: IFourthSecProps): JSX.Element {
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
-
-  const id = phone
 
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
@@ -96,7 +93,7 @@ useEffect(() => {
   return (
     <>
 
-    <Container >
+    <Container id="fourth">
       <Modal
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
