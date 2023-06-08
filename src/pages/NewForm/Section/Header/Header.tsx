@@ -1,37 +1,26 @@
 import React, { useState } from "react";
 import { Container, Recomendation, ImgWrapper } from './styles'
-import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
-import { FileInputComponent } from "../../../../global/FileUpload";
+import { FileInputComponent } from "../../../../global/uploads/LogoUpload";
 
 interface IFormHeaderProps {
   img: string | undefined;
   name: string | undefined;
   isLoading: any;
+  userID: string | undefined;
+  toast: (value: boolean | undefined) => void;
 }
 
-function FormHeader({img, name, isLoading}: IFormHeaderProps ): JSX.Element {
+function FormHeader({img, name, isLoading, userID, toast}: IFormHeaderProps ): JSX.Element {
   const [isFileSelected, setFileSelected] = useState<boolean>(false);
   const [image, setImage] = useState<string >('');
   const [preview, setPreview] = useState<string>('')
 
-  const HandleOnFileSelect = (file: File) => {
-    setFileSelected(true)
+  const HandleOnFileSelect = () => {
+    toast(true)
   }
 
-//   const HandleOnFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setImage(event.target.files?.[0]);
-
-//     const offerImage = event.target.files?.[0];
-//     if (!offerImage) {
-//         return;
-//     }
-//     const reader = new FileReader();
-//     reader.onload = () => {
-//         setPreview(reader.result as string);
-//     };
-//     reader.readAsDataURL(offerImage);
-// };
+  const outroNome = 'hue'
 
   return (
     <Container>
@@ -40,35 +29,24 @@ function FormHeader({img, name, isLoading}: IFormHeaderProps ): JSX.Element {
         width="25%"
         loading={isLoading}
         component={
-          <strong>{name}</strong>
+          <strong>{isFileSelected ? outroNome : name}</strong>
         }
       /></p>
-
-      {/* <input /> */}
       <ImgWrapper>
       <LoadingComponent
         height="10rem"
         loading={isLoading}
         component={
-          <img src={img}/>
-        }
+          img === '' ? (
+            <img src={img}/>
+          ) : (
+          <></>
+          )
+      }
       />
-      {/* <StyledButton width="larger" children="Trocar logo"/> */}
+      <Recomendation>Dimensões recomendadas: <strong>200x75</strong></Recomendation>
 
-
-      <Recomendation>Dimenssões recomendadas: <strong>200x75</strong></Recomendation>
-
-      <FileInputComponent onFileSelect={HandleOnFileSelect} />
-      {/* {
-        isFileSelected ? (
-          <>
-            <StyledButton children="Enviar foto" width="larger"/>
-            <img src={image}/>
-          </>
-        ) : (
-          <FileInputComponent onFileSelect={HandleOnFileSelect} />
-        )
-      } */}
+      <FileInputComponent userID={userID} onValueChange={HandleOnFileSelect}/>
       </ImgWrapper>
     </Container>
   )

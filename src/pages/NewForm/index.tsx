@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Container, Main } from "./styles";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Header } from "./Components/Header/Header";
 import { FirstSection } from "./Section/1/FirstSection";
@@ -14,11 +14,23 @@ import { FifthSection } from "./Section/5/FifthSection";
 import { Contact } from "../../types";
 import { useParams } from "react-router-dom";
 
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Fade from '@mui/material/Fade';
+import Slide, { SlideProps } from '@mui/material/Slide';
+import Grow, { GrowProps } from '@mui/material/Grow';
+import { TransitionProps } from '@mui/material/transitions';
+import { Alert } from "@mui/material";
+
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [open, setOpen] = React.useState(false);
+
+  const [reload, setReload] = useState<boolean>(false);
 
   const { id } = useParams();
 
@@ -53,6 +65,31 @@ function NewForm(): JSX.Element {
         });
 }, [fetchDataForms]);
 
+    useEffect(() => {
+      if (reload == true) {
+        setLoading(true);
+        fetchDataForms().then(() => {
+          setReload(false);
+
+        }).finally(() => {
+          setLoading(false);
+        })
+      }
+    }, [reload]);
+
+    const handleToast = () => {
+      setOpen(true);
+      setReload(true);
+    };
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+
+      setOpen(false);
+    };
+
   return (
     <Container>
 
@@ -64,10 +101,31 @@ function NewForm(): JSX.Element {
        <Header setMenuIsVisible={setMenuIsVisible}/>
 
       <Main>
+
+      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{
+            width: '100%',
+            backgroundColor: '#2a9d90d7',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: '16px',
+            backdropFilter: 'blur(5px)'
+            }}>
+          Foto enviada com sucesso!
+        </Alert>
+      </Snackbar>
+
        <FormHeader
         name={data?.name}
         img={data?.photos.logo.base64}
         isLoading={loading}
+        userID={data?.phone}
+        toast={handleToast}
        />
 
         <FirstSection
@@ -76,6 +134,7 @@ function NewForm(): JSX.Element {
           description={data?.description}
           img={data?.photos.photo1.base64}
           isLoading={loading}
+          toast={handleToast}
         />
 
         <SecondSection
@@ -83,6 +142,7 @@ function NewForm(): JSX.Element {
           products={data?.products}
           img={data?.photos.photo3.base64}
           isLoading={loading}
+          toast={handleToast}
         />
 
         <ThirdSection
@@ -109,6 +169,7 @@ function NewForm(): JSX.Element {
           isLoading={loading}
           userID={data?.phone}
           title={data?.fifthTitle}
+          toast={handleToast}
         />
 
       </Main>

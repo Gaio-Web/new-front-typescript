@@ -35,7 +35,7 @@ export const Header = styled.div`
 export const ImageContainer = styled.div`
   width: 100%;
   height: fit-content;
-  min-height: 20rem;
+  /* min-height: 20rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

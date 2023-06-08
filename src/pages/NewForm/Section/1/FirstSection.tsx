@@ -1,15 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '../styles'
 import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
 
-import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
-import storage from "../../../../../firebaseConfig";
-import { toast } from "react-toastify";
-import { StyledInput } from "../../../../global/PhotoInput";
-import axios from "axios";
 import { Modal } from "./Components/Modal";
+import { FileInputComponent } from "../../../../global/uploads/CoverUpload";
 
 interface IFirstSecPops {
   call: string | undefined;
@@ -17,28 +13,26 @@ interface IFirstSecPops {
   img: string | undefined;
   isLoading: any;
   userID: any;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function FirstSection({ call, description, img, isLoading, userID }: IFirstSecPops): JSX.Element {
+function FirstSection({ call, description, img, isLoading, userID, toast }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
-  const [uploaded, setUploaded] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
+  const [isFileSelected, setFileSelected] = useState<boolean>(false);
+
   userID = '5584991097445'
-
-  const { id } = userID;
-
-  const handleClick = () => {
-    setClicked(!clicked);
-  }
-
 
   const handleChange = (event: any) => {
     setColor(event.target.value);
   };
+
+  const HandleOnFileSelect = () => {
+    toast(true)
+  }
 
   return (
     <Container >
@@ -78,10 +72,18 @@ function FirstSection({ call, description, img, isLoading, userID }: IFirstSecPo
           loading={isLoading}
           height="10rem"
           component={
-            <img src={img}/>
+              img === '' ? (
+                <img src={img}/>
+              ) : (
+                <>
+                </>
+              )
           }
         />
-        <StyledButton width={'larger'} children='Mudar foto'/>
+        <FileInputComponent
+          userID={userID}
+          onValueChange={HandleOnFileSelect}
+        />
       </ImageContainer>
 
       <InputWrapper >
