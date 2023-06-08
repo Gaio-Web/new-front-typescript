@@ -4,15 +4,18 @@ import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
 import { Modal } from "./Components/Modal";
+import { FileInputComponent } from "../../../../global/uploads/OfferUpload";
 
 interface ISecondSecPops {
   products: string | undefined;
   img: string | undefined;
   isLoading: any;
   userID: string | undefined;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function SecondSection({ products, img, isLoading, userID }: ISecondSecPops): JSX.Element {
+function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
 
@@ -24,10 +27,13 @@ function SecondSection({ products, img, isLoading, userID }: ISecondSecPops): JS
     setClicked(!clicked);
   }
 
-
   const handleChange = (event: any) => {
     setColor(event.target.value);
   };
+
+  const HandleOnFileSelect = () => {
+    toast(true)
+  }
 
   return (
     <Container >
@@ -57,18 +63,24 @@ function SecondSection({ products, img, isLoading, userID }: ISecondSecPops): JS
       />
     </TextWrapper>
 
-
-
       <ImageContainer>
         <LoadingComponent
           loading={isLoading}
           height="10rem"
           component={
-           <img src={img} />
-          }
+            img === '' ? (
+              <img src={img}/>
+            ) : (
+              <>
+              </>
+            )
+        }
         />
 
-        <StyledButton width={'larger'} children='Mudar foto'/>
+        <FileInputComponent
+          userID={userID}
+          onValueChange={HandleOnFileSelect}
+        />
       </ImageContainer>
 
       <InputWrapper >

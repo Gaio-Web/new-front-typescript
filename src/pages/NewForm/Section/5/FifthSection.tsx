@@ -5,6 +5,7 @@ import { StyledButton } from "../../../../global/Button";
 import { Skeleton } from "@mui/material";
 import { LoadingComponent } from "../../Components/Skeleton";
 import { Modal } from "./Components/Modal";
+import { FileInputComponent } from "../../../../global/uploads/HistUpload";
 
 interface IFirstSecPops {
   call: string | undefined;
@@ -13,9 +14,11 @@ interface IFirstSecPops {
   isLoading: any;
   userID: any;
   title: string | undefined;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function FifthSection({ call, history, img, isLoading, userID, title }: IFirstSecPops): JSX.Element {
+function FifthSection({ call, history, img, isLoading, userID, title, toast }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
 
@@ -29,6 +32,10 @@ function FifthSection({ call, history, img, isLoading, userID, title }: IFirstSe
   const handleChange = (event: any) => {
     setColor(event.target.value);
   };
+
+  const HandleOnFileSelect = () => {
+    toast(true)
+  }
 
   return (
     <Container>
@@ -68,10 +75,18 @@ function FifthSection({ call, history, img, isLoading, userID, title }: IFirstSe
           loading={isLoading}
           height="10rem"
           component={
+           img == '' ? (
             <img src={img}/>
+           ) : (
+            <>
+            </>
+           )
           }
         />
-        <StyledButton width={'larger'} children='Mudar foto'/>
+        <FileInputComponent
+          userID={userID}
+          onValueChange={HandleOnFileSelect}
+        />
       </ImageContainer>
 
       <InputWrapper >
