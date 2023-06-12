@@ -3,6 +3,9 @@ import { IoClose } from "react-icons/io5";
 import styled, { css } from "styled-components";
 import { StyledButton } from "../../../../../../global/Button";
 
+import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
+import storage from "../../../../../../../firebaseConfig";
+
 interface IConfirmModalProps {
   confirmModalIsVisible: any;
   setConfirmModalIsVisible: any;
@@ -14,6 +17,16 @@ function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl}:
     document.body.style.overflowY = confirmModalIsVisible ? 'hidden' : 'auto';
   }, [confirmModalIsVisible]);
 
+  const deleteImg = (refUrl: string) => {
+    const imageRef = ref(storage, refUrl);
+    deleteObject(imageRef)
+        .then(() =>
+          console.log('deu certo')
+        )
+        .catch((error) => {
+            console.log('deu ruim: ', error)
+        });
+};
 
   return (
     // @ts-ignore
@@ -28,7 +41,7 @@ function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl}:
         </div>
         <BtnWrapper>
           <StyledButton children="cancelar" width="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
-          <StyledButton children="confirmar" width="small" />
+          <StyledButton children="confirmar" width="small" onClick={() => deleteImg(imgUrl)}/>
         </BtnWrapper>
       </Wrapper>
     </Container>
@@ -131,19 +144,15 @@ const Wrapper = styled.div`
     & h1 {
       width: 100%;
     }
-
-  }
+    }
     & img {
       width: auto;
       max-width: 100%;
-      max-height: 90%;
+      max-height: 45vh;
       margin-top: 1rem;
       border-radius: 8px;
     }
   }
-
-
-
 `
 
 const BtnWrapper = styled.div`

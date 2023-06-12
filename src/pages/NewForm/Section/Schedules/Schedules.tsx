@@ -1,30 +1,30 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '../styles'
 import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
 import { LoadingComponent } from "../../Components/Skeleton";
-import { Modal } from "./Components/Modal";
-import { FileInputComponent } from "../../../../global/uploads/OfferUpload";
-import { handleSubmit } from "../../Utils/mongoReq";
 
-interface ISecondSecPops {
-  products: string | undefined;
-  img?: string | undefined;
+import { Modal } from "./Components/Modal";
+import { FileInputComponent } from "../../../../global/uploads/CoverUpload";
+
+interface IFirstSecPops {
+  call: string | undefined;
+  description: string | undefined;
+  img: string | undefined;
   isLoading: any;
-  userID: string | undefined;
+  userID: any;
 
   toast: (value: boolean | undefined) => void;
 }
 
-function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPops): JSX.Element {
+function Schedules({ call, description, img, isLoading, userID, toast }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
-
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  const handleClick = () => {
-    setClicked(!clicked);
-  }
+  const [isFileSelected, setFileSelected] = useState<boolean>(false);
+
+  userID = '5584991097445'
 
   const handleChange = (event: any) => {
     setColor(event.target.value);
@@ -34,19 +34,9 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
     toast(true)
   }
 
-  const handleColorSubmit = useCallback((event : any) => {
-    event.preventDefault();
+  const handleColorSubmit = () => {
 
-    handleSubmit(
-      [
-        {
-          "field": "secondColor",
-          "value":  color
-        },
-      ],
-      userID
-    );
-  }, [color, userID])
+  }
 
   return (
     <Container >
@@ -56,13 +46,19 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
         userID={userID}
       />
       <Header>
-        <h1>Segunda sessão</h1>
+        <h1>Horários</h1>
         <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
 
       <TextWrapper>
         <h4>Título da sessão</h4>
-        <p>O que oferecemos</p>
+        <LoadingComponent
+          loading={isLoading}
+          height="4rem"
+          component={
+            <p>{call}</p>
+          }
+        />
       </TextWrapper>
 
     <TextWrapper>
@@ -71,11 +67,10 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
         loading={isLoading}
         height="4rem"
         component={
-          <p>{products}</p>
+          <p>{description}</p>
         }
       />
     </TextWrapper>
-
       <ImageContainer>
         <LoadingComponent
           loading={isLoading}
@@ -87,16 +82,24 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
               </>
             ) : (
               <>
-                <img src={img} />
+                <img src={img}/>
               </>
             )
-        }
+          }
         />
-
         <FileInputComponent
           userID={userID}
           onValueChange={HandleOnFileSelect}
         />
+      <p
+        style={{
+          fontStyle: 'italic',
+          color: 'rgba(0,0,0,0.5)',
+          fontSize: '14px',
+          textAlign: 'justify',
+          letterSpacing: '0.5px',
+        }}
+      >Você pode subir uma imagem personalizada para os horários</p>
       </ImageContainer>
 
       <InputWrapper >
@@ -107,8 +110,8 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
           value={color}
           onChange={handleChange}
           className="color-input"
-
           />
+
         <p>{color}</p>
       </div>
       <StyledButton children="Atualizar cor" width="larger" bgColor={color} onClick={handleColorSubmit}/>
@@ -117,4 +120,4 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
   )
 }
 
-export { SecondSection }
+export { Schedules }

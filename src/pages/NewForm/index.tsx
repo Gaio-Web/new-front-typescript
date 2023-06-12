@@ -21,6 +21,7 @@ import Slide, { SlideProps } from '@mui/material/Slide';
 import Grow, { GrowProps } from '@mui/material/Grow';
 import { TransitionProps } from '@mui/material/transitions';
 import { Alert } from "@mui/material";
+import { Schedules } from "./Section/Schedules/Schedules";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -169,6 +170,15 @@ function NewForm(): JSX.Element {
           isLoading={loading}
           userID={data?.phone}
           title={data?.fifthTitle}
+          toast={handleToast}
+        />
+
+        <Schedules
+          userID={data?.phone}
+          call={data?.call}
+          description={data?.description}
+          img={data?.photos.schedules.base64}
+          isLoading={loading}
           toast={handleToast}
         />
 

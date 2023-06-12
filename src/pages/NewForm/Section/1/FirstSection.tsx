@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '../styles'
 import { FaEdit } from 'react-icons/fa'
 import { StyledButton } from "../../../../global/Button";
@@ -6,6 +6,7 @@ import { LoadingComponent } from "../../Components/Skeleton";
 
 import { Modal } from "./Components/Modal";
 import { FileInputComponent } from "../../../../global/uploads/CoverUpload";
+import { handleSubmit } from "../../Utils/mongoReq";
 
 interface IFirstSecPops {
   call: string | undefined;
@@ -33,6 +34,21 @@ function FirstSection({ call, description, img, isLoading, userID, toast }: IFir
   const HandleOnFileSelect = () => {
     toast(true)
   }
+
+  const handleColorSubmit = useCallback((event : any) => {
+      event.preventDefault();
+
+      handleSubmit(
+        [
+          {
+            "field": "firstColor",
+            "value":  color
+          },
+        ],
+        userID
+      );
+    }, [color, userID])
+
 
   return (
     <Container >
@@ -72,13 +88,15 @@ function FirstSection({ call, description, img, isLoading, userID, toast }: IFir
           loading={isLoading}
           height="10rem"
           component={
-              img === '' ? (
-                <img src={img}/>
-              ) : (
-                <>
+            img == '' ? (
+              <>
 
-                </>
-              )
+              </>
+            ) : (
+              <>
+                <img src={img}/>
+              </>
+            )
           }
         />
         <FileInputComponent
@@ -95,11 +113,10 @@ function FirstSection({ call, description, img, isLoading, userID, toast }: IFir
           value={color}
           onChange={handleChange}
           className="color-input"
-
           />
         <p>{color}</p>
       </div>
-      <StyledButton children="Atualizar cor" width="larger" bgColor={color}/>
+      <StyledButton children="Atualizar cor" width="larger" bgColor={color} onClick={handleColorSubmit}/>
     </InputWrapper>
     </Container>
   )

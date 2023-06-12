@@ -7,7 +7,7 @@ type Param = {
 
 type Params = Param[];
 
-export const HandleSubmit = async (fields: Params, userID: string) => {
+export const handleSubmit = async (fields: Params, userID: string | undefined) => {
 
   const phone = userID;
 

@@ -76,9 +76,12 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast }: I
           height="10rem"
           component={
            img == '' ? (
-            <img src={img}/>
-           ) : (
             <>
+
+            </>
+           ) : (
+             <>
+             <img src={img}/>
             </>
            )
           }

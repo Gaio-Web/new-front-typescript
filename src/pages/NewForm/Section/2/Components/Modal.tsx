@@ -3,12 +3,12 @@ import { IoClose } from "react-icons/io5";
 import styled, { css } from "styled-components";
 import {  TextField } from "@mui/material";
 import { StyledButton } from "../../../../../global/Button";
-import { HandleSubmit } from "../../../Utils/mongoReq";
+import { handleSubmit } from "../../../Utils/mongoReq";
 
 interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
-  userID: string;
+  userID: string | undefined;
 }
 
 function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.Element {
@@ -38,7 +38,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
   const handleFormSubmit = useCallback((event: any) => {
     event.preventDefault();
 
-    HandleSubmit(
+    handleSubmit(
       [
         {
           "field": "secondTitle",

@@ -8,6 +8,7 @@ interface IFormHeaderProps {
   name: string | undefined;
   isLoading: any;
   userID: string | undefined;
+
   toast: (value: boolean | undefined) => void;
 }
 
@@ -37,12 +38,16 @@ function FormHeader({img, name, isLoading, userID, toast}: IFormHeaderProps ): J
         height="10rem"
         loading={isLoading}
         component={
-          img === '' ? (
-            <img src={img}/>
+          img == '' ? (
+            <>
+
+            </>
           ) : (
-          <></>
+            <>
+              <img src={img}/>
+            </>
           )
-      }
+          }
       />
       <Recomendation>Dimensões recomendadas: <strong>200x75</strong></Recomendation>
 
