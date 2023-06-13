@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+interface IHeaderProps {
+  bgColor: string;
+}
+
+export const Container = styled.header<IHeaderProps>`
   width: 100%;
   min-height: 5rem;
   height: fit-content;
-  background-color: white;
+  background-color: ${props => props.bgColor || 'white'};
   display: flex;
   align-items: center;
   padding-top: 1rem;

@@ -9,11 +9,12 @@ interface IHeaderSectionProp {
   secondaryColor?: string;
   name: string;
   insta: string;
+  color: string;
 }
 
-function HeaderSection({ photoBase64, secondaryColor, name, insta }: IHeaderSectionProp): JSX.Element {
+function HeaderSection({ photoBase64, secondaryColor, name, insta, color }: IHeaderSectionProp): JSX.Element {
   return (
-    <Container style={{ justifyContent: insta ?  'space-between' : 'center'}} >
+    <Container style={{ justifyContent: insta ?  'space-between' : 'center'}} bgColor={color}>
       {
         photoBase64 === '' ? (
 
@@ -27,7 +28,6 @@ function HeaderSection({ photoBase64, secondaryColor, name, insta }: IHeaderSect
       ) : (
         <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
           <img src={Insta} style={{width: '40px'}}/>
-            {/* <GrInstagram size={'25px'} color='rgb(5,55,124)' /> */}
           <p>@{insta}</p>
         </a>
       )}

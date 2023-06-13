@@ -164,6 +164,7 @@ function NewLayout(): JSX.Element {
                 photoBase64={data.photos.logo.base64}
                 name={data.name}
                 insta={data.instagram}
+                color={data.color}
             />
 
             <FirstSection
