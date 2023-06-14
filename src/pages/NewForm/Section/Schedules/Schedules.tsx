@@ -101,21 +101,6 @@ function Schedules({ call, description, img, isLoading, userID, toast }: IFirstS
         }}
       >Você pode subir uma imagem personalizada para os horários</p>
       </ImageContainer>
-
-      <InputWrapper >
-    <h4>Cor de fundo</h4>
-      <div className="color-input-wrapper" style={{ borderColor: color }}>
-        <input
-          type="color"
-          value={color}
-          onChange={handleChange}
-          className="color-input"
-          />
-
-        <p>{color}</p>
-      </div>
-      <StyledButton children="Atualizar cor" width="larger" bgColor={color} onClick={handleColorSubmit}/>
-    </InputWrapper>
     </Container>
   )
 }

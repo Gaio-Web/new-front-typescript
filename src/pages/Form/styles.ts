@@ -461,34 +461,7 @@ export const ThirdSection = styled.div`
           align-items: center;
           flex-direction: column;
 
-          .color-option {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            width: 70px;
-            height: 70px;
-            border-radius: 4px;
-            background-color: transparent;
-            box-sizing: border-box;
-            border: 3px solid #034aa6;
-            overflow: hidden;
 
-            & .mainColor{
-              width: 33.3%;
-              height: 100%;
-            }
-
-            & .secondaryColor{
-              width: 33.3%;
-              height: 100%;
-            }
-
-            & .accentColor{
-              width: 33.3%;
-              height: 100%;
-            }
-          }
 
           h1 {
             font-weight: 500;

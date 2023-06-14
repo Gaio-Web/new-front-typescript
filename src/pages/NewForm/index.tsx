@@ -22,6 +22,7 @@ import Grow, { GrowProps } from '@mui/material/Grow';
 import { TransitionProps } from '@mui/material/transitions';
 import { Alert } from "@mui/material";
 import { Schedules } from "./Section/Schedules/Schedules";
+import { ColorSection } from "./Section/ColorSection/ColorSection";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -127,6 +128,13 @@ function NewForm(): JSX.Element {
         isLoading={loading}
         userID={data?.phone}
         toast={handleToast}
+       />
+
+       <ColorSection
+        color={data?.color}
+        accentColor={data?.accentColor}
+        mainColor={data?.mainColor}
+        secondaryColor={data?.secondaryColor}
        />
 
         <FirstSection
