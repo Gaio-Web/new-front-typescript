@@ -23,6 +23,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { Alert } from "@mui/material";
 import { Schedules } from "./Section/Schedules/Schedules";
 import { ColorSection } from "./Section/ColorSection/ColorSection";
+import { Address } from "./Section/Address/Address";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -188,6 +189,10 @@ function NewForm(): JSX.Element {
           img={data?.photos.schedules.base64}
           isLoading={loading}
           toast={handleToast}
+        />
+
+        <Address
+          userID={data?.phone}
         />
 
       </Main>
