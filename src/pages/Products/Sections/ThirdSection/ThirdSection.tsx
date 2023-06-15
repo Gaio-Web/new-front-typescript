@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container } from './styles';
 
+import WappLogo from '../../../../assets/svg/whatsapp-svgrepo-com.svg'
+
 interface IThirdSectionProp {
   mainColor: string;
   secondaryColor: string;
@@ -222,7 +224,7 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
           <p>{qualitydescription3}</p>
         </div>
 
-        <button onClick={onClick} style={{ backgroundColor: secondaryColor }}>Vamos conversar!</button>
+        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Vamos conversar</div> </button>
       </div>
     </Container>
   );

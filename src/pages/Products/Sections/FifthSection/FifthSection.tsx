@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from './styles';
 
 import UnsplasHistoryImage from '../../Components/UnsplashAPI/UnsplashHistory';
+import WappLogo from '../../../../assets/svg/whatsapp-svgrepo-com.svg'
 
 interface IFifthSectionProp {
   photoBase64: string;
@@ -44,7 +45,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
-        <button onClick={onClick} style={{ backgroundColor: accentColor }}>Conversar por WhatsApp</button>
+        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> Conversar por WhatsApp</div> </button>
       </div>
     </Container>
   );

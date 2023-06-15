@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from './styles';
 
 import UnsplashCoverImage from '../../Components/UnsplashAPI/UnsplashCover';
+import WappLogo from '../../../../assets/svg/whatsapp-svgrepo-com.svg'
 
 interface IFirstSectionProp {
   call: string;
@@ -36,7 +37,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
           )}
         </div>
         {/* <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>  cor removida a pedido da VIZE */}
-        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}>Conversar por WhatsApp</button>
+        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> Conversar por WhatsApp</div> </button>
       </div>
     </Container>
   );

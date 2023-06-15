@@ -32,6 +32,13 @@ export const Container = styled.div`
       line-height: 1.5;
     }
 
+    & .buttonContent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+    }
+
     & .difCards {
       display: flex;
       flex-direction: column;
@@ -63,6 +70,8 @@ export const Container = styled.div`
       & svg {
         width: 70px;
       }
+
+
     }
   }
 `;

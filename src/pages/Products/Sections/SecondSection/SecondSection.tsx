@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from './styles';
 
 import UnsplashProductsImage from '../../Components/UnsplashAPI/UnsplashProducts';
+import WappLogo from '../../../../assets/svg/whatsapp-svgrepo-com.svg'
 
 interface ISecondSectionProp {
   photoBase64: string;
@@ -39,7 +40,7 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
-        <button onClick={onClick} style={{backgroundColor: accentColor}}>fale com a gente!</button>
+        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>fale com a gente!</div> </button>
         {/* <button onClick={onClick}> teste</button> */}
       </div>
     </Container>

@@ -9,6 +9,7 @@ import {
 
 import { Carousel } from './Components/Carousel/Carousel';
 import Typewriter from '../Components/ErrorPage';
+import WappLogo from '../../assets/svg/whatsapp-svgrepo-com.svg'
 
 import ReactLoading from 'react-loading';
 
@@ -355,7 +356,7 @@ function FindByPhone(): JSX.Element {
                     <div className={'fourth-wrapper'} ref={componentRef}>
                         <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
-                        <button onClick={handleWhatsClick} style={{backgroundColor: ("#22b33b")}}>Fale com a gente</button>
+                        <button onClick={handleWhatsClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
                         {/* <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button> cor removida a pedido da VIZE*/}
                     </div>
                 </FourthSection>

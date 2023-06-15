@@ -115,6 +115,13 @@ export const FourthSection = styled.div`
       }
     }
 
+    & .buttonContent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+    }
+
     & button {
       cursor: pointer;
       background-color: rgb(41, 182, 10);

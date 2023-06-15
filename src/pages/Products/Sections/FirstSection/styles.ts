@@ -52,6 +52,13 @@ export const Container = styled.div`
       text-align: center;
     }
 
+    & .buttonContent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+    }
+
     & .img-wrapper {
       display: flex;
       justify-content: center;
