@@ -12,11 +12,13 @@ interface ISecondSecPops {
   img?: string | undefined;
   isLoading: any;
   userID: string | undefined;
+  secondTitle: string | undefined;
 
   toast: (value: boolean | undefined) => void;
+  toastFromModal: (value: boolean | undefined) => void;
 }
 
-function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPops): JSX.Element {
+function SecondSection({ products, img, isLoading, userID, secondTitle, toast, toastFromModal }: ISecondSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
 
@@ -34,19 +36,9 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
     toast(true)
   }
 
-  const handleColorSubmit = useCallback((event : any) => {
-    event.preventDefault();
-
-    handleSubmit(
-      [
-        {
-          "field": "secondColor",
-          "value":  color
-        },
-      ],
-      userID
-    );
-  }, [color, userID])
+  const handleText = () => {
+    toastFromModal(true)
+  }
 
   return (
     <Container >
@@ -54,6 +46,7 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
+        toast={handleText}
       />
       <Header>
         <h1>Segunda sessão</h1>
@@ -62,7 +55,21 @@ function SecondSection({ products, img, isLoading, userID, toast }: ISecondSecPo
 
       <TextWrapper>
         <h4>Título da sessão</h4>
-        <p>O que oferecemos</p>
+          <LoadingComponent
+            loading={isLoading}
+            height="4rem"
+            component={
+              secondTitle == '' ? (
+                <>
+                  <p>O que oferecemos</p>
+                </>
+              ) : (
+                <>
+                  <p>{secondTitle}</p>
+                </>
+              )
+            }
+          />
       </TextWrapper>
 
     <TextWrapper>

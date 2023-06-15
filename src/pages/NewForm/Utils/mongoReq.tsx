@@ -7,6 +7,10 @@ type Param = {
 
 type Params = Param[];
 
+interface ResponseData {
+  success: boolean;
+}
+
 export const handleSubmit = async (fields: Params, userID: string | undefined) => {
 
   const phone = userID;
@@ -15,8 +19,6 @@ export const handleSubmit = async (fields: Params, userID: string | undefined) =
     "phone": userID,
     "fields": fields,
   }
-
-  console.log('mongo: ', body)
 
   try {
     const response = await fetch(
@@ -29,9 +31,13 @@ export const handleSubmit = async (fields: Params, userID: string | undefined) =
       body: JSON.stringify(body),
       }
     );
+
+    if (response.ok) {
+      const data: ResponseData = await response.json();
+      return data.success;
+    }
     const data = await response.json();
   } catch (err) {
     console.log('error: ', err)
   }
-
 }

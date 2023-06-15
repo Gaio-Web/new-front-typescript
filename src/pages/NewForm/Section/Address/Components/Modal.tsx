@@ -1,42 +1,58 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import styled, { css } from "styled-components";
-import { TextField } from "@mui/material";
 import { StyledButton } from "../../../../../global/Button";
 import { handleSubmit } from "../../../Utils/mongoReq";
 
-import { InputMask, InputMaskChangeEvent } from 'primereact/inputmask';
+import { IMaskInput } from 'react-imask';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { TextField } from "@mui/material";
 
 interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
   userID: string | undefined;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.Element {
+interface CustomProps {
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
+}
 
-  useEffect(() => {
-    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-  }, [modalIsVisible]);
+interface State {
+  textmask: string;
+}
 
-  const [clicked, setClicked] = useState<boolean>(false);
+const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask="00000-000"
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+        overwrite
+      />
+    );
+  },
+);
 
-  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
 
-  const handlePhotoClick = () => {
-    setClicked(!clicked)
-    console.log('hue')
-  }
-
-  const [sendingUrl, setSendingUrl] = useState('');
-
-  const handleConfirmModalCall = (url: any) => {
-    setConfirmModalIsVisible(true);
-    setSendingUrl(url)
-  }
+  const [values, setValues] = React.useState<State>({
+    textmask: '',
+  });
 
   const [cep, setCep] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
   const [street, setStreet] = useState<string>('');
   const [state, setState] = useState<string>('');
   const [number, setNumber] = useState<string>('');
@@ -44,62 +60,185 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
   const [neighborhood, setNeighborhood] = useState<string>('');
   const [city, setCity] = useState<string>('');
 
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+
+  const [btnDisable, setBtnDisable] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+  }, [modalIsVisible]);
+
   const getAddress = async (event: any): Promise<void> => {
     const cepvalid = event.target?.value?.replace(/[^0-9]/g, '');
 
     if (cepvalid?.length !== 8) {
         return;
+    }  else {
+      setIsDisabled(false);
     }
+
     await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
         .then((res) => res.json())
         .then((data) => {
+
+          if(data === undefined){
+            return
+          }
             setCep(`${data.cep}`);
             setStreet(`${data.logradouro}`);
             setNeighborhood(`${data.bairro}`);
             setState(data.uf);
             setCity(data.localidade);
-        });
+        })
 };
 
-  // const handleFormSubmit = useCallback((event: any) => {
-  //   event.preventDefault();
+const handleSendAddress = async () => {
+  setBtnDisable(true);
 
-  //   handleSubmit(
-  //     [
-  //       {
-  //         "field": "call",
-  //         "value":  title
-  //       },
-  //       {
-  //         "field": "description",
-  //         "value":  desc
-  //       },
-  //     ],
-  //     userID
-  //   );
-  // }, [title, desc, userID])
+  const body = JSON.stringify({
+      phone: userID,
+      zip_code: cep, // CEP
+      street: street, // rua
+      number: number, // numero
+      complement: complement, // complemento
+      city: city, // cidade
+      state: state, // estado
+      neighborhood: neighborhood, //bairro
+  });
+
+  const response = await fetch(
+      `${import.meta.env.VITE_MAIN_API_URL}/fillAddress`,
+      {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: body,
+      }
+  );
+  if (response.ok) {
+    setTimeout(() => {
+      toast(true);
+      setModalIsVisible
+    },
+      1000
+    )
+    setBtnDisable(false);
+  } else {
+    alert('Houve um erro ao atualizar o endereço, verifique se todos os campos estão preenchidos e tente novamente');
+    setBtnDisable(false)
+  }
+  const result = await response.json();
+};
 
   return (
     // @ts-ignore
-    <Container isVisible={modalIsVisible}
-      // onSubmit={handleFormSubmit}
-      >
+    <Container isVisible={modalIsVisible} >
       <Header>
       <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Endereço</h1>
       <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
       </Header>
 
-        <TextField
-          id="outlined-basic"
-          label="Seu CEP"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => getAddress(e)}
-          value={cep}
-        />
+      <p style={{ color: '#696969'}}>Para registrar um novo endereço, comece com o CEP</p>
 
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem"/>
+      <ContentWrapper>
+          <InputLabel htmlFor="formatted-text-mask-input"><strong>seu CEP</strong></InputLabel>
+            <Input
+              value={cep}
+              onChange={(e) => getAddress(e)}
+              name="textmask"
+              id="formatted-text-mask-input"
+              inputComponent={TextMaskCustom as any}
+            />
+      </ContentWrapper>
+
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+          }}
+        >
+          <TextField
+            value={street}
+            onChange={(e) => setStreet(e.target.value)}
+            id="outlined-basic"
+            label="Rua"
+            variant="outlined"
+            sx={{ width: '100%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+
+          <TextField
+            value={neighborhood}
+            onChange={(e) => setNeighborhood(e.target.value)}
+            id="outlined-basic"
+            label="Bairro"
+            variant="outlined"
+            sx={{ width: '100%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+          }}
+        >
+          <TextField
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            id="outlined-basic"
+            label="Número"
+            variant="outlined"
+            sx={{ width: '30%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+
+          <TextField
+            value={complement}
+            onChange={(e) => setComplement(e.target.value)}
+            id="outlined-basic"
+            label="Complemento"
+            variant="outlined"
+            sx={{ width: '100%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+          }}
+        >
+          <TextField
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            id="outlined-basic"
+            label="Cidade"
+            variant="outlined"
+            sx={{ width: '100%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+
+          <TextField
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            id="outlined-basic"
+            label="UF"
+            variant="outlined"
+            sx={{ width: '100%', color: 'red'}}
+            margin="normal"
+            disabled={isDisabled}
+          />
+        </Box>
+      <StyledButton width="larger" children="Salvar endereço" mt="1rem" onClick={() => handleSendAddress()} bgColor={btnDisable ? '#c4c4c4' : ''}/>
     </Container>
   )
 }
@@ -107,7 +246,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
 export { Modal }
 
 
-const Container = styled.form`
+const Container = styled.div`
   position: fixed;
   backdrop-filter: blur(3px);
   width: 100%;
@@ -195,3 +334,18 @@ const IMGWrapper = styled.div`
     }
   }
 `
+
+const ContentWrapper = styled.div`
+  height: 6rem;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.8rem;
+
+  justify-content: center;
+  box-sizing: border-box;
+
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+`;

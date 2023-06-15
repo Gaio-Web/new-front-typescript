@@ -35,6 +35,7 @@ export interface Contact {
     complement: string;
     city: string;
     state: string;
+    neighborhood: string;
   };
 
   color: string;

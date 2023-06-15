@@ -16,9 +16,10 @@ interface IFirstSecPops {
   title: string | undefined;
 
   toast: (value: boolean | undefined) => void;
+  toastFromModal: (value: boolean | undefined) => void;
 }
 
-function FifthSection({ call, history, img, isLoading, userID, title, toast }: IFirstSecPops): JSX.Element {
+function FifthSection({ call, history, img, isLoading, userID, title, toast, toastFromModal }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
 
@@ -37,12 +38,17 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast }: I
     toast(true)
   }
 
+  const handleText = () => {
+    toastFromModal(true)
+  }
+
   return (
     <Container>
       <Modal
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
+        toast={handleText}
       />
       <Header>
         <h1>Quinta sessão</h1>
@@ -51,13 +57,21 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast }: I
 
       <TextWrapper>
         <h4>Título da sessão</h4>
-        {
-          title == '' ? (
-            <p>Nossa história</p>
-          ) : (
-            <p>{title}</p>
-          )
-        }
+        <LoadingComponent
+            loading={isLoading}
+            height="2rem"
+            component={
+              title == '' ? (
+                <>
+                    <p>Nossa história</p>
+                </>
+              ) : (
+                <>
+                    <p>{title}</p>
+                </>
+              )
+            }
+          />
       </TextWrapper>
 
     <TextWrapper>

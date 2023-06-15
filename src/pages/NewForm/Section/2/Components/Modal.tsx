@@ -9,9 +9,11 @@ interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
   userID: string | undefined;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
   }, [modalIsVisible]);
@@ -35,10 +37,10 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
   const [title, setTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('')
 
-  const handleFormSubmit = useCallback((event: any) => {
+  const handleFormSubmit = useCallback( async (event: any) => {
     event.preventDefault();
 
-    handleSubmit(
+    const success = await handleSubmit(
       [
         {
           "field": "secondTitle",
@@ -51,6 +53,11 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
       ],
       userID
     );
+
+    toast(success);
+    setTitle('');
+    setDesc('');
+
   }, [title, desc, userID])
 
   return (
@@ -80,7 +87,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
           value={desc}
         />
 
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem"/>
+      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
     </Container>
   )
 }

@@ -16,9 +16,10 @@ interface IFirstSecPops {
   userID: any;
 
   toast: (value: boolean | undefined) => void;
+  toastFromModal: (value: boolean | undefined) => void;
 }
 
-function FirstSection({ call, description, img, isLoading, userID, toast }: IFirstSecPops): JSX.Element {
+function FirstSection({ call, description, img, isLoading, userID, toast, toastFromModal }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -35,20 +36,9 @@ function FirstSection({ call, description, img, isLoading, userID, toast }: IFir
     toast(true)
   }
 
-  const handleColorSubmit = useCallback((event : any) => {
-      event.preventDefault();
-
-      handleSubmit(
-        [
-          {
-            "field": "firstColor",
-            "value":  color
-          },
-        ],
-        userID
-      );
-    }, [color, userID])
-
+  const handleText = () => {
+    toastFromModal(true)
+  }
 
   return (
     <Container >
@@ -56,6 +46,7 @@ function FirstSection({ call, description, img, isLoading, userID, toast }: IFir
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
+        toast={handleText}
       />
       <Header>
         <h1>Primeira sessão</h1>

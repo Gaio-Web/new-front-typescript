@@ -9,9 +9,11 @@ interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
   userID: string;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
   }, [modalIsVisible]);
@@ -43,10 +45,10 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
   const [qualitydescription3, setQualitydescription3] = useState<string>('')
 
 
-  const handleFormSubmit = useCallback((event: any) => {
+  const handleFormSubmit = useCallback( async (event: any) => {
     event.preventDefault();
 
-    handleSubmit(
+    const success = await handleSubmit(
       [
         {
           "field": "thirdTitle",
@@ -80,6 +82,15 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
       ],
       userID
     );
+
+    toast(success);
+    setQlt1('');
+    setQlt2('');
+    setQlt3('');
+    setQualitydescription1('');
+    setQualitydescription2('');
+    setQualitydescription3('');
+
   }, [qlt1, qlt2, qlt3, qualitydescription1, qualitydescription2, qualitydescription3, userID])
 
   return (
@@ -89,7 +100,6 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
       <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Terceira sessão</h1>
       <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
       </Header>
-
         <TextField
           id="outlined-basic"
           label="Título da sessão"
@@ -99,9 +109,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
-
       <Wrapper>
-
       <div className="difs-wrapper">
         <h4 style={{color: '#1b1b1b'}}>Diferencial 1</h4>
         <TextField
@@ -168,7 +176,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
               />
          </div>
      </Wrapper>
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem"/>
+      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
     </Container>
   )
 }

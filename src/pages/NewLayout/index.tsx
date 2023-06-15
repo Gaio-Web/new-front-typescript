@@ -33,6 +33,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
+import { StyledButton } from '../../global/Button';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {

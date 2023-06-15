@@ -20,6 +20,8 @@ interface IThirdSecPops {
   userID: any;
 
   title: string | undefined;
+
+  toastFromModal: (value: boolean | undefined) => void;
 }
 
 function ThirdSection(
@@ -33,6 +35,7 @@ function ThirdSection(
     isLoading,
     userID,
     title,
+    toastFromModal,
   }: IThirdSecPops): JSX.Element {
 
   const [clicked, setClicked] = useState(false);
@@ -53,12 +56,17 @@ function ThirdSection(
     setColor(event.target.value);
   };
 
+  const handleText = () => {
+    toastFromModal(true)
+  }
+
   return (
     <Container >
       <Modal
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
+        toast={handleText}
       />
       <Header>
         <h1>Terceira sessão</h1>

@@ -80,16 +80,18 @@ function NewForm(): JSX.Element {
       }
     }, [reload]);
 
-    const handleToast = () => {
+    const [toastMessage, setToastMessage] = useState<string>('')
+
+    const handleToast = (text: string) => {
       setOpen(true);
       setReload(true);
+      setToastMessage(text)
     };
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
       if (reason === 'clickaway') {
         return;
       }
-
       setOpen(false);
     };
 
@@ -105,7 +107,7 @@ function NewForm(): JSX.Element {
 
       <Main>
 
-      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
           severity="success"
@@ -117,9 +119,10 @@ function NewForm(): JSX.Element {
             justifyContent: 'center',
             color: 'white',
             fontSize: '16px',
-            backdropFilter: 'blur(5px)'
+            backdropFilter: 'blur(5px)',
+            zIndex: 10
             }}>
-          Foto enviada com sucesso!
+            {toastMessage}
         </Alert>
       </Snackbar>
 
@@ -128,7 +131,7 @@ function NewForm(): JSX.Element {
         img={data?.photos.logo.base64}
         isLoading={loading}
         userID={data?.phone}
-        toast={handleToast}
+        toast={() => handleToast('Logo enviada com sucesso!')}
        />
 
        <ColorSection
@@ -144,15 +147,18 @@ function NewForm(): JSX.Element {
           description={data?.description}
           img={data?.photos.photo1.base64}
           isLoading={loading}
-          toast={handleToast}
+          toast={() => handleToast('Foto enviada com sucesso!')}
+          toastFromModal={() => handleToast('Texto da primeira sessão atualizado com sucesso!')}
         />
 
         <SecondSection
           userID={data?.phone}
+          secondTitle={data?.secondTitle}
           products={data?.products}
           img={data?.photos.photo3.base64}
           isLoading={loading}
-          toast={handleToast}
+          toast={() => handleToast('Foto enviada com sucesso!')}
+          toastFromModal={() => handleToast('Texto da segunda sessão atualizado com sucesso!')}
         />
 
         <ThirdSection
@@ -165,6 +171,7 @@ function NewForm(): JSX.Element {
           isLoading={loading}
           userID={data?.phone}
           title={data?.thirdTitle}
+          toastFromModal={() => handleToast('Textos da terceira sessão atualizados com sucesso!')}
         />
 
         <FourthSection
@@ -179,7 +186,8 @@ function NewForm(): JSX.Element {
           isLoading={loading}
           userID={data?.phone}
           title={data?.fifthTitle}
-          toast={handleToast}
+          toast={() => handleToast('Foto enviada com sucesso')}
+          toastFromModal={() => handleToast('Texto da quinta sessão atualizado com sucesso!')}
         />
 
         <Schedules
@@ -188,11 +196,19 @@ function NewForm(): JSX.Element {
           description={data?.description}
           img={data?.photos.schedules.base64}
           isLoading={loading}
-          toast={handleToast}
+          toast={() => handleToast('Horários atualizados com sucesso!')}
         />
 
         <Address
           userID={data?.phone}
+          toast={() => handleToast('Endereço atualizados com sucesso!')}
+          street={data?.address.street}
+          cep={data?.address.zipCode}
+          city={data?.address.city}
+          complement={data?.address.complement}
+          neighborhood={data?.address.neighborhood}
+          number={data?.address.number}
+          state={data?.address.state}
         />
 
       </Main>
