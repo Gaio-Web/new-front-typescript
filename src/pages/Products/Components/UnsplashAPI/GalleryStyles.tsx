@@ -9,14 +9,14 @@ export const Container = styled.div`
   justify-content: center;
 
   img{
-    width: 89.4%;
+    width: 100%;
   }
 `;
 
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
-  left: 5.3%;
+  left: 0%;
   border-radius: .98rem;
   width: 100%;
   height: 100%;

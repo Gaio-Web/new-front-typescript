@@ -35,7 +35,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                     slidesPerView={'auto'}
                     spaceBetween={30}
                     pagination={{
-                        clickable: true,
+                      dynamicBullets: true,
                     }}
                     loop={true}
                     grabCursor={true}
@@ -96,7 +96,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                         delay: 2000,
                         disableOnInteraction: true,
                     }}
-                    modules={[Autoplay]}
+                    modules={[Autoplay, Pagination]}
                     className="mySwiper"
                 >
                     {firebaseUrl.length > 0 &&

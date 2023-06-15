@@ -300,7 +300,7 @@ function FindByPhone(): JSX.Element {
 
             <HeaderSection
                 photoBase64={data.photos.logo.base64}
-                name={data.name}
+                // name={data.name} retirado a pedido da VIZE para teste
                 secondaryColor={data.secondaryColor}
                 navColor={data.color}
             />
@@ -355,7 +355,8 @@ function FindByPhone(): JSX.Element {
                     <div className={'fourth-wrapper'} ref={componentRef}>
                         <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
-                        <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button>
+                        <button onClick={handleWhatsClick} style={{backgroundColor: ("#22b33b")}}>Fale com a gente</button>
+                        {/* <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button> cor removida a pedido da VIZE*/}
                     </div>
                 </FourthSection>
             </Suspense>

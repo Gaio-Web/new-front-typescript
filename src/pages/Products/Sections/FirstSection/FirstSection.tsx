@@ -35,7 +35,8 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
-        <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>
+        {/* <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>  cor removida a pedido da VIZE */}
+        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}>Conversar por WhatsApp</button>
       </div>
     </Container>
   );
