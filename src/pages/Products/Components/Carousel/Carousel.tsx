@@ -39,7 +39,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                     }}
                     loop={true}
                     grabCursor={true}
-                    modules={[Pagination]}
+                    modules={[Pagination, Autoplay]}
                     className="mySwiper"
                 >
                     <SwiperSlide>
