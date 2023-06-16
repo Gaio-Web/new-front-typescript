@@ -67,7 +67,7 @@ function UnsplashGallery3 ({ data }: { data: ImageData }) {
           <ReactLoading type="spin" color="#eee" height={200} width={100} />
         ) : response.length > 0 ? (
           <>
-            <img ref={imgRef} src={response[5].urls.small} alt={data.alt_description} onLoad={handleImageLoad} />
+            <img ref={imgRef} src={response[4].urls.small} alt={data.alt_description} onLoad={handleImageLoad} />
             <Overlay className="unsplashImgOverlay" ref={overlayRef}>
               <OverlayText className="overlayText">
                 <h3>Imagens sobre seu negócio</h3>

@@ -71,7 +71,7 @@ function UnsplashGallery3 ({ data }: { data: ImageData }) {
             <Overlay className="unsplashImgOverlay" ref={overlayRef}>
               <OverlayText className="overlayText">
                 <h3>Imagens sobre seu negócio</h3>
-                <h5 className='overlaySubtitle'>Sua tabela de preços, especificações do produto ou aquele diferencial que só você tem</h5>
+                <h5 className='overlaySubtitle'>Fotos do seu produto/serviço que impressionam</h5>
               </OverlayText>
             </Overlay>
           </>
