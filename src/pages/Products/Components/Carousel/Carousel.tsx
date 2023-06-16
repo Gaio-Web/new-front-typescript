@@ -88,7 +88,7 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                     slidesPerView={'auto'}
                     spaceBetween={30}
                     pagination={{
-                        clickable: true,
+                      dynamicBullets: true,
                     }}
                     loop={true}
                     grabCursor={true}
