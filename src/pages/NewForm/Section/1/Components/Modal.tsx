@@ -4,39 +4,46 @@ import styled, { css } from "styled-components";
 import { TextField } from "@mui/material";
 import { StyledButton } from "../../../../../global/Button";
 import { handleSubmit } from "../../../Utils/mongoReq";
+import { ImageContainer } from "../../styles";
+import { LoadingComponent } from "../../../Components/Skeleton";
+import { FileInputComponent } from "../../../../../global/uploads/CoverUpload";
 
 interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
   userID: string;
 
+  img?: string | undefined;
+  isLoading?: any;
+
+  photoToast: (value: boolean | undefined) => void;
   toast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
-
+function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, photoToast, toast }: IModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
   }, [modalIsVisible]);
 
   const [clicked, setClicked] = useState<boolean>(false);
-
   const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+  const [title, setTitle] = useState<string>('');
+  const [desc, setDesc] = useState<string>('');
+  const [sendingUrl, setSendingUrl] = useState('');
 
   const handlePhotoClick = () => {
     setClicked(!clicked)
     console.log('hue')
   }
 
-  const [sendingUrl, setSendingUrl] = useState('');
+  const HandleOnFileSelect = () => {
+    photoToast(true)
+  }
 
   const handleConfirmModalCall = (url: any) => {
     setConfirmModalIsVisible(true);
     setSendingUrl(url)
   }
-
-  const [title, setTitle] = useState<string>('');
-  const [desc, setDesc] = useState<string>('')
 
   const handleFormSubmit = useCallback( async (event: any) => {
     event.preventDefault();
@@ -63,13 +70,13 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
 
   return (
     // @ts-ignore
-    <Container isVisible={modalIsVisible}
-      onSubmit={handleFormSubmit}>
+    <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
       <Header>
       <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
       <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
       </Header>
 
+    <Wrapper>
         <TextField
           id="outlined-basic"
           label="Título da sessão"
@@ -89,13 +96,44 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
           value={desc}
         />
 
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
+      <StyledButton
+        w="larger"
+        h="3rem"
+        children="Salvar textos"
+        type="submit"
+        mt="1rem"
+        onClick={setModalIsVisible}
+      />
+
+      <ImageContainer
+        style={{ marginTop: '1rem'}}
+      >
+        <LoadingComponent
+          loading={isLoading}
+          height="10rem"
+          component={
+            img == '' ? (
+              <>
+
+              </>
+            ) : (
+              <>
+                <img src={img}/>
+              </>
+            )
+          }
+        />
+        <FileInputComponent
+          userID={userID}
+          onValueChange={HandleOnFileSelect}
+        />
+      </ImageContainer>
+      </Wrapper>
     </Container>
   )
 }
 
 export { Modal }
-
 
 const Container = styled.form`
   position: fixed;
@@ -167,9 +205,6 @@ const Header = styled.div`
 `
 
 const IMGWrapper = styled.div`
-
-
-
   margin: 15px 0;
 
   overflow-y: scroll;
@@ -188,3 +223,13 @@ const IMGWrapper = styled.div`
     }
   }
 `
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  /* overflow: auto; */
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 1rem; */
+`;

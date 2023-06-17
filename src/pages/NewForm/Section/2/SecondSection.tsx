@@ -47,6 +47,9 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
         toast={handleText}
+        photoToast={HandleOnFileSelect}
+        img={img}
+        isLoading={isLoading}
       />
       <Header>
         <h1>Segunda sessão</h1>
@@ -90,22 +93,23 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
           component={
             img == '' ? (
               <>
-
+                <p style={{
+                  lineHeight: '24px',
+                  textAlign: 'justify'
+                }}>
+                  Você ainda não subiu nenhuma foto,
+                  use o ícone <FaEdit /> para enviar
+                  a foto da segunda sessão
+                </p>
               </>
             ) : (
               <>
-                <img src={img} />
+                <img src={img}/>
               </>
             )
         }
         />
-
-        <FileInputComponent
-          userID={userID}
-          onValueChange={HandleOnFileSelect}
-        />
       </ImageContainer>
-
     </Container>
   )
 }

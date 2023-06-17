@@ -82,7 +82,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
           value={desc}
         />
 
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem"/>
+      <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem"/>
     </Container>
   )
 }

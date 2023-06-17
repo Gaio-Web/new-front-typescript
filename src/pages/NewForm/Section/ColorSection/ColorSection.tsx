@@ -5,16 +5,20 @@ import { FaEdit } from 'react-icons/fa'
 import { Modal } from "./Components/Modal";
 
 interface IColorSectionProps {
-  color: string | undefined;
   mainColor: string | undefined;
   secondaryColor: string | undefined;
   accentColor: string | undefined;
 
   userID?: string | undefined;
+  toastFromModal: (value: boolean | undefined) => void;
 }
 
-function ColorSection({ color, mainColor, secondaryColor, accentColor, userID }: IColorSectionProps): JSX.Element {
+function ColorSection({ mainColor, secondaryColor, accentColor, userID, toastFromModal }: IColorSectionProps): JSX.Element {
   const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  const handleColor = () => {
+    toastFromModal(true)
+  }
 
   return (
     <Container>
@@ -22,6 +26,7 @@ function ColorSection({ color, mainColor, secondaryColor, accentColor, userID }:
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
+        toast={handleColor}
       />
         <Header>
         <h1>Paleta de cores</h1>
@@ -29,9 +34,6 @@ function ColorSection({ color, mainColor, secondaryColor, accentColor, userID }:
       </Header>
       <h3>Estas são as suas atuais cores: </h3>
       <Colors>
-      <ColorContainer
-        bgColor={color}
-        />
       <ColorContainer
         bgColor={mainColor}
         />

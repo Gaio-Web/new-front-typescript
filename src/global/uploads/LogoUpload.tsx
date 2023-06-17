@@ -108,8 +108,10 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
         children={
           logoPercent > 0 ? `Enviando Logomarca ${logoPercent} %` : `Enviar Logomarca`
         }
-        width="larger"
-        onClick={handleLogoUploadToFirebase}/>
+        w="larger"
+        onClick={handleLogoUploadToFirebase}
+        type={'button'}
+      />
     ) : (
       <FileInputContainer onClick={handleClick}>
         <FileInputLabel htmlFor="logoInput">Escolher Logomarca</FileInputLabel>
@@ -141,7 +143,7 @@ const FileInputContainer = styled.div`
   align-items: center;
   cursor: pointer;
 
-  background-color: rgba(42, 182, 10, 0.553);
+  background-color: #0077b6;
   width: 100%;
   height: 3rem;
 

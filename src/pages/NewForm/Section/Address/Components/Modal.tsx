@@ -238,7 +238,7 @@ const handleSendAddress = async () => {
             disabled={isDisabled}
           />
         </Box>
-      <StyledButton width="larger" children="Salvar endereço" mt="1rem" onClick={() => handleSendAddress()} bgColor={btnDisable ? '#c4c4c4' : ''}/>
+      <StyledButton w="larger" children="Salvar endereço" mt="1rem" onClick={() => handleSendAddress()} bgColor={btnDisable ? '#c4c4c4' : ''}/>
     </Container>
   )
 }

@@ -4,15 +4,17 @@ import {
   ColorOption, ColorPicker,
 } from './styles'
 
+// interface IColorPickerProps {
+//   main?: string;
+//   second?: string;
+//   accent?: string;
+// }
+
 
 function ColorPickerComponent(): JSX.Element {
   const [mainColor, setMainColor] = useState<string>('#034AA3');
   const [secondaryColor, setSecondaryColor] = useState<string>('#034AA3');
   const [accentColor, setAccentColor] = useState<string>('#034AA3');
-
-  const [conhece, setConhece] = useState<string>('');
-
-  const [colorized, setColorized] = useState(false);
 
   const [options, setoptions] = useState([
     { mainColor: '#EB596E', secondaryColor: '#6883BA', accentColor:'#3C0919', title: 'Carmine' },
@@ -28,6 +30,12 @@ function ColorPickerComponent(): JSX.Element {
     { mainColor: '#25D8A7', secondaryColor: '#696D7D', accentColor:'#19381F', title: 'Turquesa' },
     { mainColor: '#6D6D6D', secondaryColor: '#2DC7FF', accentColor:'#0A369D', title: 'Cinza' },
 ]);
+
+  const handleColorChange = (main: string, secondary: string, accent: string) => {
+    setMainColor(main);
+    setSecondaryColor(secondary);
+    setAccentColor(accent);
+  };
 
   return (
     <>
@@ -66,7 +74,7 @@ function ColorPickerComponent(): JSX.Element {
                 <div className='demonstrationWrapper'>
                     <div className='exampleAccent' style={{ backgroundColor: accentColor }}></div>
                     <h4>Cor de destaque</h4>
-                dhdbBb</div>
+              </div>
             </div>
         )}
     </ColorPicker>

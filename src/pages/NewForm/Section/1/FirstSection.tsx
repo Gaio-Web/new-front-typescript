@@ -26,8 +26,6 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
 
   const [isFileSelected, setFileSelected] = useState<boolean>(false);
 
-  userID = '5584991097445'
-
   const handleChange = (event: any) => {
     setColor(event.target.value);
   };
@@ -47,10 +45,13 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
         toast={handleText}
+        photoToast={HandleOnFileSelect}
+        img={img}
+        isLoading={isLoading}
       />
       <Header>
         <h1>Primeira sessão</h1>
-        <FaEdit onClick={() => setModalIsVisible(true)}/>
+           <FaEdit onClick={() => setModalIsVisible(true)}/>
       </Header>
 
       <TextWrapper>
@@ -75,13 +76,21 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
       />
     </TextWrapper>
       <ImageContainer>
+        <h4>Foto da sessão</h4>
         <LoadingComponent
           loading={isLoading}
           height="10rem"
           component={
             img == '' ? (
               <>
-
+                <p style={{
+                  lineHeight: '24px',
+                  textAlign: 'justify'
+                }}>
+                  Você ainda não subiu nenhuma foto,
+                  use o ícone <FaEdit /> para enviar
+                  a foto da primeira sessão
+                </p>
               </>
             ) : (
               <>
@@ -89,10 +98,6 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
               </>
             )
           }
-        />
-        <FileInputComponent
-          userID={userID}
-          onValueChange={HandleOnFileSelect}
         />
       </ImageContainer>
     </Container>

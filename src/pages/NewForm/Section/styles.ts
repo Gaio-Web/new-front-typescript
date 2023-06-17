@@ -26,6 +26,13 @@ export const Header = styled.div`
   justify-content: space-between;
   display: flex;
 
+  & button {
+    background-color: red;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5rem 2rem;
+  }
+
   & svg {
     height: 100%;
     width: 3vh;

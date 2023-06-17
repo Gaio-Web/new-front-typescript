@@ -1,37 +1,38 @@
 import styled from "styled-components";
 
 export const ColorOption = styled.div`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            width: 70px;
-            height: 70px;
-            border-radius: 4px;
-            background-color: transparent;
-            box-sizing: border-box;
-            border: 3px solid #034aa6;
-            overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 3px solid #034aa6;
+  overflow: hidden;
+  transition: all ease 0.3s;
 
-            transition: all ease 0.3s;
+  & .mainColor{
+    width: 33.3%;
+    height: 100%;
+  }
 
-            & .mainColor{
-              width: 33.3%;
-              height: 100%;
-            }
+  & .secondaryColor{
+    width: 33.3%;
+    height: 100%;
+  }
 
-            & .secondaryColor{
-              width: 33.3%;
-              height: 100%;
-            }
-
-            & .accentColor{
-              width: 33.3%;
-              height: 100%;
-            }
+  & .accentColor{
+    width: 33.3%;
+    height: 100%;
+  }
 `;
 
 export const ColorPicker = styled.div`
+      width: 100%;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -43,10 +44,6 @@ export const ColorPicker = styled.div`
       border-radius: 0.5rem;
 
       transition: all ease 0.3s;
-
-      @media screen and (max-width: 800px) {
-        width: 100%;
-      }
 
       h1 {
         font-weight: 700;
@@ -68,7 +65,7 @@ export const ColorPicker = styled.div`
         box-sizing: border-box;
         border-radius: 8px;
         flex-wrap: wrap;
-        gap: 2.4rem;
+        gap: 2rem;
 
         .selected {
           display: flex;
@@ -76,8 +73,6 @@ export const ColorPicker = styled.div`
           justify-content: center;
           align-items: center;
           flex-direction: column;
-
-
 
           h1 {
             font-weight: 500;

@@ -109,8 +109,10 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
         children={
           coverPercent > 0 ? `Enviando Foto ${coverPercent} %` : `Enviar Foto`
         }
-        width="larger"
-        onClick={handleCoverUploadToFirebase}/>
+        w="larger"
+        onClick={handleCoverUploadToFirebase}
+        type={'button'}
+      />
     ) : (
       <FileInputContainer onClick={handleClick}>
         <FileInputLabel htmlFor="coverInput">Escolher Foto</FileInputLabel>
@@ -142,7 +144,7 @@ const FileInputContainer = styled.div`
   align-items: center;
   cursor: pointer;
 
-  background-color: rgba(42, 182, 10, 0.553);
+  background-color: #0077b6;
   width: 100%;
   height: 3rem;
 

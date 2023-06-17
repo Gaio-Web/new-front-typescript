@@ -176,7 +176,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
               />
          </div>
      </Wrapper>
-      <StyledButton width="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
+      <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
     </Container>
   )
 }

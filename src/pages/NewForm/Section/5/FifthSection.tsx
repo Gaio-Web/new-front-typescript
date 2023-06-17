@@ -49,6 +49,9 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast, toa
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
         toast={handleText}
+        photoToast={HandleOnFileSelect}
+        img={img}
+        isLoading={isLoading}
       />
       <Header>
         <h1>Quinta sessão</h1>
@@ -91,7 +94,14 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast, toa
           component={
            img == '' ? (
             <>
-
+              <p style={{
+                lineHeight: '24px',
+                textAlign: 'justify'
+              }}>
+                Você ainda não subiu nenhuma foto,
+                use o ícone <FaEdit /> para enviar
+                a foto da quinta sessão
+              </p>
             </>
            ) : (
              <>
@@ -99,10 +109,6 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast, toa
             </>
            )
           }
-        />
-        <FileInputComponent
-          userID={userID}
-          onValueChange={HandleOnFileSelect}
         />
       </ImageContainer>
     </Container>

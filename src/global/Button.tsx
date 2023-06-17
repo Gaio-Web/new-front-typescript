@@ -2,18 +2,19 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 interface IButtonProp {
-  width?: 'small' | 'larger'; // small: 50%; larger: 100%
+  w?: 'small' | 'larger';     // small: 50%; larger: 100%
+  h?: string;                 // height
   children: React.ReactNode;  // button label content
   bgColor?: string;           // background color
-  onClick?: any;
+  onClick?: any;              // onClick function
   type?: any;                 // button type e.g.: 'submit'
   mt?: string;                // margin top
   mb?: string;                // margin bottom
 }
 
-function StyledButton({ width, children, bgColor, onClick, type, mt, mb }: IButtonProp): JSX.Element {
+function StyledButton({ w, h, children, bgColor, onClick, type, mt, mb }: IButtonProp): JSX.Element {
   return (
-    <Button width={width} style={{ backgroundColor: bgColor, marginTop: mt, marginBottom: mb }} onClick={onClick} type={type}>
+    <Button w={w} h={h} style={{ backgroundColor: bgColor, marginTop: mt, marginBottom: mb }} onClick={onClick} type={type}>
       { children }
     </Button>
   )
@@ -22,10 +23,11 @@ function StyledButton({ width, children, bgColor, onClick, type, mt, mb }: IButt
 export { StyledButton };
 
 const Button = styled.button<IButtonProp>`
-  height: 3rem;
+  height: ${(props) => props.h};
+  min-height: 3rem;
   width: ${(props) => {
-    if (props.width === 'small') return '50%';
-    if (props.width === 'larger') return '100%';
+    if (props.w === 'small') return '50%';
+    if (props.w === 'larger') return '100%';
     return 'auto';
   }};
   border: 1px solid #c4c4c42e;

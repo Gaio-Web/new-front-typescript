@@ -127,7 +127,6 @@ useEffect(() => {
             ))}
           </ImageList>
       </IMGContainer>
-          <StyledButton width="larger" children="Escolher fotos"/>
     </Container>
     </>
   )

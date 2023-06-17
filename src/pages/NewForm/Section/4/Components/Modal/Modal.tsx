@@ -64,7 +64,7 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JS
             ))}
           </ImageList>
       </IMGWrapper>
-      <StyledButton width="larger" children="Escolher fotos"/>
+      <StyledButton w="larger" children="Escolher fotos"/>
     </Container>
   )
 }

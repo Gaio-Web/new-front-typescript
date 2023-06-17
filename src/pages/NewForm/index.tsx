@@ -135,10 +135,11 @@ function NewForm(): JSX.Element {
        />
 
        <ColorSection
-        color={data?.color}
+        userID={data?.phone}
         accentColor={data?.accentColor}
         mainColor={data?.mainColor}
         secondaryColor={data?.secondaryColor}
+        toastFromModal={() => handleToast('Cores atualizada com sucesso')}
        />
 
         <FirstSection
