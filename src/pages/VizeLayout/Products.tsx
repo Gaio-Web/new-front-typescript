@@ -302,8 +302,8 @@ function FindByPhone(): JSX.Element {
             <HeaderSection
                 photoBase64={data.photos.logo.base64}
                 // name={data.name} retirado a pedido da VIZE para teste
-                secondaryColor={data.secondaryColor}
-                navColor={data.color}
+                mainColor={data.mainColor}
+                navColor={data.accentColor}
             />
 
             <FirstSection

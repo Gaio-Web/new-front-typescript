@@ -39,7 +39,7 @@ export const Container = styled.div`
       text-align: center;
       max-width: 90%;
         @media screen and (max-width: 410px){
-            font-size: 6vw;
+            font-size: 4.5vw;
             line-height: 2.6rem;
         }
         @media screen and (max-width: 330px){

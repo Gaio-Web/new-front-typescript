@@ -7,6 +7,8 @@ import { Contact } from '../global/types';
 import NewLayout from '../pages/NewLayout';
 import axios from 'axios';
 
+import VizeLayout from '../pages/VizeLayout/Products';
+
 import { LoadingPage } from '../pages/Components/LoadingPage';
 
 import GaioMainPage from '../pages/Main';
@@ -51,7 +53,7 @@ export default function AnimatedRoutes() {
         data?.origin === 'gaio' ? (
           <Route path="/:id" element={<NewLayout />} />
           ) : (
-            <Route path="/:id" element={<Products />} />
+            <Route path="/:id" element={<VizeLayout />} />
             )
           }
       <Route path="/forms/:id" element={<Form />} />
