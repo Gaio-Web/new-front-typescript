@@ -4,14 +4,18 @@ import styled, { css } from "styled-components";
 import { Skeleton, ImageList, ImageListItem } from "@mui/material";
 import { StyledButton } from "../../../../../../global/Button";
 import { ConfirmModal } from "./ConfirmModal";
+import { FileInputComponent } from "../../../../../../global/uploads/GalleryUpload";
 
 interface IModalProps {
   imgsUrls: any;
   modalIsVisible: any;
   setModalIsVisible: any;
+  userID: string | undefined;
+
+  toastDelete: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, setModalIsVisible, imgsUrls, userID, toastDelete }: IModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
   }, [modalIsVisible]);
@@ -32,6 +36,10 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JS
     setSendingUrl(url)
   }
 
+  const handleDeleteConfirmed = () => {
+    toastDelete(true)
+  }
+
   return (
     // @ts-ignore
     <Container isVisible={modalIsVisible}>
@@ -39,6 +47,7 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JS
         confirmModalIsVisible={confirmModalIsVisible}
         setConfirmModalIsVisible={() => setConfirmModalIsVisible(false)}
         imgUrl={sendingUrl}
+        toastFromConfirmModal={handleDeleteConfirmed}
       />
       <Header>
       <h1 style={{ fontSize: '26px', color: 'white'}}>Galeria de fotos</h1>
@@ -64,7 +73,11 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls }: IModalProps): JS
             ))}
           </ImageList>
       </IMGWrapper>
-      <StyledButton w="larger" children="Escolher fotos"/>
+      {/* <StyledButton w="larger" children="Escolher fotos"/> */}
+      <FileInputComponent
+        userID={userID}
+        onValueChange={() => console.log('hue')}
+      />
     </Container>
   )
 }

@@ -111,7 +111,6 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
         }
         w="larger"
         onClick={handleCoverUploadToFirebase}
-        type={'button'}
       />
     ) : (
       <FileInputContainer onClick={handleClick}>
@@ -121,7 +120,7 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
           id="coverInput"
           type="file"
           onChange={handleCoverChange}
-          />
+        />
       </FileInputContainer>
     )
   }

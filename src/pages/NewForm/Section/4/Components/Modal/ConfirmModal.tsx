@@ -10,18 +10,29 @@ interface IConfirmModalProps {
   confirmModalIsVisible: any;
   setConfirmModalIsVisible: any;
   imgUrl: any;
+
+  toastFromConfirmModal: (value: boolean | undefined) => void;
 }
 
-function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl}: IConfirmModalProps): JSX.Element {
+function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl, toastFromConfirmModal}: IConfirmModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = confirmModalIsVisible ? 'hidden' : 'auto';
   }, [confirmModalIsVisible]);
+
+  const handleDelete = () => {
+    toastFromConfirmModal(true);
+  }
+
+  const closeModal = () => {
+    setConfirmModalIsVisible
+  }
 
   const deleteImg = (refUrl: string) => {
     const imageRef = ref(storage, refUrl);
     deleteObject(imageRef)
         .then(() =>
-          console.log('deu certo')
+          handleDelete(),
+          closeModal,
         )
         .catch((error) => {
             console.log('deu ruim: ', error)
@@ -40,8 +51,16 @@ function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl}:
         <img src={imgUrl}/>
         </div>
         <BtnWrapper>
-          <StyledButton children="cancelar" width="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
-          <StyledButton children="confirmar" width="small" onClick={() => deleteImg(imgUrl)}/>
+          <StyledButton children="cancelar" w="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
+          <StyledButton
+            children="confirmar"
+            w="small"
+            onClick={() => {
+              deleteImg(imgUrl);
+              setTimeout(() => {
+                setConfirmModalIsVisible(true);
+              }, 1000)
+              }}/>
         </BtnWrapper>
       </Wrapper>
     </Container>

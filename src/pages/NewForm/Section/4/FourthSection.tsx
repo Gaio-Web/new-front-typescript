@@ -14,11 +14,14 @@ import { IMGContainer } from './styles'
 import storage from "../../../../../firebaseConfig";
 
 interface IFourthSecProps {
-  phone: any;
   id: any;
+  userID: string | undefined;
+  isLoading: any;
+
+  toast: (value: boolean | undefined) => void;
 }
 
-function FourthSection({phone, id}: IFourthSecProps): JSX.Element {
+function FourthSection({ id, userID, isLoading, toast }: IFourthSecProps): JSX.Element {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [clicked, setClicked] = useState(false);
@@ -28,35 +31,6 @@ function FourthSection({phone, id}: IFourthSecProps): JSX.Element {
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  const deleteImg = (refUrl: string) => {
-    const imageRef = ref(storage, refUrl);
-    setImagesurls((prevState: any) => prevState.filter((prevUrl: any) => prevUrl !== refUrl));
-    deleteObject(imageRef)
-        .then(() =>
-            toast.warning('Imagem excluída com sucesso!', {
-                position: 'top-center',
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            }))
-        .catch((error) => {
-            toast.error('Houve um problema ao deletar a imagem!', {
-                position: 'top-center',
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            });
-        });
-};
-
 const listAllImagesFromFolder = async () => {
   try {
       setImagesurls([]);
@@ -65,16 +39,7 @@ const listAllImagesFromFolder = async () => {
       const urls = await Promise.all(res.items.map(getDownloadURL));
       setImagesurls(urls);
   } catch (error) {
-      toast.error(`Houve um erro ao listar as imagens, tente novamente mais tarde! ${error}`, {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-      });
+      console.log('erro: ', error)
   }
 };
 
@@ -83,6 +48,7 @@ useEffect(() => {
       setIsMounted(true);
       listAllImagesFromFolder();
   }
+  listAllImagesFromFolder();
 }, []);
 
 
@@ -90,14 +56,20 @@ useEffect(() => {
     setColor(event.target.value);
   };
 
+  const handleToast = () => {
+    toast(true);
+    setModalIsVisible(false);
+  }
+
   return (
     <>
-
     <Container id="fourth">
       <Modal
         modalIsVisible={modalIsVisible}
         setModalIsVisible={() => setModalIsVisible(false)}
         imgsUrls={imgsUrls}
+        userID={userID}
+        toastDelete={handleToast}
       />
       <Header>
         <h1>Quarta sessão</h1>

@@ -176,8 +176,10 @@ function NewForm(): JSX.Element {
         />
 
         <FourthSection
-          phone={data?.phone}
+          userID={data?.phone}
           id={id}
+          isLoading={loading}
+          toast={() => handleToast('Imagem deletada com sucesso!')}
         />
 
         <FifthSection

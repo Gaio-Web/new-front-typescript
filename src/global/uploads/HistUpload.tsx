@@ -111,7 +111,6 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
         }
         w="larger"
         onClick={handleHistUploadToFirebase}
-        type={'button'}
       />
     ) : (
       <FileInputContainer onClick={handleClick}>
