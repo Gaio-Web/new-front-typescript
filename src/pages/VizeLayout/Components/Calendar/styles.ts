@@ -9,26 +9,39 @@ export const CalendarStyles = styled.section`
 
     height: fit-content;
 
-    background-color: #fafafa;
+    background-color: #fefefe;
 
     padding: 4rem 2rem;
 
     @media screen and (max-width: 800px) {
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     @media screen and (min-width: 800px) {
       width: 100vw;
     }
+
+    gap: 1.6rem;
   }
 
-  h1 {
-    margin: 0;
-    font-weight: 500;
-    font-size: 42px;
-    color: #05377c;
-    text-align: center;
-  }
+  & h1 {
+      margin: 0;
+      color: white;
+      line-height: 45px;
+      text-align: center;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
+
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
+      }
+    }
 
   p {
     margin: 0;
@@ -44,7 +57,6 @@ export const CalendarStyles = styled.section`
     border: 2px solid rgba(136, 136, 136, 0.2);
     box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
     border-radius: 15px;
-    margin: 2rem 0 1rem;
 
     .header {
       display: flex;

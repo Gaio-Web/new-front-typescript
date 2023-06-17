@@ -26,7 +26,7 @@ export const Container = styled.div`
     & h1 {
       margin: 0;
       color: white;
-      line-height: 40px;
+      line-height: 45px;
       text-align: center;
       padding: 0 1.5rem 0;
       font-family: "Poppins", sans-serif;

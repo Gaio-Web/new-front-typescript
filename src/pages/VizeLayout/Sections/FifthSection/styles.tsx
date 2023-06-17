@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-   background-color: #f4f7fa;
+   background-color: #fefefe;
   width: 100%;
   height: fit-content;
   display: flex;
@@ -15,26 +15,40 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 2rem;
+    gap: 1.6rem;
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     & h1 {
       margin: 0;
-      font-weight: 500;
-      font-size: 42px;
-      color: #05377c;
+      color: white;
+      line-height: 45px;
       text-align: center;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
+
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
+      }
     }
 
     & p {
       margin: 0;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 33px;
+      padding: 0 1rem;
+      font-weight: 300;
+      font-size: 16px;
+      color: #f0f0f0;
+      line-height: 28px;
+      font-family: "Poppins", sans-serif;
       text-align: center;
     }
 

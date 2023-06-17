@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #f4f7fa;
+  background-color: #fefefe;
   width: 100%;
   height: fit-content;
   display: flex;
@@ -15,19 +15,30 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 2rem;
+    gap: 1.2rem;
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     & h1 {
       margin: 0;
-      font-weight: 500;
-      font-size: 42px;
-      color: #05377c;
+      color: white;
+      line-height: 45px;
       text-align: center;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
+
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
+      }
     }
 
     .adressWrapper {
@@ -35,20 +46,19 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       flex-direction: column;
-
-      font-size: 20px;
-      text-align: center;
       height: fit-content;
       /* padding: 1rem 0 0; */
-      width: 95%;
+      width: 95%;;
+      gap: 1.6rem;
 
-      border: 2px solid rgba(136, 136, 136, 0.5);
-      box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);
-      border-radius: 20px;
-
-      .userAdress {
-        padding: 0 1rem 0.5rem;
-        line-height: 2.5rem;
+      .addressText{
+        margin: 0;
+        font-weight: 300;
+        font-size: 16px;
+        color: #f0f0f0;
+        line-height: 25px;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
       }
 
       .buttonCopy {
@@ -60,7 +70,7 @@ export const Container = styled.div`
 
         background-color: transparent;
 
-        width: 100%;
+        width: 70%;
         height: 50px;
         border-radius: 20px;
         overflow: hidden;

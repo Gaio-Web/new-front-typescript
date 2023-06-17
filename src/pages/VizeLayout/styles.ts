@@ -95,23 +95,29 @@ export const FourthSection = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 0 3rem;
-    gap: 2rem;
+    gap: 1.6rem;
 
     @media screen and (max-width: 800px) {
       width: 80%;
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     & h1 {
       margin: 0;
-      font-weight: 500;
-      font-size: 42px;
-      color: #05377c;
+      color: white;
+      line-height: 45px;
       text-align: center;
-      margin-top: 2rem;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
 
-      @media screen and (max-width: 800px) {
-        margin-top: 0;
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
       }
     }
 

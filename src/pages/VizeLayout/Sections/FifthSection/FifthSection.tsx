@@ -28,7 +28,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
           Nossa História
           </h1>
         )}
-        <p>{history}</p>
+        <p style={{ color: mainColor }}>{history}</p>
 
         <div className="img-wrapper"  data-aos="fade-up">
           {photoBase64 == '' ? (
@@ -45,7 +45,7 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
             <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
           )}
         </div>
-        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> Conversar por WhatsApp</div> </button>
+        <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> Conversar por WhatsApp</div> </button>
       </div>
     </Container>
   );

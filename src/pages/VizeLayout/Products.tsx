@@ -38,7 +38,7 @@ const FifthSection = lazy(() => import ('./Sections/FifthSection/FifthSection').
     return {default: module.FifthSection};
 }));
 
-const Calendar = lazy(() => import ('../Products/Components/Calendar/Calendar').then(module => {
+const Calendar = lazy(() => import ('../VizeLayout/Components/Calendar/Calendar').then(module => {
     return {default: module.Calendar};
 }));
 
@@ -351,14 +351,15 @@ function FindByPhone(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <FourthSection>
+
+                <FourthSection style={{backgroundColor: data.mainColor}}>
                     <div className={'fourth-wrapper'} ref={componentRef}>
-                        <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
+                        <h1>Galeria de fotos</h1>
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
-                        <button onClick={handleWhatsClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
-                        {/* <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button> cor removida a pedido da VIZE*/}
+                        <button onClick={handleWhatsClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
                     </div>
                 </FourthSection>
+
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -408,6 +409,7 @@ function FindByPhone(): JSX.Element {
                     state={data.address.state}
                     mainColor={data.mainColor}
                     secondaryColor={data.secondaryColor}
+                    accentColor={data.accentColor}
                 />
             </Suspense>
 

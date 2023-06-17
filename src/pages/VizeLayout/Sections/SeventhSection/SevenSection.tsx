@@ -11,24 +11,25 @@ interface ISeventhSectionProp {
   state: string;
   mainColor: string;
   secondaryColor: string;
+  accentColor: string;
 }
 
-function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
+function SeventhSection({ mainColor, secondaryColor, accentColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
   return (
-    <Container>
+    <Container style={{ backgroundColor: mainColor }}>
       <div id='seventhSection' className="seventh-wrapper">
-        <h1 className="sectionTitle" style={{ color: mainColor }}>
+        <h1 className="sectionTitle">
           Endereço
         </h1>
 
         <div className="adressWrapper">
           <div className="userAdress">
             {zipCode == '' ? (
-              <p>
+              <p className='addressText'>
                 Rua exemplo, 45, 302, <br /> sua cidade / estado
               </p>
             ) : (
-              <p>
+              <p className='addressText'>
                 {street}, {number},{' '}
                 {complement}
                 <br />
@@ -46,8 +47,8 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
             }
           >
             <div>
-              <span style={{ backgroundColor: secondaryColor }}>
-                <p>Copiar endereço</p>
+              <span style={{ backgroundColor: accentColor }}>
+                <p style={{ color: mainColor }}>Copiar endereço</p>
               </span>
             </div>
 
