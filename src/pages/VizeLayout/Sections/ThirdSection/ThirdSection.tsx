@@ -31,7 +31,7 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
           </h1>
         )}
 
-        <div className="difCards">
+        <div className="difCards" style={{backgroundColor: mainColor}}>
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={accentColor}
+              fill={secondaryColor}
               stroke="none"
             >
               <path
@@ -91,11 +91,11 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
             </g>
           </svg>
 
-          <h3 style={{ color: secondaryColor }}>{quality1}</h3>
+          <h3>{quality1}</h3>
           <p>{qualitydescription1}</p>
         </div>
 
-        <div className="difCards">
+        <div className="difCards" style={{backgroundColor: mainColor}}>
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={accentColor}
+              fill={secondaryColor}
               stroke="none"
             >
               <path
@@ -155,11 +155,11 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
             </g>
           </svg>
 
-          <h3 style={{ color: secondaryColor }}>{quality2}</h3>
+          <h3>{quality2}</h3>
           <p>{qualitydescription2}</p>
         </div>
 
-        <div className="difCards">
+        <div className="difCards" style={{backgroundColor: mainColor}}>
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
           >
             <g
               transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-              fill={accentColor}
+              fill={secondaryColor}
               stroke="none"
             >
               <path
@@ -220,11 +220,11 @@ function ThirdSection({isAutonomous, mainColor, secondaryColor, accentColor, qua
             </g>
           </svg>
 
-          <h3 style={{ color: secondaryColor }}>{quality3}</h3>
+          <h3>{quality3}</h3>
           <p>{qualitydescription3}</p>
         </div>
 
-        <button onClick={onClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Vamos conversar</div> </button>
+        <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Vamos conversar</div> </button>
       </div>
     </Container>
   );

@@ -15,30 +15,41 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem;
-    gap: 2rem;
+    gap: 1.6rem;
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     & h1 {
       margin: 0;
-      font-weight: 500;
-      font-size: 42px;
-      color: #05377c;
+      color: white;
+      line-height: 40px;
       text-align: center;
-      line-height: 50px;
-      font-family: "Montserrat", sans-serif;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
+
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
+      }
     }
 
     & p {
       margin: 0;
-      font-weight: 400;
+      padding: 0 1rem;
+      font-weight: 300;
       font-size: 16px;
-      line-height: 33px;
+      line-height: 25px;
       text-align: center;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Poppins", sans-serif;
+      color: #fefefe;
     }
 
     & h3 {

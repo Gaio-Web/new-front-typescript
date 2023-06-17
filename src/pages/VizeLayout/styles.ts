@@ -60,10 +60,10 @@ export const Container = styled.div`
 
   & button {
     cursor: pointer;
-    background-color: rgb(41, 182, 10);
+    background-color: #25D366;
     box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
 
     border: 0;
 
@@ -124,10 +124,10 @@ export const FourthSection = styled.div`
 
     & button {
       cursor: pointer;
-      background-color: rgb(41, 182, 10);
+      background-color: #25D366;
       box-shadow: 0 5px 5px 0 rgba(68, 67, 67, 0.2);
 
-      font-family: "Montserrat", sans-serif;
+      font-family: "Poppins", sans-serif;
 
       border: 0;
 

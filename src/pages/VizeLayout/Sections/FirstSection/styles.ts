@@ -20,7 +20,7 @@ export const Container = styled.div`
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 10% 5%;
+      padding: 7% 5%;
     }
 
     & h1 {
@@ -33,7 +33,7 @@ export const Container = styled.div`
       letter-spacing: .1px;
 
       @media screen and (max-width: 410px) {
-        font-size: 6.5vw;
+        font-size: 7vw;
         font-weight: 600;
         padding: 0;
       }
@@ -45,12 +45,11 @@ export const Container = styled.div`
     & p {
       margin: 0;
       padding: 0 1rem;
-      font-weight: 500;
-      font-size: 12px;
+      font-weight: 300;
+      font-size: 16px;
       color: #f0f0f0;
-      line-height: 33px;
-      font-family: "Montserrat", sans-serif;
-
+      line-height: 25px;
+      font-family: "Poppins", sans-serif;
       text-align: center;
     }
 
@@ -59,6 +58,12 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
       gap: .4rem;
+
+      & h4{
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+      }
     }
 
     & .img-wrapper {
