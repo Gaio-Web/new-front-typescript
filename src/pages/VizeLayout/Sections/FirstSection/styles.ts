@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(5, 55, 124);
+  background-color: #fefefe;
 
   & .first-wrapper {
     width: 50%;
@@ -29,10 +29,12 @@ export const Container = styled.div`
       line-height: 40px;
       text-align: center;
       padding: 0 1.5rem 0;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
 
       @media screen and (max-width: 410px) {
-        font-size: 6vw;
+        font-size: 6.5vw;
+        font-weight: 600;
         padding: 0;
       }
       @media screen and (max-width: 330px) {
@@ -44,7 +46,7 @@ export const Container = styled.div`
       margin: 0;
       padding: 0 1rem;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 12px;
       color: #f0f0f0;
       line-height: 33px;
       font-family: "Montserrat", sans-serif;

@@ -308,7 +308,6 @@ function FindByPhone(): JSX.Element {
 
             <FirstSection
                 mainColor={data.mainColor}
-                secondaryColor={data.secondaryColor}
                 call={data.call.replace(/^"|"$/g, '')}
                 description={data.description}
                 photoBase64={data.photos.photo1.base64}
