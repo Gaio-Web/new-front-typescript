@@ -49,10 +49,8 @@ export const Container = styled.div`
       justify-content: flex-end;
 
       & img {
-        width: 100%;
-        height: 100%;
-        max-width: 600px;
-        max-height: 600px;
+        max-width: 50vh;
+        border-radius: 8px;
       }
     }
   }

@@ -12,22 +12,34 @@ interface IFifthSectionProp {
   mainColor: string;
   accentColor: string;
   coverKeyWords: string;
+  fifthTitle: string;
 }
 
-function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
               <div className='content-wrapper'>
+                {
+                  fifthTitle == '' || fifthTitle == null ? (
+                    <>
                 {isAutonomous == '1' ? (
                   <h1 className="sectionTitle" style={{ color: mainColor }}>
-            Minha História
-                    </h1>
+                      Minha História
+                  </h1>
                 ):(
                   <h1 className="sectionTitle" style={{ color: mainColor }}>
-          Nossa História
-                    </h1>
+                      Nossa História
+                  </h1>
                 )}
+                    </>
+                  ):(
+                    <h1  className="sectionTitle" style={{ color: mainColor }}>
+                      {fifthTitle}
+                    </h1>
+                  )
+                }
+
                 <p className='history'>{history}</p>
 
                   <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>

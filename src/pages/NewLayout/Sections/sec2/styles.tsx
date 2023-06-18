@@ -39,9 +39,9 @@ export const Container = styled.div`
         align-items: end;
 
         & img {
-          width: 100%;
-        max-width: 600px;
-        max-height: 600px;
+        max-width: 50vh;
+        border-radius: 8px;
+        /* max-height: 600px; */
         }
       }
 

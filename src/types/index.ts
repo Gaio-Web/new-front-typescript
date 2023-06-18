@@ -35,6 +35,7 @@ export interface Contact {
     complement: string;
     city: string;
     state: string;
+    neighborhood: string;
   };
 
   color: string;
@@ -99,4 +100,10 @@ export interface Contact {
 
   instagram: string;
   origin: string;
+
+  secondTitle: string;
+  thirdTitle: string;
+  fifthTitle: string;
+
+  isFourthSecVisible: string;
 }

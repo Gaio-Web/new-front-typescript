@@ -17,7 +17,7 @@ import ReactLoading from 'react-loading';
 import storage from '../../../firebaseConfig';
 import {ref, getDownloadURL, listAll } from 'firebase/storage';
 
-import { Contact } from '../../global/types';
+import { Contact } from '../../types';
 
 import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
 
@@ -33,6 +33,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
+import { StyledButton } from '../../global/Button';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {
@@ -188,6 +189,7 @@ function NewLayout(): JSX.Element {
                     src={Photo3}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    secondTitle={data.secondTitle}
                 />
             </Suspense>
 
@@ -209,10 +211,14 @@ function NewLayout(): JSX.Element {
                     qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
 
                     onClick={handleWhatsClick}
+
+                    thirdTitle={data?.thirdTitle}
                 />
             </Suspense>
 
-            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+            { data?.isFourthSecVisible == 'on' || data?.isFourthSecVisible == null ? (
+              <>
+              <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
                 <FourthSection>
                     <h1>Galeria de fotos</h1>
                     <div className='fourth-wrapper'>
@@ -221,6 +227,13 @@ function NewLayout(): JSX.Element {
                     <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
                 </FourthSection>
             </Suspense>
+              </>
+            ) : (
+              <>
+              </>
+            )
+            }
+
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
                 <FifthSection
@@ -232,6 +245,7 @@ function NewLayout(): JSX.Element {
                     src={Photo2}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    fifthTitle={data.fifthTitle}
                 />
             </Suspense>
 

@@ -3,11 +3,12 @@ import { Routes, useLocation, Route, BrowserRouter } from 'react-router-dom';
 import Products from '../pages/Products/Products';
 import { Form } from '../pages/Form/Form';
 
-import { Contact } from '../global/types';
+import { Contact } from '../types';
 import NewLayout from '../pages/NewLayout';
 import axios from 'axios';
 
 import { LoadingPage } from '../pages/Components/LoadingPage';
+import { NewForm } from '../pages/NewForm';
 
 import GaioMainPage from '../pages/Main';
 
@@ -54,7 +55,7 @@ export default function AnimatedRoutes() {
             <Route path="/:id" element={<Products />} />
             )
           }
-      <Route path="/forms/:id" element={<Form />} />
+      <Route path="/forms/:id" element={<NewForm />} />
       <Route path='/' element={<GaioMainPage />} />
     </Routes>
   );

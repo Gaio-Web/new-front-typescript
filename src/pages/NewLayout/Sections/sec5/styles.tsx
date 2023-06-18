@@ -43,9 +43,8 @@ export const Container = styled.div`
       justify-content: center; */
 
       & img {
-        /* display: none; */
-        /* height: 100%; */
-        width: 100%;
+        max-width: 50vh;
+        border-radius: 8px;
       }
     }
 
