@@ -88,6 +88,7 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast, toa
       />
     </TextWrapper>
       <ImageContainer>
+      <h4>Foto da sessão</h4>
         <LoadingComponent
           loading={isLoading}
           height="10rem"
@@ -105,7 +106,7 @@ function FifthSection({ call, history, img, isLoading, userID, title, toast, toa
             </>
            ) : (
              <>
-             <img src={img}/>
+             <img src={img} style={{ maxWidth: '40vh', height: 'auto'}}/>
             </>
            )
           }

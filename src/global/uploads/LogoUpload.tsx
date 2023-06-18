@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { AiFillFileImage } from 'react-icons/ai'
 import { BsFillTrash3Fill } from 'react-icons/bs'
 import { StyledButton } from '../Button';
 import storage from '../../../firebaseConfig';
 import {ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+
+import {
+  FileInput,
+  FileInputContainer,
+  FileInputLabel,
+  PreviewContainer,
+  SelectedImage,
+} from './styles'
 
 type FileInputProps = {
   userID: string | undefined;
@@ -114,8 +121,9 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
       />
     ) : (
       <FileInputContainer onClick={handleClick}>
-        <FileInputLabel htmlFor="logoInput">Escolher Logomarca</FileInputLabel>
+        <FileInputLabel htmlFor="logoInput">Escolher Logomarca
           <AiFillFileImage size={'22px'} color='white'/>
+        </FileInputLabel>
         <FileInput
           id="logoInput"
           type="file"
@@ -137,48 +145,3 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
 };
 
 export { FileInputComponent };
-
-const FileInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-
-  background-color: #0077b6;
-  width: 100%;
-  height: 3rem;
-
-  border-radius: 4px;
-  justify-content: center;
-`;
-
-const FileInputLabel = styled.label`
-  margin-right: 10px;
-  font-family: 'Inter', sans-serif;
-  font-weight: bold;
-  color: white;
-`;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const SelectedImage = styled.img`
-  /* width: 100px; */
-  height: 100%;
-  object-fit: cover;
-
-  box-sizing: border-box;
-  `;
-
-const PreviewContainer = styled.div`
-  width: 100%;
-  height: 10rem;
-  padding: 0.5rem;
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  gap: 1rem;
-`

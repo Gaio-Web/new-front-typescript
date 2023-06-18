@@ -105,7 +105,7 @@ const handleCancel = () => {
     galleryImages ? (
       <StyledButton
         children={
-          galleryImagesPercent > 0 ? `Enviando Foto ${galleryImagesPercent} %` : `Enviar Foto`
+          galleryImagesPercent > 0 ? `Enviando Fotos ${galleryImagesPercent} %` : `Enviar Fotos`
         }
         w="larger"
         onClick={uploadGallery}
@@ -113,8 +113,9 @@ const handleCancel = () => {
       />
     ) : (
       <FileInputContainer onClick={handleClick}>
-        <FileInputLabel htmlFor="galleryInput">Escolher Foto</FileInputLabel>
+        <FileInputLabel htmlFor="galleryInput">Escolher Fotos
           <AiFillFileImage size={'22px'} color='white'/>
+        </FileInputLabel>
         <FileInput
           id="galleryInput"
           type="file"
@@ -153,10 +154,17 @@ const FileInputContainer = styled.div`
 `;
 
 const FileInputLabel = styled.label`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
   margin-right: 10px;
   font-family: 'Inter', sans-serif;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 `;
 
 const FileInput = styled.input`

@@ -87,6 +87,7 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
     </TextWrapper>
 
       <ImageContainer>
+      <h4>Foto da sessão</h4>
         <LoadingComponent
           loading={isLoading}
           height="10rem"
@@ -104,7 +105,7 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
               </>
             ) : (
               <>
-                <img src={img}/>
+                <img src={img} style={{ maxWidth: '40vh', height: 'auto'}}/>
               </>
             )
         }

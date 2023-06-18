@@ -42,10 +42,10 @@ export const Header = styled.div`
 export const ImageContainer = styled.div`
   width: 100%;
   height: fit-content;
-  /* min-height: 20rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
   border: 1px solid #c4c4c4;
   border-radius: 8px;

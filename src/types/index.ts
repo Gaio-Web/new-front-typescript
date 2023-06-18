@@ -104,4 +104,6 @@ export interface Contact {
   secondTitle: string;
   thirdTitle: string;
   fifthTitle: string;
+
+  isFourthSecVisible: string;
 }

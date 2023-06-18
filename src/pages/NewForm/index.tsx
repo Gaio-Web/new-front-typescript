@@ -180,6 +180,8 @@ function NewForm(): JSX.Element {
           id={id}
           isLoading={loading}
           toast={() => handleToast('Imagem deletada com sucesso!')}
+          toastFromSwitch={() => handleToast('Exibição de sessão atualizada com sucesso!')}
+          isGalleryVisible={data?.isFourthSecVisible}
         />
 
         <FifthSection

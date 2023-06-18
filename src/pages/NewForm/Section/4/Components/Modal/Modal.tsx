@@ -73,7 +73,6 @@ function Modal({ modalIsVisible, setModalIsVisible, imgsUrls, userID, toastDelet
             ))}
           </ImageList>
       </IMGWrapper>
-      {/* <StyledButton w="larger" children="Escolher fotos"/> */}
       <FileInputComponent
         userID={userID}
         onValueChange={() => console.log('hue')}

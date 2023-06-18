@@ -7,21 +7,24 @@ import { ImageList } from "@mui/material";
 import { Modal} from "./Components/Modal/Modal";
 
 import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
-import { ToastContainer, toast } from 'react-toastify';
 
 import { IMGContainer } from './styles'
 
 import storage from "../../../../../firebaseConfig";
+import CustomizedSwitches from "./Components/Switch";
 
 interface IFourthSecProps {
   id: any;
   userID: string | undefined;
   isLoading: any;
 
+  isGalleryVisible: string | undefined;
+
   toast: (value: boolean | undefined) => void;
+  toastFromSwitch: (value: boolean | undefined) => void;
 }
 
-function FourthSection({ id, userID, isLoading, toast }: IFourthSecProps): JSX.Element {
+function FourthSection({ id, userID, isLoading,isGalleryVisible, toast, toastFromSwitch }: IFourthSecProps): JSX.Element {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [clicked, setClicked] = useState(false);
@@ -30,6 +33,8 @@ function FourthSection({ id, userID, isLoading, toast }: IFourthSecProps): JSX.E
   const [imgsUrls, setImagesurls] = useState<string[]>([]);
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  const [checked, setCheked] = useState<boolean>(false);
 
 const listAllImagesFromFolder = async () => {
   try {
@@ -42,6 +47,10 @@ const listAllImagesFromFolder = async () => {
       console.log('erro: ', error)
   }
 };
+
+const customBorder = "1px solid #c4c4c4";
+const customPadding = "1rem"
+const customSizing = "border-box"
 
 useEffect(() => {
   if (!isMounted) {
@@ -58,7 +67,11 @@ useEffect(() => {
 
   const handleToast = () => {
     toast(true);
-    setModalIsVisible(false);
+    listAllImagesFromFolder();
+  }
+
+  const isCheked = () => {
+    toastFromSwitch(true);
   }
 
   return (
@@ -73,15 +86,61 @@ useEffect(() => {
       />
       <Header>
         <h1>Quarta sessão</h1>
-        <FaEdit onClick={() => setModalIsVisible(true)}/>
+        {
+          isGalleryVisible == 'off' ? (
+            <>
+            </>
+          ) : (
+            <>
+              <FaEdit onClick={() => setModalIsVisible(true)}/>
+            </>
+          )
+        }
       </Header>
+
+      <TextWrapper
+        style={{
+          border: customBorder,
+          padding: customPadding,
+          boxSizing: customSizing,
+          borderRadius: '8px',
+          backgroundColor: '#f4f4f4',
+        }}
+      >
+        <h4>Esta sessão pode ser desabilitada</h4>
+        <p>Para <strong>mostrar</strong> sessão em seu site deixe em <strong style={{ color: '#33cf4d'}}>On</strong></p>
+        <p>Para <strong>esconder</strong> sessão do seu site deixe em <strong style={{ color: '#d60808'}}>Off</strong></p>
+        <CustomizedSwitches
+          userID={userID}
+          toast={isCheked}
+        />
+      </TextWrapper>
 
       <TextWrapper>
         <h4>Título da sessão</h4>
         <p>Galeria de fotos</p>
       </TextWrapper>
 
-      <IMGContainer>
+        {
+          isGalleryVisible == 'off' ? (
+            <>
+              <TextWrapper
+                style={{
+                  border: customBorder,
+                  padding: customPadding,
+                  boxSizing: customSizing,
+                  borderRadius: '8px',
+                  backgroundColor: '#f4f4f4',
+                }}
+              >
+              <p>Para visualizar sua galeria de
+                fotos e enviar novas fotos,
+                por favor habilite a sessão
+              </p>
+              </TextWrapper>
+            </>
+          ) : (
+        <IMGContainer>
           <ImageList
             sx={{
               width: '100%',
@@ -98,7 +157,11 @@ useEffect(() => {
               </div>
             ))}
           </ImageList>
-      </IMGContainer>
+      </IMGContainer >
+          )
+        }
+
+
     </Container>
     </>
   )

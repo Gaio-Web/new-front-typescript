@@ -94,7 +94,7 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
               </>
             ) : (
               <>
-                <img src={img}/>
+                <img src={img} style={{ maxWidth: '40vh', height: 'auto'}}/>
               </>
             )
           }
