@@ -14,7 +14,7 @@ export const CalendarStyles = styled.section`
     padding: 4rem 2rem;
 
     @media screen and (max-width: 800px) {
-      padding: 7% 5%;
+      padding: 7% 5% 12%;
     }
 
     @media screen and (min-width: 800px) {
@@ -90,8 +90,8 @@ export const CalendarStyles = styled.section`
         justify-content: center;
 
         h1 {
-          font-weight: 600;
-          font-size: 16px;
+          font-weight: 400;
+          font-size: 14px;
           color: #000000;
           text-decoration: none;
           margin: 0;

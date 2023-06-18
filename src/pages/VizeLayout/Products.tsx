@@ -392,6 +392,11 @@ function FindByPhone(): JSX.Element {
             />
           ):(
             <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+              {data.isAutonomous == '1' ? (
+                <h1 style={{ color: data.mainColor }}>Horário de atendimento</h1>
+              ) : (
+                <h1 style={{ color: data.mainColor }}>Horário de funcionamento</h1>
+              )}
               <div className='img-wrapper'>
                 <img src={data.photos.schedules.base64} alt='horarios'/>
               </div>

@@ -160,6 +160,25 @@ export const ImageSchedule = styled.div`
   align-items: center;
   justify-content: center;
 
+  & h1 {
+      margin: 0;
+      color: white;
+      line-height: 45px;
+      text-align: center;
+      padding: 0 1.5rem 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: .1px;
+
+      @media screen and (max-width: 410px) {
+        font-size: 7vw;
+        font-weight: 600;
+        padding: 0;
+      }
+      @media screen and (max-width: 330px) {
+        font-size: 18px;
+      }
+    }
+
   & .img-wrapper {
     width: 100%;
     height: fit-content;

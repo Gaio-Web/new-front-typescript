@@ -6,7 +6,8 @@ export const Container = styled.div`
 
   header {
   width: 100%;
-  height: 5rem;
+  //height: 5rem;
+  min-height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +17,7 @@ export const Container = styled.div`
     width: 100%;
     height: fit-content;
     max-height: 7vh;
-    min-height: 7vh;
+    min-height: 6vh;
     padding: 1rem;
     box-shadow: -1px 3px 4px 0 rgba(68, 67, 67, 0.3);
 
@@ -30,7 +31,7 @@ export const Container = styled.div`
 
     & img {
       border-radius: 10px;
-      max-height: 75px;
+      max-height: 65px;
       max-width: 55vw;
     }
 
@@ -38,8 +39,9 @@ export const Container = styled.div`
       color: rgb(5, 55, 124);
       text-align: center;
       max-width: 90%;
+      margin: 0;
         @media screen and (max-width: 410px){
-            font-size: 4.5vw;
+            font-size: 6vw;
             line-height: 2.6rem;
         }
         @media screen and (max-width: 330px){

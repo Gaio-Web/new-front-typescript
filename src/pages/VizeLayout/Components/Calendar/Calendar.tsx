@@ -79,14 +79,8 @@ function Calendar({
   return (
     <CalendarStyles>
       <div className="sixth-wrapper">
-        {isAutonomous == '1' ? (
-          <h1 style={{ color: mainColor }}>Horário de atendimento</h1>
-        ) : (
-          <h1 style={{ color: mainColor }}>Horário de funcionamento</h1>
-        )}
-
         <div className="table">
-          <div className="header" style={{ backgroundColor: secondaryColor }}>
+          <div className="header" style={{ backgroundColor: mainColor }}>
             {isAutonomous == '1' ? (
               <h2>Horário de atendimento</h2>
             ) : (
