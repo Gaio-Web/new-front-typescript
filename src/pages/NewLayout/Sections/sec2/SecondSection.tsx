@@ -52,7 +52,7 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
                         <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     )}
                 </div>
-                <button onClick={onClick} style={{backgroundColor: accentColor, marginTop: '2rem', width: '100%'}} className='btn-2'>Fale com a gente!</button>
+                <button onClick={onClick} style={{backgroundColor: mainColor, color: accentColor, marginTop: '2rem', width: '100%'}} className='btn-2'>Fale com a gente!</button>
                 {/* <button onClick={onClick}> teste</button> */}
             </div>
         </Container>
