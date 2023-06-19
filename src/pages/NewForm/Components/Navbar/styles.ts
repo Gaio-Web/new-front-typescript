@@ -15,7 +15,7 @@ export const Container = styled.section`
   justify-content: center;
 
   background: rgba(17, 18, 17, 0.95);
-  background: linear-gradient(34deg, rgba(255,255,255,0.8) 10%, rgb(5, 55, 124) 95%);
+  background: linear-gradient(34deg, rgba(11,12,21,0.9) 10%, rgb(5, 55, 124) 95%);
 
   opacity: 0;
   pointer-events: none;
