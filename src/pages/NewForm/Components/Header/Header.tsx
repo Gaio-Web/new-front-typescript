@@ -7,6 +7,7 @@ import logoVize from '../../../../assets/logoVize.png'
 import { RiMenu3Fill } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
 
 interface IHeaderProps {
   origin: string | undefined;
@@ -15,6 +16,16 @@ interface IHeaderProps {
 
 export function Header({ setMenuIsVisible, origin }: IHeaderProps) {
   const [smallNavbar, setSmallNavbar] = useState(false);
+
+  const [showDiv, setShowDiv] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowDiv(true);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,11 +45,23 @@ export function Header({ setMenuIsVisible, origin }: IHeaderProps) {
   return (
     <Container small={smallNavbar}>
       <section className="wrapper">
-
-        {origin === 'gaio' ? (
-          <img src={logoImg} alt="Logo"/>
+        {showDiv ? (
+          <>
+            {origin === 'gaio' || origin === 'gaio-2' ? (
+              <img src={logoImg} alt="Logo" />
+            ) : (
+              <img src={logoVize} alt="Logo" />
+            )}
+          </>
         ) : (
-          <img src={logoVize} alt="Logo"/>
+          <>
+            <Skeleton
+              sx={{ backgroundColor: 'rgba(0,0,0,0.2)' }}
+              variant="rectangular"
+              width={'6rem'}
+              height={'2.5rem'}
+            />
+          </>
         )}
         <nav>
           <a href="#first" className='option' >Primeira sessão</a>
