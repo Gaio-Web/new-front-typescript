@@ -2,12 +2,18 @@
 import { Container } from "./styles";
 
 import logoImg from '../../../../assets/logo-gaio.png';
+import logoVize from '../../../../assets/logoVize.png'
 
 import { RiMenu3Fill } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState, useEffect } from "react";
 
-export function Header({ setMenuIsVisible }: any) {
+interface IHeaderProps {
+  origin: string | undefined;
+  setMenuIsVisible: any;
+}
+
+export function Header({ setMenuIsVisible, origin }: IHeaderProps) {
   const [smallNavbar, setSmallNavbar] = useState(false);
 
   useEffect(() => {
@@ -28,7 +34,12 @@ export function Header({ setMenuIsVisible }: any) {
   return (
     <Container small={smallNavbar}>
       <section className="wrapper">
-        <img src={logoImg} alt="Logo"/>
+
+        {origin === 'gaio' ? (
+          <img src={logoImg} alt="Logo"/>
+        ) : (
+          <img src={logoVize} alt="Logo"/>
+        )}
         <nav>
           <a href="#first" className='option' >Primeira sessão</a>
           <a href="#second" className='option'>Segunda sessão</a>

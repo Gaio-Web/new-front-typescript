@@ -20,18 +20,21 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
   const [accentColor, setAccentColor] = useState<string>('#034AA3');
 
   const [options, setoptions] = useState([
-    { mainColor: '#013759', secondaryColor: '#378DBD', accentColor:'#EBF2F3', title: 'Mar Profundo' },
-    { mainColor: '#F4972B', secondaryColor: '#264653', accentColor:'#2A9D8F', title: 'Laranja' },
-    { mainColor: '#FD3997', secondaryColor: '#383961', accentColor:'#5F758E', title: 'Rosa' },
-    { mainColor: '#5E8B7E', secondaryColor: '#9F7E69', accentColor:'#003459', title: 'Verde' },
-    { mainColor: '#00ADB5', secondaryColor: '#1B4965', accentColor:'#B49A67', title: 'Azul' },
-    { mainColor: '#6868AC', secondaryColor: '#C17767', accentColor:'#23967F', title: 'Lilás' },
-    { mainColor: '#6B0BE6', secondaryColor: '#453823', accentColor:'#39A2AE', title: 'Roxo' },
-    { mainColor: '#00000', secondaryColor: '#8D775F', accentColor:'#A71D31', title: 'Preto' },
-    { mainColor: '#B4A5A5', secondaryColor: '#5B5941', accentColor:'#3E6990', title: 'Areia' },
-    { mainColor: '#D80C0C', secondaryColor: '#390040', accentColor:'#730071', title: 'Vermelho' },
-    { mainColor: '#25D8A7', secondaryColor: '#696D7D', accentColor:'#19381F', title: 'Turquesa' },
-    { mainColor: '#6D6D6D', secondaryColor: '#2DC7FF', accentColor:'#0A369D', title: 'Cinza' },
+    { mainColor: '#013759', secondaryColor: '#378DBD', accentColor:'#EBF2F3', title: 'Profundeza' },
+    { mainColor: '#3D5E63', secondaryColor: '#85BDB0', accentColor:'#E3E0E7', title: 'Serenidade' },
+    { mainColor: '#691FB1', secondaryColor: '#5F90D3', accentColor:'#A0FCDD', title: 'Encanto' },
+    { mainColor: '#4B5556', secondaryColor: '#5F7880', accentColor:'#D3D5D4', title: 'Elegância' },
+    { mainColor: '#000000', secondaryColor: '#3D94B0', accentColor:'#F5F5F5', title: 'Contraste' },
+    { mainColor: '#50000B', secondaryColor: '#720026', accentColor:'#DFD0C7', title: 'Paixão' },
+    { mainColor: '#626262', secondaryColor: '#04283E', accentColor:'#CFEEFF', title: 'Equilíbrio' },
+    { mainColor: '#B8365F', secondaryColor: '#406950', accentColor:'#C4E1DA', title: 'Harmonia' },
+    { mainColor: '#5A8D6C', secondaryColor: '#D2DCC4', accentColor:'#FBF5E5', title: 'Renovação' },
+    { mainColor: '#3A096A', secondaryColor: '#1B65BD', accentColor:'#EBF2F3', title: 'Profundidade' },
+    { mainColor: '#4B1B31', secondaryColor: '#AC779D', accentColor:'#FFE4E4', title: 'Amoroso' },
+    { mainColor: '#FF5733', secondaryColor: '#C70039', accentColor:'#FFEFBC', title: 'Vibrante' },
+    { mainColor: '#E1AD01', secondaryColor: '#035956', accentColor:'#C0DDC7', title: 'Resplendor' },
+    { mainColor: '#383333', secondaryColor: '#9D7968', accentColor:'#EEEBE9', title: 'Intemporal' },
+    { mainColor: '#331609', secondaryColor: '#792600', accentColor:'#EEEBE9', title: 'Aconchego' },
 ]);
 
   useEffect(() => {

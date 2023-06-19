@@ -105,7 +105,9 @@ function NewForm(): JSX.Element {
         setMenuIsVisible={setMenuIsVisible}
       />
 
-       <Header setMenuIsVisible={setMenuIsVisible}/>
+       <Header
+        setMenuIsVisible={setMenuIsVisible}
+        origin={data?.origin}/>
 
       <Main>
 

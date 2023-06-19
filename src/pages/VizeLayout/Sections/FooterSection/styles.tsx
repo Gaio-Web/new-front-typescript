@@ -19,6 +19,7 @@ export const Container = styled.div`
   h3 {
     font-weight: 400;
     text-align: center;
-    font-size: 6px;
+    font-size: 8px;
+    padding: 1px;
   }
 `;
