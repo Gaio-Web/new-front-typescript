@@ -83,7 +83,7 @@ export interface Contact {
 
   //client info
   isAutonomous: string;
-  businessName: string;
+  convertedName: string;
   phone: string;
   id: string;
 

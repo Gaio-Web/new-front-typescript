@@ -10,12 +10,13 @@ interface IButtonProp {
   type?: any;                 // button type e.g.: 'submit'
   mt?: string;                // margin top
   mb?: string;                // margin bottom
+  icon?: React.ReactNode;
 }
 
-function StyledButton({ w, h, children, bgColor, onClick, type, mt, mb }: IButtonProp): JSX.Element {
+function StyledButton({ w, h, children, bgColor, onClick, type, mt, mb, icon }: IButtonProp): JSX.Element {
   return (
     <Button w={w} h={h} style={{ backgroundColor: bgColor, marginTop: mt, marginBottom: mb }} onClick={onClick} type={type}>
-      { children }
+      { children } {icon}
     </Button>
   )
 }
@@ -37,4 +38,9 @@ const Button = styled.button<IButtonProp>`
   font-weight: 600;
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem
 `;

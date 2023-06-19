@@ -37,6 +37,10 @@ export function Header({ setMenuIsVisible }: any) {
           <a href="#fifth" className='option' >Quinta sessão</a>
         </nav>
       </section>
+
+      <section>
+        <GiHamburgerMenu onClick={() => setMenuIsVisible(true)} className="mobile" size={smallNavbar ? '18' : '24px'} color="rgb(5, 55, 124)"/>
+      </section>
     </Container>
   )
 }

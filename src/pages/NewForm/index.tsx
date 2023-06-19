@@ -24,6 +24,8 @@ import { Alert } from "@mui/material";
 import { Schedules } from "./Section/Schedules/Schedules";
 import { ColorSection } from "./Section/ColorSection/ColorSection";
 import { Address } from "./Section/Address/Address";
+import { GoToSite } from "./Section/GoToSite/GoToSite";
+import { Instagram } from "./Section/Instagram/Instagram";
 
 function NewForm(): JSX.Element {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -126,6 +128,10 @@ function NewForm(): JSX.Element {
         </Alert>
       </Snackbar>
 
+      <GoToSite
+        convertedName={data?.convertedName}
+      />
+
        <FormHeader
         name={data?.name}
         img={data?.photos.logo.base64}
@@ -141,6 +147,8 @@ function NewForm(): JSX.Element {
         secondaryColor={data?.secondaryColor}
         toastFromModal={() => handleToast('Cores atualizada com sucesso')}
        />
+
+       {/* <Instagram /> */}
 
         <FirstSection
           userID={data?.phone}

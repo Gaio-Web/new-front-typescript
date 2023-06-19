@@ -23,6 +23,7 @@ function Navbar({ menuIsVisible, setMenuIsVisible }: any) {
         <a href="#fourth" className='option' onClick={handleClick}>Quarta sessão</a>
         <a href="#fifth" className='option' onClick={handleClick}>Quinta sessão</a>
       </nav>
+
     </Container>
   )
 }
