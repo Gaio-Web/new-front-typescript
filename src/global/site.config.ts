@@ -1,2 +1,2 @@
-export const number = '5531900000000';
-export const businessName = 'gaio-web'
+export const number = '5547974006336';
+export const businessName = 'essencial-cuidados'
