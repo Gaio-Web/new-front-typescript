@@ -81,7 +81,7 @@ export const Container = styled.div`
       }
 
       & svg {
-        width: 70px;
+        width: 65px;
       }
 
 
