@@ -17,7 +17,7 @@ function ColorPickerComponent(): JSX.Element {
   const [accentColor, setAccentColor] = useState<string>('#034AA3');
 
   const [options, setoptions] = useState([
-    { mainColor: '#EB596E', secondaryColor: '#6883BA', accentColor:'#3C0919', title: 'Carmine' },
+    { mainColor: '#013759', secondaryColor: '#378DBD', accentColor:'#EBF2F3', title: 'Mar Profundo' },
     { mainColor: '#F4972B', secondaryColor: '#264653', accentColor:'#2A9D8F', title: 'Laranja' },
     { mainColor: '#FD3997', secondaryColor: '#383961', accentColor:'#5F758E', title: 'Rosa' },
     { mainColor: '#5E8B7E', secondaryColor: '#9F7E69', accentColor:'#003459', title: 'Verde' },
