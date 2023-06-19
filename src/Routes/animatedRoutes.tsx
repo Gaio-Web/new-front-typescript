@@ -53,7 +53,7 @@ export default function AnimatedRoutes() {
         data?.origin === 'gaio' ? (
           <Route path="/:id" element={<NewLayout />} />
           ) : (
-            <Route path="/:id" element={<VizeLayout />} />
+            <Route path="/:id" element={<Products />} />
             )
           }
       <Route path="/forms/:id" element={<Form />} />
