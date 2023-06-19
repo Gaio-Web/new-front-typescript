@@ -7,6 +7,8 @@ import { Contact } from '../types';
 import NewLayout from '../pages/NewLayout';
 import axios from 'axios';
 
+import VizeLayout from '../pages/VizeLayout/Products';
+
 import { LoadingPage } from '../pages/Components/LoadingPage';
 import { NewForm } from '../pages/NewForm';
 
