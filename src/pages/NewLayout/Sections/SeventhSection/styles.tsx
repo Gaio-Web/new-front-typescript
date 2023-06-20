@@ -43,8 +43,10 @@ export const Container = styled.div`
       font-size: 20px;
       text-align: center;
       height: fit-content;
-      /* padding: 1rem 0 0; */
+      padding: 2rem 2rem;
       width: 95%;
+
+      box-sizing: border-box;
 
       border: 2px solid rgba(136, 136, 136, 0.5);
       box-shadow: 0px 5px 5px 0 rgba(68, 67, 67, 0.2);

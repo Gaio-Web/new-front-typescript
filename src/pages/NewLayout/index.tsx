@@ -282,6 +282,7 @@ function NewLayout(): JSX.Element {
                     complement={data.address.complement}
                     state={data.address.state}
                     mainColor={data.mainColor}
+                    neightborhood={data.address.neighborhood}
                     secondaryColor={data.secondaryColor}
                 />
             </Suspense>

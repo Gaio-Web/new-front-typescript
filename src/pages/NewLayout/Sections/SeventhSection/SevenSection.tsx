@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from './styles';
+import CopyToClipboardButton from '../../../../global/CopyToClipboard';
 
 interface ISeventhSectionProp {
   zipCode: string;
@@ -10,9 +11,10 @@ interface ISeventhSectionProp {
   state: string;
   mainColor: string;
   secondaryColor: string;
+  neightborhood: string;
 }
 
-function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
+function SeventhSection({ mainColor, secondaryColor, neightborhood, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
     return (
         <Container>
             <div id='seventhSection' className="seventh-wrapper">
@@ -28,7 +30,7 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
                             </p>
                         ) : (
                             <p>
-                                {street}, {number},{' '}
+                                {street}, {neightborhood}, {number},{' '}
                                 {complement}
                                 <br />
                                 {city}/{state}{' '}
@@ -36,7 +38,22 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
                         )}
                     </div>
 
-                    <button
+                      <div
+                        style={{
+                          width: '100%',
+                          paddingLeft: '1rem',
+                          paddingRight: '1rem',
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        <CopyToClipboardButton
+                          path={
+                            `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
+                          }
+                        />
+                      </div>
+
+                    {/* <button
                         className="buttonCopy"
                         onClick={() =>
                             navigator.clipboard.writeText(
@@ -44,6 +61,7 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
                             )
                         }
                     >
+
                         <div>
                             <span style={{ backgroundColor: secondaryColor }}>
                                 <p>Copiar endereço</p>
@@ -55,7 +73,7 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
                                 <p>Endereço copiado!</p>
                             </span>
                         </div>
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </Container>
