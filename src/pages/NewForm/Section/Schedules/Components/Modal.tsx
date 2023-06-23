@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { IoClose } from "react-icons/io5";
-import styled, { css } from "styled-components";
-import { TextField } from "@mui/material";
-import { StyledButton } from "../../../../../global/Button";
-import { handleSubmit } from "../../../Utils/mongoReq";
+import React, { useCallback, useEffect, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+import styled, { css } from 'styled-components';
+import { TextField } from '@mui/material';
+import { StyledButton } from '../../../../../global/Button';
+import { handleSubmit } from '../../../Utils/mongoReq';
 
 interface IModalProps {
   modalIsVisible: any;
@@ -13,81 +13,81 @@ interface IModalProps {
 
 function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.Element {
 
-  useEffect(() => {
-    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-  }, [modalIsVisible]);
+    useEffect(() => {
+        document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+    }, [modalIsVisible]);
 
-  const [clicked, setClicked] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false);
 
-  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+    const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
 
-  const handlePhotoClick = () => {
-    setClicked(!clicked)
-    console.log('hue')
-  }
+    const handlePhotoClick = () => {
+        setClicked(!clicked);
+        console.log('hue');
+    };
 
-  const [sendingUrl, setSendingUrl] = useState('');
+    const [sendingUrl, setSendingUrl] = useState('');
 
-  const handleConfirmModalCall = (url: any) => {
-    setConfirmModalIsVisible(true);
-    setSendingUrl(url)
-  }
+    const handleConfirmModalCall = (url: any) => {
+        setConfirmModalIsVisible(true);
+        setSendingUrl(url);
+    };
 
-  const [title, setTitle] = useState<string>('');
-  const [desc, setDesc] = useState<string>('')
+    const [title, setTitle] = useState<string>('');
+    const [desc, setDesc] = useState<string>('');
 
-  const handleFormSubmit = useCallback((event: any) => {
-    event.preventDefault();
+    const handleFormSubmit = useCallback((event: any) => {
+        event.preventDefault();
 
-    handleSubmit(
-      [
-        {
-          "field": "call",
-          "value":  title
-        },
-        {
-          "field": "description",
-          "value":  desc
-        },
-      ],
-      userID
-    );
-  }, [title, desc, userID])
+        handleSubmit(
+            [
+                {
+                    'field': 'call',
+                    'value':  title
+                },
+                {
+                    'field': 'description',
+                    'value':  desc
+                },
+            ],
+            userID
+        );
+    }, [title, desc, userID]);
 
-  return (
+    return (
     // @ts-ignore
-    <Container isVisible={modalIsVisible}
-      onSubmit={handleFormSubmit}>
-      <Header>
-      <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
-      <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
-      </Header>
+        <Container isVisible={modalIsVisible}
+            onSubmit={handleFormSubmit}>
+            <Header>
+                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
+                <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
+            </Header>
 
-        <TextField
-          id="outlined-basic"
-          label="Título da sessão"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
+            <TextField
+                id="outlined-basic"
+                label="Título da sessão"
+                variant="outlined"
+                sx={{ width: '100%', color: 'red'}}
+                margin="normal"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+            />
 
-        <TextField
-          id="outlined-multiline-static"
-          label="Conteúdo"
-          multiline
-          rows={4}
-          onChange={(e) => setDesc(e.target.value)}
-          value={desc}
-        />
+            <TextField
+                id="outlined-multiline-static"
+                label="Conteúdo"
+                multiline
+                rows={4}
+                onChange={(e) => setDesc(e.target.value)}
+                value={desc}
+            />
 
-      <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem"/>
-    </Container>
-  )
+            <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem"/>
+        </Container>
+    );
 }
 
-export { Modal }
+export { Modal };
 
 
 const Container = styled.form`
@@ -161,7 +161,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const IMGWrapper = styled.div`
 
@@ -184,4 +184,4 @@ const IMGWrapper = styled.div`
       border-radius: 8px;
     }
   }
-`
+`;

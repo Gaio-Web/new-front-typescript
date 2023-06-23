@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FileInputContainer = styled.div`
   display: flex;
@@ -50,4 +50,4 @@ export const PreviewContainer = styled.div`
   justify-content: center;
   border-radius: 8px;
   gap: 1rem;
-`
+`;

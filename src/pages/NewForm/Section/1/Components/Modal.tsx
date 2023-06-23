@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { IoClose } from "react-icons/io5";
-import styled, { css } from "styled-components";
-import { Button, Switch, TextField } from "@mui/material";
-import { StyledButton } from "../../../../../global/Button";
-import { handleSubmit } from "../../../Utils/mongoReq";
-import { ContentWrapper, ImageContainer, TextWrapper } from "../../styles";
-import { LoadingComponent } from "../../../Components/Skeleton";
-import { FileInputComponent } from "../../../../../global/uploads/CoverUpload";
+import React, { useCallback, useEffect, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+import styled, { css } from 'styled-components';
+import { Button, Switch, TextField } from '@mui/material';
+import { StyledButton } from '../../../../../global/Button';
+import { handleSubmit } from '../../../Utils/mongoReq';
+import { ContentWrapper, ImageContainer, TextWrapper } from '../../styles';
+import { LoadingComponent } from '../../../Components/Skeleton';
+import { FileInputComponent } from '../../../../../global/uploads/CoverUpload';
 
 interface IModalProps {
   modalIsVisible: any;
@@ -24,178 +24,178 @@ interface IModalProps {
 }
 
 function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userID, isLoading, img, photoToast, toast, btnToast }: IModalProps): JSX.Element {
-  useEffect(() => {
-    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-  }, [modalIsVisible]);
+    useEffect(() => {
+        document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+    }, [modalIsVisible]);
 
-  const [clicked, setClicked] = useState<boolean>(false);
-  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
-  const [title, setTitle] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
-  const [sendingUrl, setSendingUrl] = useState('');
+    const [clicked, setClicked] = useState<boolean>(false);
+    const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+    const [title, setTitle] = useState<string>('');
+    const [desc, setDesc] = useState<string>('');
+    const [sendingUrl, setSendingUrl] = useState('');
 
-  const [disableBtn, setDisableBtn] = useState<boolean | null>(null)
-  const [isBtnDisabled, setIsBtnDisabled] = useState<boolean | null>(null)
+    const [disableBtn, setDisableBtn] = useState<boolean | null>(null);
+    const [isBtnDisabled, setIsBtnDisabled] = useState<boolean | null>(null);
 
-  const handlePhotoClick = () => {
-    setClicked(!clicked)
-    console.log('hue')
-  }
+    const handlePhotoClick = () => {
+        setClicked(!clicked);
+        console.log('hue');
+    };
 
-  const HandleOnFileSelect = () => {
-    photoToast(true)
-  }
+    const HandleOnFileSelect = () => {
+        photoToast(true);
+    };
 
-  const handleConfirmModalCall = (url: any) => {
-    setConfirmModalIsVisible(true);
-    setSendingUrl(url)
-  }
+    const handleConfirmModalCall = (url: any) => {
+        setConfirmModalIsVisible(true);
+        setSendingUrl(url);
+    };
 
-  const hue = 'on'
+    const hue = 'on';
 
-  const handleClick = useCallback( async (event: any) => {
-    event.preventDefault();
+    const handleClick = useCallback( async (event: any) => {
+        event.preventDefault();
 
-    setDisableBtn(false);
+        setDisableBtn(false);
 
-    console.log(isFirstButtonDisabled);
-    console.log(disableBtn)
+        console.log(isFirstButtonDisabled);
+        console.log(disableBtn);
 
-    const btnSuccess = await handleSubmit(
+        const btnSuccess = await handleSubmit(
 
-      [
-        {
-          "field": "isFirstButtonDisabled",
-          "value": hue
-        },
-      ],
-      userID
-    );
+            [
+                {
+                    'field': 'isFirstButtonDisabled',
+                    'value': hue
+                },
+            ],
+            userID
+        );
 
-    btnToast(btnSuccess)
+        btnToast(btnSuccess);
 
-    if(isFirstButtonDisabled === 'on'){
-      setIsBtnDisabled(true)
-    } else {
-      setIsBtnDisabled(false)
-    }
+        if(isFirstButtonDisabled === 'on'){
+            setIsBtnDisabled(true);
+        } else {
+            setIsBtnDisabled(false);
+        }
 
-  }, [userID])
+    }, [userID]);
 
-  const handleFormSubmit = useCallback( async (event: any) => {
-    event.preventDefault();
+    const handleFormSubmit = useCallback( async (event: any) => {
+        event.preventDefault();
 
-    const success = await handleSubmit(
-      [
-        {
-          "field": "call",
-          "value":  title
-        },
-        {
-          "field": "description",
-          "value":  desc
-        },
-      ],
-      userID
-    );
+        const success = await handleSubmit(
+            [
+                {
+                    'field': 'call',
+                    'value':  title
+                },
+                {
+                    'field': 'description',
+                    'value':  desc
+                },
+            ],
+            userID
+        );
 
-    toast(success);
-    setTitle('');
-    setDesc('');
+        toast(success);
+        setTitle('');
+        setDesc('');
 
-  }, [title, desc, userID])
+    }, [title, desc, userID]);
 
-  return (
+    return (
     // @ts-ignore
-    <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
-      <Header>
-      <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
-      <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
-      </Header>
+        <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
+            <Header>
+                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
+                <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
+            </Header>
 
-    <Wrapper>
-        <TextField
-          id="outlined-basic"
-          label="Título da sessão"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
+            <Wrapper>
+                <TextField
+                    id="outlined-basic"
+                    label="Título da sessão"
+                    variant="outlined"
+                    sx={{ width: '100%', color: 'red'}}
+                    margin="normal"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                />
 
-        <TextField
-          id="outlined-multiline-static"
-          label="Conteúdo"
-          multiline
-          rows={4}
-          onChange={(e) => setDesc(e.target.value)}
-          value={desc}
-        />
+                <TextField
+                    id="outlined-multiline-static"
+                    label="Conteúdo"
+                    multiline
+                    rows={4}
+                    onChange={(e) => setDesc(e.target.value)}
+                    value={desc}
+                />
 
-      <StyledButton
-        w="larger"
-        h="3rem"
-        children="Salvar textos"
-        type="submit"
-        mt="1rem"
-        onClick={setModalIsVisible}
-      />
+                <StyledButton
+                    w="larger"
+                    h="3rem"
+                    children="Salvar textos"
+                    type="submit"
+                    mt="1rem"
+                    onClick={setModalIsVisible}
+                />
 
-      <ContentWrapper>
-        <div className="header">
-          <h4>Desabilitar botão da sessão</h4>
-          <p> No momento o botão está
-            <strong>
-              {
-                isBtnDisabled ? ' habilitado' : ' desabilitado'
-              }
-            </strong>
-            </p>
-            <p>{isFirstButtonDisabled}</p>
-        </div>
-        <Button
-          variant={'contained'}
-          onClick={handleClick}
-          type="button"
-          sx={{
-            width: '100%',
-            height: '3rem'
-          }}
-        >
+                <ContentWrapper>
+                    <div className="header">
+                        <h4>Desabilitar botão da sessão</h4>
+                        <p> No momento o botão está
+                            <strong>
+                                {
+                                    isBtnDisabled ? ' habilitado' : ' desabilitado'
+                                }
+                            </strong>
+                        </p>
+                        <p>{isFirstButtonDisabled}</p>
+                    </div>
+                    <Button
+                        variant={'contained'}
+                        onClick={handleClick}
+                        type="button"
+                        sx={{
+                            width: '100%',
+                            height: '3rem'
+                        }}
+                    >
           coisar botao
-          </Button>
-      </ContentWrapper>
+                    </Button>
+                </ContentWrapper>
 
-      <ImageContainer
-        style={{ marginTop: '1rem'}}
-      >
-        <LoadingComponent
-          loading={isLoading}
-          height="10rem"
-          component={
-            img == '' ? (
-              <>
+                <ImageContainer
+                    style={{ marginTop: '1rem'}}
+                >
+                    <LoadingComponent
+                        loading={isLoading}
+                        height="10rem"
+                        component={
+                            img == '' ? (
+                                <>
 
-              </>
-            ) : (
-              <>
-                <img src={img}/>
-              </>
-            )
-          }
-        />
-        <FileInputComponent
-          userID={userID}
-          onValueChange={HandleOnFileSelect}
-        />
-      </ImageContainer>
-      </Wrapper>
-    </Container>
-  )
+                                </>
+                            ) : (
+                                <>
+                                    <img src={img}/>
+                                </>
+                            )
+                        }
+                    />
+                    <FileInputComponent
+                        userID={userID}
+                        onValueChange={HandleOnFileSelect}
+                    />
+                </ImageContainer>
+            </Wrapper>
+        </Container>
+    );
 }
 
-export { Modal }
+export { Modal };
 
 const Container = styled.form`
   position: fixed;
@@ -268,7 +268,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const IMGWrapper = styled.div`
   margin: 15px 0;
@@ -288,7 +288,7 @@ const IMGWrapper = styled.div`
       border-radius: 8px;
     }
   }
-`
+`;
 
 const Wrapper = styled.div`
   width: 100%;

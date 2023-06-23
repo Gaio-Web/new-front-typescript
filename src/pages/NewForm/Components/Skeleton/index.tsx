@@ -1,5 +1,5 @@
-import React from "react";
-import { Skeleton } from "@mui/material";
+import React from 'react';
+import { Skeleton } from '@mui/material';
 
 interface ILoadingProps {
   loading: any;
@@ -9,17 +9,17 @@ interface ILoadingProps {
 }
 
 function LoadingComponent({ loading, component, height, width = '100%' }: ILoadingProps): JSX.Element {
-  return (
-    <>
-      { loading ? (
+    return (
         <>
-          <Skeleton variant="rectangular" width={width} height={height} />
+            { loading ? (
+                <>
+                    <Skeleton variant="rectangular" width={width} height={height} />
+                </>
+            ):(
+                component
+            )}
         </>
-      ):(
-        component
-      )}
-    </>
-  )
+    );
 }
 
-export { LoadingComponent }
+export { LoadingComponent };

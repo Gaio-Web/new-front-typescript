@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Input, InputLabel, TextField } from "@mui/material";
-import { StyledButton } from "../../../../global/Button";
-import { handleSubmit } from "../../Utils/mongoReq";
-import styled from "styled-components";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Input, InputLabel, TextField } from '@mui/material';
+import { StyledButton } from '../../../../global/Button';
+import { handleSubmit } from '../../Utils/mongoReq';
+import styled from 'styled-components';
 import { IMaskInput } from 'react-imask';
 
 interface IWhatsProps {
@@ -18,21 +18,21 @@ interface CustomProps {
 }
 
 const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
-  function TextMaskCustom(props, ref) {
-    const { onChange, ...other } = props;
-    return (
-      <IMaskInput
-        {...other}
-        mask="(#0) 0 0000 0000"
-        definitions={{
-          '#': /[1-9]/,
-        }}
-        inputRef={ref}
-        onAccept={(value: any) => onChange({ target: { name: props.name } })}
-        overwrite
-      />
-    );
-  },
+    function TextMaskCustom(props, ref) {
+        const { onChange, ...other } = props;
+        return (
+            <IMaskInput
+                {...other}
+                mask="(#0) 0 0000 0000"
+                definitions={{
+                    '#': /[1-9]/,
+                }}
+                inputRef={ref}
+                onAccept={(value: any) => onChange({ target: { name: props.name } })}
+                overwrite
+            />
+        );
+    },
 );
 
 interface State {
@@ -40,48 +40,48 @@ interface State {
 }
 
 function Whatsapp({ userID, actualWhats, whatsappToast }: IWhatsProps): JSX.Element {
-  const [whats, setWhats] = useState<string | undefined>('');
-  const [showBtn, setShowBtn] = useState<boolean>(false);
+    const [whats, setWhats] = useState<string | undefined>('');
+    const [showBtn, setShowBtn] = useState<boolean>(false);
 
-  const [values, setValues] = React.useState<State>({
-    textmask: '',
-  });
+    const [values, setValues] = React.useState<State>({
+        textmask: '',
+    });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWhats(whats);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setWhats(whats);
+    };
 
-  const handleOnSubmit = useCallback( async (event: any) => {
-    event.preventDefault();
+    const handleOnSubmit = useCallback( async (event: any) => {
+        event.preventDefault();
 
-    setShowBtn(false);
+        setShowBtn(false);
 
-    console.log(whats)
+        console.log(whats);
 
-    const btnSuccess = await handleSubmit(
+        const btnSuccess = await handleSubmit(
 
-      [
-        {
-          "field": "whatsApp",
-          "value": whats
-        },
-      ],
-      userID
-    );
+            [
+                {
+                    'field': 'whatsApp',
+                    'value': whats
+                },
+            ],
+            userID
+        );
 
-    whatsappToast(btnSuccess)
+        whatsappToast(btnSuccess);
 
-  }, [userID, whats])
+    }, [userID, whats]);
 
 
-  return(
-    <Container onSubmit={handleOnSubmit}>
-      <h1>WhatsApp</h1>
-      <h4>Adicione aqui o seu whats <strong>com o DDD</strong></h4>
-        {
-          actualWhats == '' ? (
-            <>
-              {/* <TextField
+    return(
+        <Container onSubmit={handleOnSubmit}>
+            <h1>WhatsApp</h1>
+            <h4>Adicione aqui o seu whats <strong>com o DDD</strong></h4>
+            {
+                actualWhats == '' ? (
+                    <>
+                        {/* <TextField
                 id="outlined-multiline-static"
                 label="WhatsApp"
                 variant="outlined"
@@ -93,66 +93,66 @@ function Whatsapp({ userID, actualWhats, whatsappToast }: IWhatsProps): JSX.Elem
                 value={whats}
               /> */}
 
-      <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
-        <Input
-          value={whats}
-          onChange={handleChange}
-          name="textmask"
-          id="formatted-text-mask-input"
-          inputComponent={TextMaskCustom as any}
-        />
-            {
-              showBtn ? (
-                <>
-                  <StyledButton
-                    children="Atualizar Whats"
-                    type="submit"
-                    w="larger"
-                    h="3rem"
-                  />
-                </>
-              ) : (
-                <>
-                </>
-              )
+                        <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
+                        <Input
+                            value={whats}
+                            onChange={handleChange}
+                            name="textmask"
+                            id="formatted-text-mask-input"
+                            inputComponent={TextMaskCustom as any}
+                        />
+                        {
+                            showBtn ? (
+                                <>
+                                    <StyledButton
+                                        children="Atualizar Whats"
+                                        type="submit"
+                                        w="larger"
+                                        h="3rem"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                </>
+                            )
+                        }
+                    </>
+                ) : (
+                    <>
+                        <div style={{
+                            width: '100%',
+                            height: 'fit-content',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <a
+                                href={`https://whatsgram.com/${actualWhats}`}
+                                className="whats_btn"
+                                target="blank"
+                                style={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    fontSize: '22px',
+                                    padding: '1rem 2rem',
+                                    borderRadius: '8px',
+                                    boxSizing: 'border-box',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                }}
+                            >
+                                {/* <img src={WhatsgramIcon} style={{width: '40px'}}/> */}
+                                {actualWhats}</a>
+                        </div>
+                    </>
+                )
             }
-            </>
-          ) : (
-            <>
-              <div style={{
-                width: '100%',
-                height: 'fit-content',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <a
-                href={`https://whatsgram.com/${actualWhats}`}
-                className="whats_btn"
-                target="blank"
-                style={{
-                  textDecoration: 'none',
-                  color: 'black',
-                  fontSize: '22px',
-                  padding: '1rem 2rem',
-                  borderRadius: '8px',
-                  boxSizing: 'border-box',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
-                >
-                  {/* <img src={WhatsgramIcon} style={{width: '40px'}}/> */}
-                  {actualWhats}</a>
-              </div>
-            </>
-          )
-        }
-    </Container>
-  )
+        </Container>
+    );
 }
 
-export { Whatsapp }
+export { Whatsapp };
 
 const Container = styled.form`
   width: 100%;
@@ -180,4 +180,4 @@ const Container = styled.form`
       background-color: #007bff68;
     }
   }
-`
+`;

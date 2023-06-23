@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Container, Header, TextWrapper } from "../styles";
-import { FaEdit } from "react-icons/fa";
-import { Modal } from "./Components/Modal";
+import React, { useState } from 'react';
+import { Container, Header, TextWrapper } from '../styles';
+import { FaEdit } from 'react-icons/fa';
+import { Modal } from './Components/Modal';
 
 interface IAddressProps {
   userID: string | undefined
@@ -18,41 +18,41 @@ interface IAddressProps {
 }
 
 function Address({ userID, street, cep, city, complement, neighborhood, number, state, toast }: IAddressProps): JSX.Element {
-  const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  return (
-    <Container>
+    return (
+        <Container>
 
-    <Modal
-        modalIsVisible={modalIsVisible}
-        setModalIsVisible={() => setModalIsVisible(false)}
-        userID={userID}
-        toast={toast}
-      />
+            <Modal
+                modalIsVisible={modalIsVisible}
+                setModalIsVisible={() => setModalIsVisible(false)}
+                userID={userID}
+                toast={toast}
+            />
 
-      <Header>
-       <h1>Endereço</h1>
-      <FaEdit onClick={() => setModalIsVisible(true)}/>
-      </Header>
+            <Header>
+                <h1>Endereço</h1>
+                <FaEdit onClick={() => setModalIsVisible(true)}/>
+            </Header>
 
-      <TextWrapper>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '0.25rem'
-          }}
-        >
-          <p>{street}, {number}</p>
-          <p>{complement}, {city}</p>
-          <p>{neighborhood},{state}, {cep}</p>
-        </div>
-      </TextWrapper>
+            <TextWrapper>
+                <div
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '0.25rem'
+                    }}
+                >
+                    <p>{street}, {number}</p>
+                    <p>{complement}, {city}</p>
+                    <p>{neighborhood},{state}, {cep}</p>
+                </div>
+            </TextWrapper>
 
-    </Container>
-  )
+        </Container>
+    );
 }
 
-export { Address }
+export { Address };

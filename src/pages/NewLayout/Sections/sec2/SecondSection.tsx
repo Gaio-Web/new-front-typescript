@@ -20,19 +20,19 @@ function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, produ
         <Container>
             <div id='secondSection' className={'second-wrapper'}>
                 <div className='title-n-prod'>
-                  {
-                    secondTitle == '' || secondTitle == null ? (
-                        <>
-                        {isAutonomous == '1' ? (
-                                  <h1 className="sectionTitle" style={{color: mainColor}}>O que ofereço</h1>
-                              ) : (
-                                  <h1 className="sectionTitle" style={{color: mainColor}}>O que oferecemos</h1>
-                              )}
-                        </>
-                    ) : (
-                      <h1 className="sectionTitle" style={{color: mainColor}}>{secondTitle}</h1>
-                    )
-                  }
+                    {
+                        secondTitle == '' || secondTitle == null ? (
+                            <>
+                                {isAutonomous == '1' ? (
+                                    <h1 className="sectionTitle" style={{color: mainColor}}>O que ofereço</h1>
+                                ) : (
+                                    <h1 className="sectionTitle" style={{color: mainColor}}>O que oferecemos</h1>
+                                )}
+                            </>
+                        ) : (
+                            <h1 className="sectionTitle" style={{color: mainColor}}>{secondTitle}</h1>
+                        )
+                    }
                     <p>{products}</p>
 
                     <button onClick={onClick} style={{backgroundColor: accentColor, color: 'white', marginTop: '20px', width: '100%'}} className='btn-1'>Fale com a gente!</button>

@@ -131,20 +131,20 @@ const NewSlider: React.FC<SliderProps> = ({ firebaseUrl, coverKeyWords, haveURL 
 
     return (
         <SliderContainer
-        ref={sliderRef}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onWheel={handleWheel}
-    >
-        <SliderWrapper>
-            {firebaseUrl.length > 0 &&
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onWheel={handleWheel}
+        >
+            <SliderWrapper>
+                {firebaseUrl.length > 0 &&
               firebaseUrl.map((image: string, index: any) => (
                   <Slide src={image} alt={`Slide ${index + 1}`} key={index} />
               ))}
-        </SliderWrapper>
-    </SliderContainer>
-      )
+            </SliderWrapper>
+        </SliderContainer>
+    );
 };
 
 export default NewSlider;

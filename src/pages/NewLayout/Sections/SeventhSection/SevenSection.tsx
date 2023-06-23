@@ -38,20 +38,20 @@ function SeventhSection({ mainColor, secondaryColor, neightborhood, zipCode, str
                         )}
                     </div>
 
-                      <div
+                    <div
                         style={{
-                          width: '100%',
-                          paddingLeft: '1rem',
-                          paddingRight: '1rem',
-                          boxSizing: 'border-box'
+                            width: '100%',
+                            paddingLeft: '1rem',
+                            paddingRight: '1rem',
+                            boxSizing: 'border-box'
                         }}
-                      >
+                    >
                         <CopyToClipboardButton
-                          path={
-                            `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
-                          }
+                            path={
+                                `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
+                            }
                         />
-                      </div>
+                    </div>
 
                     {/* <button
                         className="buttonCopy"

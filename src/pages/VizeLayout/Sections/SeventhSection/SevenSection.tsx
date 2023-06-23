@@ -15,52 +15,52 @@ interface ISeventhSectionProp {
 }
 
 function SeventhSection({ mainColor, secondaryColor, accentColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
-  return (
-    <Container style={{ backgroundColor: mainColor }}>
-      <div id='seventhSection' className="seventh-wrapper">
-        <h1 className="sectionTitle">
+    return (
+        <Container style={{ backgroundColor: mainColor }}>
+            <div id='seventhSection' className="seventh-wrapper">
+                <h1 className="sectionTitle">
           Endereço
-        </h1>
+                </h1>
 
-        <div className="adressWrapper">
-          <div className="userAdress">
-            {zipCode == '' ? (
-              <p className='addressText'>
+                <div className="adressWrapper">
+                    <div className="userAdress">
+                        {zipCode == '' ? (
+                            <p className='addressText'>
                 Rua exemplo, 45, 302, <br /> sua cidade / estado
-              </p>
-            ) : (
-              <p className='addressText'>
-                {street}, {number},{' '}
-                {complement}
-                <br />
-                {city}/{state}{' '}
-              </p>
-            )}
-          </div>
+                            </p>
+                        ) : (
+                            <p className='addressText'>
+                                {street}, {number},{' '}
+                                {complement}
+                                <br />
+                                {city}/{state}{' '}
+                            </p>
+                        )}
+                    </div>
 
-          <button
-            className="buttonCopy"
-            onClick={() =>
-              navigator.clipboard.writeText(
-                `${street}, ${number}, ${complement} ${city}, ${state}`
-              )
-            }
-          >
-            <div>
-              <span style={{ backgroundColor: accentColor }}>
-                <p style={{ color: mainColor }}>Copiar endereço</p>
-              </span>
-            </div>
+                    <button
+                        className="buttonCopy"
+                        onClick={() =>
+                            navigator.clipboard.writeText(
+                                `${street}, ${number}, ${complement} ${city}, ${state}`
+                            )
+                        }
+                    >
+                        <div>
+                            <span style={{ backgroundColor: accentColor }}>
+                                <p style={{ color: mainColor }}>Copiar endereço</p>
+                            </span>
+                        </div>
 
-            <div>
-              <span>
-                <p>Endereço copiado!</p>
-              </span>
+                        <div>
+                            <span>
+                                <p>Endereço copiado!</p>
+                            </span>
+                        </div>
+                    </button>
+                </div>
             </div>
-          </button>
-        </div>
-      </div>
-    </Container>
-  );
+        </Container>
+    );
 }
 export { SeventhSection };

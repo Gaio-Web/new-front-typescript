@@ -2,14 +2,14 @@ import { useEffect, useState, useRef } from 'react';
 import React, { lazy, Suspense } from 'react';
 import axios from 'axios';
 import {
-  Container,
-  FourthSection,
-  ImageSchedule
+    Container,
+    FourthSection,
+    ImageSchedule
 } from './styles';
 
 import { Carousel } from './Components/Carousel/Carousel';
 import Typewriter from '../Components/ErrorPage';
-import WappLogo from '../../assets/svg/whatsapp-svgrepo-com.svg'
+import WappLogo from '../../assets/svg/whatsapp-svgrepo-com.svg';
 
 import ReactLoading from 'react-loading';
 
@@ -264,9 +264,9 @@ function FindByPhone(): JSX.Element {
         }, 1000);
     }, [data]);
 
-  // useEffect(() => {
-  //   console.log('segundo: ', imgsUrls);
-  // }, [data]);
+    // useEffect(() => {
+    //   console.log('segundo: ', imgsUrls);
+    // }, [data]);
 
     if (loading) {
         return (
@@ -352,7 +352,7 @@ function FindByPhone(): JSX.Element {
                     <div className={'fourth-wrapper'} ref={componentRef}>
                         <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
-                        <button onClick={handleWhatsClick} style={{backgroundColor: ("#22b33b")}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
+                        <button onClick={handleWhatsClick} style={{backgroundColor: ('#22b33b')}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
                         {/* <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button> cor removida a pedido da VIZE*/}
                     </div>
                 </FourthSection>
@@ -371,29 +371,29 @@ function FindByPhone(): JSX.Element {
                 />
             </Suspense>
 
-      <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-        {data.photos.schedules.base64 === '' ?
-          (
-            <Calendar
-              segunda={`${data.segunda}`}
-              terca={`${data.terca}`}
-              quarta={`${data.quarta}`}
-              quinta={`${data.quinta}`}
-              sexta={`${data.sexta}`}
-              sabado={`${data.sabado}`}
-              domingo={`${data.domingo}`}
-              mainColor={data.mainColor}
-              secondaryColor={data.secondaryColor}
-              isAutonomous={data.isAutonomous}
-            />
-          ):(
-            <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
-              <div className='img-wrapper'>
-                <img src={data.photos.schedules.base64} alt='horarios'/>
-              </div>
-            </ImageSchedule>
-          )}
-      </Suspense>
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                {data.photos.schedules.base64 === '' ?
+                    (
+                        <Calendar
+                            segunda={`${data.segunda}`}
+                            terca={`${data.terca}`}
+                            quarta={`${data.quarta}`}
+                            quinta={`${data.quinta}`}
+                            sexta={`${data.sexta}`}
+                            sabado={`${data.sabado}`}
+                            domingo={`${data.domingo}`}
+                            mainColor={data.mainColor}
+                            secondaryColor={data.secondaryColor}
+                            isAutonomous={data.isAutonomous}
+                        />
+                    ):(
+                        <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+                            <div className='img-wrapper'>
+                                <img src={data.photos.schedules.base64} alt='horarios'/>
+                            </div>
+                        </ImageSchedule>
+                    )}
+            </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
                 <SeventhSection

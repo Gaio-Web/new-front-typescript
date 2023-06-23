@@ -19,30 +19,30 @@ function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBa
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
-              <div className='content-wrapper'>
-                {
-                  fifthTitle == '' || fifthTitle == null ? (
-                    <>
-                {isAutonomous == '1' ? (
-                  <h1 className="sectionTitle" style={{ color: mainColor }}>
+                <div className='content-wrapper'>
+                    {
+                        fifthTitle == '' || fifthTitle == null ? (
+                            <>
+                                {isAutonomous == '1' ? (
+                                    <h1 className="sectionTitle" style={{ color: mainColor }}>
                       Minha História
-                  </h1>
-                ):(
-                  <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                    </h1>
+                                ):(
+                                    <h1 className="sectionTitle" style={{ color: mainColor }}>
                       Nossa História
-                  </h1>
-                )}
-                    </>
-                  ):(
-                    <h1  className="sectionTitle" style={{ color: mainColor }}>
-                      {fifthTitle}
-                    </h1>
-                  )
-                }
+                                    </h1>
+                                )}
+                            </>
+                        ):(
+                            <h1  className="sectionTitle" style={{ color: mainColor }}>
+                                {fifthTitle}
+                            </h1>
+                        )
+                    }
 
-                <p className='history'>{history}</p>
+                    <p className='history'>{history}</p>
 
-                  <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
+                    <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
                     {photoBase64 == '' ? (

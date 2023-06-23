@@ -11,26 +11,26 @@ interface IButtonProp {
 }
 
 function StyledButton({ placeHolder, clickedPlaceHolder, color, disabledColor, fetched, onClick}: IButtonProp ): JSX.Element {
-  const [label, setLabel] = useState(placeHolder);
-  const [btnColor, setBtnColor] = useState(color);
+    const [label, setLabel] = useState(placeHolder);
+    const [btnColor, setBtnColor] = useState(color);
 
-  const [fetching, setFetching] = useState<boolean>(false);
+    const [fetching, setFetching] = useState<boolean>(false);
 
 
-  const handleClick = () => {
-    setFetching(true);
-    onClick();
-  };
+    const handleClick = () => {
+        setFetching(true);
+        onClick();
+    };
 
-  useEffect(() => {
-    if (fetched && fetching){
-      setFetching(false);
-    }
-  }, [fetching, fetched]);
+    useEffect(() => {
+        if (fetched && fetching){
+            setFetching(false);
+        }
+    }, [fetching, fetched]);
 
-  return (
-    <Button color={fetching ? disabledColor : color} onClick={handleClick}>{fetching ? clickedPlaceHolder : placeHolder}</Button>
-  );
+    return (
+        <Button color={fetching ? disabledColor : color} onClick={handleClick}>{fetching ? clickedPlaceHolder : placeHolder}</Button>
+    );
 }
 
 export { StyledButton };

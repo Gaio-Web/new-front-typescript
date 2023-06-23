@@ -22,34 +22,34 @@ interface AxiosHook {
 }
 
 const useAxios = (param: string): AxiosHook => {
-  const [response, setResponse] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+    const [response, setResponse] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
-  axios.defaults.baseURL = 'https://api.unsplash.com';
+    axios.defaults.baseURL = 'https://api.unsplash.com';
 
-  const fetchData = async (url: string): Promise<void> => {
-    try {
-      setIsLoading(true);
-      const res = await axios(url);
-      setResponse(res.data.results);
-    } catch (err) {
-      setError(err as string);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const fetchData = async (url: string): Promise<void> => {
+        try {
+            setIsLoading(true);
+            const res = await axios(url);
+            setResponse(res.data.results);
+        } catch (err) {
+            setError(err as string);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-  useEffect(() => {
-    fetchData(param);
-  }, [param]);
+    useEffect(() => {
+        fetchData(param);
+    }, [param]);
 
-  return {
-    response,
-    isLoading,
-    error,
-    fetchData: (url: string) => fetchData(url),
-  };
+    return {
+        response,
+        isLoading,
+        error,
+        fetchData: (url: string) => fetchData(url),
+    };
 };
 
 export default useAxios;

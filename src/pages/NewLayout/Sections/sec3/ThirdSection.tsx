@@ -21,27 +21,27 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
     return (
         <Container>
             <div id='thirdSection' className={'third-wrapper'}>
-              {
-                thirdTitle == '' || thirdTitle == null ? (
-                  <>
-                  {isAutonomous == '1' ? (
-                    <h1 className="sectionTitle" style={{ color: mainColor }}>
+                {
+                    thirdTitle == '' || thirdTitle == null ? (
+                        <>
+                            {isAutonomous == '1' ? (
+                                <h1 className="sectionTitle" style={{ color: mainColor }}>
                         Meus diferenciais
-                    </h1>
-                ):(
-                    <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                </h1>
+                            ):(
+                                <h1 className="sectionTitle" style={{ color: mainColor }}>
                         Nossos diferenciais
-                    </h1>
-                )}
-                  </>
-                ) : (
-                  <>
-                  <h1>
-                    {thirdTitle}
-                  </h1>
-                  </>
-                )
-              }
+                                </h1>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <h1>
+                                {thirdTitle}
+                            </h1>
+                        </>
+                    )
+                }
                 <div className='cards-wrapper'>
 
 

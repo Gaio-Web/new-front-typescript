@@ -42,40 +42,40 @@ function UnsplashGallery3 ({ data }: { data: ImageData }) {
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (imgRef.current && overlayRef.current) {
-        const imgWidth = imgRef.current.width;
-        const imgHeight = imgRef.current.height;
-        overlayRef.current.style.width = `${imgWidth}px`;
-        overlayRef.current.style.height = `${imgHeight}px`;
-      }
+        if (imgRef.current && overlayRef.current) {
+            const imgWidth = imgRef.current.width;
+            const imgHeight = imgRef.current.height;
+            overlayRef.current.style.width = `${imgWidth}px`;
+            overlayRef.current.style.height = `${imgHeight}px`;
+        }
     }, [response]);
 
     const handleImageLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
-      const target = event.target as HTMLImageElement;
-      if (imgRef.current && overlayRef.current) {
-        const imgWidth = target.width;
-        const imgHeight = target.height;
-        overlayRef.current.style.width = `${imgWidth}px`;
-        overlayRef.current.style.height = `${imgHeight}px`;
-      }
+        const target = event.target as HTMLImageElement;
+        if (imgRef.current && overlayRef.current) {
+            const imgWidth = target.width;
+            const imgHeight = target.height;
+            overlayRef.current.style.width = `${imgWidth}px`;
+            overlayRef.current.style.height = `${imgHeight}px`;
+        }
     };
 
     return(
         <ImageContext.Provider value={value}>
             <Container>
-            {isLoading ? (
-          <ReactLoading type="spin" color="#eee" height={200} width={100} />
-        ) : response.length > 0 ? (
-          <>
-            <img ref={imgRef} src={response[5].urls.small} alt={data.alt_description} onLoad={handleImageLoad} />
-            <Overlay className="unsplashImgOverlay" ref={overlayRef}>
-              <OverlayText className="overlayText">
-                <h3>Imagens sobre seu negócio</h3>
-                <h5 className='overlaySubtitle'>Fotos do seu produto/serviço que impressionam</h5>
-              </OverlayText>
-            </Overlay>
-          </>
-        ) : null}
+                {isLoading ? (
+                    <ReactLoading type="spin" color="#eee" height={200} width={100} />
+                ) : response.length > 0 ? (
+                    <>
+                        <img ref={imgRef} src={response[5].urls.small} alt={data.alt_description} onLoad={handleImageLoad} />
+                        <Overlay className="unsplashImgOverlay" ref={overlayRef}>
+                            <OverlayText className="overlayText">
+                                <h3>Imagens sobre seu negócio</h3>
+                                <h5 className='overlaySubtitle'>Fotos do seu produto/serviço que impressionam</h5>
+                            </OverlayText>
+                        </Overlay>
+                    </>
+                ) : null}
             </Container>
         </ImageContext.Provider>
     );

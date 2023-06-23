@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { IoClose } from "react-icons/io5";
-import styled, { css } from "styled-components";
-import { StyledButton } from "../../../../../../global/Button";
+import React, { useEffect } from 'react';
+import { IoClose } from 'react-icons/io5';
+import styled, { css } from 'styled-components';
+import { StyledButton } from '../../../../../../global/Button';
 
 import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
-import storage from "../../../../../../../firebaseConfig";
+import storage from '../../../../../../../firebaseConfig';
 
 interface IConfirmModalProps {
   confirmModalIsVisible: any;
@@ -15,59 +15,59 @@ interface IConfirmModalProps {
 }
 
 function ConfirmModal({confirmModalIsVisible, setConfirmModalIsVisible, imgUrl, toastFromConfirmModal}: IConfirmModalProps): JSX.Element {
-  useEffect(() => {
-    document.body.style.overflowY = confirmModalIsVisible ? 'hidden' : 'auto';
-  }, [confirmModalIsVisible]);
+    useEffect(() => {
+        document.body.style.overflowY = confirmModalIsVisible ? 'hidden' : 'auto';
+    }, [confirmModalIsVisible]);
 
-  const handleDelete = () => {
-    toastFromConfirmModal(true);
-  }
+    const handleDelete = () => {
+        toastFromConfirmModal(true);
+    };
 
-  const closeModal = () => {
-    setConfirmModalIsVisible
-  }
+    const closeModal = () => {
+        setConfirmModalIsVisible;
+    };
 
-  const deleteImg = (refUrl: string) => {
-    const imageRef = ref(storage, refUrl);
-    deleteObject(imageRef)
-        .then(() =>
-          handleDelete(),
-          closeModal,
-        )
-        .catch((error) => {
-            console.log('deu ruim: ', error)
-        });
-};
+    const deleteImg = (refUrl: string) => {
+        const imageRef = ref(storage, refUrl);
+        deleteObject(imageRef)
+            .then(() =>
+                handleDelete(),
+            closeModal,
+            )
+            .catch((error) => {
+                console.log('deu ruim: ', error);
+            });
+    };
 
-  return (
+    return (
     // @ts-ignore
-    <Container isVisible={confirmModalIsVisible}>
-      <Wrapper>
-        <div className="content-wrapper">
-        <div className="header">
-          <IoClose size={40} onClick={setConfirmModalIsVisible} style={{paddingRight: '10px'}}/>
-          <h2>Deseja realmente apagar esta foto?</h2>
-        </div>
-        <img src={imgUrl}/>
-        </div>
-        <BtnWrapper>
-          <StyledButton children="cancelar" w="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
-          <StyledButton
-            children="confirmar"
-            w="small"
-            onClick={() => {
-              deleteImg(imgUrl);
-              setTimeout(() => {
-                setConfirmModalIsVisible(true);
-              }, 1000)
-              }}/>
-        </BtnWrapper>
-      </Wrapper>
-    </Container>
-  )
+        <Container isVisible={confirmModalIsVisible}>
+            <Wrapper>
+                <div className="content-wrapper">
+                    <div className="header">
+                        <IoClose size={40} onClick={setConfirmModalIsVisible} style={{paddingRight: '10px'}}/>
+                        <h2>Deseja realmente apagar esta foto?</h2>
+                    </div>
+                    <img src={imgUrl}/>
+                </div>
+                <BtnWrapper>
+                    <StyledButton children="cancelar" w="small" bgColor="red" onClick={setConfirmModalIsVisible}/>
+                    <StyledButton
+                        children="confirmar"
+                        w="small"
+                        onClick={() => {
+                            deleteImg(imgUrl);
+                            setTimeout(() => {
+                                setConfirmModalIsVisible(true);
+                            }, 1000);
+                        }}/>
+                </BtnWrapper>
+            </Wrapper>
+        </Container>
+    );
 }
 
-export { ConfirmModal }
+export { ConfirmModal };
 
 const Container = styled.section`
   position: fixed;
@@ -172,7 +172,7 @@ const Wrapper = styled.div`
       border-radius: 8px;
     }
   }
-`
+`;
 
 const BtnWrapper = styled.div`
   width: 100%;

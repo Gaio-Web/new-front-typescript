@@ -123,16 +123,16 @@ function GaioMainPage(): JSX.Element {
     }, [data]);
 
     if (loading) {
-      return (
-        <LoadingPage />
-      )
+        return (
+            <LoadingPage />
+        );
     }
 
     else if (!data) {
-      return (
-          <Typewriter/>
-      );
-  }
+        return (
+            <Typewriter/>
+        );
+    }
 
 
     return (
@@ -226,27 +226,27 @@ function GaioMainPage(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-            {data.photos.schedules.base64 === '' ?
-          (
-            <NewCalendar
-              segunda={`${data.segunda}`}
-              terca={`${data.terca}`}
-              quarta={`${data.quarta}`}
-              quinta={`${data.quinta}`}
-              sexta={`${data.sexta}`}
-              sabado={`${data.sabado}`}
-              domingo={`${data.domingo}`}
-              mainColor={data.mainColor}
-              secondaryColor={data.secondaryColor}
-              isAutonomous={data.isAutonomous}
-            />
-          ):(
-            <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
-              <div className='img-wrapper'>
-                <img src={data.photos.schedules.base64} alt='horarios'/>
-              </div>
-            </ImageSchedule>
-          )}
+                {data.photos.schedules.base64 === '' ?
+                    (
+                        <NewCalendar
+                            segunda={`${data.segunda}`}
+                            terca={`${data.terca}`}
+                            quarta={`${data.quarta}`}
+                            quinta={`${data.quinta}`}
+                            sexta={`${data.sexta}`}
+                            sabado={`${data.sabado}`}
+                            domingo={`${data.domingo}`}
+                            mainColor={data.mainColor}
+                            secondaryColor={data.secondaryColor}
+                            isAutonomous={data.isAutonomous}
+                        />
+                    ):(
+                        <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+                            <div className='img-wrapper'>
+                                <img src={data.photos.schedules.base64} alt='horarios'/>
+                            </div>
+                        </ImageSchedule>
+                    )}
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>

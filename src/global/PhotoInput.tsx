@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 interface IInputProp {
   width?: 'small' | 'larger';
@@ -7,9 +7,9 @@ interface IInputProp {
 }
 
 function StyledInput({ width, bgColor }: IInputProp): JSX.Element {
-  return (
-    <Input width={width} style={{ backgroundColor: bgColor }} type="file"/>
-  )
+    return (
+        <Input width={width} style={{ backgroundColor: bgColor }} type="file"/>
+    );
 }
 
 export { StyledInput };
@@ -17,10 +17,10 @@ export { StyledInput };
 const Input = styled.input<IInputProp>`
   height: 3rem;
   width: ${(props) => {
-    if (props.width === 'small') return '50%';
-    if (props.width === 'larger') return '100%';
-    return 'auto';
-  }};
+        if (props.width === 'small') return '50%';
+        if (props.width === 'larger') return '100%';
+        return 'auto';
+    }};
   border: 1px solid #c4c4c42e;
   border-radius: 8px;
   background-color: rgb(41, 182, 10);

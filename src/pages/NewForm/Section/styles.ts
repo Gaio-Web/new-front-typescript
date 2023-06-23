@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -59,7 +59,7 @@ export const ImageContainer = styled.div`
     width: 100%;
     border-radius: 8px;
   }
-`
+`;
 
 export const TextWrapper = styled.div`
   width: 100%;
@@ -104,7 +104,7 @@ export const InputWrapper = styled.div`
   & .color-input {
     width: 60%;
   }
-`
+`;
 
 export const ContentWrapper = styled.div`
     padding: 1rem;
@@ -122,4 +122,4 @@ export const ContentWrapper = styled.div`
       width: 100%;
       gap: 1rem;
     }
-`
+`;

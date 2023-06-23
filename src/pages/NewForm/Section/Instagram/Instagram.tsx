@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { TextField } from "@mui/material";
-import { StyledButton } from "../../../../global/Button";
-import { handleSubmit } from "../../Utils/mongoReq";
-import styled from "styled-components";
+import React, { useCallback, useEffect, useState } from 'react';
+import { TextField } from '@mui/material';
+import { StyledButton } from '../../../../global/Button';
+import { handleSubmit } from '../../Utils/mongoReq';
+import styled from 'styled-components';
 
-import InstagramIcon from '../../../../assets/svg/icons8-instagram-48.png'
+import InstagramIcon from '../../../../assets/svg/icons8-instagram-48.png';
 
 interface IInstagramProps {
   userID: string | undefined;
@@ -14,110 +14,110 @@ interface IInstagramProps {
 }
 
 function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.Element {
-  const [insta, setInsta] = useState<string | undefined>('');
-  const [showBtn, setShowBtn] = useState<boolean>(false);
+    const [insta, setInsta] = useState<string | undefined>('');
+    const [showBtn, setShowBtn] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   console.log('insta', actualInsta)
+    // useEffect(() => {
+    //   console.log('insta', actualInsta)
 
-  //   if (actualInsta !== ''){
-  //     setInsta(actualInsta)
-  //   }
-  // })
+    //   if (actualInsta !== ''){
+    //     setInsta(actualInsta)
+    //   }
+    // })
 
-  const handleOnSubmit = useCallback( async (event: any) => {
-    event.preventDefault();
+    const handleOnSubmit = useCallback( async (event: any) => {
+        event.preventDefault();
 
-    setShowBtn(false);
+        setShowBtn(false);
 
-    console.log(insta)
+        console.log(insta);
 
-    const btnSuccess = await handleSubmit(
+        const btnSuccess = await handleSubmit(
 
-      [
-        {
-          "field": "instagram",
-          "value": insta
-        },
-      ],
-      userID
-    );
+            [
+                {
+                    'field': 'instagram',
+                    'value': insta
+                },
+            ],
+            userID
+        );
 
-    instaToast(btnSuccess)
+        instaToast(btnSuccess);
 
-  }, [userID, insta])
+    }, [userID, insta]);
 
 
-  return(
-    <Container onSubmit={handleOnSubmit}>
-      <h1>Instagram</h1>
-      <h4>Adicione aqui o seu instagram <strong>sem o @</strong></h4>
-        {
-          actualInsta == '' ? (
-            <>
-              <TextField
-                id="outlined-multiline-static"
-                label="Instagram"
-                variant="outlined"
-                rows={1}
-                onChange={(e) => {
-                  setInsta(e.target.value)
-                  setShowBtn(true)
-                }}
-                value={insta}
-              />
+    return(
+        <Container onSubmit={handleOnSubmit}>
+            <h1>Instagram</h1>
+            <h4>Adicione aqui o seu instagram <strong>sem o @</strong></h4>
             {
-              showBtn ? (
-                <>
-                  <StyledButton
-                    children="Atualizar Insta"
-                    type="submit"
-                    w="larger"
-                    h="3rem"
-                  />
-                </>
-              ) : (
-                <>
-                </>
-              )
+                actualInsta == '' ? (
+                    <>
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Instagram"
+                            variant="outlined"
+                            rows={1}
+                            onChange={(e) => {
+                                setInsta(e.target.value);
+                                setShowBtn(true);
+                            }}
+                            value={insta}
+                        />
+                        {
+                            showBtn ? (
+                                <>
+                                    <StyledButton
+                                        children="Atualizar Insta"
+                                        type="submit"
+                                        w="larger"
+                                        h="3rem"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                </>
+                            )
+                        }
+                    </>
+                ) : (
+                    <>
+                        <div style={{
+                            width: '100%',
+                            height: 'fit-content',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <a
+                                href={`https://instagram.com/${actualInsta}`}
+                                className="insta_btn"
+                                target="blank"
+                                style={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    fontSize: '22px',
+                                    padding: '1rem 2rem',
+                                    borderRadius: '8px',
+                                    boxSizing: 'border-box',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                }}
+                            >
+                                <img src={InstagramIcon} style={{width: '40px'}}/>
+                                {actualInsta}</a>
+                        </div>
+                    </>
+                )
             }
-            </>
-          ) : (
-            <>
-              <div style={{
-                width: '100%',
-                height: 'fit-content',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <a
-                href={`https://instagram.com/${actualInsta}`}
-                className="insta_btn"
-                target="blank"
-                style={{
-                  textDecoration: 'none',
-                  color: 'black',
-                  fontSize: '22px',
-                  padding: '1rem 2rem',
-                  borderRadius: '8px',
-                  boxSizing: 'border-box',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
-                >
-                  <img src={InstagramIcon} style={{width: '40px'}}/>
-                  {actualInsta}</a>
-              </div>
-            </>
-          )
-        }
-    </Container>
-  )
+        </Container>
+    );
 }
 
-export { Instagram }
+export { Instagram };
 
 const Container = styled.form`
   width: 100%;
@@ -145,4 +145,4 @@ const Container = styled.form`
       background-color: #007bff68;
     }
   }
-`
+`;

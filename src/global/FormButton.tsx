@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
-import React from "react";
-import styled, { css } from "styled-components";
+import { Button } from '@mui/material';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 interface IButtonProp {
   width?: '50%' | '100%';
@@ -12,21 +12,21 @@ interface IButtonProp {
 }
 
 function StyledButton({ width, children, bgColor = 'rgb(41, 182, 10)', onClick }: IButtonProp): JSX.Element {
-  const [flag, setFlag] = React.useState(true);
+    const [flag, setFlag] = React.useState(true);
 
-  const handleClick = () => {
-    setFlag(!flag);
-  };
+    const handleClick = () => {
+        setFlag(!flag);
+    };
 
-  return (
+    return (
 
-    <Button variant="contained" size="large" sx={{ width: width, backgroundColor: bgColor}}>
-    {children}
-  </Button>
+        <Button variant="contained" size="large" sx={{ width: width, backgroundColor: bgColor}}>
+            {children}
+        </Button>
     // <Button width={width} style={{ backgroundColor: bgColor }} onClick={onClick}>
     //   { children }
     // </Button>
-  )
+    );
 }
 
 export { StyledButton };

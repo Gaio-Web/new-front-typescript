@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 function LoadingComponent(): JSX.Element {
-  return (
-    <Container>
-      <h1>CARREGANDO</h1>
-    </Container>
-  );
+    return (
+        <Container>
+            <h1>CARREGANDO</h1>
+        </Container>
+    );
 }
 
 export { LoadingComponent };

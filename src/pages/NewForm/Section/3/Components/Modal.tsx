@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { IoClose } from "react-icons/io5";
-import styled, { css } from "styled-components";
-import { TextField } from "@mui/material";
-import { StyledButton } from "../../../../../global/Button";
-import { handleSubmit } from "../../../Utils/mongoReq";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+import styled, { css } from 'styled-components';
+import { TextField } from '@mui/material';
+import { StyledButton } from '../../../../../global/Button';
+import { handleSubmit } from '../../../Utils/mongoReq';
 
 interface IModalProps {
   modalIsVisible: any;
@@ -14,174 +14,174 @@ interface IModalProps {
 }
 
 function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
-  useEffect(() => {
-    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-  }, [modalIsVisible]);
+    useEffect(() => {
+        document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+    }, [modalIsVisible]);
 
-  const [clicked, setClicked] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false);
 
-  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+    const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
 
-  const handlePhotoClick = () => {
-    setClicked(!clicked)
-    console.log('hue')
-  }
+    const handlePhotoClick = () => {
+        setClicked(!clicked);
+        console.log('hue');
+    };
 
-  const [sendingUrl, setSendingUrl] = useState('');
+    const [sendingUrl, setSendingUrl] = useState('');
 
-  const handleConfirmModalCall = (url: any) => {
-    setConfirmModalIsVisible(true);
-    setSendingUrl(url)
-  }
+    const handleConfirmModalCall = (url: any) => {
+        setConfirmModalIsVisible(true);
+        setSendingUrl(url);
+    };
 
-  const [title, setTitle] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
 
-  const [qlt1, setQlt1] = useState<string>('');
-  const [qlt2, setQlt2] = useState<string>('');
-  const [qlt3, setQlt3] = useState<string>('');
+    const [qlt1, setQlt1] = useState<string>('');
+    const [qlt2, setQlt2] = useState<string>('');
+    const [qlt3, setQlt3] = useState<string>('');
 
-  const [qualitydescription1, setQualitydescription1] = useState<string>('')
-  const [qualitydescription2, setQualitydescription2] = useState<string>('')
-  const [qualitydescription3, setQualitydescription3] = useState<string>('')
+    const [qualitydescription1, setQualitydescription1] = useState<string>('');
+    const [qualitydescription2, setQualitydescription2] = useState<string>('');
+    const [qualitydescription3, setQualitydescription3] = useState<string>('');
 
 
-  const handleFormSubmit = useCallback( async (event: any) => {
-    event.preventDefault();
+    const handleFormSubmit = useCallback( async (event: any) => {
+        event.preventDefault();
 
-    const success = await handleSubmit(
-      [
-        {
-          "field": "thirdTitle",
-          "value":  title
-        },
-        {
-          "field": "quality1",
-          "value":  qlt1
-        },
-        {
-          "field": "quality2",
-          "value":  qlt2
-        },
-        {
-          "field": "quality3",
-          "value":  qlt3
-        },
-        {
-          "field": "qualitydescription1",
-          "value":  qualitydescription1
-        },
-        {
-          "field": "qualitydescription2",
-          "value":  qualitydescription2
-        },
-        {
-          "field": "qualitydescription3",
-          "value":  qualitydescription3
-        },
+        const success = await handleSubmit(
+            [
+                {
+                    'field': 'thirdTitle',
+                    'value':  title
+                },
+                {
+                    'field': 'quality1',
+                    'value':  qlt1
+                },
+                {
+                    'field': 'quality2',
+                    'value':  qlt2
+                },
+                {
+                    'field': 'quality3',
+                    'value':  qlt3
+                },
+                {
+                    'field': 'qualitydescription1',
+                    'value':  qualitydescription1
+                },
+                {
+                    'field': 'qualitydescription2',
+                    'value':  qualitydescription2
+                },
+                {
+                    'field': 'qualitydescription3',
+                    'value':  qualitydescription3
+                },
 
-      ],
-      userID
-    );
+            ],
+            userID
+        );
 
-    toast(success);
-    setQlt1('');
-    setQlt2('');
-    setQlt3('');
-    setQualitydescription1('');
-    setQualitydescription2('');
-    setQualitydescription3('');
+        toast(success);
+        setQlt1('');
+        setQlt2('');
+        setQlt3('');
+        setQualitydescription1('');
+        setQualitydescription2('');
+        setQualitydescription3('');
 
-  }, [qlt1, qlt2, qlt3, qualitydescription1, qualitydescription2, qualitydescription3, userID])
+    }, [qlt1, qlt2, qlt3, qualitydescription1, qualitydescription2, qualitydescription3, userID]);
 
-  return (
+    return (
     // @ts-ignore
-    <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
-      <Header>
-      <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Terceira sessão</h1>
-      <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
-      </Header>
-        <TextField
-          id="outlined-basic"
-          label="Título da sessão"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
-      <Wrapper>
-      <div className="difs-wrapper">
-        <h4 style={{color: '#1b1b1b'}}>Diferencial 1</h4>
-        <TextField
-          id="outlined-basic"
-          label="Título do diferencial 1"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => setQlt1(e.target.value)}
-          value={qlt1}
-        />
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Conteúdo"
-          multiline
-          rows={4}
-          onChange={(e) => setQualitydescription1(e.target.value)}
-          value={qualitydescription1}
-          />
-        </div>
-
-        <div className="difs-wrapper">
-        <h4 style={{color: '#1b1b1b'}}>Diferencial 2</h4>
-        <TextField
-          id="outlined-basic"
-          label="Título do diferencial 2"
-          variant="outlined"
-          sx={{ width: '100%', color: 'red'}}
-          margin="normal"
-          onChange={(e) => setQlt2(e.target.value)}
-          value={qlt2}
-        />
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Conteúdo"
-          multiline
-          rows={4}
-          onChange={(e) => setQualitydescription2(e.target.value)}
-          value={qualitydescription2}
-          />
-        </div>
-
-        <div className="difs-wrapper">
-          <h4 style={{color: '#1b1b1b'}}>Diferencial 3</h4>
+        <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
+            <Header>
+                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Terceira sessão</h1>
+                <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
+            </Header>
             <TextField
-              id="outlined-basic"
-              label="Título do diferencial 3"
-              variant="outlined"
-              sx={{ width: '100%', color: 'red'}}
-              margin="normal"
-              onChange={(e) => setQlt3(e.target.value)}
-              value={qlt3}
+                id="outlined-basic"
+                label="Título da sessão"
+                variant="outlined"
+                sx={{ width: '100%', color: 'red'}}
+                margin="normal"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
             />
+            <Wrapper>
+                <div className="difs-wrapper">
+                    <h4 style={{color: '#1b1b1b'}}>Diferencial 1</h4>
+                    <TextField
+                        id="outlined-basic"
+                        label="Título do diferencial 1"
+                        variant="outlined"
+                        sx={{ width: '100%', color: 'red'}}
+                        margin="normal"
+                        onChange={(e) => setQlt1(e.target.value)}
+                        value={qlt1}
+                    />
 
-            <TextField
-              id="outlined-multiline-static"
-              label="Conteúdo"
-              multiline
-              rows={4}
-              onChange={(e) => setQualitydescription3(e.target.value)}
-              value={qualitydescription3}
-              />
-         </div>
-     </Wrapper>
-      <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
-    </Container>
-  )
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Conteúdo"
+                        multiline
+                        rows={4}
+                        onChange={(e) => setQualitydescription1(e.target.value)}
+                        value={qualitydescription1}
+                    />
+                </div>
+
+                <div className="difs-wrapper">
+                    <h4 style={{color: '#1b1b1b'}}>Diferencial 2</h4>
+                    <TextField
+                        id="outlined-basic"
+                        label="Título do diferencial 2"
+                        variant="outlined"
+                        sx={{ width: '100%', color: 'red'}}
+                        margin="normal"
+                        onChange={(e) => setQlt2(e.target.value)}
+                        value={qlt2}
+                    />
+
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Conteúdo"
+                        multiline
+                        rows={4}
+                        onChange={(e) => setQualitydescription2(e.target.value)}
+                        value={qualitydescription2}
+                    />
+                </div>
+
+                <div className="difs-wrapper">
+                    <h4 style={{color: '#1b1b1b'}}>Diferencial 3</h4>
+                    <TextField
+                        id="outlined-basic"
+                        label="Título do diferencial 3"
+                        variant="outlined"
+                        sx={{ width: '100%', color: 'red'}}
+                        margin="normal"
+                        onChange={(e) => setQlt3(e.target.value)}
+                        value={qlt3}
+                    />
+
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Conteúdo"
+                        multiline
+                        rows={4}
+                        onChange={(e) => setQualitydescription3(e.target.value)}
+                        value={qualitydescription3}
+                    />
+                </div>
+            </Wrapper>
+            <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
+        </Container>
+    );
 }
 
-export { Modal }
+export { Modal };
 
 
 const Container = styled.form`
@@ -263,7 +263,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const IMGWrapper = styled.div`
 
@@ -286,7 +286,7 @@ const IMGWrapper = styled.div`
       border-radius: 8px;
     }
   }
-`
+`;
 
 const Wrapper = styled.div`
   width: 100%;

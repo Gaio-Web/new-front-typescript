@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface IColorProps {
   bgColor: string | undefined;
@@ -11,7 +11,7 @@ export const ColorContainer = styled.div<IColorProps>`
   border-radius: 0.6rem;
 
   border: 1px solid #c4c4c4;
-`
+`;
 
 export const Colors = styled.section`
   display: flex;
@@ -19,4 +19,4 @@ export const Colors = styled.section`
   justify-content: space-evenly;
   padding: 1rem;
   box-sizing: border-box;
-`
+`;

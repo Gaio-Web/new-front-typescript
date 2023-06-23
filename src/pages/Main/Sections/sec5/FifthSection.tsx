@@ -16,22 +16,22 @@ function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, histor
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
-              <div className='content-wrapper'>
-                {isAutonomous == '1' ? (
-                  <h1 className="sectionTitle" style={{ color: mainColor }}>
+                <div className='content-wrapper'>
+                    {isAutonomous == '1' ? (
+                        <h1 className="sectionTitle" style={{ color: mainColor }}>
             Minha História
-                    </h1>
-                ):(
-                  <h1 className="sectionTitle" style={{ color: mainColor }}>
+                        </h1>
+                    ):(
+                        <h1 className="sectionTitle" style={{ color: mainColor }}>
           Nossa História
-                    </h1>
-                )}
-                <p className='history'>{history}</p>
+                        </h1>
+                    )}
+                    <p className='history'>{history}</p>
 
-                  <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
+                    <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
-                  <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
+                    <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                 </div>
                 <button onClick={onClick} style={{ backgroundColor: accentColor }} className='btn-2'>Conversar por WhatsApp</button>
             </div>
