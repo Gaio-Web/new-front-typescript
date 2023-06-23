@@ -33,7 +33,6 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
-import { StyledButton } from '../../global/Button';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Props {
@@ -133,16 +132,16 @@ function NewLayout(): JSX.Element {
     }, [data]);
 
     if (loading) {
-      return (
-        <LoadingPage />
-      )
+        return (
+            <LoadingPage />
+        );
     }
 
     else if (!data) {
-      return (
-          <Typewriter/>
-      );
-  }
+        return (
+            <Typewriter/>
+        );
+    }
 
 
     return (
@@ -217,20 +216,20 @@ function NewLayout(): JSX.Element {
             </Suspense>
 
             { data?.isFourthSecVisible == 'on' || data?.isFourthSecVisible == null ? (
-              <>
-              <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <FourthSection>
-                    <h1>Galeria de fotos</h1>
-                    <div className='fourth-wrapper'>
-                        <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
-                    </div>
-                    <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
-                </FourthSection>
-            </Suspense>
-              </>
+                <>
+                    <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                        <FourthSection>
+                            <h1>Galeria de fotos</h1>
+                            <div className='fourth-wrapper'>
+                                <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
+                            </div>
+                            <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
+                        </FourthSection>
+                    </Suspense>
+                </>
             ) : (
-              <>
-              </>
+                <>
+                </>
             )
             }
 
@@ -249,29 +248,38 @@ function NewLayout(): JSX.Element {
                 />
             </Suspense>
 
-            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-            {data.photos.schedules.base64 === '' ?
-          (
-            <NewCalendar
-              segunda={`${data.segunda}`}
-              terca={`${data.terca}`}
-              quarta={`${data.quarta}`}
-              quinta={`${data.quinta}`}
-              sexta={`${data.sexta}`}
-              sabado={`${data.sabado}`}
-              domingo={`${data.domingo}`}
-              mainColor={data.mainColor}
-              secondaryColor={data.secondaryColor}
-              isAutonomous={data.isAutonomous}
-            />
-          ):(
-            <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
-              <div className='img-wrapper'>
-                <img src={data.photos.schedules.base64} alt='horarios'/>
-              </div>
-            </ImageSchedule>
-          )}
-            </Suspense>
+            {data?.isAgendaVisible == 'on' || data?.isAgendaVisible == null ? (
+                <>
+                    <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                        {data.photos.schedules.base64 === '' ?
+                            (
+                                <NewCalendar
+                                    segunda={`${data.segunda}`}
+                                    terca={`${data.terca}`}
+                                    quarta={`${data.quarta}`}
+                                    quinta={`${data.quinta}`}
+                                    sexta={`${data.sexta}`}
+                                    sabado={`${data.sabado}`}
+                                    domingo={`${data.domingo}`}
+                                    mainColor={data.mainColor}
+                                    secondaryColor={data.secondaryColor}
+                                    isAutonomous={data.isAutonomous}
+                                />
+                            ):(
+                                <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+                                    <div className='img-wrapper'>
+                                        <img src={data.photos.schedules.base64} alt='horarios'/>
+                                    </div>
+                                </ImageSchedule>
+                            )}
+                    </Suspense>
+                </>
+            ) : (
+                <>
+                </>
+            )}
+
+
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
                 <SeventhSection

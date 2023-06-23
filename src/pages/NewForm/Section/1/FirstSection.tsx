@@ -14,12 +14,14 @@ interface IFirstSecPops {
   img: string | undefined;
   isLoading: any;
   userID: any;
+  isFirstButtonDisabled: string | undefined;
 
   toast: (value: boolean | undefined) => void;
   toastFromModal: (value: boolean | undefined) => void;
+  btnToast: (value: boolean | undefined) => void;
 }
 
-function FirstSection({ call, description, img, isLoading, userID, toast, toastFromModal }: IFirstSecPops): JSX.Element {
+function FirstSection({ call,isFirstButtonDisabled, description, img, isLoading, userID, toast, toastFromModal, btnToast }: IFirstSecPops): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('');
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -32,6 +34,10 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
 
   const HandleOnFileSelect = () => {
     toast(true)
+  }
+
+  const handleBtnToast = () => {
+    btnToast(true)
   }
 
   const handleText = () => {
@@ -48,6 +54,8 @@ function FirstSection({ call, description, img, isLoading, userID, toast, toastF
         photoToast={HandleOnFileSelect}
         img={img}
         isLoading={isLoading}
+        isFirstButtonDisabled={isFirstButtonDisabled}
+        btnToast={handleBtnToast}
       />
       <Header>
         <h1>Primeira sessão</h1>

@@ -67,6 +67,7 @@ function ThirdSection(
         setModalIsVisible={() => setModalIsVisible(false)}
         userID={userID}
         toast={handleText}
+
       />
       <Header>
         <h1>Terceira sessão</h1>

@@ -105,5 +105,7 @@ export interface Contact {
   thirdTitle: string;
   fifthTitle: string;
 
+  isFirstButtonDisabled: string;
   isFourthSecVisible: string;
+  isAgendaVisible: string;
 }

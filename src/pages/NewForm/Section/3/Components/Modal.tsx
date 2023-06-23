@@ -48,10 +48,6 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
   const handleFormSubmit = useCallback( async (event: any) => {
     event.preventDefault();
 
-    if (title == '' || qlt1 == '' || qlt2 == '' || qlt3 == '' || qualitydescription1 == '' || qualitydescription2 == '' || qualitydescription3 == '') {
-      return
-    }
-
     const success = await handleSubmit(
       [
         {

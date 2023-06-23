@@ -105,3 +105,21 @@ export const InputWrapper = styled.div`
     width: 60%;
   }
 `
+
+export const ContentWrapper = styled.div`
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #eaeaea;
+    border: 1px solid #c4c4c4;
+    margin-top: 1rem;
+    gap: 1rem;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+    }
+`

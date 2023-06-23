@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import styled, { css } from "styled-components";
-import { TextField } from "@mui/material";
+import { Button, Switch, TextField } from "@mui/material";
 import { StyledButton } from "../../../../../global/Button";
 import { handleSubmit } from "../../../Utils/mongoReq";
-import { ImageContainer } from "../../styles";
+import { ContentWrapper, ImageContainer, TextWrapper } from "../../styles";
 import { LoadingComponent } from "../../../Components/Skeleton";
 import { FileInputComponent } from "../../../../../global/uploads/CoverUpload";
 
@@ -16,11 +16,14 @@ interface IModalProps {
   img?: string | undefined;
   isLoading?: any;
 
+  isFirstButtonDisabled: string | undefined;
+
   photoToast: (value: boolean | undefined) => void;
   toast: (value: boolean | undefined) => void;
+  btnToast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, photoToast, toast }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userID, isLoading, img, photoToast, toast, btnToast }: IModalProps): JSX.Element {
   useEffect(() => {
     document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
   }, [modalIsVisible]);
@@ -30,6 +33,9 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, phot
   const [title, setTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [sendingUrl, setSendingUrl] = useState('');
+
+  const [disableBtn, setDisableBtn] = useState<boolean | null>(null)
+  const [isBtnDisabled, setIsBtnDisabled] = useState<boolean | null>(null)
 
   const handlePhotoClick = () => {
     setClicked(!clicked)
@@ -45,12 +51,39 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, phot
     setSendingUrl(url)
   }
 
-  const handleFormSubmit = useCallback( async (event: any) => {
+  const hue = 'on'
+
+  const handleClick = useCallback( async (event: any) => {
     event.preventDefault();
 
-    if (title == '' || desc == '') {
-      return
+    setDisableBtn(false);
+
+    console.log(isFirstButtonDisabled);
+    console.log(disableBtn)
+
+    const btnSuccess = await handleSubmit(
+
+      [
+        {
+          "field": "isFirstButtonDisabled",
+          "value": hue
+        },
+      ],
+      userID
+    );
+
+    btnToast(btnSuccess)
+
+    if(isFirstButtonDisabled === 'on'){
+      setIsBtnDisabled(true)
+    } else {
+      setIsBtnDisabled(false)
     }
+
+  }, [userID])
+
+  const handleFormSubmit = useCallback( async (event: any) => {
+    event.preventDefault();
 
     const success = await handleSubmit(
       [
@@ -108,6 +141,31 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, phot
         mt="1rem"
         onClick={setModalIsVisible}
       />
+
+      <ContentWrapper>
+        <div className="header">
+          <h4>Desabilitar botão da sessão</h4>
+          <p> No momento o botão está
+            <strong>
+              {
+                isBtnDisabled ? ' habilitado' : ' desabilitado'
+              }
+            </strong>
+            </p>
+            <p>{isFirstButtonDisabled}</p>
+        </div>
+        <Button
+          variant={'contained'}
+          onClick={handleClick}
+          type="button"
+          sx={{
+            width: '100%',
+            height: '3rem'
+          }}
+        >
+          coisar botao
+          </Button>
+      </ContentWrapper>
 
       <ImageContainer
         style={{ marginTop: '1rem'}}

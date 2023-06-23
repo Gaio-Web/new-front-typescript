@@ -58,7 +58,9 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
     }
 }, [uploaded]);
 
-  const handleCoverUploadToFirebase = () => {
+  const handleCoverUploadToFirebase = (e: any) => {
+    e.preventDefault();
+
     if (!cover) {
         alert('escolha uma imagem!');
     }

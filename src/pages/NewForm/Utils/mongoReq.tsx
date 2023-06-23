@@ -1,8 +1,8 @@
 import axios from "axios";
 
 type Param = {
-  field: string;
-  value: string;
+  field: string | undefined;
+  value: string | undefined;
 }
 
 type Params = Param[];

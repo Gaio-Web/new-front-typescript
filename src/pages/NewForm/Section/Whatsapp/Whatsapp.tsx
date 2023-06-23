@@ -1,76 +1,111 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { TextField } from "@mui/material";
+import { Input, InputLabel, TextField } from "@mui/material";
 import { StyledButton } from "../../../../global/Button";
 import { handleSubmit } from "../../Utils/mongoReq";
 import styled from "styled-components";
+import { IMaskInput } from 'react-imask';
 
-import InstagramIcon from '../../../../assets/svg/icons8-instagram-48.png'
-
-interface IInstagramProps {
+interface IWhatsProps {
   userID: string | undefined;
-  actualInsta: string | undefined;
+  actualWhats: string | undefined;
 
-  instaToast: (value: boolean | undefined) => void;
+  whatsappToast: (value: boolean | undefined) => void;
 }
 
-function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.Element {
-  const [insta, setInsta] = useState<string | undefined>('');
+interface CustomProps {
+  onChange: (event: { target: { name: string } }) => void;
+  name: string;
+}
+
+const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask="(#0) 0 0000 0000"
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) => onChange({ target: { name: props.name } })}
+        overwrite
+      />
+    );
+  },
+);
+
+interface State {
+  textmask: string;
+}
+
+function Whatsapp({ userID, actualWhats, whatsappToast }: IWhatsProps): JSX.Element {
+  const [whats, setWhats] = useState<string | undefined>('');
   const [showBtn, setShowBtn] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   console.log('insta', actualInsta)
+  const [values, setValues] = React.useState<State>({
+    textmask: '',
+  });
 
-  //   if (actualInsta !== ''){
-  //     setInsta(actualInsta)
-  //   }
-  // })
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWhats(whats);
+  };
 
   const handleOnSubmit = useCallback( async (event: any) => {
     event.preventDefault();
 
     setShowBtn(false);
 
-    console.log(insta)
+    console.log(whats)
 
     const btnSuccess = await handleSubmit(
 
       [
         {
-          "field": "instagram",
-          "value": insta
+          "field": "whatsApp",
+          "value": whats
         },
       ],
       userID
     );
 
-    instaToast(btnSuccess)
+    whatsappToast(btnSuccess)
 
-  }, [userID, insta])
+  }, [userID, whats])
 
 
   return(
     <Container onSubmit={handleOnSubmit}>
-      <h1>Instagram</h1>
-      <h4>Adicione aqui o seu instagram <strong>sem o @</strong></h4>
+      <h1>WhatsApp</h1>
+      <h4>Adicione aqui o seu whats <strong>com o DDD</strong></h4>
         {
-          actualInsta == '' ? (
+          actualWhats == '' ? (
             <>
-              <TextField
+              {/* <TextField
                 id="outlined-multiline-static"
-                label="Instagram"
+                label="WhatsApp"
                 variant="outlined"
                 rows={1}
                 onChange={(e) => {
-                  setInsta(e.target.value)
+                  setWhats(e.target.value)
                   setShowBtn(true)
                 }}
-                value={insta}
-              />
+                value={whats}
+              /> */}
+
+      <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
+        <Input
+          value={whats}
+          onChange={handleChange}
+          name="textmask"
+          id="formatted-text-mask-input"
+          inputComponent={TextMaskCustom as any}
+        />
             {
               showBtn ? (
                 <>
                   <StyledButton
-                    children="Atualizar Insta"
+                    children="Atualizar Whats"
                     type="submit"
                     w="larger"
                     h="3rem"
@@ -92,8 +127,8 @@ function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.El
                 justifyContent: 'center'
               }}>
                 <a
-                href={`https://instagram.com/${actualInsta}`}
-                className="insta_btn"
+                href={`https://whatsgram.com/${actualWhats}`}
+                className="whats_btn"
                 target="blank"
                 style={{
                   textDecoration: 'none',
@@ -107,8 +142,8 @@ function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.El
                   gap: '0.5rem',
                 }}
                 >
-                  <img src={InstagramIcon} style={{width: '40px'}}/>
-                  {actualInsta}</a>
+                  {/* <img src={WhatsgramIcon} style={{width: '40px'}}/> */}
+                  {actualWhats}</a>
               </div>
             </>
           )
@@ -117,7 +152,7 @@ function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.El
   )
 }
 
-export { Instagram }
+export { Whatsapp }
 
 const Container = styled.form`
   width: 100%;
@@ -139,7 +174,7 @@ const Container = styled.form`
 
   transition: all 0.3s ease;
 
-  & .insta_btn {
+  & .whats_btn {
     transition: all 0.3s ease;
     :hover {
       background-color: #007bff68;
