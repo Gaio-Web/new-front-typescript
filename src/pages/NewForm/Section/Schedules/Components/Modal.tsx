@@ -58,7 +58,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
     const [desc, setDesc] = useState<string>('');
 
     const [openAt, setOpenAt] = useState<Dayjs | null>(null);
-    const [closeAt, setCloseAt] = useState<Dayjs | null>(null);
+    const [closeAt, setCloseAt] = useState<Dayjs | null>();
 
     const handleFormSubmit = useCallback((event: any) => {
         event.preventDefault();
@@ -90,40 +90,22 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
         );
     }, [title, desc, userID, seg, ter, qua, qui, sex, segCheck, terCheck, quaCheck, quiCheck, sexCheck]);
 
-    // const handleDayChange = (day: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const checked = event.target.checked;
-
-    //     // Fazer algo específico para o dia selecionado
-    //     switch (day) {
-    //     case 'seg':
-    //         setSegCheck(checked);
-    //         setSeg(checked ? `${openAt?.hour()}:${(openAt?.minute() < 10 ? '0':'') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute()<10?'0':'') + closeAt?.minute()}` : '');
-    //         break;
-    //     case 'ter':
-    //         setTerCheck(checked);
-    //         setTer(checked ? `${openAt?.hour()}:${(openAt?.minute()<10?'0':'') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute()<10?'0':'') + closeAt?.minute()}` : '');
-    //         break;
-    //     case 'qua':
-    //         setQuaCheck(checked);
-    //         setQua(checked ? `${openAt?.hour()}:${(openAt?.minute()<10?'0':'') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute()<10?'0':'') + closeAt?.minute()}` : '');
-    //         break;
-    //     case 'qui':
-    //         setQuiCheck(checked);
-    //         setQui(checked ? `${openAt?.hour()}:${(openAt?.minute()<10?'0':'') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute()<10?'0':'') + closeAt?.minute()}` : '');
-    //         break;
-    //     case 'sex':
-    //         setSexCheck(checked);
-    //         setSex(checked ? `${openAt?.hour()}:${(openAt?.minute()<10?'0':'') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute()<10?'0':'') + closeAt?.minute()}` : '');
-    //         break;
-    //     default:
-    //         break;
-    //     }
-    // };
-
     const handleDayChange = (day: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const checked = event.target.checked;
 
-        const formattedTime = `${openAt?.hour()}:${(openAt?.minute() < 10 ? '0' : '') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute() < 10 ? '0' : '') + closeAt?.minute()}`;
+        // const formattedTime = `${openAt?.hour()}:${(openAt?.minute() < 10 ? '0' : '') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute() < 10 ? '0' : '') + closeAt?.minute()}`;
+
+        let formattedTimeOpen = '';
+        let formattedTimeClose = '';
+
+        if (openAt !== null){
+            formattedTimeOpen = `${openAt.hour()}:${(openAt.minute() < 10 ? '0' : '') + openAt.minute()}`;
+        }
+        if (closeAt !== undefined && closeAt !== null) {
+            formattedTimeClose = `${closeAt?.hour()}:${(closeAt.minute() < 10 ? '0' : '') + closeAt.minute()}`;
+        }
+
+        const formattedTime = `${formattedTimeOpen} ás ${formattedTimeClose}`;
 
         switch (day) {
         case 'seg':
@@ -178,17 +160,6 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                         <TimeField label="Fecha às" format='HH:mm' value={closeAt} onChange={(newValue) => setCloseAt(newValue)} sx={{ width: '100%'}}/>
                     </Box>
                 </LocalizationProvider>
-
-                {/* <Wrapper>
-                    <h4>O seu estabelecimento trabalha no modelo de 24 horas?</h4>
-                    <FormGroup>
-                        <Box sx={{ width: '100%', height: '3rem', display: 'flex', justifyContent: 'center', gap: '1rem'}}>
-                            <FormControlLabel control={<Checkbox />} label="Sim" />
-
-                            <FormControlLabel control={<Checkbox />} label="Não" />
-                        </Box>
-                    </FormGroup>
-                </Wrapper> */}
 
                 <Box
                     sx={{

@@ -94,6 +94,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
     }, [qlt1, qlt2, qlt3, qualitydescription1, qualitydescription2, qualitydescription3, userID]);
 
     return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
         <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
             <Header>
