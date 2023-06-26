@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react';
 import { Container } from './styles';
 
 import logoImg from '../../../../assets/logo-gaio.png';
@@ -14,7 +14,7 @@ interface IHeaderProps {
   setMenuIsVisible: any;
 }
 
-export function Header({ setMenuIsVisible, origin }: IHeaderProps) {
+export function Header({ setMenuIsVisible, origin }: IHeaderProps): JSX.Element {
     const [smallNavbar, setSmallNavbar] = useState(false);
 
     const [showDiv, setShowDiv] = useState(false);
@@ -49,10 +49,11 @@ export function Header({ setMenuIsVisible, origin }: IHeaderProps) {
                     <>
                         {origin === 'gaio' || origin === 'gaio-2' ? (
                             <img src={logoImg} alt="Logo" />
-                        ) : (
+                        ) : origin === 'vize' ? (
                             <img src={logoVize} alt="Logo" />
-                        )}
+                        ) : null}
                     </>
+
                 ) : (
                     <>
                         <Skeleton

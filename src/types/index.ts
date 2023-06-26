@@ -108,4 +108,5 @@ export interface Contact {
   isFirstButtonDisabled: string;
   isFourthSecVisible: string;
   isAgendaVisible: string;
+  isAddressVisible: string;
 }

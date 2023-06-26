@@ -280,20 +280,29 @@ function NewLayout(): JSX.Element {
             )}
 
 
+            {
+                data?.isAddressVisible == 'on' || data?.isAddressVisible == null ? (
+                    <>
+                        <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                            <SeventhSection
+                                zipCode={data.address.zipCode}
+                                street={data.address.street}
+                                number={data.address.number}
+                                city={data.address.city}
+                                complement={data.address.complement}
+                                state={data.address.state}
+                                mainColor={data.mainColor}
+                                neightborhood={data.address.neighborhood}
+                                secondaryColor={data.secondaryColor}
+                            />
+                        </Suspense>
 
-            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <SeventhSection
-                    zipCode={data.address.zipCode}
-                    street={data.address.street}
-                    number={data.address.number}
-                    city={data.address.city}
-                    complement={data.address.complement}
-                    state={data.address.state}
-                    mainColor={data.mainColor}
-                    neightborhood={data.address.neighborhood}
-                    secondaryColor={data.secondaryColor}
-                />
-            </Suspense>
+                    </>
+                ) : (
+                    <>
+                    </>
+                )
+            }
 
             <FooterSection/>
 

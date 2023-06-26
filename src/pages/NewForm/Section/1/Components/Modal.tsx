@@ -142,7 +142,7 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
                     onClick={setModalIsVisible}
                 />
 
-                <ContentWrapper>
+                {/* <ContentWrapper>
                     <div className="header">
                         <h4>Desabilitar botão da sessão</h4>
                         <p> No momento o botão está
@@ -165,7 +165,7 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
                     >
           coisar botao
                     </Button>
-                </ContentWrapper>
+                </ContentWrapper> */}
 
                 <ImageContainer
                     style={{ marginTop: '1rem'}}

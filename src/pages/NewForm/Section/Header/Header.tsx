@@ -21,7 +21,7 @@ function FormHeader({img, name, isLoading, userID, toast}: IFormHeaderProps ): J
         toast(true);
     };
 
-    const outroNome = 'hue';
+    const outroNome = '';
 
     return (
         <Container>
