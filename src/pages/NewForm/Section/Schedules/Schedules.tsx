@@ -14,10 +14,18 @@ interface IFirstSecPops {
   isLoading: any;
   userID: any;
 
+  segunda: string | undefined;
+  terca: string | undefined;
+  quarta: string | undefined;
+  quinta: string | undefined;
+  sexta: string | undefined;
+  sabado: string | undefined;
+  domingo: string | undefined;
+
   toast: (value: boolean | undefined) => void;
 }
 
-function Schedules({ call, description, img, isLoading, userID, toast }: IFirstSecPops): JSX.Element {
+function Schedules({ call, description, img, isLoading, userID, segunda, terca, quarta, quinta, sexta, sabado, domingo,toast }: IFirstSecPops): JSX.Element {
     const [clicked, setClicked] = useState(false);
     const [color, setColor] = useState('');
     const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -44,7 +52,7 @@ function Schedules({ call, description, img, isLoading, userID, toast }: IFirstS
                 <FaEdit onClick={() => setModalIsVisible(true)}/>
             </Header>
 
-            <TextWrapper>
+            {/* <TextWrapper>
                 <h4>Título da sessão</h4>
                 <LoadingComponent
                     loading={isLoading}
@@ -64,7 +72,49 @@ function Schedules({ call, description, img, isLoading, userID, toast }: IFirstS
                         <p>{description}</p>
                     }
                 />
+            </TextWrapper> */}
+
+            <TextWrapper>
+                <div
+                    style={{
+                        width: '100%',
+                        height: 'fit-content',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        fontSize: '18px',
+                        lineHeight: '28px',
+                    }}
+                >
+                    {
+                        segunda === terca && terca === quarta && quarta === quinta && quinta === sexta && sexta === segunda ? (
+                            <>
+                                <p> De Segunda a Sexta das {segunda} </p>
+                                {
+                                    sabado === domingo ? (
+                                        <>
+                                            <p>Sábado e Domingo: {sabado}</p>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )
+                                }
+                            </>
+                        ) : (
+                            <>
+                                <p>Segunda: { segunda }</p>
+                                <p>Terça: { terca }</p>
+                                <p>Quarta: { quarta }</p>
+                                <p>Quinta: { quinta }</p>
+                                <p>Sexta: { sexta }</p>
+                                <p>Sábado: { sabado }</p>
+                                <p>Domingo: { domingo }</p>
+                            </>
+                        )
+                    }
+                </div>
             </TextWrapper>
+
             <ImageContainer>
                 <LoadingComponent
                     loading={isLoading}

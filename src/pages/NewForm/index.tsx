@@ -218,14 +218,22 @@ function NewForm(): JSX.Element {
                     toastFromModal={() => handleToast('Texto da quinta sessão atualizado com sucesso!')}
                 />
 
-                {/* <Schedules
-          userID={data?.phone}
-          call={data?.call}
-          description={data?.description}
-          img={data?.photos.schedules.base64}
-          isLoading={loading}
-          toast={() => handleToast('Horários atualizados com sucesso!')}
-        /> */}
+                <Schedules
+                    userID={data?.phone}
+                    call={data?.call}
+                    description={data?.description}
+                    img={data?.photos.schedules.base64}
+                    isLoading={loading}
+                    toast={() => handleToast('Horários atualizados com sucesso!')}
+
+                    segunda={data?.segunda}
+                    terca={data?.terca}
+                    quarta={data?.quarta}
+                    quinta={data?.quinta}
+                    sexta={data?.sexta}
+                    sabado={data?.sabado}
+                    domingo={data?.domingo}
+                />
 
                 <Address
                     userID={data?.phone}
