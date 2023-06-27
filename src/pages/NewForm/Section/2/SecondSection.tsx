@@ -105,9 +105,9 @@ function SecondSection({ products, img, isLoading, isSecondButtonDisabled, userI
                                     lineHeight: '24px',
                                     textAlign: 'justify'
                                 }}>
-                  Você ainda não subiu nenhuma foto,
-                  use o ícone <FaEdit /> para enviar
-                  a foto da segunda sessão
+                            Você ainda não subiu nenhuma foto,
+                            use o ícone <FaEdit /> para enviar
+                            a foto da segunda sessão
                                 </p>
                             </>
                         ) : (

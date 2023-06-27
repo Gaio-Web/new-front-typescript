@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Container, Main } from './styles';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Navbar } from './Components/Navbar/Navbar';
 import { Header } from './Components/Header/Header';
 import { FirstSection } from './Section/1/FirstSection';
@@ -14,12 +14,8 @@ import { FifthSection } from './Section/5/FifthSection';
 import { Contact } from '../../types';
 import { useParams } from 'react-router-dom';
 
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import Fade from '@mui/material/Fade';
-import Slide, { SlideProps } from '@mui/material/Slide';
-import Grow, { GrowProps } from '@mui/material/Grow';
-import { TransitionProps } from '@mui/material/transitions';
+
 import { Alert } from '@mui/material';
 import { Schedules } from './Section/Schedules/Schedules';
 import { ColorSection } from './Section/ColorSection/ColorSection';
@@ -41,11 +37,12 @@ function NewForm(): JSX.Element {
 
     const { id } = useParams();
 
-    document.title = id!;
-
     const convertedUrlParam = id?.split('-')[0];
 
     const fetchDataForms = useCallback ( async () => {
+        if (id?.length < 15) {
+            return;
+        }
         try {
             const response = await axios.get<Contact>(
                 `${import.meta.env.VITE_MAIN_API_URL}/findByPhone/${convertedUrlParam}`
