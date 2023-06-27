@@ -106,14 +106,21 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const ContentWrapper = styled.div`
+interface IContentWrapperProps {
+  mt?: string;
+  mb?: string;
+}
+
+export const ContentWrapper = styled.div<IContentWrapperProps>`
     padding: 1rem;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
     background-color: #eaeaea;
     border: 1px solid #c4c4c4;
-    margin-top: 1rem;
+    margin-top: ${(props) => props.mt};
+    margin-bottom: ${(props) => props.mb};
+
     gap: 1rem;
 
     .header {

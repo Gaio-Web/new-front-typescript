@@ -98,6 +98,8 @@ function NewForm(): JSX.Element {
         setOpen(false);
     };
 
+    const ButtonMessage = 'Botão atualizado com sucesso!';
+
     return (
         <Container>
 
@@ -158,10 +160,10 @@ function NewForm(): JSX.Element {
                 />
 
                 {/* <Whatsapp
-        userID={data?.phone}
-        whatsappToast={() => 'Whatsapp atualizado com sucesso!'}
-        actualWhats={data?.whatsApp}
-       /> */}
+                      userID={data?.phone}
+                      whatsappToast={() => 'Whatsapp atualizado com sucesso!'}
+                      actualWhats={data?.whatsApp}
+                    /> */}
 
                 <FirstSection
                     userID={data?.phone}
@@ -170,7 +172,7 @@ function NewForm(): JSX.Element {
                     img={data?.photos.photo1.base64}
                     isLoading={loading}
                     toast={() => handleToast('Foto enviada com sucesso!')}
-                    btnToast={() => handleToast('Botão atualizado com sucesso!')}
+                    btnToast={() => handleToast(ButtonMessage)}
                     toastFromModal={() => handleToast('Texto da primeira sessão atualizado com sucesso!')}
                     isFirstButtonDisabled={data?.isFirstButtonDisabled}
                 />
@@ -183,6 +185,8 @@ function NewForm(): JSX.Element {
                     isLoading={loading}
                     toast={() => handleToast('Foto enviada com sucesso!')}
                     toastFromModal={() => handleToast('Texto da segunda sessão atualizado com sucesso!')}
+                    btnToast={() => handleToast(ButtonMessage)}
+                    isSecondButtonDisabled={data?.isSecondButtonDisabled}
                 />
 
                 <ThirdSection
@@ -196,6 +200,8 @@ function NewForm(): JSX.Element {
                     userID={data?.phone}
                     title={data?.thirdTitle}
                     toastFromModal={() => handleToast('Textos da terceira sessão atualizados com sucesso!')}
+                    isThirdButtonDisabled={data?.isThirdButtonDisabled}
+                    btnToast={() => handleToast(ButtonMessage)}
                 />
 
                 <FourthSection

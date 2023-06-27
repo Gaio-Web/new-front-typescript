@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
-import {  TextField } from '@mui/material';
+import {  TextField, Button } from '@mui/material';
 import { StyledButton } from '../../../../../global/Button';
 import { handleSubmit } from '../../../Utils/mongoReq';
 
-import { ImageContainer } from '../../styles';
+import { ImageContainer, ContentWrapper } from '../../styles';
 import { LoadingComponent } from '../../../Components/Skeleton';
 import { FileInputComponent } from '../../../../../global/uploads/OfferUpload';
 
@@ -16,12 +16,14 @@ interface IModalProps {
 
   img?: string | undefined;
   isLoading?: any;
+  isSecondButtonDisabled?: string | undefined;
 
   photoToast: (value: boolean | undefined) => void;
   toast: (value: boolean | undefined) => void;
+  btnToast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toast, photoToast }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, setModalIsVisible, userID, img, isSecondButtonDisabled, isLoading, toast, btnToast, photoToast }: IModalProps): JSX.Element {
     useEffect(() => {
         document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
     }, [modalIsVisible]);
@@ -31,6 +33,16 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toas
     const [title, setTitle] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
     const [sendingUrl, setSendingUrl] = useState('');
+
+    const [disableBtn, setDisableBtn] = useState<boolean | null>(false);
+    const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>();
+
+    useEffect(() => {
+        console.log(isSecondButtonDisabled);
+        if (isSecondButtonDisabled === 'off'){
+            setIsBtnDisabled(true);
+        }
+    }, []);
 
     const handlePhotoClick = () => {
         setClicked(!clicked);
@@ -42,9 +54,35 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toas
         setSendingUrl(url);
     };
 
-    const HandleOnFileSelect = () => {
+    const handleOnFileSelect = () => {
         photoToast(true);
     };
+
+    const handleClick = useCallback( async (event: any) => {
+        event.preventDefault();
+
+        setDisableBtn(!disableBtn);
+
+        const btnSuccess = await handleSubmit(
+            [
+                {
+                    'field': 'isSecondButtonDisabled',
+                    'value': disableBtn ? 'on' : 'off'
+                },
+            ],
+            userID
+        );
+
+        btnToast(btnSuccess);
+
+        if(isSecondButtonDisabled === 'on'){
+            setIsBtnDisabled(true);
+        } else {
+            setIsBtnDisabled(false);
+        }
+
+    }, [userID]);
+
 
     const handleFormSubmit = useCallback( async (event: any) => {
         event.preventDefault();
@@ -73,7 +111,10 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toas
 
     }, [title, desc, userID]);
 
+    const blank = ' ';
+
     return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
         <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
             <Header>
@@ -110,6 +151,50 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toas
                     onClick={setModalIsVisible}
                 />
 
+                <ContentWrapper>
+                    <div className="header">
+                        <h4>Desabilitar botão da sessão</h4>
+                        <p> No momento o botão está
+                            {/* <strong> */}
+                            {
+                                isBtnDisabled ? (
+                                    <>
+                                        <strong
+                                            style={{
+                                                color: 'red'
+                                            }}
+                                        >
+                                            {blank} desabilitado
+                                        </strong>
+                                    </>
+                                ) : (
+                                    <>
+                                        <strong
+                                            style={{
+                                                color: 'green'
+                                            }}>
+                                            {blank} habilitado
+                                        </strong>
+                                    </>
+                                )
+                            }
+                        </p>
+                    </div>
+                    <Button
+                        variant={'contained'}
+                        onClick={handleClick}
+                        type="button"
+                        sx={{
+                            width: '100%',
+                            height: '3rem'
+                        }}
+                    >
+                        {
+                            isBtnDisabled ? 'Habilitar  botão' : ' Desabilitar botão'
+                        }
+                    </Button>
+                </ContentWrapper>
+
                 <ImageContainer
                     style={{ marginTop: '1rem'}}
                 >
@@ -130,7 +215,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, img, isLoading, toas
                     />
                     <FileInputComponent
                         userID={userID}
-                        onValueChange={HandleOnFileSelect}
+                        onValueChange={handleOnFileSelect}
                     />
                 </ImageContainer>
             </Wrapper>

@@ -1,11 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { Container, Header, ImageContainer, TextWrapper, InputWrapper } from '../styles';
+import { Container, Header, ImageContainer, TextWrapper } from '../styles';
 import { FaEdit } from 'react-icons/fa';
-import { StyledButton } from '../../../../global/Button';
 import { LoadingComponent } from '../../Components/Skeleton';
 import { Modal } from './Components/Modal';
-import { FileInputComponent } from '../../../../global/uploads/OfferUpload';
-import { handleSubmit } from '../../Utils/mongoReq';
 
 interface ISecondSecPops {
   products: string | undefined;
@@ -15,11 +12,14 @@ interface ISecondSecPops {
   img?: string | undefined;
   isLoading: any;
 
+  isSecondButtonDisabled: string | undefined;
+
   toast: (value: boolean | undefined) => void;
   toastFromModal: (value: boolean | undefined) => void;
+  btnToast: (value: boolean | undefined) => void;
 }
 
-function SecondSection({ products, img, isLoading, userID, secondTitle, toast, toastFromModal }: ISecondSecPops): JSX.Element {
+function SecondSection({ products, img, isLoading, isSecondButtonDisabled, userID, secondTitle, toast, btnToast, toastFromModal }: ISecondSecPops): JSX.Element {
     const [clicked, setClicked] = useState(false);
     const [color, setColor] = useState('');
 
@@ -33,12 +33,16 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
         setColor(event.target.value);
     };
 
-    const HandleOnFileSelect = () => {
+    const handleOnFileSelect = () => {
         toast(true);
     };
 
     const handleText = () => {
         toastFromModal(true);
+    };
+
+    const handleBtnToast = () => {
+        btnToast(true);
     };
 
     return (
@@ -48,9 +52,11 @@ function SecondSection({ products, img, isLoading, userID, secondTitle, toast, t
                 setModalIsVisible={() => setModalIsVisible(false)}
                 userID={userID}
                 toast={handleText}
-                photoToast={HandleOnFileSelect}
+                photoToast={handleOnFileSelect}
                 img={img}
                 isLoading={isLoading}
+                btnToast={handleBtnToast}
+                isSecondButtonDisabled={isSecondButtonDisabled}
             />
             <Header>
                 <h1>Segunda sessão</h1>

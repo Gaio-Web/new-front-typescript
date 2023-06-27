@@ -34,8 +34,15 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
     const [desc, setDesc] = useState<string>('');
     const [sendingUrl, setSendingUrl] = useState('');
 
-    const [disableBtn, setDisableBtn] = useState<boolean | null>(null);
-    const [isBtnDisabled, setIsBtnDisabled] = useState<boolean | null>(null);
+    const [disableBtn, setDisableBtn] = useState<boolean | null>(false);
+    const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>();
+
+    useEffect(() => {
+        console.log(isFirstButtonDisabled);
+        if (isFirstButtonDisabled === 'off'){
+            setIsBtnDisabled(true);
+        }
+    }, []);
 
     const handlePhotoClick = () => {
         setClicked(!clicked);
@@ -51,22 +58,17 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
         setSendingUrl(url);
     };
 
-    const hue = 'on';
-
     const handleClick = useCallback( async (event: any) => {
         event.preventDefault();
 
-        setDisableBtn(false);
+        setDisableBtn(!disableBtn);
 
-        console.log(isFirstButtonDisabled);
-        console.log(disableBtn);
 
         const btnSuccess = await handleSubmit(
-
             [
                 {
                     'field': 'isFirstButtonDisabled',
-                    'value': hue
+                    'value': disableBtn ? 'on' : 'off'
                 },
             ],
             userID
@@ -81,6 +83,8 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
         }
 
     }, [userID]);
+
+    const blank = ' ';
 
     const handleFormSubmit = useCallback( async (event: any) => {
         event.preventDefault();
@@ -106,7 +110,8 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
     }, [title, desc, userID]);
 
     return (
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
         <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
             <Header>
                 <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Primeira sessão</h1>
@@ -142,17 +147,34 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
                     onClick={setModalIsVisible}
                 />
 
-                {/* <ContentWrapper>
+                <ContentWrapper  mt='1rem'>
                     <div className="header">
                         <h4>Desabilitar botão da sessão</h4>
                         <p> No momento o botão está
-                            <strong>
-                                {
-                                    isBtnDisabled ? ' habilitado' : ' desabilitado'
-                                }
-                            </strong>
+                            {/* <strong> */}
+                            {
+                                isBtnDisabled ? (
+                                    <>
+                                        <strong
+                                            style={{
+                                                color: 'red'
+                                            }}
+                                        >
+                                            {blank} desabilitado
+                                        </strong>
+                                    </>
+                                ) : (
+                                    <>
+                                        <strong
+                                            style={{
+                                                color: 'green'
+                                            }}>
+                                            {blank} habilitado
+                                        </strong>
+                                    </>
+                                )
+                            }
                         </p>
-                        <p>{isFirstButtonDisabled}</p>
                     </div>
                     <Button
                         variant={'contained'}
@@ -163,9 +185,11 @@ function Modal({ modalIsVisible, isFirstButtonDisabled, setModalIsVisible, userI
                             height: '3rem'
                         }}
                     >
-          coisar botao
+                        {
+                            isBtnDisabled ? 'Habilitar  botão' : ' Desabilitar botão'
+                        }
                     </Button>
-                </ContentWrapper> */}
+                </ContentWrapper>
 
                 <ImageContainer
                     style={{ marginTop: '1rem'}}

@@ -1,22 +1,33 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { StyledButton } from '../../../../../global/Button';
 import { handleSubmit } from '../../../Utils/mongoReq';
+import { ContentWrapper } from '../../styles';
 
 interface IModalProps {
   modalIsVisible: any;
   setModalIsVisible: any;
   userID: string;
 
+  isThirdButtonDisabled: string | undefined;
+
   toast: (value: boolean | undefined) => void;
+  btnToast: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps): JSX.Element {
+function Modal({ modalIsVisible, setModalIsVisible, userID, isThirdButtonDisabled, toast, btnToast }: IModalProps): JSX.Element {
     useEffect(() => {
         document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
     }, [modalIsVisible]);
+
+    useEffect(() => {
+        console.log(isThirdButtonDisabled);
+        if (isThirdButtonDisabled === 'off'){
+            setIsBtnDisabled(true);
+        }
+    }, []);
 
     const [clicked, setClicked] = useState<boolean>(false);
 
@@ -44,6 +55,37 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
     const [qualitydescription2, setQualitydescription2] = useState<string>('');
     const [qualitydescription3, setQualitydescription3] = useState<string>('');
 
+    const [disableBtn, setDisableBtn] = useState<boolean | null>(false);
+    const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>();
+
+
+    const handleClick = useCallback( async (event: any) => {
+        event.preventDefault();
+
+        setDisableBtn(!disableBtn);
+
+
+        const btnSuccess = await handleSubmit(
+            [
+                {
+                    'field': 'isThirdButtonDisabled',
+                    'value': disableBtn ? 'on' : 'off'
+                },
+            ],
+            userID
+        );
+
+        btnToast(btnSuccess);
+
+        if(isThirdButtonDisabled === 'on'){
+            setIsBtnDisabled(true);
+        } else {
+            setIsBtnDisabled(false);
+        }
+
+    }, [userID]);
+
+    const blank = ' ';
 
     const handleFormSubmit = useCallback( async (event: any) => {
         event.preventDefault();
@@ -110,6 +152,52 @@ function Modal({ modalIsVisible, setModalIsVisible, userID, toast }: IModalProps
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
             />
+
+            <ContentWrapper mb='1rem' mt='0.6rem'>
+                <div className="header">
+                    <h4>Desabilitar botão da sessão</h4>
+                    <p> No momento o botão está
+                        {/* <strong> */}
+                        {
+                            isBtnDisabled ? (
+                                <>
+                                    <strong
+                                        style={{
+                                            color: 'red'
+                                        }}
+                                    >
+                                        {blank} desabilitado
+                                    </strong>
+                                </>
+                            ) : (
+                                <>
+                                    <strong
+                                        style={{
+                                            color: 'green'
+                                        }}>
+                                        {blank} habilitado
+                                    </strong>
+                                </>
+                            )
+                        }
+                    </p>
+                </div>
+                <Button
+                    variant={'contained'}
+                    onClick={handleClick}
+                    type="button"
+                    sx={{
+                        width: '100%',
+                        height: '3rem'
+                    }}
+                >
+                    {
+                        isBtnDisabled ? 'Habilitar  botão' : ' Desabilitar botão'
+                    }
+                </Button>
+            </ContentWrapper>
+
+
             <Wrapper>
                 <div className="difs-wrapper">
                     <h4 style={{color: '#1b1b1b'}}>Diferencial 1</h4>

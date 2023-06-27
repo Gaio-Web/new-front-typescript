@@ -21,6 +21,10 @@ interface IThirdSecPops {
 
   title: string | undefined;
 
+  isThirdButtonDisabled: string | undefined;
+
+
+  btnToast: (value: boolean | undefined) => void;
   toastFromModal: (value: boolean | undefined) => void;
 }
 
@@ -35,7 +39,9 @@ function ThirdSection(
         isLoading,
         userID,
         title,
+        isThirdButtonDisabled,
         toastFromModal,
+        btnToast,
     }: IThirdSecPops): JSX.Element {
 
     const [clicked, setClicked] = useState(false);
@@ -60,6 +66,10 @@ function ThirdSection(
         toastFromModal(true);
     };
 
+    const handleBtnToast = () => {
+        btnToast(true);
+    };
+
     return (
         <Container id="third">
             <Modal
@@ -67,7 +77,8 @@ function ThirdSection(
                 setModalIsVisible={() => setModalIsVisible(false)}
                 userID={userID}
                 toast={handleText}
-
+                isThirdButtonDisabled={isThirdButtonDisabled}
+                btnToast={handleBtnToast}
             />
             <Header>
                 <h1>Terceira sessão</h1>
