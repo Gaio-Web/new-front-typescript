@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, useLocation, Route, BrowserRouter } from 'react-router-dom';
-import Products from '../pages/Products/Products';
-import { Form } from '../pages/Form/Form';
+import { Routes, useLocation, Route } from 'react-router-dom';
 
 import { Contact } from '../types';
 import NewLayout from '../pages/NewLayout';
@@ -47,6 +45,18 @@ export default function AnimatedRoutes() {
             <LoadingPage />
         );
     }
+
+    // if (data?.origin === 'gaio') {
+    //     return (
+    //         <Routes location={location} key={location.pathname}>
+    //             <Route path="/:id" element={<NewLayout />} />
+    //         </Routes>
+    //     );
+    // } else if (data?.origin === 'vize') {
+    //     <Routes location={location} key={location.pathname}>
+    //         <Route path="/:id" element={<VizeLayout />} />
+    //     </Routes>;
+    // }
 
     return (
         <Routes location={location} key={location.pathname}>
