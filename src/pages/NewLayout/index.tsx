@@ -34,11 +34,6 @@ import 'aos/dist/aos.css';
 import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface Props {
-  phone: string;
-}
-
 function NewLayout(): JSX.Element {
 
     useEffect(() => {

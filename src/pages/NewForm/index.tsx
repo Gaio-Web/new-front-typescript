@@ -1,29 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Container, Main } from './styles';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Navbar } from './Components/Navbar/Navbar';
-import { Header } from './Components/Header/Header';
-import { FirstSection } from './Section/1/FirstSection';
-import { FormHeader } from './Section/Header/Header';
-import { SecondSection } from './Section/2/SecondSection';
-import { ThirdSection } from './Section/3/ThirdSection';
-import { FourthSection } from './Section/4/FourthSection';
-import { FifthSection } from './Section/5/FifthSection';
-
 import { Contact } from '../../types';
-import { useParams } from 'react-router-dom';
-
 import Snackbar from '@mui/material/Snackbar';
-
 import { Alert } from '@mui/material';
-import { Schedules } from './Section/Schedules/Schedules';
-import { ColorSection } from './Section/ColorSection/ColorSection';
-import { Address } from './Section/Address/Address';
-import { GoToSite } from './Section/GoToSite/GoToSite';
-import { Instagram } from './Section/Instagram/Instagram';
-import { Whatsapp } from './Section/Whatsapp/Whatsapp';
 import { LoadingPage } from '../Components/LoadingPage';
+
+import { Container, Main } from './styles';
+import {
+    FirstSection,
+    SecondSection,
+    ThirdSection,
+    FourthSection,
+    FifthSection,
+    Navbar,
+    Header,
+    Schedules,
+    FormHeader,
+    ColorSection,
+    Address,
+    GoToSite,
+    Instagram,
+    Whatsapp
+} from './Section';
 
 function NewForm(): JSX.Element {
     const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -40,6 +40,8 @@ function NewForm(): JSX.Element {
     const convertedUrlParam = id?.split('-')[0];
 
     const fetchDataForms = useCallback ( async () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         if (id?.length < 15) {
             return;
         }
@@ -119,7 +121,6 @@ function NewForm(): JSX.Element {
 
     return (
         <Container>
-
             {
                 data?.phone == '' || data?.phone == null ?
                     (
