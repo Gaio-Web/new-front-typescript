@@ -1,7 +1,5 @@
 import React from 'react';
 import { Container } from './styles';
-import { GrInstagram } from 'react-icons/gr';
-
 import Insta from '../../../../assets/svg/icons8-instagram-48.png';
 
 interface IHeaderSectionProp {

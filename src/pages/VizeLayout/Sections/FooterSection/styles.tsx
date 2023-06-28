@@ -7,6 +7,8 @@ export const Container = styled.div`
   background-color: #fff;
   width: 100%;
   height: fit-content;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 
   .footer-wrapper {
     display: flex;
@@ -19,7 +21,6 @@ export const Container = styled.div`
   h3 {
     font-weight: 400;
     text-align: center;
-    font-size: 8px;
-    padding: 1px;
+    font-size: 11px;
   }
 `;

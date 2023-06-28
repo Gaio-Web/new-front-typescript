@@ -1,24 +1,33 @@
 import React from 'react';
 import { Container } from './styles';
+import Insta from '../../../../assets/svg/icons8-instagram-48.png';
 
 interface IHeaderSectionProp {
   photoBase64: string;
   navColor: string;
   mainColor: string;
+  insta: string;
 }
 
-function HeaderSection({ photoBase64, navColor, mainColor}: IHeaderSectionProp): JSX.Element{
+function HeaderSection({ photoBase64, navColor, mainColor, insta}: IHeaderSectionProp): JSX.Element{
     return (
-        <Container>
-            <header>
-                <div className="nav" style={{ backgroundColor: `${navColor}` }}>
-                    {photoBase64 == '' ? (
-                        <h1 style={{ color: mainColor }}>Sua logo aqui</h1>
-                    ) : (
-                        <img fetch-priority={'high'} src={photoBase64} alt={'logo'} />
-                    )}
-                </div>
-            </header>
+        <Container style={{ backgroundColor: `${navColor}` }}>
+
+            {photoBase64 == '' ? (
+                <h1 style={{ color: mainColor }}>Sua logo aqui</h1>
+            ) : (
+                <img src={photoBase64} alt={'logo'} />
+            )}
+            {insta === '' ? (
+                <></>
+            ) : (
+                <>
+                    <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
+                        <img src={Insta} style={{width: '40px'}}/>
+                        <p>@{insta}</p>
+                    </a>
+                </>
+            )}
         </Container>
     );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import axios from 'axios';
 import {
     Container,
@@ -14,41 +14,18 @@ import WappLogo from '../../assets/svg/whatsapp-svgrepo-com.svg';
 import ReactLoading from 'react-loading';
 
 import storage from '../../../firebaseConfig';
-import {ref, getDownloadURL, listAll } from 'firebase/storage';
-
-import Stack from '@mui/material/Stack';
-import Skeleton from '@mui/material/Skeleton';
-
-
+import { ref, getDownloadURL, listAll } from 'firebase/storage';
 
 //SECTIONS LAZY LOADING
-const FirstSection = lazy(() => import ('./Sections/FirstSection/FirstSection').then(module => {
-    return {default: module.FirstSection};
-}));
-
-const SecondSection = lazy(() => import ('./Sections/SecondSection/SecondSection').then(module => {
-    return {default: module.SecondSection};
-}));
-
-const ThirdSection = lazy(() => import ('./Sections/ThirdSection/ThirdSection').then(module => {
-    return {default: module.ThirdSection};
-}));
-
-const FifthSection = lazy(() => import ('./Sections/FifthSection/FifthSection').then(module => {
-    return {default: module.FifthSection};
-}));
-
-const Calendar = lazy(() => import ('../VizeLayout/Components/Calendar/Calendar').then(module => {
-    return {default: module.Calendar};
-}));
-
-const SeventhSection = lazy(() => import ('./Sections/SeventhSection/SevenSection').then(module => {
-    return {default: module.SeventhSection};
-}));
-
-const FooterSection = lazy(() => import ('./Sections/FooterSection/FooterSection').then(module => {
-    return {default: module.FooterSection};
-}));
+import {
+    Calendar,
+    FifthSection,
+    FirstSection,
+    FooterSection,
+    SecondSection,
+    SeventhSection,
+    ThirdSection
+} from './LazyLoad';
 
 import { HeaderSection } from './Sections/HeaderSection/HeaderSection';
 
@@ -59,113 +36,15 @@ import Photo3 from '../../assets/foto3.png';
 
 //import { Carousel } from './Components/Carousel/Carousel';
 
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 import { useParams } from 'react-router-dom';
 
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import Loader from '../Components/Loader/Loader';
 import { LoadingPage } from '../Components/LoadingPage';
 
-interface Contact {
-  //Nome
-  name: string;
-
-  // PHOTOS
-  photos: {
-    photo1: {
-      base64: string;
-      type: string;
-    };
-    photo2: {
-      base64: string;
-      type: string;
-    };
-    photo3: {
-      base64: string;
-      type: string;
-    };
-    logo: {
-      base64: string;
-      type: string;
-    };
-    schedules: {
-      base64: string;
-      type?: string;
-    };
-  };
-
-  // Address
-  address: {
-    zipCode: string;
-    street: string;
-    number: string;
-    complement: string;
-    city: string;
-    state: string;
-  };
-  historyPhoto: string;
-
-  color: string;
-
-  whatsApp: string;
-
-  //text content
-  description: string;
-  products: string;
-  call: string;
-  history: string;
-
-  //calendar info
-  segunda: string;
-  terca: string;
-  quarta: string;
-  quinta: string;
-  sexta: string;
-  sabado: string;
-  domingo: string;
-
-  //?
-  name_quality1: string;
-  name_quality2: string;
-  name_quality3: string;
-
-  //qualities
-  qualities1: string;
-  qualities2: string;
-  qualities3: string;
-
-  quality1: string;
-  quality2: string;
-  quality3: string;
-
-  qualitydescription1: string;
-  qualitydescription2: string;
-  qualitydescription3: string;
-
-  //client info
-  isAutonomous: string;
-  businessName: string;
-  phone: string;
-  id: string;
-
-  mainColor: string;
-  secondaryColor: string;
-  accentColor: string;
-
-  alt_description: string;
-  urls: string;
-
-  coverKeyWords: string;
-  historyKeyWords: string;
-  productsKeyWords: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface Props {
-  phone: string;
-}
+import { Contact } from '../../types';
 
 function FindByPhone(): JSX.Element {
 
@@ -182,12 +61,6 @@ function FindByPhone(): JSX.Element {
     document.title = uniqueName;
 
     const converted = id;
-
-    // // @ts-ignore
-    // let id:string = useParams();
-    //
-    // const setNewString = id.replace(/-/g,"");
-    // document.title = setNewString
 
     const [data, setData] = useState<Contact | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -303,7 +176,8 @@ function FindByPhone(): JSX.Element {
                 photoBase64={data.photos.logo.base64}
                 // name={data.name} retirado a pedido da VIZE para teste
                 mainColor={data.mainColor}
-                navColor={data.accentColor}
+                navColor={data.color}
+                insta={data.instagram}
             />
 
             <FirstSection
@@ -326,6 +200,7 @@ function FindByPhone(): JSX.Element {
                     src={Photo3}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    secondTitle={data.secondTitle}
                 />
             </Suspense>
 
@@ -347,14 +222,25 @@ function FindByPhone(): JSX.Element {
                     qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
 
                     onClick={handleWhatsClick}
+
+                    isThirdButtonDisabled={data.isThirdButtonDisabled}
                 />
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-
                 <FourthSection style={{backgroundColor: data.mainColor}}>
                     <div className={'fourth-wrapper'} ref={componentRef}>
-                        <h1>Galeria de fotos</h1>
+                        {
+                            data.galleryTitle == '' || data.galleryTitle == null ? (
+                                <>
+                                    <h1>Galeria de fotos</h1>
+                                </>
+                            ) : (
+                                <>
+                                    <h1>{data.galleryTitle}</h1>
+                                </>
+                            )
+                        }
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
                         <button onClick={handleWhatsClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
                     </div>
@@ -372,51 +258,70 @@ function FindByPhone(): JSX.Element {
                     src={Photo2}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    fifthTitle={data.fifthTitle}
                 />
             </Suspense>
+            {
+                data.isAgendaVisible === 'on' || data?.isAgendaVisible == null ? (
+                    <>
+                        <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                            {data.photos.schedules.base64 === '' ?
+                                (
+                                    <Calendar
+                                        segunda={`${data.segunda}`}
+                                        terca={`${data.terca}`}
+                                        quarta={`${data.quarta}`}
+                                        quinta={`${data.quinta}`}
+                                        sexta={`${data.sexta}`}
+                                        sabado={`${data.sabado}`}
+                                        domingo={`${data.domingo}`}
+                                        mainColor={data.mainColor}
+                                        secondaryColor={data.secondaryColor}
+                                        isAutonomous={data.isAutonomous}
+                                    />
+                                ):(
+                                    <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+                                        {data.isAutonomous == '1' ? (
+                                            <h1 style={{ color: data.mainColor }}>Horário de atendimento</h1>
+                                        ) : (
+                                            <h1 style={{ color: data.mainColor }}>Horário de funcionamento</h1>
+                                        )}
+                                        <div className='img-wrapper'>
+                                            <img src={data.photos.schedules.base64} alt='horarios'/>
+                                        </div>
+                                    </ImageSchedule>
+                                )}
+                        </Suspense>
+                    </>
+                ) : (
+                    <>
 
-            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                {data.photos.schedules.base64 === '' ?
-                    (
-                        <Calendar
-                            segunda={`${data.segunda}`}
-                            terca={`${data.terca}`}
-                            quarta={`${data.quarta}`}
-                            quinta={`${data.quinta}`}
-                            sexta={`${data.sexta}`}
-                            sabado={`${data.sabado}`}
-                            domingo={`${data.domingo}`}
+                    </>
+                )
+            }
+
+
+            {data.isAddressVisible == 'on' || data.isAddressVisible == null ? (
+                <>
+                    <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                        <SeventhSection
+                            zipCode={data.address.zipCode}
+                            street={data.address.street}
+                            number={data.address.number}
+                            city={data.address.city}
+                            complement={data.address.complement}
+                            state={data.address.state}
                             mainColor={data.mainColor}
                             secondaryColor={data.secondaryColor}
-                            isAutonomous={data.isAutonomous}
+                            accentColor={data.accentColor}
                         />
-                    ):(
-                        <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
-                            {data.isAutonomous == '1' ? (
-                                <h1 style={{ color: data.mainColor }}>Horário de atendimento</h1>
-                            ) : (
-                                <h1 style={{ color: data.mainColor }}>Horário de funcionamento</h1>
-                            )}
-                            <div className='img-wrapper'>
-                                <img src={data.photos.schedules.base64} alt='horarios'/>
-                            </div>
-                        </ImageSchedule>
-                    )}
-            </Suspense>
+                    </Suspense>
+                </>
+            ) : (
+                <>
+                </>
+            )}
 
-            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <SeventhSection
-                    zipCode={data.address.zipCode}
-                    street={data.address.street}
-                    number={data.address.number}
-                    city={data.address.city}
-                    complement={data.address.complement}
-                    state={data.address.state}
-                    mainColor={data.mainColor}
-                    secondaryColor={data.secondaryColor}
-                    accentColor={data.accentColor}
-                />
-            </Suspense>
 
             <FooterSection/>
         </Container>

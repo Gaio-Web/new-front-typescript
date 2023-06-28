@@ -95,7 +95,8 @@ export const FourthSection = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 0 3rem;
-    gap: 1.6rem;
+    gap: 1rem;
+    padding-top: 1.5rem;
 
     @media screen and (max-width: 800px) {
       width: 80%;

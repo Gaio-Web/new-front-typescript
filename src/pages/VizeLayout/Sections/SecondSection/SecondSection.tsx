@@ -14,17 +14,25 @@ interface ISecondSectionProp {
   mainColor: string;
   accentColor: string;
   coverKeyWords: string;
+  secondTitle: string;
 }
 
-function SecondSection({ mainColor, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, secondTitle, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
     return (
         <Container style={{backgroundColor: mainColor}}>
             <div id='secondSection' className={'second-wrapper'}>
-                {isAutonomous == '1' ? (
-                    <h1 className="sectionTitle">O que ofereço</h1>
-                ) : (
-                    <h1 className="sectionTitle">O que oferecemos</h1>
+                {secondTitle == '' || secondTitle == null ? (
+                    <>
+                        {isAutonomous == '1' ? (
+                            <h1 className="sectionTitle">O que ofereço</h1>
+                        ) : (
+                            <h1 className="sectionTitle">O que oferecemos</h1>
+                        )}
+                    </>
+                ):(
+                    <h1 className="sectionTitle">{secondTitle}</h1>
                 )}
+
                 <p>{products}</p>
                 <div className="img-wrapper"  data-aos="fade-up">
                     {photoBase64 == '' ? (

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from './styles';
-import { main } from '@popperjs/core';
 
 interface IThirdSectionProp {
   mainColor: string;

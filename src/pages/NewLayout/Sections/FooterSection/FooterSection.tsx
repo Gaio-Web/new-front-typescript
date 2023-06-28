@@ -1,6 +1,8 @@
+
+import React from 'react';
 import { Container } from './styles';
 
-function FooterSection(){
+function FooterSection(): JSX.Element {
     return(
         <Container>
             <div id='footerSection' className="footer-wrapper">

@@ -27,6 +27,8 @@ export interface Contact {
     };
   };
 
+  isPayer: string;
+
   // Address
   address: {
     zipCode: string;
@@ -104,11 +106,17 @@ export interface Contact {
   secondTitle: string;
   thirdTitle: string;
   fifthTitle: string;
+  galleryTitle: string;
 
+  // buttons
   isFirstButtonDisabled: string;
+  isSecondButtonDisabled: string;
+  isThirdButtonDisabled: string;
+
+
   isFourthSecVisible: string;
   isAgendaVisible: string;
   isAddressVisible: string;
-  isSecondButtonDisabled: string;
-  isThirdButtonDisabled: string;
+
+
 }
