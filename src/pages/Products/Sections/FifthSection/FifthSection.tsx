@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import { Container } from './styles';
 
@@ -13,21 +14,34 @@ interface IFifthSectionProp {
   mainColor: string;
   accentColor: string;
   coverKeyWords: string;
+  fifthTitle: string;
 }
 
-function FifthSection({isAutonomous, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
-                {isAutonomous == '1' ? (
-                    <h1 className="sectionTitle" style={{ color: mainColor }}>
-            Minha História
-                    </h1>
-                ):(
-                    <h1 className="sectionTitle" style={{ color: mainColor }}>
-          Nossa História
-                    </h1>
-                )}
+                {
+                    fifthTitle == '' || fifthTitle == null ? (
+                        <>
+                            {isAutonomous == '1' ? (
+                                <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                    Minha História
+                                </h1>
+                            ):(
+                                <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                    Nossa História
+                                </h1>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                {fifthTitle}
+                            </h1>
+                        </>
+                    )
+                }
                 <p>{history}</p>
 
                 <div className="img-wrapper"  data-aos="fade-up">

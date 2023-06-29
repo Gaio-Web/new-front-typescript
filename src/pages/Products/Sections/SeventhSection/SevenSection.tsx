@@ -11,9 +11,10 @@ interface ISeventhSectionProp {
   state: string;
   mainColor: string;
   secondaryColor: string;
+  accentColor: string;
 }
 
-function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
+function SeventhSection({ mainColor, accentColor, secondaryColor, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
     return (
         <Container>
             <div id='seventhSection' className="seventh-wrapper">
@@ -47,7 +48,7 @@ function SeventhSection({ mainColor, secondaryColor, zipCode, street, number, ci
                     >
                         <div>
                             <span style={{ backgroundColor: secondaryColor }}>
-                                <p>Copiar endereço</p>
+                                <p style={{color: accentColor}}>Copiar endereço</p>
                             </span>
                         </div>
 

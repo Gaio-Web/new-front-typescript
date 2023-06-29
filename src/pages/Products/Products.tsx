@@ -114,6 +114,8 @@ interface Contact {
   history: string;
   secondTitle: string;
   thirdTitle: string;
+  galleryTitle: string;
+  fifthTitle: string;
 
   //calendar info
   segunda: string;
@@ -352,9 +354,20 @@ function FindByPhone(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <FourthSection>
+                {/* <FourthSection> */}
+                <FourthSection style={{backgroundColor: data.accentColor}}>
                     <div className={'fourth-wrapper'} ref={componentRef}>
-                        <h1 style={{color: data.mainColor}}>Galeria de fotos</h1>
+                        {
+                            data.galleryTitle == '' || data.galleryTitle == null ? (
+                                <>
+                                    <h1 style={{color: data.mainColor}} >Galeria de fotos</h1>
+                                </>
+                            ) : (
+                                <>
+                                    <h1>{data.galleryTitle}</h1>
+                                </>
+                            )
+                        }
                         <Carousel firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords}/>
                         <button onClick={handleWhatsClick} style={{backgroundColor: ('#22b33b')}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>Fale com a gente</div> </button>
                         {/* <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor}}>Fale com a gente</button> cor removida a pedido da VIZE*/}
@@ -372,6 +385,7 @@ function FindByPhone(): JSX.Element {
                     src={Photo2}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    fifthTitle={data.fifthTitle}
                 />
             </Suspense>
 
@@ -387,6 +401,7 @@ function FindByPhone(): JSX.Element {
                             sabado={`${data.sabado}`}
                             domingo={`${data.domingo}`}
                             mainColor={data.mainColor}
+                            accentColor={data.mainColor}
                             secondaryColor={data.secondaryColor}
                             isAutonomous={data.isAutonomous}
                         />
@@ -409,6 +424,7 @@ function FindByPhone(): JSX.Element {
                     state={data.address.state}
                     mainColor={data.mainColor}
                     secondaryColor={data.secondaryColor}
+                    accentColor={data.accentColor}
                 />
             </Suspense>
 

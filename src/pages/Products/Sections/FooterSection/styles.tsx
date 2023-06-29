@@ -11,7 +11,7 @@ export const Container = styled.div`
   .footer-wrapper {
     display: flex;
     padding: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -19,9 +19,10 @@ export const Container = styled.div`
   }
 
   h3 {
-    font-weight: 400;
+    font-weight: 300;
+    font-size: 10px;
     text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 0;
     font-size: 12px;
   }
 `;

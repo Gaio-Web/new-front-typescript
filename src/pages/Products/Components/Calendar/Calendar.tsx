@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -13,6 +14,7 @@ interface ICalendar {
   sexta: string;
   sabado: string;
   domingo: string;
+  accentColor: string;
   mainColor: string;
   secondaryColor: string;
   isAutonomous: string;
@@ -40,8 +42,8 @@ function Calendar({
     sexta,
     sabado,
     domingo,
+    accentColor,
     mainColor,
-    secondaryColor,
     isAutonomous
 }: ICalendar) {
     const { id } = useParams();
@@ -77,16 +79,16 @@ function Calendar({
     }, []);
 
     return (
-        <CalendarStyles>
+        <CalendarStyles style={{backgroundColor: accentColor}}>
             <div className="sixth-wrapper">
-                {isAutonomous == '1' ? (
+                {/* {isAutonomous == '1' ? (
                     <h1 style={{ color: mainColor }}>Horário de atendimento</h1>
                 ) : (
                     <h1 style={{ color: mainColor }}>Horário de funcionamento</h1>
-                )}
+                )} */}
 
                 <div className="table">
-                    <div className="header" style={{ backgroundColor: secondaryColor }}>
+                    <div className="header" style={{ backgroundColor: mainColor }}>
                         {isAutonomous == '1' ? (
                             <h2>Horário de atendimento</h2>
                         ) : (

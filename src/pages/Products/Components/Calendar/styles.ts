@@ -14,7 +14,7 @@ export const CalendarStyles = styled.section`
     padding: 4rem 2rem;
 
     @media screen and (max-width: 800px) {
-      padding: 10% 5%;
+      padding: 0 5%;
     }
 
     @media screen and (min-width: 800px) {

@@ -43,7 +43,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                     >
                         <g
                             transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                            fill={accentColor}
+                            fill={secondaryColor}
                             stroke="none"
                         >
                             <path
@@ -94,7 +94,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                         </g>
                     </svg>
 
-                    <h3 style={{ color: secondaryColor }}>{quality1}</h3>
+                    <h3 style={{ color: mainColor }}>{quality1}</h3>
                     <p>{qualitydescription1}</p>
                 </div>
 
@@ -107,7 +107,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                     >
                         <g
                             transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                            fill={accentColor}
+                            fill={secondaryColor}
                             stroke="none"
                         >
                             <path
@@ -158,7 +158,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                         </g>
                     </svg>
 
-                    <h3 style={{ color: secondaryColor }}>{quality2}</h3>
+                    <h3 style={{ color: mainColor }}>{quality2}</h3>
                     <p>{qualitydescription2}</p>
                 </div>
 
@@ -171,7 +171,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                     >
                         <g
                             transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                            fill={accentColor}
+                            fill={secondaryColor}
                             stroke="none"
                         >
                             <path
@@ -223,7 +223,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                         </g>
                     </svg>
 
-                    <h3 style={{ color: secondaryColor }}>{quality3}</h3>
+                    <h3 style={{ color: mainColor }}>{quality3}</h3>
                     <p>{qualitydescription3}</p>
                 </div>
 
