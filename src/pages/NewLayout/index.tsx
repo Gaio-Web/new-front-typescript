@@ -139,189 +139,181 @@ function NewLayout(): JSX.Element {
         );
     }
 
-    // else if (data?.isPayer === '1'){
-    //     return (
-    //         <div>
-    //             <h1>hue</h1>
-    //         </div>
-    //     );
-    // }
-
 
     return (
-        <>
+        // <>
+        //     {
+        //         data?.isPayer === '0' ? (
+        //             <>
+        //                 <PaymentWall />
+        //             </>
+        //         ) : (
+        //             <h1> n é</h1>
+        //         )
+        //     }
+        <Container>
+            <Helmet>
+                <title>{data.name}</title>
+                <meta />
+                <meta name="theme-color" content={data.mainColor}/>
+                <meta property="title" content={data.name}/>
+                <meta name="description" content={data?.description} />
+                <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+
+                <meta name="og:title" content={data.name}/>
+                <meta property="og:description" content={data?.description} />
+                <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
+                <meta property="og:type" content="website" />
+            </Helmet>
+
+            <HeaderSection
+                photoBase64={data.photos.logo.base64}
+                name={data.name}
+                insta={data.instagram}
+                color={data.color}
+            />
+
+            <FirstSection
+                mainColor={data.mainColor}
+                secondaryColor={data.secondaryColor}
+                call={data.call.replace(/^"|"$/g, '')}
+                description={data.description}
+                photoBase64={data.photos.photo1.base64}
+                src={Photo1}
+                coverKeyWords={data.coverKeyWords}
+                onClick={handleWhatsClick}
+            />
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <SecondSection
+                    isAutonomous={data.isAutonomous}
+                    mainColor={data.mainColor}
+                    accentColor={data.accentColor}
+                    products={data.products}
+                    photoBase64={data.photos.photo3.base64}
+                    src={Photo3}
+                    onClick={handleWhatsClick}
+                    coverKeyWords={data.coverKeyWords}
+                    secondTitle={data.secondTitle}
+                />
+            </Suspense>
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <ThirdSection
+                    mainColor={data.mainColor}
+                    accentColor={data.accentColor}
+                    secondaryColor={data.secondaryColor}
+
+                    isAutonomous={data.isAutonomous}
+
+                    quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
+                    qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
+
+                    quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
+                    qualitydescription2={data.qualitydescription2.replace(/^"|"$/g, '')}
+
+                    quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
+                    qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
+
+                    onClick={handleWhatsClick}
+
+                    thirdTitle={data?.thirdTitle}
+                />
+            </Suspense>
+
+            { data?.isFourthSecVisible == 'on' || data?.isFourthSecVisible == null ? (
+                <>
+                    <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                        <FourthSection>
+                            <h1>Galeria de fotos</h1>
+                            <div className='fourth-wrapper'>
+                                <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
+                            </div>
+                            <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
+                        </FourthSection>
+                    </Suspense>
+                </>
+            ) : (
+                <>
+                </>
+            )
+            }
+
+
+            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                <FifthSection
+                    isAutonomous={data.isAutonomous}
+                    mainColor={data.mainColor}
+                    accentColor={data.accentColor}
+                    history={data.history.replace(/^"|"$/g, '')}
+                    photoBase64={data.photos.photo2.base64}
+                    src={Photo2}
+                    onClick={handleWhatsClick}
+                    coverKeyWords={data.coverKeyWords}
+                    fifthTitle={data.fifthTitle}
+                />
+            </Suspense>
+
+            {data?.isAgendaVisible == 'on' || data?.isAgendaVisible == null ? (
+                <>
+                    <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                        {data.photos.schedules.base64 === '' ?
+                            (
+                                <NewCalendar
+                                    segunda={`${data.segunda}`}
+                                    terca={`${data.terca}`}
+                                    quarta={`${data.quarta}`}
+                                    quinta={`${data.quinta}`}
+                                    sexta={`${data.sexta}`}
+                                    sabado={`${data.sabado}`}
+                                    domingo={`${data.domingo}`}
+                                    mainColor={data.mainColor}
+                                    secondaryColor={data.secondaryColor}
+                                    isAutonomous={data.isAutonomous}
+                                />
+                            ):(
+                                <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
+                                    <div className='img-wrapper'>
+                                        <img src={data.photos.schedules.base64} alt='horarios'/>
+                                    </div>
+                                </ImageSchedule>
+                            )}
+                    </Suspense>
+                </>
+            ) : (
+                <>
+                </>
+            )}
+
+
             {
-                data?.isPayer === '0' ? (
+                data?.isAddressVisible == 'on' || data?.isAddressVisible == null ? (
                     <>
-                        <PaymentWall />
+                        <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
+                            <SeventhSection
+                                zipCode={data.address.zipCode}
+                                street={data.address.street}
+                                number={data.address.number}
+                                city={data.address.city}
+                                complement={data.address.complement}
+                                state={data.address.state}
+                                mainColor={data.mainColor}
+                                neightborhood={data.address.neighborhood}
+                                secondaryColor={data.secondaryColor}
+                            />
+                        </Suspense>
+
                     </>
                 ) : (
-                    <h1> n é</h1>
+                    <>
+                    </>
                 )
             }
-            <Container>
-                <Helmet>
-                    <title>{data.name}</title>
-                    <meta />
-                    <meta name="theme-color" content={data.mainColor}/>
-                    <meta property="title" content={data.name}/>
-                    <meta name="description" content={data?.description} />
-                    <meta name="image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
 
-                    <meta name="og:title" content={data.name}/>
-                    <meta property="og:description" content={data?.description} />
-                    <meta name="og:image:secure_url" itemProp="image" content={data.photos.logo.base64}/>
-                    <meta property="og:type" content="website" />
-                </Helmet>
+            <FooterSection/>
 
-                <HeaderSection
-                    photoBase64={data.photos.logo.base64}
-                    name={data.name}
-                    insta={data.instagram}
-                    color={data.color}
-                />
-
-                <FirstSection
-                    mainColor={data.mainColor}
-                    secondaryColor={data.secondaryColor}
-                    call={data.call.replace(/^"|"$/g, '')}
-                    description={data.description}
-                    photoBase64={data.photos.photo1.base64}
-                    src={Photo1}
-                    coverKeyWords={data.coverKeyWords}
-                    onClick={handleWhatsClick}
-                />
-
-                <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                    <SecondSection
-                        isAutonomous={data.isAutonomous}
-                        mainColor={data.mainColor}
-                        accentColor={data.accentColor}
-                        products={data.products}
-                        photoBase64={data.photos.photo3.base64}
-                        src={Photo3}
-                        onClick={handleWhatsClick}
-                        coverKeyWords={data.coverKeyWords}
-                        secondTitle={data.secondTitle}
-                    />
-                </Suspense>
-
-                <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                    <ThirdSection
-                        mainColor={data.mainColor}
-                        accentColor={data.accentColor}
-                        secondaryColor={data.secondaryColor}
-
-                        isAutonomous={data.isAutonomous}
-
-                        quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
-                        qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
-
-                        quality2={data.quality2.charAt(0).toUpperCase() + data.quality2.slice(1)}
-                        qualitydescription2={data.qualitydescription2.replace(/^"|"$/g, '')}
-
-                        quality3={data.quality3.charAt(0).toUpperCase() + data.quality3.slice(1)}
-                        qualitydescription3={data.qualitydescription3.replace(/^"|"$/g, '')}
-
-                        onClick={handleWhatsClick}
-
-                        thirdTitle={data?.thirdTitle}
-                    />
-                </Suspense>
-
-                { data?.isFourthSecVisible == 'on' || data?.isFourthSecVisible == null ? (
-                    <>
-                        <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                            <FourthSection>
-                                <h1>Galeria de fotos</h1>
-                                <div className='fourth-wrapper'>
-                                    <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
-                                </div>
-                                <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
-                            </FourthSection>
-                        </Suspense>
-                    </>
-                ) : (
-                    <>
-                    </>
-                )
-                }
-
-
-                <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                    <FifthSection
-                        isAutonomous={data.isAutonomous}
-                        mainColor={data.mainColor}
-                        accentColor={data.accentColor}
-                        history={data.history.replace(/^"|"$/g, '')}
-                        photoBase64={data.photos.photo2.base64}
-                        src={Photo2}
-                        onClick={handleWhatsClick}
-                        coverKeyWords={data.coverKeyWords}
-                        fifthTitle={data.fifthTitle}
-                    />
-                </Suspense>
-
-                {data?.isAgendaVisible == 'on' || data?.isAgendaVisible == null ? (
-                    <>
-                        <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                            {data.photos.schedules.base64 === '' ?
-                                (
-                                    <NewCalendar
-                                        segunda={`${data.segunda}`}
-                                        terca={`${data.terca}`}
-                                        quarta={`${data.quarta}`}
-                                        quinta={`${data.quinta}`}
-                                        sexta={`${data.sexta}`}
-                                        sabado={`${data.sabado}`}
-                                        domingo={`${data.domingo}`}
-                                        mainColor={data.mainColor}
-                                        secondaryColor={data.secondaryColor}
-                                        isAutonomous={data.isAutonomous}
-                                    />
-                                ):(
-                                    <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
-                                        <div className='img-wrapper'>
-                                            <img src={data.photos.schedules.base64} alt='horarios'/>
-                                        </div>
-                                    </ImageSchedule>
-                                )}
-                        </Suspense>
-                    </>
-                ) : (
-                    <>
-                    </>
-                )}
-
-
-                {
-                    data?.isAddressVisible == 'on' || data?.isAddressVisible == null ? (
-                        <>
-                            <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                                <SeventhSection
-                                    zipCode={data.address.zipCode}
-                                    street={data.address.street}
-                                    number={data.address.number}
-                                    city={data.address.city}
-                                    complement={data.address.complement}
-                                    state={data.address.state}
-                                    mainColor={data.mainColor}
-                                    neightborhood={data.address.neighborhood}
-                                    secondaryColor={data.secondaryColor}
-                                />
-                            </Suspense>
-
-                        </>
-                    ) : (
-                        <>
-                        </>
-                    )
-                }
-
-                <FooterSection/>
-
-            </Container>
-        </>
+        </Container>
+        // </>
     );
 }
 

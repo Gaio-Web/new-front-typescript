@@ -5,7 +5,6 @@ export const Container = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   padding: 1rem 25vw;
   box-sizing: border-box;
   background-color: #eee;

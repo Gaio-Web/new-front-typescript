@@ -11,7 +11,7 @@ interface IHeaderSectionProp {
 
 function HeaderSection({ photoBase64, navColor, mainColor, insta}: IHeaderSectionProp): JSX.Element{
     return (
-        <Container style={{ backgroundColor: `${navColor}` }}>
+        <Container style={{ backgroundColor: `${navColor}`, justifyContent: insta == '' ? 'center' : 'space-between' }}>
 
             {photoBase64 == '' ? (
                 <h1 style={{ color: mainColor }}>Sua logo aqui</h1>
