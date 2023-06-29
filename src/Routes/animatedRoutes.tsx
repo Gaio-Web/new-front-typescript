@@ -5,7 +5,7 @@ import { Contact } from '../types';
 import NewLayout from '../pages/NewLayout';
 import axios from 'axios';
 
-//import VizeLayout from '../pages/VizeLayout/Products';
+import VizeLayout from '../pages/VizeLayout/Products';
 import PaginaLegado from '../pages/Products/Products';
 
 import { LoadingPage } from '../pages/Components/LoadingPage';
@@ -65,7 +65,12 @@ export default function AnimatedRoutes() {
                 data?.origin === 'gaio' ? (
                     <Route path="/:id" element={<NewLayout />} />
                 ) : (
-                    <Route path="/:id" element={<PaginaLegado />} />
+                    // <Route path="/:id" element={<PaginaLegado />} />
+                    data?.origin === 'vize' ? (
+                        <Route path="/:id" element={<VizeLayout />} />
+                    ) : (
+                        <Route path="/:id" element={<PaginaLegado />} />
+                    )
                 )
             }
             <Route path="/forms/:id" element={<NewForm />} />
