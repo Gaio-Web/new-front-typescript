@@ -48,7 +48,7 @@ function SeventhSection({ mainColor, secondaryColor, accentColor, zipCode, stree
                     >
                         <div>
                             <span style={{ backgroundColor: accentColor }}>
-                                <p style={{ color: mainColor }}>Copiar endereço</p>
+                                <p style={{ color: secondaryColor }}>Copiar endereço</p>
                             </span>
                         </div>
 

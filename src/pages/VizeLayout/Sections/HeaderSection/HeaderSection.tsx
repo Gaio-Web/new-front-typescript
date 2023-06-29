@@ -5,16 +5,16 @@ import Insta from '../../../../assets/svg/icons8-instagram-48.png';
 interface IHeaderSectionProp {
   photoBase64: string;
   navColor: string;
-  mainColor: string;
+  secondaryColor: string;
   insta: string;
 }
 
-function HeaderSection({ photoBase64, navColor, mainColor, insta}: IHeaderSectionProp): JSX.Element{
+function HeaderSection({ photoBase64, navColor, secondaryColor, insta}: IHeaderSectionProp): JSX.Element{
     return (
         <Container style={{ backgroundColor: `${navColor}`, justifyContent: insta == '' ? 'center' : 'space-between' }}>
 
             {photoBase64 == '' ? (
-                <h1 style={{ color: mainColor }}>Sua logo aqui</h1>
+                <h1 style={{ color: secondaryColor }}>Sua logo aqui</h1>
             ) : (
                 <img src={photoBase64} alt={'logo'} />
             )}

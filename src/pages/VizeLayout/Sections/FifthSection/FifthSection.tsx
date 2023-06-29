@@ -11,12 +11,12 @@ interface IFifthSectionProp {
   onClick: any;
   isAutonomous: string;
   mainColor: string;
-  accentColor: string;
+  secondaryColor: string;
   coverKeyWords: string;
   fifthTitle: string;
 }
 
-function FifthSection({isAutonomous,fifthTitle, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous,fifthTitle, mainColor, secondaryColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
@@ -25,11 +25,11 @@ function FifthSection({isAutonomous,fifthTitle, mainColor, accentColor, photoBas
                     fifthTitle == '' || fifthTitle == null ? (
                         <>
                             {isAutonomous == '1' ? (
-                                <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
                                     Minha História
                                 </h1>
                             ):(
-                                <h1 className="sectionTitle" style={{ color: mainColor }}>
+                                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
                                     Nossa História
                                 </h1>
                             )}

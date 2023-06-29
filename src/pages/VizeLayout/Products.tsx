@@ -175,13 +175,14 @@ function FindByPhone(): JSX.Element {
             <HeaderSection
                 photoBase64={data.photos.logo.base64}
                 // name={data.name} retirado a pedido da VIZE para teste
-                mainColor={data.mainColor}
+                secondaryColor={data.secondaryColor}
                 navColor={data.color}
                 insta={data.instagram}
             />
 
             <FirstSection
                 mainColor={data.mainColor}
+                secondaryColor={data.secondaryColor}
                 call={data.call.replace(/^"|"$/g, '')}
                 description={data.description}
                 photoBase64={data.photos.photo1.base64}
@@ -228,12 +229,12 @@ function FindByPhone(): JSX.Element {
             </Suspense>
 
             <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
-                <FourthSection style={{backgroundColor: data.mainColor}}>
+                <FourthSection style={{backgroundColor: data.accentColor}}>
                     <div className={'fourth-wrapper'} ref={componentRef}>
                         {
                             data.galleryTitle == '' || data.galleryTitle == null ? (
                                 <>
-                                    <h1>Galeria de fotos</h1>
+                                    <h1 style={{color: data.secondaryColor}} >Galeria de fotos</h1>
                                 </>
                             ) : (
                                 <>
@@ -252,7 +253,7 @@ function FindByPhone(): JSX.Element {
                 <FifthSection
                     isAutonomous={data.isAutonomous}
                     mainColor={data.mainColor}
-                    accentColor={data.accentColor}
+                    secondaryColor={data.secondaryColor}
                     history={data.history.replace(/^"|"$/g, '')}
                     photoBase64={data.photos.photo2.base64}
                     src={Photo2}
@@ -275,16 +276,16 @@ function FindByPhone(): JSX.Element {
                                         sexta={`${data.sexta}`}
                                         sabado={`${data.sabado}`}
                                         domingo={`${data.domingo}`}
-                                        mainColor={data.mainColor}
+                                        accentColor={data.accentColor}
                                         secondaryColor={data.secondaryColor}
                                         isAutonomous={data.isAutonomous}
                                     />
                                 ):(
                                     <ImageSchedule style={{backgroundColor: data.photos.schedules.type}}>
                                         {data.isAutonomous == '1' ? (
-                                            <h1 style={{ color: data.mainColor }}>Horário de atendimento</h1>
+                                            <h1 style={{ color: data.accentColor }}>Horário de atendimento</h1>
                                         ) : (
-                                            <h1 style={{ color: data.mainColor }}>Horário de funcionamento</h1>
+                                            <h1 style={{ color: data.accentColor }}>Horário de funcionamento</h1>
                                         )}
                                         <div className='img-wrapper'>
                                             <img src={data.photos.schedules.base64} alt='horarios'/>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import { Container } from './styles';
 
@@ -11,10 +12,11 @@ interface IFirstSectionProp {
   src: any;
   onClick: any;
   mainColor: string;
+  secondaryColor: string;
   coverKeyWords: string;
 }
 
-function FirstSection({mainColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
     return (
         <Container>
             <div id='firstSection' className={'first-wrapper'}>
