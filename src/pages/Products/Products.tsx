@@ -112,6 +112,8 @@ interface Contact {
   products: string;
   call: string;
   history: string;
+  secondTitle: string;
+  thirdTitle: string;
 
   //calendar info
   segunda: string;
@@ -323,6 +325,7 @@ function FindByPhone(): JSX.Element {
                     src={Photo3}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    secondTitle={data.secondTitle}
                 />
             </Suspense>
 
@@ -333,6 +336,7 @@ function FindByPhone(): JSX.Element {
                     secondaryColor={data.secondaryColor}
 
                     isAutonomous={data.isAutonomous}
+                    thirdTitle={data.thirdTitle}
 
                     quality1={data.quality1.charAt(0).toUpperCase() + data.quality1.slice(1)}
                     qualitydescription1={data.qualitydescription1.replace(/^"|"$/g, '')}
