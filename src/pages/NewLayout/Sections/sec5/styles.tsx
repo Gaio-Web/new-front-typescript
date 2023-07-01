@@ -61,10 +61,12 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 600px) {
+    box-sizing: border-box;
     & .fifth-wrapper {
       padding: 10% 5%;
       flex-direction: column;
       gap: 1rem;
+      box-sizing: border-box;
 
 
     & .content-wrapper {

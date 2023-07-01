@@ -118,5 +118,5 @@ export interface Contact {
   isAgendaVisible: string;
   isAddressVisible: string;
 
-
+  isFirstPhotoHidden: string;
 }

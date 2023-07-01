@@ -47,29 +47,18 @@ export default function AnimatedRoutes() {
         );
     }
 
-    // if (data?.origin === 'gaio') {
-    //     return (
-    //         <Routes location={location} key={location.pathname}>
-    //             <Route path="/:id" element={<NewLayout />} />
-    //         </Routes>
-    //     );
-    // } else if (data?.origin === 'vize') {
-    //     <Routes location={location} key={location.pathname}>
-    //         <Route path="/:id" element={<VizeLayout />} />
-    //     </Routes>;
-    // }
-
     return (
         <Routes location={location} key={location.pathname}>
             {
                 data?.origin === 'gaio' ? (
                     <Route path="/:id" element={<NewLayout />} />
                 ) : (
-                    // <Route path="/:id" element={<PaginaLegado />} />
-                    data?.origin === 'vize' ? (
+                    data?.origin === 'gaio-2' ? (
                         <Route path="/:id" element={<VizeLayout />} />
                     ) : (
-                        <Route path="/:id" element={<PaginaLegado />} />
+                        data?.origin === 'vize' ? (
+                            <Route path="/:id" element={<PaginaLegado />} />
+                        ) : null
                     )
                 )
             }

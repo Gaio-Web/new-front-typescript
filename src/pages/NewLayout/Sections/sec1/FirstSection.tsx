@@ -12,11 +12,12 @@ interface IFirstSectionProp {
   mainColor: string | undefined;
   secondaryColor: string | undefined;
   coverKeyWords: string;
+  isFirstPhotoHidden: string | undefined;
 }
 
-function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords, isFirstPhotoHidden}: IFirstSectionProp): JSX.Element {
     return (
-        <Container style={{backgroundColor: mainColor}}>
+        <Container style={{backgroundColor: mainColor, }}>
             <div id='firstSection' className={'first-wrapper'}>
                 <div className='main-content-wrapper'>
                     <div className='call-n-desc'>
@@ -24,21 +25,31 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                         <p>{description}</p>
                         <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>Vamos conversar!</button>
                     </div>
-                    <div className="img-wrapper"  data-aos="fade-up">
-                        {photoBase64 == '' ? (
-                            <UnsplashCoverImage
-                                data={{
-                                    alt_description: 'office',
-                                    urls: {
-                                        small: 'https://example.com/image.jpg',
-                                    },
-                                    coverKeyWords: coverKeyWords
-                                }}
-                            />
+                    {
+                        isFirstPhotoHidden === 'on' ? (
+                            <>
+                                <div className="img-wrapper"  data-aos="fade-up">
+                                    {photoBase64 == '' ? (
+                                        <UnsplashCoverImage
+                                            data={{
+                                                alt_description: 'office',
+                                                urls: {
+                                                    small: 'https://example.com/image.jpg',
+                                                },
+                                                coverKeyWords: coverKeyWords
+                                            }}
+                                        />
+                                    ) : (
+                                        <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
+                                    )}
+                                </div>
+                            </>
                         ) : (
-                            <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
-                        )}
-                    </div>
+                            <>
+                            </>
+                        )
+                    }
+
                 </div>
 
 

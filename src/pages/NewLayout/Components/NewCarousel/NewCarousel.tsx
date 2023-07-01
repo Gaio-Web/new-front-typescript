@@ -16,7 +16,6 @@ interface SliderProps {
 const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
-  /* padding-left: 80%; */
 
   display: flex;
   align-items: center;
@@ -58,17 +57,6 @@ const SliderWrapper = styled.div`
 `;
 
 const Slide = styled.img`
-  /* width: auto;
-  max-width: 600px;
-
-  /* width: auto; */
-  /* height: 100%; */
-  /* max-height: 50%; */
-  /* display: block; */
-  /* width: fit-content; */
-  /* height: 100%; */
-
-  /* max-height: 45vh; */
   height: 100%;
   object-fit: contain;
   border-radius: 8px;

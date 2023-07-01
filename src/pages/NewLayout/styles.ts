@@ -98,12 +98,11 @@ export const FourthSection = styled.div`
   /* background-color: red; */
   width: 100%;
   height: fit-content;
-  min-height: 92vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
   align-items: center;
   justify-content: center;
 
@@ -182,7 +181,9 @@ export const ImageSchedule = styled.div`
 
     & img {
       width: 70%;
+      max-height: 600px;
       object-fit: contain;
+      border-radius: 8px;
     }
   }
 
@@ -192,6 +193,7 @@ export const ImageSchedule = styled.div`
 
       & img {
         width: 100%;
+        border-radius: 8px;
       }
     }
   }
