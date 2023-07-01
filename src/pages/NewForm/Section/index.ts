@@ -6,7 +6,7 @@ import { SecondSection } from './2/SecondSection';
 import { ThirdSection } from './3/ThirdSection';
 import { FourthSection } from './4/FourthSection';
 import { FifthSection } from './5/FifthSection';
-import { Schedules } from './Schedules/Schedules';
+import { Schedules } from './Schedules_V2/Schedules';
 import { ColorSection } from './ColorSection/ColorSection';
 import { Address } from './Address/Address';
 import { GoToSite } from './GoToSite/GoToSite';
