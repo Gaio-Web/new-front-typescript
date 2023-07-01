@@ -109,14 +109,13 @@ export interface Contact {
   galleryTitle: string;
 
   // buttons
-  isFirstButtonDisabled: string;
+  isFirstButtonDisabled: string; // Desabilita a o botão da primeira sessão ["on" / "off"]
   isSecondButtonDisabled: string;
   isThirdButtonDisabled: string;
 
+  isFourthSecVisible: string; // Desabilita a quarta sessão ["on" / "off"]
+  isAgendaVisible: string;    // Desabilita os horários ["on" / "off"]
+  isAddressVisible: string;   // Desabilita a endereço ["on" / "off"]
 
-  isFourthSecVisible: string;
-  isAgendaVisible: string;
-  isAddressVisible: string;
-
-  isFirstPhotoHidden: string;
+  isFirstPhotoHidden: string; // Desabilita a primera foto ["on" / "off"]
 }

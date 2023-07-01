@@ -26,7 +26,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                         <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>Vamos conversar!</button>
                     </div>
                     {
-                        isFirstPhotoHidden === 'on' ? (
+                        isFirstPhotoHidden === 'on' || isFirstPhotoHidden === '' ? (
                             <>
                                 <div className="img-wrapper"  data-aos="fade-up">
                                     {photoBase64 == '' ? (
