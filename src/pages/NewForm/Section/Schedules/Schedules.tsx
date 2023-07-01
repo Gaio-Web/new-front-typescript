@@ -5,7 +5,7 @@ import { StyledButton } from '../../../../global/Button';
 import { LoadingComponent } from '../../Components/Skeleton';
 
 import { Modal } from './Components/Modal';
-import { FileInputComponent } from '../../../../global/uploads/CoverUpload';
+import { FileInputComponent } from '../../../../global/uploads/SchedulesUpload';
 
 interface IFirstSecPops {
   call: string | undefined;
@@ -51,28 +51,6 @@ function Schedules({ call, description, img, isLoading, userID, segunda, terca, 
                 <h1>Horários</h1>
                 <FaEdit onClick={() => setModalIsVisible(true)}/>
             </Header>
-
-            {/* <TextWrapper>
-                <h4>Título da sessão</h4>
-                <LoadingComponent
-                    loading={isLoading}
-                    height="4rem"
-                    component={
-                        <p>{call}</p>
-                    }
-                />
-            </TextWrapper>
-
-            <TextWrapper>
-                <h4>Descrição</h4>
-                <LoadingComponent
-                    loading={isLoading}
-                    height="4rem"
-                    component={
-                        <p>{description}</p>
-                    }
-                />
-            </TextWrapper> */}
 
             <TextWrapper>
                 <div

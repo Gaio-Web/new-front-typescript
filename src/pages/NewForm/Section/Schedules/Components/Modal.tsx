@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
-import { Box, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
+import { Box, Checkbox } from '@mui/material';
 import { StyledButton } from '../../../../../global/Button';
 import { handleSubmit } from '../../../Utils/mongoReq';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -25,12 +25,16 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
     const [qua, setQua] = useState<string>('');
     const [qui, setQui] = useState<string>('');
     const [sex, setSex] = useState<string>('');
+    const [sab, setSab] = useState<string>('');
+    const [dom, setDom] = useState<string>('');
 
     const [segCheck, setSegCheck] = useState<boolean>(false);
     const [terCheck, setTerCheck] = useState<boolean>(false);
     const [quaCheck, setQuaCheck] = useState<boolean>(false);
     const [quiCheck, setQuiCheck] = useState<boolean>(false);
     const [sexCheck, setSexCheck] = useState<boolean>(false);
+    const [sabCheck, setSabCheck] = useState<boolean>(false);
+    const [domCheck, setDomCheck] = useState<boolean>(false);
 
     const [value, setValue] = useState<Dayjs | null>(dayjs());
 
@@ -42,23 +46,13 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
 
     const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
 
-    const handlePhotoClick = () => {
-        setClicked(!clicked);
-        console.log('hue');
-    };
-
     const [sendingUrl, setSendingUrl] = useState('');
-
-    const handleConfirmModalCall = (url: any) => {
-        setConfirmModalIsVisible(true);
-        setSendingUrl(url);
-    };
-
-    const [title, setTitle] = useState<string>('');
-    const [desc, setDesc] = useState<string>('');
 
     const [openAt, setOpenAt] = useState<Dayjs | null>(null);
     const [closeAt, setCloseAt] = useState<Dayjs | null>();
+
+    const [openAtWknd, setOpenAtWknd] = useState<Dayjs | null>(null);
+    const [closeAtWknd, setCloseAtWknd] = useState<Dayjs | null>();
 
     const handleFormSubmit = useCallback((event: any) => {
         event.preventDefault();
@@ -79,24 +73,33 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                 },
                 {
                     'field': 'quinta',
-                    'value':  ter
+                    'value':  qui
                 },
                 {
                     'field': 'sexta',
-                    'value':  ter
+                    'value':  sex
+                },
+                {
+                    'field': 'sabado',
+                    'value':  sab
+                },
+                {
+                    'field': 'domingo',
+                    'value':  dom
                 },
             ],
             userID
         );
-    }, [title, desc, userID, seg, ter, qua, qui, sex, segCheck, terCheck, quaCheck, quiCheck, sexCheck]);
+    }, [userID, seg, ter, qua, qui, sex, segCheck, terCheck, quaCheck, quiCheck, sexCheck]);
 
     const handleDayChange = (day: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const checked = event.target.checked;
 
-        // const formattedTime = `${openAt?.hour()}:${(openAt?.minute() < 10 ? '0' : '') + openAt?.minute()} ás ${closeAt?.hour()}:${(closeAt?.minute() < 10 ? '0' : '') + closeAt?.minute()}`;
-
         let formattedTimeOpen = '';
         let formattedTimeClose = '';
+
+        let formattedTimeOpenWknd = '';
+        let formattedTimeCloseWknd = '';
 
         if (openAt !== null){
             formattedTimeOpen = `${openAt.hour()}:${(openAt.minute() < 10 ? '0' : '') + openAt.minute()}`;
@@ -105,7 +108,16 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
             formattedTimeClose = `${closeAt?.hour()}:${(closeAt.minute() < 10 ? '0' : '') + closeAt.minute()}`;
         }
 
+        if (openAtWknd !== null){
+            formattedTimeOpenWknd = `${openAtWknd.hour()}:${(openAtWknd.minute() < 10 ? '0' : '') + openAtWknd.minute()}`;
+        }
+        if (closeAtWknd !== undefined && closeAtWknd !== null) {
+            formattedTimeCloseWknd = `${closeAtWknd?.hour()}:${(closeAtWknd.minute() < 10 ? '0' : '') + closeAtWknd.minute()}`;
+        }
+
         const formattedTime = `${formattedTimeOpen} ás ${formattedTimeClose}`;
+
+        const formattedTimeWknd = `${formattedTimeOpenWknd} ás ${formattedTimeCloseWknd}`;
 
         switch (day) {
         case 'seg':
@@ -127,6 +139,14 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
         case 'sex':
             setSexCheck(checked);
             setSex(checked ? formattedTime : '');
+            break;
+        case 'sab':
+            setSabCheck(checked);
+            setSab(checked ? formattedTimeWknd : '');
+            break;
+        case 'dom':
+            setDomCheck(checked);
+            setDom(checked ? formattedTimeWknd : '');
             break;
         default:
             break;
@@ -225,24 +245,6 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                         <p>Sex</p>
                     </CheckboxWrapper>
 
-                    <CheckboxWrapper>
-                        <Checkbox
-                            sx={{
-                                '& .MuiSvgIcon-root': { fontSize: 28 }
-                            }}
-                        />
-                        <p>Sab</p>
-                    </CheckboxWrapper>
-
-                    <CheckboxWrapper>
-                        <Checkbox
-                            sx={{
-                                '& .MuiSvgIcon-root': { fontSize: 28 }
-                            }}
-                        />
-                        <p>Dom</p>
-                    </CheckboxWrapper>
-
                 </Box>
             </DayWrapper>
 
@@ -262,10 +264,8 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                         justifyContent: 'space-between',
                         gap: '1rem'
                     }}>
-                        {/* <DemoContainer components={['TimeField']}> */}
-                        <TimeField label="Abre às" format='HH:mm' value={openAt} onChange={(newValue) => setOpenAt(newValue)} sx={{ width: '100%'}}/>
-                        <TimeField label="Fecha às" format='HH:mm' value={closeAt} onChange={(newValue) => setCloseAt(newValue)} sx={{ width: '100%'}}/>
-                        {/* </DemoContainer> */}
+                        <TimeField label="Abre às" format='HH:mm' value={openAtWknd} onChange={(newValue) => setOpenAtWknd(newValue)} sx={{ width: '100%'}}/>
+                        <TimeField label="Fecha às" format='HH:mm' value={closeAtWknd} onChange={(newValue) => setCloseAtWknd(newValue)} sx={{ width: '100%'}}/>
                     </Box>
                 </LocalizationProvider>
                 <Box
@@ -282,6 +282,8 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                             sx={{
                                 '& .MuiSvgIcon-root': { fontSize: 28 }
                             }}
+                            onChange={handleDayChange('sab')}
+                            checked={sabCheck}
                         />
                         <p>Sab</p>
                     </CheckboxWrapper>
@@ -291,6 +293,8 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
                             sx={{
                                 '& .MuiSvgIcon-root': { fontSize: 28 }
                             }}
+                            onChange={handleDayChange('dom')}
+                            checked={domCheck}
                         />
                         <p>Dom</p>
                     </CheckboxWrapper>

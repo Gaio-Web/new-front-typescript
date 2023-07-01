@@ -20,23 +20,23 @@ type FileInputProps = {
 };
 
 function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Element {
-    const [coverPreview, setCoverPreview] = useState<string>('');
-    const [coverPercent, setCoverPercent] = useState(0);
-    const [cover, setCover] = useState<any>('');
+    const [schedulePreview, setSchedulePreview] = useState<string>('');
+    const [schedulePercent, setSchedulePercent] = useState(0);
+    const [schedule, setSchedule] = useState<any>('');
     const [uploaded, setUploaded] = useState<boolean | undefined>(false);
 
-    const handleCoverChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCover(event.target.files?.[0]);
+    const handleScheduleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSchedule(event.target.files?.[0]);
 
-        const coverImage = event.target.files?.[0];
-        if (!coverImage) {
+        const scheduleImage = event.target.files?.[0];
+        if (!scheduleImage) {
             return;
         }
         const reader = new FileReader();
         reader.onload = () => {
-            setCoverPreview(reader.result as string);
+            setSchedulePreview(reader.result as string);
         };
-        reader.readAsDataURL(coverImage);
+        reader.readAsDataURL(scheduleImage);
     };
 
     const handleClick = () => {
@@ -47,34 +47,34 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
     };
 
     const handleCancel = () => {
-        setCoverPreview('');
+        setSchedulePreview('');
     };
 
     useEffect(() => {
         if(uploaded == true){
             setUploaded(false);
             handleCancel();
-            setCoverPercent(0);
+            setSchedulePercent(0);
         }
     }, [uploaded]);
 
-    const handleCoverUploadToFirebase = (e: any) => {
+    const handleScheduleUploadToFirebase = (e: any) => {
         e.preventDefault();
 
-        if (!cover) {
+        if (!schedule) {
             alert('escolha uma imagem!');
         }
-        const storageRef = ref(storage, `/${userID}/${cover.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, cover);
+        const storageRef = ref(storage, `/${userID}/${schedule.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, schedule);
 
         uploadTask.on(
             'state_changed',
             (snapshot) => {
-                const coverPercent = Math.round(
+                const schedulePercent = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
                 // update progress
-                setCoverPercent(coverPercent);
+                setSchedulePercent(schedulePercent);
             },
             (err) => console.log(err),
             () => {
@@ -82,7 +82,7 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
                 getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
                     const body = JSON.stringify({
                         phone: userID,
-                        photo_position: '1',
+                        photo_position: '5',
                         base64: url,
                         type: 'image',
                     });
@@ -113,32 +113,32 @@ function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Elemen
     return (
         <>
             {
-                coverPreview ? (
+                schedulePreview ? (
                     <StyledButton
                         children={
-                            coverPercent > 0 ? `Enviando Foto ${coverPercent} %` : 'Enviar Foto'
+                            schedulePercent > 0 ? `Enviando Foto ${schedulePercent} %` : 'Enviar Foto'
                         }
                         w="larger"
-                        onClick={handleCoverUploadToFirebase}
+                        onClick={handleScheduleUploadToFirebase}
                     />
                 ) : (
                     <FileInputContainer onClick={handleClick}>
-                        <FileInputLabel htmlFor="coverInput">Escolher Foto
+                        <FileInputLabel htmlFor="scheduleInput">Escolher Foto
                             <AiFillFileImage size={'22px'} color='white'/>
                         </FileInputLabel>
                         <FileInput
-                            id="coverInput"
+                            id="scheduleInput"
                             type="file"
-                            onChange={handleCoverChange}
+                            onChange={handleScheduleChange}
                         />
                     </FileInputContainer>
                 )
             }
             {
-                coverPreview
+                schedulePreview
         &&
         <PreviewContainer>
-            <SelectedImage src={coverPreview} alt="Selected Image" />
+            <SelectedImage src={schedulePreview} alt="Selected Image" />
             <BsFillTrash3Fill onClick={handleCancel} size={24} color='#FF0000'/>
         </PreviewContainer>
             }
