@@ -257,15 +257,15 @@ function FindByPhone(): JSX.Element {
 
     useEffect(() => {
         setImagesLoaded(false);
-        setTimeout(() => {
-            listAllImagesFromFolder().then((urls) => {
-                if (urls) {
-                    setImagesurls(urls);
-                    setImagesLoaded(true);
-                    setHaveURL(urls.length);
-                }
-            });
-        }, 1000);
+        listAllImagesFromFolder().then((urls) => {
+            if (urls) {
+                setImagesurls(urls);
+                setImagesLoaded(true);
+                setHaveURL(urls.length);
+                console.log(`length: ${urls.length}`);
+                console.log(`HaveURL: ${urls.length}`);
+            }
+        });
     }, [data]);
 
     // useEffect(() => {
