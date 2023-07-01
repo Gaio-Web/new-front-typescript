@@ -148,7 +148,7 @@ function Modal({ modalIsVisible, setModalIsVisible, userID }: IModalProps): JSX.
         <Container isVisible={modalIsVisible}
             onSubmit={handleFormSubmit}>
             <Header>
-                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Horário de funcionado</h1>
+                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Horário de funcionamento</h1>
                 <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
             </Header>
 
