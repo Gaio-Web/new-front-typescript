@@ -162,7 +162,6 @@ export const ImageSchedule = styled.div`
   align-items: center;
   justify-content: center;
   padding: 3% 10%;
-  background-color: red;
 
   & h1 {
       margin: 0;
