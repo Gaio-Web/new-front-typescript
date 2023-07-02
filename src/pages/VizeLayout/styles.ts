@@ -158,27 +158,19 @@ export const ImageSchedule = styled.div`
   width: 100%;
   height: fit-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 3% 10%;
+  background-color: red;
 
   & h1 {
       margin: 0;
       color: white;
-      line-height: 45px;
       text-align: center;
-      padding: 0 1.5rem 0;
       font-family: "Poppins", sans-serif;
-      letter-spacing: .1px;
-
-      @media screen and (max-width: 410px) {
-        font-size: 7vw;
-        font-weight: 600;
-        padding: 0;
-      }
-      @media screen and (max-width: 330px) {
-        font-size: 18px;
-      }
-    }
+      color: rgba(5, 55, 124, 0.9);
+  }
 
   & .img-wrapper {
     width: 100%;
@@ -192,10 +184,19 @@ export const ImageSchedule = styled.div`
     & img {
       width: 70%;
       object-fit: contain;
+      max-height: 60vh;
+      border-radius: 8px;
     }
   }
 
   @media screen and (max-width: 600px) {
+
+    padding: 10% 10%;
+
+    & h1 {
+
+    }
+
     & .img-wrapper {
       padding: 5% 10%;
 
