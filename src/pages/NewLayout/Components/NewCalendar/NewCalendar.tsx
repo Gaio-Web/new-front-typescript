@@ -144,7 +144,13 @@ function Calendar({
                             <h1>Sábado:</h1>
                         </div>
                         <div className="value">
-                            <h3>{sabado}</h3>
+                            {
+                                sabado === '' ? (
+                                    <h3>Fechado</h3>
+                                ) : (
+                                    <h3>{sabado}</h3>
+                                )
+                            }
                         </div>
                     </div>
 
@@ -153,7 +159,13 @@ function Calendar({
                             <h1>Domingo:</h1>
                         </div>
                         <div className="value">
-                            <h3>{domingo}</h3>
+                            {
+                                domingo === '' ? (
+                                    <h3>Fechado</h3>
+                                ) : (
+                                    <h3>{domingo}</h3>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
