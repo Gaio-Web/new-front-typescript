@@ -28,9 +28,15 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
+    const [shouldRenderFirstSet, setShouldRenderFirstSet] = useState(haveURL === 0);
+
+    useEffect(() => {
+        setShouldRenderFirstSet(haveURL === 0);
+    }, [haveURL]);
+
     return (
         <>
-            {haveURL === 0 ? (
+            {shouldRenderFirstSet && haveURL === 0 && (
                 <Swiper
                     slidesPerView={'auto'}
                     spaceBetween={30}
@@ -82,8 +88,9 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                         </div>
                     </SwiperSlide>
                 </Swiper>
-            ) : (
+            )}
 
+            {!shouldRenderFirstSet && haveURL !== 0 && (
                 <Swiper
                     slidesPerView={'auto'}
                     spaceBetween={30}
@@ -100,15 +107,14 @@ function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
                     className="mySwiper"
                 >
                     {firebaseUrl.length > 0 &&
-                  firebaseUrl.map((url: string, index: any) => (
-                      <SwiperSlide key={index}>
-                          <div className={'content-wrapper'}>
-                              <img className="pgImg"  src={url} />
-                          </div>
-                      </SwiperSlide>
-                  ))}
+               firebaseUrl.map((url: string, index: any) => (
+                   <SwiperSlide key={index}>
+                       <div className={'content-wrapper'}>
+                           <img className="pgImg" src={url} />
+                       </div>
+                   </SwiperSlide>
+               ))}
                 </Swiper>
-
             )}
         </>
     );
