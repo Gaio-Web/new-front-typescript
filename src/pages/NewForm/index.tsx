@@ -254,7 +254,7 @@ function NewForm(): JSX.Element {
 
                                 <FourthSection
                                     userID={data?.phone}
-                                    id={id}
+                                    id={convertedUrlParam}
                                     isLoading={loading}
                                     toast={() => handleToast('Imagem deletada com sucesso!')}
                                     toastFromSwitch={() => handleToast('Exibição de sessão atualizada com sucesso!')}
