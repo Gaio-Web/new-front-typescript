@@ -248,7 +248,7 @@ function FindByPhone(): JSX.Element {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>{data.galleryTitle}</h1>
+                                        <h1 style={{color: data.secondaryColor}}>{data.galleryTitle}</h1>
                                     </>
                                 )
                             }
