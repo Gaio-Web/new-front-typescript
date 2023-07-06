@@ -118,4 +118,5 @@ export interface Contact {
   isAddressVisible: string;   // Desabilita a endereço ["on" / "off"]
 
   isFirstPhotoHidden: string; // Desabilita a primera foto ["on" / "off"]
+  galleryTitleColor: string; // Cor do título da galeria
 }

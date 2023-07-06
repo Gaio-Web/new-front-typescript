@@ -244,11 +244,11 @@ function FindByPhone(): JSX.Element {
                             {
                                 data.galleryTitle == '' || data.galleryTitle == null ? (
                                     <>
-                                        <h1 style={{color: data.secondaryColor}} >Galeria de fotos</h1>
+                                        <h1 style={{color: data.galleryTitleColor === '' ? data.secondaryColor : data.galleryTitleColor}}>Galeria de fotos</h1>
                                     </>
                                 ) : (
                                     <>
-                                        <h1 style={{color: data.secondaryColor}}>{data.galleryTitle}</h1>
+                                        <h1 style={{color: data.galleryTitleColor === '' ? data.secondaryColor : data.galleryTitleColor}}>{data.galleryTitle}</h1>
                                     </>
                                 )
                             }
