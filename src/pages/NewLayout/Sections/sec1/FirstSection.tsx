@@ -13,9 +13,10 @@ interface IFirstSectionProp {
   secondaryColor: string | undefined;
   coverKeyWords: string;
   isFirstPhotoHidden: string | undefined;
+  firstButtonText: string | undefined;
 }
 
-function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords, isFirstPhotoHidden}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, secondaryColor, call, description, photoBase64, firstButtonText, src, onClick, coverKeyWords, isFirstPhotoHidden}: IFirstSectionProp): JSX.Element {
     return (
         <Container style={{backgroundColor: mainColor, }}>
             <div id='firstSection' className={'first-wrapper'}>
@@ -23,7 +24,19 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                     <div className='call-n-desc'>
                         <h1>{call}</h1>
                         <p>{description}</p>
-                        <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>Vamos conversar!</button>
+                        <button onClick={onClick} style={{backgroundColor: secondaryColor, width: '100%', marginTop: '2rem'}} className='btn-1'>
+                            {
+                                firstButtonText === '' || firstButtonText === undefined ? (
+                                    <>
+                                  Vamos conversar!
+                                    </>
+                                ) : (
+                                    <>
+                                        {firstButtonText}
+                                    </>
+                                )
+                            }
+                        </button>
                     </div>
                     {
                         isFirstPhotoHidden === 'on' || isFirstPhotoHidden === '' || isFirstPhotoHidden === null || isFirstPhotoHidden === undefined ? (
@@ -53,7 +66,19 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                 </div>
 
 
-                <button onClick={onClick} style={{backgroundColor: secondaryColor}} className='btn-2'>Vamos conversar!</button>
+                <button onClick={onClick} style={{backgroundColor: secondaryColor}} className='btn-2'>
+                    {
+                        firstButtonText === '' || firstButtonText === undefined ? (
+                            <>
+                                  Vamos conversar!
+                            </>
+                        ) : (
+                            <>
+                                {firstButtonText}
+                            </>
+                        )
+                    }
+                </button>
             </div>
         </Container>
     );

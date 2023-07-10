@@ -14,9 +14,10 @@ interface IFirstSectionProp {
   mainColor: string;
   secondaryColor: string;
   coverKeyWords: string;
+    firstButtonText: string | undefined;
 }
 
-function FirstSection({mainColor, secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
+function FirstSection({mainColor, firstButtonText ,secondaryColor, call, description, photoBase64, src, onClick, coverKeyWords}: IFirstSectionProp): JSX.Element {
     return (
         <Container>
             <div id='firstSection' className={'first-wrapper'}>
@@ -38,7 +39,24 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                     )}
                 </div>
                 {/* <button onClick={onClick} style={{backgroundColor: secondaryColor}}>Vamos conversar!</button>  cor removida a pedido da VIZE */}
-                <button onClick={onClick} > <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> <h4>Conversar por WhatsApp</h4></div> </button>
+                <button onClick={onClick} >
+                    <div className='buttonContent'>
+                        <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>
+                        <h4>
+                            {
+                                firstButtonText === '' || firstButtonText === undefined ? (
+                                    <>
+                                  Conversar por WhatsApppppppp
+                                    </>
+                                ) : (
+                                    <>
+                                        {firstButtonText}
+                                    </>
+                                )
+                            }
+                        </h4>
+                    </div>
+                </button>
             </div>
         </Container>
     );

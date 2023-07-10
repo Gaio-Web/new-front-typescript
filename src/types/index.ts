@@ -119,4 +119,14 @@ export interface Contact {
 
   isFirstPhotoHidden: string; // Desabilita a primera foto ["on" / "off"]
   galleryTitleColor: string; // Cor do título da galeria
+
+  firstButtonText: string;
+  secondButtonText: string;
+  thirdButtonText: string;
+  fourthButtonText: string;
+  fifthButtonText: string;
+  sixthButtonText: string;
 }
+
+//
+

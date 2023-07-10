@@ -13,9 +13,10 @@ interface IFifthSectionProp {
   accentColor: string;
   coverKeyWords: string;
   fifthTitle: string;
+  fifthButtonText: string | undefined;
 }
 
-function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBase64, history, fifthButtonText, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
@@ -42,7 +43,19 @@ function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBa
 
                     <p className='history'>{history}</p>
 
-                    <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>Conversar por WhatsApp</button>
+                    <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>
+                        {
+                            fifthButtonText === '' || fifthButtonText === undefined ? (
+                                <>
+                      Conversar por WhatsApp
+                                </>
+                            ) : (
+                                <>
+                                    {fifthButtonText}
+                                </>
+                            )
+                        }
+                    </button>
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
                     {photoBase64 == '' ? (
@@ -59,7 +72,19 @@ function FifthSection({isAutonomous, fifthTitle, mainColor, accentColor, photoBa
                         <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     )}
                 </div>
-                <button onClick={onClick} style={{ backgroundColor: accentColor }} className='btn-2'>Conversar por WhatsApp</button>
+                <button onClick={onClick} style={{ backgroundColor: accentColor }} className='btn-2'>
+                    {
+                        fifthButtonText === '' || fifthButtonText === undefined ? (
+                            <>
+                      Conversar por WhatsApp
+                            </>
+                        ) : (
+                            <>
+                                {fifthButtonText}
+                            </>
+                        )
+                    }
+                </button>
             </div>
         </Container>
     );

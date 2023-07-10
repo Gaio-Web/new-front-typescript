@@ -14,9 +14,10 @@ interface IThirdSectionProp {
   qualitydescription3: string;
   isAutonomous: string;
   thirdTitle: string;
+  thirdButtonText: string | undefined;
 }
 
-function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, accentColor, quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, onClick}: IThirdSectionProp): JSX.Element{
+function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, thirdButtonText, accentColor, quality1, qualitydescription1, quality2, qualitydescription2, quality3, qualitydescription3, onClick}: IThirdSectionProp): JSX.Element{
     return (
         <Container>
             <div id='thirdSection' className={'third-wrapper'}>
@@ -237,7 +238,19 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, acce
                         <p>{qualitydescription3}</p>
                     </div>
                 </div>
-                <button onClick={onClick} style={{ backgroundColor: secondaryColor }} className='btn'>Vamos conversar!</button>
+                <button onClick={onClick} style={{ backgroundColor: secondaryColor }} className='btn'>
+                    {
+                        thirdButtonText === '' || thirdButtonText === undefined ? (
+                            <>
+                                  Vamos conversar!
+                            </>
+                        ) : (
+                            <>
+                                {thirdButtonText}
+                            </>
+                        )
+                    }
+                </button>
             </div>
         </Container>
     );

@@ -193,6 +193,7 @@ function NewLayout(): JSX.Element {
                     coverKeyWords={data.coverKeyWords}
                     onClick={handleWhatsClick}
                     isFirstPhotoHidden={data.isFirstPhotoHidden}
+                    firstButtonText={data.firstButtonText}
                 />
 
                 <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -206,6 +207,7 @@ function NewLayout(): JSX.Element {
                         onClick={handleWhatsClick}
                         coverKeyWords={data.coverKeyWords}
                         secondTitle={data.secondTitle}
+                        secondButtonText={data.secondButtonText}
                     />
                 </Suspense>
 
@@ -229,6 +231,7 @@ function NewLayout(): JSX.Element {
                         onClick={handleWhatsClick}
 
                         thirdTitle={data?.thirdTitle}
+                        thirdButtonText={data.thirdButtonText}
                     />
                 </Suspense>
 
@@ -240,7 +243,19 @@ function NewLayout(): JSX.Element {
                                 <div className='fourth-wrapper'>
                                     <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
                                 </div>
-                                <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>Fale com a gente</button>
+                                <button onClick={handleWhatsClick} style={{backgroundColor: data.secondaryColor }} className='btn'>
+                                    {
+                                        data.fourthButtonText === '' || data.fourthButtonText === undefined ? (
+                                            <>
+                      Fale com a gente!
+                                            </>
+                                        ) : (
+                                            <>
+                                                {data.fourthButtonText}
+                                            </>
+                                        )
+                                    }
+                                </button>
                             </FourthSection>
                         </Suspense>
                     </>
@@ -262,6 +277,7 @@ function NewLayout(): JSX.Element {
                         onClick={handleWhatsClick}
                         coverKeyWords={data.coverKeyWords}
                         fifthTitle={data.fifthTitle}
+                        fifthButtonText={data.fifthButtonText}
                     />
                 </Suspense>
 

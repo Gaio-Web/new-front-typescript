@@ -14,9 +14,10 @@ interface IFifthSectionProp {
   secondaryColor: string;
   coverKeyWords: string;
   fifthTitle: string;
+  fifthButtonText: string | undefined;
 }
 
-function FifthSection({isAutonomous,fifthTitle, mainColor, secondaryColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
+function FifthSection({isAutonomous, fifthTitle, fifthButtonText, mainColor, secondaryColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
     return (
         <Container>
             <div id='fifthSection' className={'fifth-wrapper'}>
@@ -60,7 +61,19 @@ function FifthSection({isAutonomous,fifthTitle, mainColor, secondaryColor, photo
                         <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     )}
                 </div>
-                <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/> Conversar por WhatsApp</div> </button>
+                <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>
+                    {
+                        fifthButtonText === '' || fifthButtonText === undefined ? (
+                            <>
+                      Conversar por WhatsApp
+                            </>
+                        ) : (
+                            <>
+                                {fifthButtonText}
+                            </>
+                        )
+                    }
+                </div> </button>
             </div>
         </Container>
     );

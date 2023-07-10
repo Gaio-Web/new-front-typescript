@@ -15,9 +15,10 @@ interface ISecondSectionProp {
   accentColor: string;
   coverKeyWords: string;
   secondTitle: string;
+  secondButtonText: string;
 }
 
-function SecondSection({ mainColor, secondTitle, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, secondButtonText, secondTitle, accentColor,isAutonomous, photoBase64, products, src, onClick, coverKeyWords}: ISecondSectionProp): JSX.Element{
     return (
         <Container style={{backgroundColor: mainColor}}>
             <div id='secondSection' className={'second-wrapper'}>
@@ -49,7 +50,19 @@ function SecondSection({ mainColor, secondTitle, accentColor,isAutonomous, photo
                         <img fetch-priority={'low'} src={photoBase64} alt={'foto de capa'} loading='lazy'/>
                     )}
                 </div>
-                <button onClick={onClick} style={{backgroundColor: ('#25D366')}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>fale com a gente!</div> </button>
+                <button onClick={onClick} style={{backgroundColor: ('#25D366')}}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>
+                    {
+                        secondButtonText === '' || secondButtonText === undefined ? (
+                            <>
+                                  Fale com a gente!
+                            </>
+                        ) : (
+                            <>
+                                {secondButtonText}
+                            </>
+                        )
+                    }
+                </div> </button>
                 {/* <button onClick={onClick}> teste</button> */}
             </div>
         </Container>

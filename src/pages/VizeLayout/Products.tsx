@@ -199,6 +199,7 @@ function FindByPhone(): JSX.Element {
                     src={Photo1}
                     onClick={handleWhatsClick}
                     coverKeyWords={data.coverKeyWords}
+                    firstButtonText={data.fifthButtonText}
                 />
 
                 <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -212,6 +213,7 @@ function FindByPhone(): JSX.Element {
                         onClick={handleWhatsClick}
                         coverKeyWords={data.coverKeyWords}
                         secondTitle={data.secondTitle}
+                        secondButtonText={data.secondButtonText}
                     />
                 </Suspense>
 
@@ -235,6 +237,7 @@ function FindByPhone(): JSX.Element {
                         onClick={handleWhatsClick}
 
                         isThirdButtonDisabled={data.isThirdButtonDisabled}
+                        thirdButtonText={data.thirdButtonText}
                     />
                 </Suspense>
 
@@ -270,6 +273,7 @@ function FindByPhone(): JSX.Element {
                         onClick={handleWhatsClick}
                         coverKeyWords={data.coverKeyWords}
                         fifthTitle={data.fifthTitle}
+                        fifthButtonText={data.fifthButtonText}
                     />
                 </Suspense>
                 {
