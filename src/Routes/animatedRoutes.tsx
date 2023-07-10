@@ -12,6 +12,8 @@ import { LoadingPage } from '../pages/Components/LoadingPage';
 import { NewForm } from '../pages/NewForm';
 
 import GaioMainPage from '../pages/Main';
+import { Login } from '../pages/Login/Login';
+import { AuthProvider } from '../context/AuthContext';
 
 export default function AnimatedRoutes() {
     const location = useLocation();
@@ -62,8 +64,12 @@ export default function AnimatedRoutes() {
                     )
                 )
             }
+            {/* <AuthProvider> */}
             <Route path="/forms/:id" element={<NewForm />} />
+            {/* </AuthProvider> */}
+
             <Route path='/' element={<GaioMainPage />} />
+            <Route path='/forms' element={<Login />}/>
         </Routes>
     );
 }
