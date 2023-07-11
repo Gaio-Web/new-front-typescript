@@ -46,7 +46,7 @@ function FirstSection({mainColor, firstButtonText ,secondaryColor, call, descrip
                             {
                                 firstButtonText === '' || firstButtonText === undefined ? (
                                     <>
-                                  Conversar por WhatsApppppppp
+                                  Conversar por WhatsApp
                                     </>
                                 ) : (
                                     <>
