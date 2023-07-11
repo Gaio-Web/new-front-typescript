@@ -14,6 +14,7 @@ import { NewForm } from '../pages/NewForm';
 import GaioMainPage from '../pages/Main';
 import { Login } from '../pages/Login/Login';
 import { AuthProvider } from '../context/AuthContext';
+import ProtectedComponent from '../global/ProtectedComponent';
 
 export default function AnimatedRoutes() {
     const location = useLocation();
@@ -65,7 +66,7 @@ export default function AnimatedRoutes() {
                 )
             }
             {/* <AuthProvider> */}
-            <Route path="/forms/:id" element={<NewForm />} />
+            <Route path="/forms/:id" element={<ProtectedComponent><NewForm /></ProtectedComponent>} />
             {/* </AuthProvider> */}
 
             <Route path='/' element={<GaioMainPage />} />
