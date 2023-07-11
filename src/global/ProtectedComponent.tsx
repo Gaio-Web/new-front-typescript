@@ -8,6 +8,10 @@ function ProtectedComponent(props: any): JSX.Element {
     useEffect(() => {
         // const token = 'THIS IS A TOKEN BUT YOU SHOULD REALLY CRFEDATE ONE FOR YOURSELF';
         const token = false;
+        // LOCAL STORAGE EXAMPLE
+        // localStorage.getItem('token');
+        // localStorage.setItem('token', 'adfawgfarwdWQFARFdfaerfg');
+        // localStorage.removeItem('token');
         /** STEPS THAT YOU SHOULD TAKE
          * GET TOKEN FROM LOCAL STORAGE
          * CHECK IF IS A VALID ONE
