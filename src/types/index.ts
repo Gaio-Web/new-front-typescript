@@ -101,6 +101,10 @@ export interface Contact {
   productsKeyWords: string;
 
   instagram: string;
+  facebook: string;
+  whatsIcon: string;
+  tiktok: string;
+  youtube: string;
   origin: string;
 
   secondTitle: string;
@@ -126,6 +130,8 @@ export interface Contact {
   fourthButtonText: string;
   fifthButtonText: string;
   sixthButtonText: string;
+
+  isVideo: string;
 }
 
 //

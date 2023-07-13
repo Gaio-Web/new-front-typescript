@@ -11,7 +11,7 @@ import PaginaLegado from '../pages/Products/Products';
 import { LoadingPage } from '../pages/Components/LoadingPage';
 import { NewForm } from '../pages/NewForm';
 
-import GaioMainPage from '../pages/Main';
+import GaioMainPage from '../pages/Main/NewLayout';
 
 export default function AnimatedRoutes() {
     const location = useLocation();

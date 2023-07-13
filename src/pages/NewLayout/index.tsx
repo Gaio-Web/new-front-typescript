@@ -35,7 +35,7 @@ import NewSlider from './Components/NewCarousel/NewCarousel';
 import { LoadingPage } from '../Components/LoadingPage';
 import { PaymentWall } from '../Components/PaymentWall';
 
-function NewLayout(): JSX.Element {
+function Main(): JSX.Element {
 
     useEffect(() => {
         Aos.init({duration: 2000});
@@ -194,6 +194,7 @@ function NewLayout(): JSX.Element {
                     onClick={handleWhatsClick}
                     isFirstPhotoHidden={data.isFirstPhotoHidden}
                     firstButtonText={data.firstButtonText}
+                    isVideo={data.isVideo}
                 />
 
                 <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
@@ -239,7 +240,17 @@ function NewLayout(): JSX.Element {
                     <>
                         <Suspense fallback={ <ReactLoading type={'spin'} color={'#05377C'} height={200} width={100}/>}>
                             <FourthSection>
-                                <h1>Galeria de fotos</h1>
+                                {
+                                    data.galleryTitle == '' || data.galleryTitle == null ? (
+                                        <>
+                                            <h1>Galeria de fotos</h1>
+                                        </>
+                                    ) : (
+                                        <>
+                                            {data.galleryTitle}
+                                        </>
+                                    )
+                                }
                                 <div className='fourth-wrapper'>
                                     <NewSlider firebaseUrl={imgsUrls} haveURL={haveURL} coverKeyWords={data.coverKeyWords} />
                                 </div>
@@ -344,4 +355,4 @@ function NewLayout(): JSX.Element {
     );
 }
 
-export default NewLayout;
+export default Main;
