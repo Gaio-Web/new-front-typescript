@@ -47,6 +47,7 @@ function SeventhSection({ mainColor, secondaryColor, neightborhood, zipCode, str
                         }}
                     >
                         <CopyToClipboardButton
+                            sx={{ width: '100%'}}
                             path={
                                 `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
                             }

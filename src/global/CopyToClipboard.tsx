@@ -16,7 +16,7 @@ const CopyToClipboardButton = ({ path }: ICopyToClipboardButtonProps) => {
         <>
             <Button
                 onClick={handleClick}
-                sx={{ width: '50%'}}
+                sx={{ width: '100%'}}
                 variant="contained"
             >
             Copiar endereço
