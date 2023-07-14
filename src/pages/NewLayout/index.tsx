@@ -247,7 +247,9 @@ function Main(): JSX.Element {
                                         </>
                                     ) : (
                                         <>
-                                            {data.galleryTitle}
+                                            <h1>
+                                                {data.galleryTitle}
+                                            </h1>
                                         </>
                                     )
                                 }
