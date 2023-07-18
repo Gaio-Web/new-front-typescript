@@ -291,6 +291,7 @@ function Main(): JSX.Element {
                         coverKeyWords={data.coverKeyWords}
                         fifthTitle={data.fifthTitle}
                         fifthButtonText={data.fifthButtonText}
+                        convertedName={data.convertedName}
                     />
                 </Suspense>
 

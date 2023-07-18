@@ -15,10 +15,11 @@ export const Container = styled.div`
     padding: 5% 10%;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
     align-items: center;
     gap: 3rem;
 
-    & .content-wrapper {
+    & .conteent-wrapper {
       width: 50%;
       display: flex;
       flex-direction: column;
@@ -51,29 +52,36 @@ export const Container = styled.div`
     & .sectionTitle {
       font-family: 'Inter', sans-serif;
       font-size: 32px;
-      margin: 0;
+      margin: 0 0 10px 0;
+
     }
 
     & .history {
       font-family: "Montserrat", sans-serif;
       font-size: 20px;
+
     }
   }
 
   @media screen and (max-width: 600px) {
     box-sizing: border-box;
     & .fifth-wrapper {
-      padding: 10% 5%;
+      padding: 10% 4%;
+      height: 200vh;
       flex-direction: column;
       gap: 1rem;
       box-sizing: border-box;
+      align-items: center;
+      justify-content: center;
 
 
-    & .content-wrapper {
+    & .conteent-wrapper {
       width: 100%;
       display: flex;
+      height: fit-content;
       flex-direction: column;
       align-items: start;
+      justify-content: center;
 
       & .btn {
         display: none;

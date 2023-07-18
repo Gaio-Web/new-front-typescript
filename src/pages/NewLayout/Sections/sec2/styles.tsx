@@ -23,6 +23,7 @@ export const Container = styled.div`
       & h1 {
         font-family: 'Inter', sans-serif;
         font-size: 26px;
+        margin-bottom: 15px;
 
       }
 
