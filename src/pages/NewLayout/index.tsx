@@ -139,15 +139,6 @@ function Main(): JSX.Element {
         );
     }
 
-    // else if (data?.isPayer === '0') {
-    //     return (
-    //         <>
-    //             <PaymentWall />
-    //         </>
-    //     );
-    // }
-
-
     return (
         <>
             {

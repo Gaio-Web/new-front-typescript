@@ -36,7 +36,7 @@ function ThirdSection({isAutonomous, thirdTitle, mainColor, secondaryColor, thir
                         </>
                     ) : (
                         <>
-                            <h1>
+                            <h1 className="sectionTitle" style={{ color: mainColor }}>
                                 {thirdTitle}
                             </h1>
                         </>
