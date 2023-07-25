@@ -200,6 +200,7 @@ function Main(): JSX.Element {
                         coverKeyWords={data.coverKeyWords}
                         secondTitle={data.secondTitle}
                         secondButtonText={data.secondButtonText}
+                        convertedName={data.convertedName}
                     />
                 </Suspense>
 

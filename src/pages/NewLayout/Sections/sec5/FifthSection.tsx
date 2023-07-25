@@ -67,25 +67,6 @@ function FifthSection({isAutonomous, convertedName, fifthTitle, mainColor, accen
                         )
                     }
 
-
-
-                    {/* {linhas.map((linha, index) => (
-                        <p className='history' key={index} style={{ marginBottom: '10px'}}>{linha}</p>
-                    ))} */}
-
-                    {/* <button onClick={onClick} style={{ backgroundColor: accentColor, width: '100%' }} className='btn'>
-                        {
-                            fifthButtonText === '' || fifthButtonText === undefined ? (
-                                <>
-                      Conversar por WhatsApp
-                                </>
-                            ) : (
-                                <>
-                                    {fifthButtonText}
-                                </>
-                            )
-                        }
-                    </button> */}
                 </div>
                 <div className="img-wrapper"  data-aos="fade-up">
                     {photoBase64 == '' ? (

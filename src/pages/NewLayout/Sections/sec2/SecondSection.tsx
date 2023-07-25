@@ -14,9 +14,10 @@ interface ISecondSectionProp {
   coverKeyWords: string;
   secondTitle: string;
   secondButtonText: string;
+  convertedName: string;
 }
 
-function SecondSection({ mainColor, accentColor,isAutonomous, secondButtonText, photoBase64, products, src, onClick, coverKeyWords, secondTitle}: ISecondSectionProp): JSX.Element{
+function SecondSection({ mainColor, convertedName, accentColor,isAutonomous, secondButtonText, photoBase64, products, src, onClick, coverKeyWords, secondTitle}: ISecondSectionProp): JSX.Element{
     return (
         <Container>
             <div id='secondSection' className={'second-wrapper'}>
@@ -34,7 +35,21 @@ function SecondSection({ mainColor, accentColor,isAutonomous, secondButtonText, 
                             <h1 className="sectionTitle" style={{color: mainColor}}>{secondTitle}</h1>
                         )
                     }
-                    <p>{products}</p>
+                    {
+                        convertedName == 'profisabellereis' ? (
+                            <>
+                                <p>Ofereço um ensino especializado em redação e gramática, com foco na aprendizagem personalizada e adaptada às necessidades individuais do aluno.</p>
+                                <br />
+                                <p>Por meio do MÉTODO PDTE, desenvolvo as habilidades de escrita, argumentação e criticidade, otimizando o tempo de estudo e promovendo o equilíbrio entre saúde mental, intelectual e física.</p>
+                                <br />
+                                <p>Valorizo a importância da comunicação para o crescimento social e intelectual dos estudantes, haja vista o poder transformador da educação.</p>
+                            </>
+                        ) : (
+                            <>
+                                <p>{products}</p>
+                            </>
+                        )
+                    }
 
                     <button onClick={onClick} style={{backgroundColor: accentColor, color: 'white', marginTop: '20px', width: '100%'}} className='btn-1'>
                         {
