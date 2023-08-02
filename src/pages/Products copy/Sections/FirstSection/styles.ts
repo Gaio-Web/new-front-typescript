@@ -78,6 +78,10 @@ export const Container = styled.div`
       height: 30%;
       width: 100%;
       background: linear-gradient(180deg, rgba(17, 17, 17, 0.00) 0%, rgba(16, 16, 16, 0.35) 25.10%, rgba(14, 14, 14, 0.72) 52.57%, #0C0C0C 100%);
+
+      @media screen and (max-width: 800px) {
+        background: transparent;
+      }
     }
 
     & .contentWrapper{
