@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import VizeLayout from '../pages/VizeLayout/Products';
 import PaginaLegado from '../pages/Products/Products';
+import NewBannerSite from '../pages/Products copy/Products';
 
 import { LoadingPage } from '../pages/Components/LoadingPage';
 import { NewForm } from '../pages/NewForm';
@@ -57,8 +58,12 @@ export default function AnimatedRoutes() {
                         <Route path="/:id" element={<VizeLayout />} />
                     ) : (
                         data?.origin === 'vize' ? (
-                            <Route path="/:id" element={<PaginaLegado />} />
-                        ) : null
+                            <Route path="/:id" element={<PaginaLegado/>} />
+                        ) : (
+                            data?.origin === 'vize-2' ? (
+                                <Route path='/:id' element={<NewBannerSite/>} />
+                            ) : null
+                        )
                     )
                 )
             }
