@@ -25,13 +25,17 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
                         <>
                             <span className='gifOverlay'/>
                             <span className='secondOverlay'/>
-                            <img src={Gif} alt='gif sua logo aqui' loading='lazy'/>
+                            <video disablePictureInPicture loop muted autoPlay height='500px'>
+                                <source src='https://portal-bucket-rails.s3.amazonaws.com/VID-20230802-WA0050.mp4'/>
+                            </video>
                         </>
                     ) : (
                         <>
                             <span className='gifOverlay'/>
                             <span className='secondOverlay'/>
-                            <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
+                            <video disablePictureInPicture loop muted autoPlay height='500px'>
+                                <source src='https://portal-bucket-rails.s3.amazonaws.com/VID-20230802-WA0050.mp4'/>
+                            </video>
                         </>
                     )}
                 </div>

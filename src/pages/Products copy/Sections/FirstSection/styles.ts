@@ -15,6 +15,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-end;
     overflow: hidden;
+    background-color: #000;
 
     @media screen and (max-width: 800px) {
       width: 100%;
@@ -46,8 +47,9 @@ export const Container = styled.div`
       }
     }
 
-    & img {
+    & video {
       max-height: auto;
+      height: 200vh;
       width: 50%;
 
 
