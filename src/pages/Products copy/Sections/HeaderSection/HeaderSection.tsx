@@ -11,6 +11,9 @@ interface IHeaderSectionProp {
 }
 
 function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderSectionProp): JSX.Element{
+
+    console.log(`insta: ${insta}`);
+
     return (
     // <Container>
     //     <header>
@@ -35,7 +38,7 @@ function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderS
                             <img src={photoBase64}/>
                         )
                     }
-                    {insta === '' ? (
+                    {insta === undefined ? (
                         <a className='icon' href={'https://instagram.com/vizelogo/'} target='blank'>
                             <img className='instaLogo' src={Insta}/>
                         </a>
