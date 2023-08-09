@@ -7,7 +7,7 @@ interface IHeaderSectionProp {
   photoBase64: string;
   secondaryColor: string;
   navColor: string;
-    insta: string;
+  insta: string;
 }
 
 function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderSectionProp): JSX.Element{
@@ -36,7 +36,9 @@ function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderS
                         )
                     }
                     {insta === '' ? (
-                        <></>
+                        <a className='icon' href={'https://instagram.com/vizelogo/'} target='blank'>
+                            <img className='instaLogo' src={Insta}/>
+                        </a>
                     ) : (
                         <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
                             <img className='instaLogo' src={Insta}/>
