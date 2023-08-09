@@ -9,6 +9,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   & .first-wrapper {
+    position: relative;
     width: 100%;
     height: fit-content;
     display: flex;
@@ -17,7 +18,7 @@ export const Container = styled.div`
     overflow: hidden;
     background-color: #000;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 900px) {
       width: 100%;
       align-items: center;
     }
@@ -31,10 +32,9 @@ export const Container = styled.div`
       width: fit-content;
       width: 100vw;
       max-height: 80vh;
-      overflow: hidden;
+      overflow: visible;
 
-
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 900px) {
         justify-content: center;
         align-items: center;
         margin: 0;
@@ -43,7 +43,7 @@ export const Container = styled.div`
         height: fit-content;
         max-width: 100%;
         width: 100vw;
-        max-height: 77vh;
+        max-height: 95dvh;
       }
     }
 
@@ -52,14 +52,16 @@ export const Container = styled.div`
       height: 200vh;
       width: 50%;
 
-
-      @media screen and (max-width: 800px) {
-        max-height: 100%;
-        padding-bottom: 33vh;
+      @media screen and (max-width: 900px) {
+        padding-bottom: 26dvh;
         padding-top: 0;
         width: 100%;
         margin: 0;
       }
+
+      /* @media screen and (max-height: 720px){
+        padding-bottom: 32dvh;
+      } */
     }
 
     & .gifOverlay{
@@ -69,8 +71,8 @@ export const Container = styled.div`
       width: 100%;
       background: linear-gradient(90deg, #000 0%, #000 50.10%, rgba(0, 0, 0, 0.63) 64.96%, rgba(0, 0, 0, 0.53) 80.53%, rgba(0, 0, 0, 0.33) 100%);
 
-      @media screen and (max-width: 800px) {
-        background: linear-gradient(180deg, rgba(17, 17, 17, 0.00) 0%, rgba(16, 16, 16, 0.35) 25.10%, rgba(14, 14, 14, 0.72) 52.57%, #0C0C0C 100%);
+      @media screen and (max-width: 900px) {
+        background: linear-gradient(180deg, rgba(17, 17, 17, 0.00) 0%, rgba(16, 16, 16, 0.35) 42.93%, rgba(14, 14, 14, 0.72) 65.11%, #0C0C0C 100%);
       }
     }
 
@@ -81,7 +83,7 @@ export const Container = styled.div`
       width: 100%;
       background: linear-gradient(180deg, rgba(17, 17, 17, 0.00) 0%, rgba(16, 16, 16, 0.35) 25.10%, rgba(14, 14, 14, 0.72) 52.57%, #0C0C0C 100%);
 
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 900px) {
         background: transparent;
       }
     }
@@ -96,9 +98,9 @@ export const Container = styled.div`
       padding: 0 0 0 4rem;
       gap: 1.5rem;
 
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 900px) {
         gap: 1rem;
-        bottom: 10%;
+        bottom: 5%;
         padding: 0 1rem;
       }
 
@@ -112,7 +114,7 @@ export const Container = styled.div`
         width: 70%;
         padding-bottom: 1rem;
 
-        @media screen and (max-width: 410px) {
+        @media screen and (max-width: 450px) {
           font-size: 2rem;
           padding: 0;
           width: 100%;
@@ -134,7 +136,7 @@ export const Container = styled.div`
         font-family: "Montserrat", sans-serif;
         width: 50%;
 
-        @media screen and (max-width: 800px) {
+        @media screen and (max-width: 900px) {
           width: 100%;
           line-height: 24px;
         }
@@ -143,7 +145,7 @@ export const Container = styled.div`
       & button{
         width: 50%;
 
-        @media screen and (max-width: 800px) {
+        @media screen and (max-width: 900px) {
           width: 100%;
         }
       }
