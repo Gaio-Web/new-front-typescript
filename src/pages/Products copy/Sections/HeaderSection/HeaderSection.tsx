@@ -7,11 +7,16 @@ interface IHeaderSectionProp {
   photoBase64: string;
   secondaryColor: string;
   navColor: string;
-    insta: string;
+  insta?: string;
 }
 
-function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderSectionProp): JSX.Element{
-    return (
+function HeaderSection({
+  photoBase64,
+  secondaryColor,
+  navColor,
+  insta,
+}: IHeaderSectionProp): JSX.Element {
+  return (
     // <Container>
     //     <header>
     //         <div className="nav">
@@ -24,27 +29,28 @@ function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderS
     //     </header>
     // </Container>
 
-        <Container style={{ justifyContent: insta ?  'space-between' : 'center'}}>
-            <header>
-                <div className="nav">
-                    {
-                        photoBase64 === '' ? (
-
-                            <img src={SuaLogo}/>
-                        ): (
-                            <img src={photoBase64}/>
-                        )
-                    }
-                    {insta === '' ? (
-                        <></>
-                    ) : (
-                        <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
-                            <img className='instaLogo' src={Insta}/>
-                        </a>
-                    )}
-                </div>
-            </header>
-        </Container>
-    );
+    <Container style={{ justifyContent: insta ? 'space-between' : 'center' }}>
+      <header>
+        <div className="nav">
+          {photoBase64 === '' ? (
+            <img src={SuaLogo} />
+          ) : (
+            <img src={photoBase64} />
+          )}
+          {insta === '' ? (
+            <></>
+          ) : (
+            <a
+              className="icon"
+              href={`https://instagram.com/${insta}`}
+              target="blank"
+            >
+              <img className="instaLogo" src={Insta} />
+            </a>
+          )}
+        </div>
+      </header>
+    </Container>
+  );
 }
 export { HeaderSection };
