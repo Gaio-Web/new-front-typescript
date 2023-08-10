@@ -12,8 +12,6 @@ interface IHeaderSectionProp {
 
 function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderSectionProp): JSX.Element{
 
-    console.log(`insta: ${insta}`);
-
     return (
     // <Container>
     //     <header>
