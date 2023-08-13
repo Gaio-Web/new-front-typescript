@@ -17,7 +17,7 @@ export const Container = styled.div`
   justify-content: center;
 
   & .nav {
-    position: sticky;
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     max-height: 6dvh;
     padding: 1rem 4rem;
 
-    background: rgba( 232, 232, 232, 0.03 );
+    background: #0000001f;
     box-shadow: 0 2px 10px 0 rgba( 41, 41, 41, 0.07 );
     backdrop-filter: blur( 20px );
     -webkit-backdrop-filter: blur( 20px );
@@ -45,6 +45,11 @@ export const Container = styled.div`
       border-radius: 10px;
       max-height: 80%;
       max-width: 27vw;
+      padding: 1rem 4rem;
+
+      @media screen and (max-width: 900px) {
+        padding: 0 1rem;
+      }
       }
 
       & .instaLogo{
