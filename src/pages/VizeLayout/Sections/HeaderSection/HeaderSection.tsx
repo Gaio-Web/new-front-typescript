@@ -10,25 +10,25 @@ interface IHeaderSectionProp {
 }
 
 function HeaderSection({ photoBase64, navColor, secondaryColor, insta}: IHeaderSectionProp): JSX.Element{
-    return (
-        <Container style={{ backgroundColor: `${navColor}`, justifyContent: insta == '' ? 'center' : 'space-between' }}>
+  return (
+    <Container style={{ backgroundColor: `${navColor}`, justifyContent: insta == '' ? 'center' : 'space-between' }}>
 
-            {photoBase64 == '' ? (
-                <h1 style={{ color: secondaryColor }}>Sua logo aqui</h1>
-            ) : (
-                <img src={photoBase64} alt={'logo'} />
-            )}
-            {insta === '' ? (
-                <></>
-            ) : (
-                <>
-                    <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
-                        <img src={Insta} style={{width: '40px'}}/>
-                        <p>@{insta}</p>
-                    </a>
-                </>
-            )}
-        </Container>
-    );
+      {photoBase64 == '' ? (
+        <h1 style={{ color: secondaryColor }}>Sua logo aqui</h1>
+      ) : (
+        <img src={photoBase64} alt={'logo'} />
+      )}
+      {insta === '' ? (
+        <></>
+      ) : (
+        <>
+          <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
+            <img src={Insta} style={{width: '40px'}}/>
+            <p>@{insta}</p>
+          </a>
+        </>
+      )}
+    </Container>
+  );
 }
 export { HeaderSection };

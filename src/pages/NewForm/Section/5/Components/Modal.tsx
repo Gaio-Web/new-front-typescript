@@ -22,115 +22,115 @@ interface IModalProps {
 }
 
 function Modal({ modalIsVisible, setModalIsVisible, userID, isLoading, img, photoToast, toast }: IModalProps): JSX.Element {
-    useEffect(() => {
-        document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-    }, [modalIsVisible]);
+  useEffect(() => {
+    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+  }, [modalIsVisible]);
 
-    const [clicked, setClicked] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
 
-    const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
 
-    const handlePhotoClick = () => {
-        setClicked(!clicked);
-        console.log('hue');
-    };
+  const handlePhotoClick = () => {
+    setClicked(!clicked);
+    console.log('hue');
+  };
 
-    const [sendingUrl, setSendingUrl] = useState('');
+  const [sendingUrl, setSendingUrl] = useState('');
 
-    const handleConfirmModalCall = (url: any) => {
-        setConfirmModalIsVisible(true);
-        setSendingUrl(url);
-    };
+  const handleConfirmModalCall = (url: any) => {
+    setConfirmModalIsVisible(true);
+    setSendingUrl(url);
+  };
 
-    const [title, setTitle] = useState<string>('');
-    const [desc, setDesc] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
+  const [desc, setDesc] = useState<string>('');
 
-    const HandleOnFileSelect = () => {
-        photoToast(true);
-    };
+  const HandleOnFileSelect = () => {
+    photoToast(true);
+  };
 
-    const handleFormSubmit = useCallback( async (event: any) => {
-        event.preventDefault();
+  const handleFormSubmit = useCallback( async (event: any) => {
+    event.preventDefault();
 
-        if (title == '' || desc == '') {
-            return;
-        }
+    if (title == '' || desc == '') {
+      return;
+    }
 
-        const sucess = await handleSubmit(
-            [
-                {
-                    'field': 'fifthTitle',
-                    'value':  title
-                },
-                {
-                    'field': 'history',
-                    'value':  desc
-                },
-            ],
-            userID
-        );
-        toast(sucess);
-        setTitle('');
-        setDesc('');
-
-    }, [title, desc, userID]);
-
-    return (
-    // @ts-ignore
-        <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
-            <Header>
-                <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Quinta sessão</h1>
-                <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
-            </Header>
-
-            <Wrapper>
-                <TextField
-                    id="outlined-basic"
-                    label="Título da sessão"
-                    variant="outlined"
-                    sx={{ width: '100%', color: 'red'}}
-                    margin="normal"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Conteúdo"
-                    multiline
-                    rows={4}
-                    onChange={(e) => setDesc(e.target.value)}
-                    value={desc}
-                />
-
-                <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
-
-                <ImageContainer
-                    style={{ marginTop: '1rem'}}
-                >
-                    <LoadingComponent
-                        loading={isLoading}
-                        height="10rem"
-                        component={
-                            img == '' ? (
-                                <>
-
-                                </>
-                            ) : (
-                                <>
-                                    <img src={img}/>
-                                </>
-                            )
-                        }
-                    />
-                    <FileInputComponent
-                        userID={userID}
-                        onValueChange={HandleOnFileSelect}
-                    />
-                </ImageContainer>
-            </Wrapper>
-        </Container>
+    const sucess = await handleSubmit(
+      [
+        {
+          'field': 'fifthTitle',
+          'value':  title
+        },
+        {
+          'field': 'history',
+          'value':  desc
+        },
+      ],
+      userID
     );
+    toast(sucess);
+    setTitle('');
+    setDesc('');
+
+  }, [title, desc, userID]);
+
+  return (
+    // @ts-ignore
+    <Container isVisible={modalIsVisible} onSubmit={handleFormSubmit}>
+      <Header>
+        <h1 style={{ fontSize: '26px', color: '#1b1b1b'}}>Quinta sessão</h1>
+        <IoClose size={45} onClick={setModalIsVisible} color="#1b1b1b"/>
+      </Header>
+
+      <Wrapper>
+        <TextField
+          id="outlined-basic"
+          label="Título da sessão"
+          variant="outlined"
+          sx={{ width: '100%', color: 'red'}}
+          margin="normal"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
+
+        <TextField
+          id="outlined-multiline-static"
+          label="Conteúdo"
+          multiline
+          rows={4}
+          onChange={(e) => setDesc(e.target.value)}
+          value={desc}
+        />
+
+        <StyledButton w="larger" children="Salvar textos" type="submit" mt="1rem" onClick={setModalIsVisible}/>
+
+        <ImageContainer
+          style={{ marginTop: '1rem'}}
+        >
+          <LoadingComponent
+            loading={isLoading}
+            height="10rem"
+            component={
+              img == '' ? (
+                <>
+
+                </>
+              ) : (
+                <>
+                  <img src={img}/>
+                </>
+              )
+            }
+          />
+          <FileInputComponent
+            userID={userID}
+            onValueChange={HandleOnFileSelect}
+          />
+        </ImageContainer>
+      </Wrapper>
+    </Container>
+  );
 }
 
 export { Modal };

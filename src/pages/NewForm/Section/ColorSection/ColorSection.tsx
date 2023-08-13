@@ -14,38 +14,38 @@ interface IColorSectionProps {
 }
 
 function ColorSection({ mainColor, secondaryColor, accentColor, userID, toastFromModal }: IColorSectionProps): JSX.Element {
-    const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
-    const handleColor = () => {
-        toastFromModal(true);
-    };
+  const handleColor = () => {
+    toastFromModal(true);
+  };
 
-    return (
-        <Container>
-            <Modal
-                modalIsVisible={modalIsVisible}
-                setModalIsVisible={() => setModalIsVisible(false)}
-                userID={userID}
-                toast={handleColor}
-            />
-            <Header>
-                <h1>Paleta de cores</h1>
-                <FaEdit onClick={() => setModalIsVisible(true)}/>
-            </Header>
-            <h3>Estas são as suas atuais cores: </h3>
-            <Colors>
-                <ColorContainer
-                    bgColor={mainColor}
-                />
-                <ColorContainer
-                    bgColor={secondaryColor}
-                />
-                <ColorContainer
-                    bgColor={accentColor}
-                />
-            </Colors>
-        </Container>
-    );
+  return (
+    <Container>
+      <Modal
+        modalIsVisible={modalIsVisible}
+        setModalIsVisible={() => setModalIsVisible(false)}
+        userID={userID}
+        toast={handleColor}
+      />
+      <Header>
+        <h1>Paleta de cores</h1>
+        <FaEdit onClick={() => setModalIsVisible(true)}/>
+      </Header>
+      <h3>Estas são as suas atuais cores: </h3>
+      <Colors>
+        <ColorContainer
+          bgColor={mainColor}
+        />
+        <ColorContainer
+          bgColor={secondaryColor}
+        />
+        <ColorContainer
+          bgColor={accentColor}
+        />
+      </Colors>
+    </Container>
+  );
 }
 
 export { ColorSection };

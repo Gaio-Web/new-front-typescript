@@ -28,96 +28,96 @@ interface ICarouselProps{
 }
 
 function Carousel({firebaseUrl, coverKeyWords, haveURL}:ICarouselProps) {
-    const [shouldRenderFirstSet, setShouldRenderFirstSet] = useState(haveURL === 0);
+  const [shouldRenderFirstSet, setShouldRenderFirstSet] = useState(haveURL === 0);
 
-    useEffect(() => {
-        setShouldRenderFirstSet(haveURL === 0);
-    }, [haveURL]);
+  useEffect(() => {
+    setShouldRenderFirstSet(haveURL === 0);
+  }, [haveURL]);
 
-    return (
-        <>
-            {shouldRenderFirstSet && haveURL === 0 && (
-                <Swiper
-                    slidesPerView={'auto'}
-                    spaceBetween={30}
-                    pagination={{
-                        dynamicBullets: true,
-                    }}
-                    loop={true}
-                    grabCursor={true}
-                    modules={[Pagination, Autoplay]}
-                    className="mySwiper"
-                >
-                    <SwiperSlide>
-                        <div className={'content-wrapper-gallery'}>
-                            <UnsplashGallery1
-                                data={{
-                                    alt_description: 'office',
-                                    urls: {
-                                        small: 'https://example.com/image.jpg',
-                                    },
-                                    coverKeyWords: coverKeyWords,
-                                }}
-                            />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={'content-wrapper-gallery'}>
-                            <UnsplashGallery2
-                                data={{
-                                    alt_description: 'office',
-                                    urls: {
-                                        small: 'https://example.com/image.jpg',
-                                    },
-                                    coverKeyWords: coverKeyWords,
-                                }}
-                            />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={'content-wrapper-gallery'}>
-                            <UnsplashGallery3
-                                data={{
-                                    alt_description: 'office',
-                                    urls: {
-                                        small: 'https://example.com/image.jpg',
-                                    },
-                                    coverKeyWords: coverKeyWords,
-                                }}
-                            />
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-            )}
+  return (
+    <>
+      {shouldRenderFirstSet && haveURL === 0 && (
+        <Swiper
+          slidesPerView={'auto'}
+          spaceBetween={30}
+          pagination={{
+            dynamicBullets: true,
+          }}
+          loop={true}
+          grabCursor={true}
+          modules={[Pagination, Autoplay]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery1
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords,
+                }}
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery2
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords,
+                }}
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={'content-wrapper-gallery'}>
+              <UnsplashGallery3
+                data={{
+                  alt_description: 'office',
+                  urls: {
+                    small: 'https://example.com/image.jpg',
+                  },
+                  coverKeyWords: coverKeyWords,
+                }}
+              />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      )}
 
-            {!shouldRenderFirstSet && haveURL !== 0 && (
-                <Swiper
-                    slidesPerView={'auto'}
-                    spaceBetween={30}
-                    pagination={{
-                        dynamicBullets: true,
-                    }}
-                    loop={true}
-                    grabCursor={true}
-                    autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: true,
-                    }}
-                    modules={[Autoplay, Pagination]}
-                    className="mySwiper"
-                >
-                    {firebaseUrl.length > 0 &&
+      {!shouldRenderFirstSet && haveURL !== 0 && (
+        <Swiper
+          slidesPerView={'auto'}
+          spaceBetween={30}
+          pagination={{
+            dynamicBullets: true,
+          }}
+          loop={true}
+          grabCursor={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: true,
+          }}
+          modules={[Autoplay, Pagination]}
+          className="mySwiper"
+        >
+          {firebaseUrl.length > 0 &&
                firebaseUrl.map((url: string, index: any) => (
-                   <SwiperSlide key={index}>
-                       <div className={'content-wrapper'}>
-                           <img className="pgImg" src={url} />
-                       </div>
-                   </SwiperSlide>
+                 <SwiperSlide key={index}>
+                   <div className={'content-wrapper'}>
+                     <img className="pgImg" src={url} />
+                   </div>
+                 </SwiperSlide>
                ))}
-                </Swiper>
-            )}
-        </>
-    );
+        </Swiper>
+      )}
+    </>
+  );
 }
 
 export { Carousel };

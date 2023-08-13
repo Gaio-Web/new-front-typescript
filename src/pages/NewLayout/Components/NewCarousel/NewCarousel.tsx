@@ -84,103 +84,103 @@ const SwiperGif = styled.img`
 `;
 
 const NewSlider: React.FC<SliderProps> = ({ firebaseUrl, coverKeyWords, haveURL }) => {
-    const sliderRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragStartX, setDragStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-    const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-        setIsDragging(true);
-        setDragStartX(event.clientX - sliderRef.current!.offsetLeft);
-        setScrollLeft(sliderRef.current!.scrollLeft);
-    };
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setDragStartX(event.clientX - sliderRef.current!.offsetLeft);
+    setScrollLeft(sliderRef.current!.scrollLeft);
+  };
 
-    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!isDragging) return;
-        const dragX = event.clientX - sliderRef.current!.offsetLeft;
-        const dragOffset = dragX - dragStartX;
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const dragX = event.clientX - sliderRef.current!.offsetLeft;
+    const dragOffset = dragX - dragStartX;
     sliderRef.current!.scrollLeft = scrollLeft - dragOffset;
-    };
+  };
 
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
-    const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-        const scrollDistance = event.deltaY;
-        const scrollDirection = Math.sign(scrollDistance);
+  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    const scrollDistance = event.deltaY;
+    const scrollDirection = Math.sign(scrollDistance);
 
-        if (sliderRef.current) {
-            const isHorizontalScroll = Math.abs(event.deltaX) > Math.abs(event.deltaY);
-            const isAtScrollBoundary =
+    if (sliderRef.current) {
+      const isHorizontalScroll = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      const isAtScrollBoundary =
         (scrollDirection === -1 && sliderRef.current.scrollLeft === 0) ||
         (scrollDirection === 1 && sliderRef.current.scrollLeft + sliderRef.current.clientWidth === sliderRef.current.scrollWidth);
 
-            if (isHorizontalScroll && !isAtScrollBoundary) {
-                sliderRef.current.scrollLeft += scrollDirection * 100;
-            }
-        }
-    };
+      if (isHorizontalScroll && !isAtScrollBoundary) {
+        sliderRef.current.scrollLeft += scrollDirection * 100;
+      }
+    }
+  };
 
-    return (
-        <>
-            {haveURL === 0 ? (
-                <SliderContainer
-                    ref={sliderRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onWheel={handleWheel}
-                >
-                    <SliderWrapper>
-                        <UnsplashGallery1
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords: coverKeyWords,
-                            }}
-                        />
-                        <UnsplashGallery2
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords: coverKeyWords,
-                            }}
-                        />
-                        <UnsplashGallery3
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords: coverKeyWords,
-                            }}
-                        />
-                    </SliderWrapper>
-                </SliderContainer>
-            ) : (
-                <SliderContainer
-                    ref={sliderRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onWheel={handleWheel}
-                >
-                    <SliderWrapper>
-                        {firebaseUrl.length > 0 &&
+  return (
+    <>
+      {haveURL === 0 ? (
+        <SliderContainer
+          ref={sliderRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onWheel={handleWheel}
+        >
+          <SliderWrapper>
+            <UnsplashGallery1
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords: coverKeyWords,
+              }}
+            />
+            <UnsplashGallery2
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords: coverKeyWords,
+              }}
+            />
+            <UnsplashGallery3
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords: coverKeyWords,
+              }}
+            />
+          </SliderWrapper>
+        </SliderContainer>
+      ) : (
+        <SliderContainer
+          ref={sliderRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onWheel={handleWheel}
+        >
+          <SliderWrapper>
+            {firebaseUrl.length > 0 &&
               firebaseUrl.map((image: string, index: any) => (
-                  <Slide src={image} alt={`Slide ${index + 1}`} key={index} />
+                <Slide src={image} alt={`Slide ${index + 1}`} key={index} />
               ))}
-                    </SliderWrapper>
-                </SliderContainer>
-            ) }
-        </>
-    );
+          </SliderWrapper>
+        </SliderContainer>
+      ) }
+    </>
+  );
 };
 
 export default NewSlider;

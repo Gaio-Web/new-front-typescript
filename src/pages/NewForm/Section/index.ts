@@ -14,18 +14,18 @@ import { Instagram } from './Instagram/Instagram';
 import { Whatsapp } from './Whatsapp/Whatsapp';
 
 export {
-    Navbar,
-    Header,
-    FirstSection,
-    SecondSection,
-    ThirdSection,
-    FourthSection,
-    FifthSection,
-    Schedules,
-    FormHeader,
-    ColorSection,
-    Address,
-    GoToSite,
-    Instagram,
-    Whatsapp
+  Navbar,
+  Header,
+  FirstSection,
+  SecondSection,
+  ThirdSection,
+  FourthSection,
+  FifthSection,
+  Schedules,
+  FormHeader,
+  ColorSection,
+  Address,
+  GoToSite,
+  Instagram,
+  Whatsapp
 };

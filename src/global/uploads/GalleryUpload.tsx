@@ -5,7 +5,13 @@ import { BsFillTrash3Fill } from 'react-icons/bs';
 import { StyledButton } from '../Button';
 
 import storage from '../../../firebaseConfig';
-import {ref, uploadBytesResumable, getDownloadURL, listAll,  deleteObject } from 'firebase/storage';
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  listAll,
+  deleteObject,
+} from 'firebase/storage';
 
 import imageCompression from 'browser-image-compression';
 
@@ -14,128 +20,136 @@ type FileInputProps = {
   onValueChange: (value: boolean | undefined) => void;
 };
 
-function FileInputComponent({userID, onValueChange}: FileInputProps): JSX.Element {
-    const [galleryImages, setGalleryImages] = useState<any>('');
-    const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
-    const [isGalleryLoading, setIsGalleryLoading] = useState<boolean>(false);
-    const [uploaded, setUploaded] = useState<boolean | undefined>(false);
-    const [imgsUrls, setImagesurls] = useState<string[]>([]);
+function FileInputComponent({
+  userID,
+  onValueChange,
+}: FileInputProps): JSX.Element {
+  const [galleryImages, setGalleryImages] = useState<any>('');
+  const [galleryImagesPercent, setGalleryImagesPercent] = useState(0);
+  const [isGalleryLoading, setIsGalleryLoading] = useState<boolean>(false);
+  const [uploaded, setUploaded] = useState<boolean | undefined>(false);
+  const [imgsUrls, setImagesurls] = useState<string[]>([]);
+  const [error, setError] = useState<any>();
 
-    const listAllImagesFromFolder = async () => {
-        try {
-            setImagesurls([]);
-            const listRef = ref(storage, `${userID}/gallery`);
-            const res = await listAll(listRef);
-            const urls = await Promise.all(res.items.map(getDownloadURL));
-            setImagesurls(urls);
-        } catch (error) {
-            console.log('hue');
-        }
-    };
+  const listAllImagesFromFolder = async () => {
+    try {
+      setImagesurls([]);
+      const listRef = ref(storage, `${userID}/gallery`);
+      const res = await listAll(listRef);
+      const urls = await Promise.all(res.items.map(getDownloadURL));
+      setImagesurls(urls);
+    } catch (error) {
+      setError(error);
+    }
+  };
 
-    const uploadGallery = async () => {
-        setIsGalleryLoading(true);
-        try {
-            let totalPercent = 0;
-            for (let i = 0; i < galleryImages.length; i++) {
-                const file = galleryImages[i];
+  const uploadGallery = async () => {
+    setIsGalleryLoading(true);
+    try {
+      let totalPercent = 0;
+      for (let i = 0; i < galleryImages.length; i++) {
+        const file = galleryImages[i];
 
-                const options = {
-                    maxSizeMB: 2,
-                    maxWidthOrHeight: 720,
-                    useWebWorker: true,
-                };
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 720,
+          useWebWorker: true,
+        };
 
-                const compressedFile = await imageCompression(file, options);
+        const compressedFile = await imageCompression(file, options);
 
+        const imageRef = ref(
+          storage,
+          `${userID}/gallery/${compressedFile.name}`
+        );
+        const result = uploadBytesResumable(imageRef, compressedFile);
 
-                const imageRef = ref(storage, `${userID}/gallery/${compressedFile.name}`);
-                const result = uploadBytesResumable(imageRef, compressedFile);
+        result.on(
+          'state_changed',
+          (snapshot) => {
+            const galleryImagesPercent = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
 
-                result.on(
-                    'state_changed',
-                    (snapshot) => {
-                        const galleryImagesPercent = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                        );
+            totalPercent += galleryImagesPercent;
+            const galleryImagesAvgPercent = Math.round(
+              totalPercent / galleryImages.length
+            );
+            setGalleryImagesPercent(galleryImagesAvgPercent);
 
-                        totalPercent += galleryImagesPercent;
-                        const galleryImagesAvgPercent = Math.round(totalPercent / galleryImages.length);
-                        setGalleryImagesPercent(galleryImagesAvgPercent);
+            if (galleryImagesPercent < 100) {
+              setIsGalleryLoading(true);
+            } else if (galleryImagesPercent >= 100) {
+              listAllImagesFromFolder();
 
-                        if (galleryImagesPercent < 100) {
-                            setIsGalleryLoading(true);
-                        } else if (galleryImagesPercent >= 100) {
-                            listAllImagesFromFolder();
+              setTimeout(() => {
+                listAllImagesFromFolder();
+              }, 5000);
 
-                            setTimeout(() => {
-                                listAllImagesFromFolder();
-                            }, 5000);
-
-                            setTimeout(() => {
-                                setIsGalleryLoading(false);
-                            }, 5000);
-                        }
-                    },
-                    (error) => {
-                        setIsGalleryLoading(false);
-
-                    },
-                );
+              setTimeout(() => {
+                setIsGalleryLoading(false);
+              }, 5000);
             }
-        } catch (error) {
+          },
+          (error) => {
             setIsGalleryLoading(false);
-        }
-    };
+          }
+        );
+      }
+    } catch (error) {
+      setIsGalleryLoading(false);
+    }
+  };
 
-    const handleClick = () => {
-        const fileInput = document.getElementById('fileInput');
-        if (fileInput) {
-            fileInput.click();
-        }
-    };
+  const handleClick = () => {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
 
-    const handleCancel = () => {
-        setGalleryImages('');
-    };
+  const handleCancel = () => {
+    setGalleryImages('');
+  };
 
-    return (
-        <>
-            {
-                galleryImages ? (
-                    <StyledButton
-                        children={
-                            galleryImagesPercent > 0 ? `Enviando Fotos ${galleryImagesPercent} %` : 'Enviar Fotos'
-                        }
-                        w="larger"
-                        onClick={uploadGallery}
-                        type={'button'}
-                    />
-                ) : (
-                    <FileInputContainer onClick={handleClick}>
-                        <FileInputLabel htmlFor="galleryInput">Escolher Fotos
-                            <AiFillFileImage size={'22px'} color='white'/>
-                        </FileInputLabel>
-                        <FileInput
-                            id="galleryInput"
-                            type="file"
-                            onChange={(event) => { setGalleryImages(event.target.files); }}
-                            multiple
-                            accept='image/*'
-                        />
-                    </FileInputContainer>
-                )
-            }
-            {
-                galleryImages
-        &&
+  return (
+    <>
+      {galleryImages ? (
+        <StyledButton
+          children={
+            galleryImagesPercent > 0
+              ? `Enviando Fotos ${galleryImagesPercent} %`
+              : 'Enviar Fotos'
+          }
+          w="larger"
+          onClick={uploadGallery}
+          type={'button'}
+        />
+      ) : (
+        <FileInputContainer onClick={handleClick}>
+          <FileInputLabel htmlFor="galleryInput">
+            Escolher Fotos
+            <AiFillFileImage size={'22px'} color="white" />
+          </FileInputLabel>
+          <FileInput
+            id="galleryInput"
+            type="file"
+            onChange={(event) => {
+              setGalleryImages(event.target.files);
+            }}
+            multiple
+            accept="image/*"
+          />
+        </FileInputContainer>
+      )}
+      {galleryImages && (
         <PreviewContainer>
-            <SelectedImage src={galleryImages} alt="Selected Image" />
-            <BsFillTrash3Fill onClick={handleCancel} size={24} color='#FF0000'/>
+          <SelectedImage src={galleryImages} alt="Selected Image" />
+          <BsFillTrash3Fill onClick={handleCancel} size={24} color="#FF0000" />
         </PreviewContainer>
-            }
-        </>
-    );
+      )}
+    </>
+  );
 }
 
 export { FileInputComponent };
@@ -177,7 +191,7 @@ const SelectedImage = styled.img`
   object-fit: cover;
 
   box-sizing: border-box;
-  `;
+`;
 
 const PreviewContainer = styled.div`
   width: 100%;

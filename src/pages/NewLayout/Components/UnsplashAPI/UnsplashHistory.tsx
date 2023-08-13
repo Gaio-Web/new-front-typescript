@@ -22,30 +22,30 @@ interface ImageContextData {
 
 
 export const ImageContext = createContext<ImageContextData>({
-    response: null,
-    isLoading: true,
-    error: null,
-    fetchData: () => Promise.resolve()
+  response: null,
+  isLoading: true,
+  error: null,
+  fetchData: () => Promise.resolve()
 });
 
 function UnsplasHistoryImage ({ data }: { data: ImageData }) {
-    // const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&query=office&client_id=${process.env.UNSPLASH_ACCESS_KEY}`);
-    const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&orientation=landscape&query=${data.coverKeyWords}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`);
+  // const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&query=office&client_id=${process.env.UNSPLASH_ACCESS_KEY}`);
+  const { response, isLoading, error, fetchData } = useAxios(`search/photos?page=1&orientation=landscape&query=${data.coverKeyWords}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`);
 
-    const value: ImageContextData = {
-        response,
-        isLoading,
-        error,
-        fetchData
-    };
+  const value: ImageContextData = {
+    response,
+    isLoading,
+    error,
+    fetchData
+  };
 
-    return(
-        <ImageContext.Provider value={value}>
-            <Container>
-                {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[2]} />}
-            </Container>
-        </ImageContext.Provider>
-    );
+  return(
+    <ImageContext.Provider value={value}>
+      <Container>
+        {isLoading ? <ReactLoading type={'spin'} color={'#eee'} height={200} width={100}/> : response.length > 0 && <Image data={response[2]} />}
+      </Container>
+    </ImageContext.Provider>
+  );
 }
 
 import styled from 'styled-components';

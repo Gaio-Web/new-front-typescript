@@ -18,64 +18,64 @@ interface IFifthSectionProp {
 }
 
 function FifthSection({isAutonomous, fifthTitle, fifthButtonText, mainColor, secondaryColor, photoBase64, history, src, onClick, coverKeyWords}: IFifthSectionProp): JSX.Element{
-    return (
-        <Container>
-            <div id='fifthSection' className={'fifth-wrapper'}>
+  return (
+    <Container>
+      <div id='fifthSection' className={'fifth-wrapper'}>
 
-                {
-                    fifthTitle == '' || fifthTitle == null ? (
-                        <>
-                            {isAutonomous == '1' ? (
-                                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
+        {
+          fifthTitle == '' || fifthTitle == null ? (
+            <>
+              {isAutonomous == '1' ? (
+                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
                                     Minha História
-                                </h1>
-                            ):(
-                                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
+                </h1>
+              ):(
+                <h1 className="sectionTitle" style={{ color: secondaryColor }}>
                                     Nossa História
-                                </h1>
-                            )}
-                        </>
-                    ) : (
-                        <>
-                            <h1 className="sectionTitle" style={{ color: mainColor }}>
-                                {fifthTitle}
-                            </h1>
-                        </>
-                    )
-                }
+                </h1>
+              )}
+            </>
+          ) : (
+            <>
+              <h1 className="sectionTitle" style={{ color: mainColor }}>
+                {fifthTitle}
+              </h1>
+            </>
+          )
+        }
 
-                <p style={{ color: mainColor }}>{history}</p>
+        <p style={{ color: mainColor }}>{history}</p>
 
-                <div className="img-wrapper"  data-aos="fade-up">
-                    {photoBase64 == '' ? (
-                        <UnsplasHistoryImage
-                            data={{
-                                alt_description: 'office',
-                                urls: {
-                                    small: 'https://example.com/image.jpg',
-                                },
-                                coverKeyWords: coverKeyWords
-                            }}
-                        />
-                    ) : (
-                        <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
-                    )}
-                </div>
-                <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>
-                    {
-                        fifthButtonText === '' || fifthButtonText === undefined ? (
-                            <>
+        <div className="img-wrapper"  data-aos="fade-up">
+          {photoBase64 == '' ? (
+            <UnsplasHistoryImage
+              data={{
+                alt_description: 'office',
+                urls: {
+                  small: 'https://example.com/image.jpg',
+                },
+                coverKeyWords: coverKeyWords
+              }}
+            />
+          ) : (
+            <img src={photoBase64} alt={'foto de capa'} loading='lazy'/>
+          )}
+        </div>
+        <button onClick={onClick}> <div className='buttonContent'> <img src={WappLogo} alt="logo whats" style={{ margin:'0'}}/>
+          {
+            fifthButtonText === '' || fifthButtonText === undefined ? (
+              <>
                       Conversar por WhatsApp
-                            </>
-                        ) : (
-                            <>
-                                {fifthButtonText}
-                            </>
-                        )
-                    }
-                </div> </button>
-            </div>
-        </Container>
-    );
+              </>
+            ) : (
+              <>
+                {fifthButtonText}
+              </>
+            )
+          }
+        </div> </button>
+      </div>
+    </Container>
+  );
 }
 export { FifthSection };

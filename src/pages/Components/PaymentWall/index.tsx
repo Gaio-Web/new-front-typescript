@@ -3,21 +3,21 @@ import styled from 'styled-components';
 
 function PaymentWall(): JSX.Element {
 
-    const handleWhatsClick = () => {
+  const handleWhatsClick = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-        event.preventDefault();
+    event.preventDefault();
 
-        const url = 'https://wa.me/';
-        window.open(url, '_blank');
-    };
+    const url = 'https://wa.me/';
+    window.open(url, '_blank');
+  };
 
-    return (
-        <Container>
-            <h1>Este site está indisponível</h1>
-            <button onClick={handleWhatsClick}>Entre em contato com a Gaio para reativá-lo</button>
-        </Container>
-    );
+  return (
+    <Container>
+      <h1>Este site está indisponível</h1>
+      <button onClick={handleWhatsClick}>Entre em contato com a Gaio para reativá-lo</button>
+    </Container>
+  );
 }
 
 export { PaymentWall };

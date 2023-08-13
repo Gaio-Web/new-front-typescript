@@ -13,108 +13,102 @@ interface IInstagramProps {
   instaToast: (value: boolean | undefined) => void;
 }
 
-function Instagram({ userID, actualInsta, instaToast }: IInstagramProps): JSX.Element {
-    const [insta, setInsta] = useState<string | undefined>('');
-    const [showBtn, setShowBtn] = useState<boolean>(false);
+function Instagram({
+  userID,
+  actualInsta,
+  instaToast,
+}: IInstagramProps): JSX.Element {
+  const [insta, setInsta] = useState<string | undefined>('');
+  const [showBtn, setShowBtn] = useState<boolean>(false);
 
-    // useEffect(() => {
-    //   console.log('insta', actualInsta)
+  const handleOnSubmit = useCallback(
+    async (event: any) => {
+      event.preventDefault();
 
-    //   if (actualInsta !== ''){
-    //     setInsta(actualInsta)
-    //   }
-    // })
+      setShowBtn(false);
 
-    const handleOnSubmit = useCallback( async (event: any) => {
-        event.preventDefault();
+      const btnSuccess = await handleSubmit(
+        [
+          {
+            field: 'instagram',
+            value: insta,
+          },
+        ],
+        userID
+      );
 
-        setShowBtn(false);
+      instaToast(btnSuccess);
+    },
+    [userID, insta]
+  );
 
-        console.log(insta);
-
-        const btnSuccess = await handleSubmit(
-
-            [
-                {
-                    'field': 'instagram',
-                    'value': insta
-                },
-            ],
-            userID
-        );
-
-        instaToast(btnSuccess);
-
-    }, [userID, insta]);
-
-
-    return(
-        <Container onSubmit={handleOnSubmit}>
-            <h1>Instagram</h1>
-            <h4>Adicione aqui o seu instagram <strong>sem o @</strong></h4>
-            {
-                actualInsta == '' ? (
-                    <>
-                        <TextField
-                            id="outlined-multiline-static"
-                            label="Instagram"
-                            variant="outlined"
-                            rows={1}
-                            onChange={(e) => {
-                                setInsta(e.target.value);
-                                setShowBtn(true);
-                            }}
-                            value={insta}
-                        />
-                        {
-                            showBtn ? (
-                                <>
-                                    <StyledButton
-                                        children="Atualizar Insta"
-                                        type="submit"
-                                        w="larger"
-                                        h="3rem"
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                </>
-                            )
-                        }
-                    </>
-                ) : (
-                    <>
-                        <div style={{
-                            width: '100%',
-                            height: 'fit-content',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <a
-                                href={`https://instagram.com/${actualInsta}`}
-                                className="insta_btn"
-                                target="blank"
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'black',
-                                    fontSize: '22px',
-                                    padding: '1rem 2rem',
-                                    borderRadius: '8px',
-                                    boxSizing: 'border-box',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                }}
-                            >
-                                <img src={InstagramIcon} style={{width: '40px'}}/>
-                                {actualInsta}</a>
-                        </div>
-                    </>
-                )
-            }
-        </Container>
-    );
+  return (
+    <Container onSubmit={handleOnSubmit}>
+      <h1>Instagram</h1>
+      <h4>
+        Adicione aqui o seu instagram <strong>sem o @</strong>
+      </h4>
+      {actualInsta == '' ? (
+        <>
+          <TextField
+            id="outlined-multiline-static"
+            label="Instagram"
+            variant="outlined"
+            rows={1}
+            onChange={(e) => {
+              setInsta(e.target.value);
+              setShowBtn(true);
+            }}
+            value={insta}
+          />
+          {showBtn ? (
+            <>
+              <StyledButton
+                children="Atualizar Insta"
+                type="submit"
+                w="larger"
+                h="3rem"
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </>
+      ) : (
+        <>
+          <div
+            style={{
+              width: '100%',
+              height: 'fit-content',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <a
+              href={`https://instagram.com/${actualInsta}`}
+              className="insta_btn"
+              target="blank"
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+                fontSize: '22px',
+                padding: '1rem 2rem',
+                borderRadius: '8px',
+                boxSizing: 'border-box',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+              }}
+            >
+              <img src={InstagramIcon} style={{ width: '40px' }} />
+              {actualInsta}
+            </a>
+          </div>
+        </>
+      )}
+    </Container>
+  );
 }
 
 export { Instagram };

@@ -13,48 +13,48 @@ interface IFormHeaderProps {
 }
 
 function FormHeader({img, name, isLoading, userID, toast}: IFormHeaderProps ): JSX.Element {
-    const [isFileSelected, setFileSelected] = useState<boolean>(false);
-    const [image, setImage] = useState<string >('');
-    const [preview, setPreview] = useState<string>('');
+  const [isFileSelected, setFileSelected] = useState<boolean>(false);
+  const [image, setImage] = useState<string >('');
+  const [preview, setPreview] = useState<string>('');
 
-    const HandleOnFileSelect = () => {
-        toast(true);
-    };
+  const HandleOnFileSelect = () => {
+    toast(true);
+  };
 
-    const outroNome = '';
+  const outroNome = '';
 
-    return (
-        <Container>
-            <p className="title" >Bem vindo! <LoadingComponent
-                height="1.5rem"
-                width="25%"
-                loading={isLoading}
-                component={
-                    <strong>{isFileSelected ? outroNome : name}</strong>
-                }
-            /></p>
-            <ImgWrapper>
-                <LoadingComponent
-                    height="10rem"
-                    loading={isLoading}
-                    component={
-                        img == '' ? (
-                            <>
+  return (
+    <Container>
+      <p className="title" >Bem vindo! <LoadingComponent
+        height="1.5rem"
+        width="25%"
+        loading={isLoading}
+        component={
+          <strong>{isFileSelected ? outroNome : name}</strong>
+        }
+      /></p>
+      <ImgWrapper>
+        <LoadingComponent
+          height="10rem"
+          loading={isLoading}
+          component={
+            img == '' ? (
+              <>
 
-                            </>
-                        ) : (
-                            <>
-                                <img src={img} style={{ maxWidth: '40vh'}}/>
-                            </>
-                        )
-                    }
-                />
-                <Recomendation>Dimensões recomendadas: <strong>200x75</strong></Recomendation>
+              </>
+            ) : (
+              <>
+                <img src={img} style={{ maxWidth: '40vh'}}/>
+              </>
+            )
+          }
+        />
+        <Recomendation>Dimensões recomendadas: <strong>200x75</strong></Recomendation>
 
-                <FileInputComponent userID={userID} onValueChange={HandleOnFileSelect}/>
-            </ImgWrapper>
-        </Container>
-    );
+        <FileInputComponent userID={userID} onValueChange={HandleOnFileSelect}/>
+      </ImgWrapper>
+    </Container>
+  );
 }
 
 export { FormHeader };

@@ -12,42 +12,42 @@ interface IHeaderSectionProp {
 
 function HeaderSection({ photoBase64, secondaryColor, navColor, insta}: IHeaderSectionProp): JSX.Element{
 
-    return (
-    // <Container>
-    //     <header>
-    //         <div className="nav">
-    //             {photoBase64 == '' ? (
-    //                 <h1 style={{ color: secondaryColor }}>Sua logo aqui</h1>
-    //             ) : (
-    //                 <img src={photoBase64} alt={'logo'} />
-    //             )}
-    //         </div>
-    //     </header>
-    // </Container>
+  return (
+  // <Container>
+  //     <header>
+  //         <div className="nav">
+  //             {photoBase64 == '' ? (
+  //                 <h1 style={{ color: secondaryColor }}>Sua logo aqui</h1>
+  //             ) : (
+  //                 <img src={photoBase64} alt={'logo'} />
+  //             )}
+  //         </div>
+  //     </header>
+  // </Container>
 
-        <Container style={{ justifyContent: insta ?  'space-between' : 'center'}}>
-            <header>
-                <div className="nav">
-                    {
-                        photoBase64 === '' ? (
+    <Container style={{ justifyContent: insta ?  'space-between' : 'center'}}>
+      <header>
+        <div className="nav">
+          {
+            photoBase64 === '' ? (
 
-                            <img src={SuaLogo}/>
-                        ): (
-                            <img src={photoBase64}/>
-                        )
-                    }
-                    {insta === undefined ? (
-                        <a className='icon' href={'https://instagram.com/vizelogo/'} target='blank'>
-                            <img className='instaLogo' src={Insta}/>
-                        </a>
-                    ) : (
-                        <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
-                            <img className='instaLogo' src={Insta}/>
-                        </a>
-                    )}
-                </div>
-            </header>
-        </Container>
-    );
+              <img src={SuaLogo}/>
+            ): (
+              <img src={photoBase64}/>
+            )
+          }
+          {insta === undefined ? (
+            <a className='icon' href={'https://instagram.com/vizelogo/'} target='blank'>
+              <img className='instaLogo' src={Insta}/>
+            </a>
+          ) : (
+            <a className='icon' href={`https://instagram.com/${insta}`} target='blank'>
+              <img className='instaLogo' src={Insta}/>
+            </a>
+          )}
+        </div>
+      </header>
+    </Container>
+  );
 }
 export { HeaderSection };

@@ -15,45 +15,45 @@ interface ISeventhSectionProp {
 }
 
 function SeventhSection({ mainColor, secondaryColor, neightborhood, zipCode, street, number, city, state, complement}: ISeventhSectionProp): JSX.Element{
-    return (
-        <Container>
-            <div id='seventhSection' className="seventh-wrapper">
-                <h1 className="sectionTitle" style={{ color: mainColor }}>
+  return (
+    <Container>
+      <div id='seventhSection' className="seventh-wrapper">
+        <h1 className="sectionTitle" style={{ color: mainColor }}>
           Endereço
-                </h1>
+        </h1>
 
-                <div className="adressWrapper">
-                    <div className="userAdress">
-                        {zipCode == '' ? (
-                            <p>
+        <div className="adressWrapper">
+          <div className="userAdress">
+            {zipCode == '' ? (
+              <p>
                 Rua exemplo, 45, 302, <br /> sua cidade / estado
-                            </p>
-                        ) : (
-                            <p>
-                                {street}, {neightborhood}, {number},{' '}
-                                {complement}
-                                <br />
-                                {city}/{state}{' '}
-                            </p>
-                        )}
-                    </div>
+              </p>
+            ) : (
+              <p>
+                {street}, {neightborhood}, {number},{' '}
+                {complement}
+                <br />
+                {city}/{state}{' '}
+              </p>
+            )}
+          </div>
 
-                    <div
-                        style={{
-                            width: '100%',
-                            paddingLeft: '1rem',
-                            paddingRight: '1rem',
-                            boxSizing: 'border-box'
-                        }}
-                    >
-                        <CopyToClipboardButton
-                            path={
-                                `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
-                            }
-                        />
-                    </div>
+          <div
+            style={{
+              width: '100%',
+              paddingLeft: '1rem',
+              paddingRight: '1rem',
+              boxSizing: 'border-box'
+            }}
+          >
+            <CopyToClipboardButton
+              path={
+                `${street}, ${neightborhood}, ${number}, ${complement} ${city}, ${state}, ${zipCode}`
+              }
+            />
+          </div>
 
-                    {/* <button
+          {/* <button
                         className="buttonCopy"
                         onClick={() =>
                             navigator.clipboard.writeText(
@@ -74,9 +74,9 @@ function SeventhSection({ mainColor, secondaryColor, neightborhood, zipCode, str
                             </span>
                         </div>
                     </button> */}
-                </div>
-            </div>
-        </Container>
-    );
+        </div>
+      </div>
+    </Container>
+  );
 }
 export { SeventhSection };

@@ -15,74 +15,78 @@ interface IModalProps {
   toastDelete: (value: boolean | undefined) => void;
 }
 
-function Modal({ modalIsVisible, setModalIsVisible, imgsUrls, userID, toastDelete }: IModalProps): JSX.Element {
-    useEffect(() => {
-        document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
-    }, [modalIsVisible]);
+function Modal({
+  modalIsVisible,
+  setModalIsVisible,
+  imgsUrls,
+  userID,
+  toastDelete,
+}: IModalProps): JSX.Element {
+  useEffect(() => {
+    document.body.style.overflowY = modalIsVisible ? 'hidden' : 'auto';
+  }, [modalIsVisible]);
 
-    const [clicked, setClicked] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
 
-    const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
+  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false);
 
-    const handlePhotoClick = () => {
-        setClicked(!clicked);
-        console.log('hue');
-    };
+  const handlePhotoClick = () => {
+    setClicked(!clicked);
+    console.log('hue');
+  };
 
-    const [sendingUrl, setSendingUrl] = useState('');
+  const [sendingUrl, setSendingUrl] = useState('');
 
-    const handleConfirmModalCall = (url: any) => {
-        setConfirmModalIsVisible(true);
-        setSendingUrl(url);
-    };
+  const handleConfirmModalCall = (url: any) => {
+    setConfirmModalIsVisible(true);
+    setSendingUrl(url);
+  };
 
-    const handleDeleteConfirmed = () => {
-        toastDelete(true);
-    };
+  const handleDeleteConfirmed = () => {
+    toastDelete(true);
+  };
 
-    return (
+  return (
     // @ts-ignore
-        <Container isVisible={modalIsVisible}>
-            <ConfirmModal
-                confirmModalIsVisible={confirmModalIsVisible}
-                setConfirmModalIsVisible={() => setConfirmModalIsVisible(false)}
-                imgUrl={sendingUrl}
-                toastFromConfirmModal={handleDeleteConfirmed}
-            />
-            <Header>
-                <h1 style={{ fontSize: '26px', color: 'white'}}>Galeria de fotos</h1>
-                <IoClose size={45} onClick={setModalIsVisible} color="white"/>
-            </Header>
-            <p style={{ fontSize: '18px', color: 'white'}}>Toque na foto para remover</p>
-            <IMGWrapper>
-                <ImageList
-                    sx={{
-                        width: '100%',
-                        height: 'fit-content',
-                    }} cols={2}>
-                    {imgsUrls.map((url: string) => (
-                        <div className='imageWrapper'
-                            key={url}
-                        >
-                            <img
-                                src={url}
-                                loading="lazy"
-                                onClick={() => handleConfirmModalCall(url)}
-                            />
-                        </div>
-                    ))}
-                </ImageList>
-            </IMGWrapper>
-            <FileInputComponent
-                userID={userID}
-                onValueChange={() => console.log('hue')}
-            />
-        </Container>
-    );
+    <Container isVisible={modalIsVisible}>
+      <ConfirmModal
+        confirmModalIsVisible={confirmModalIsVisible}
+        setConfirmModalIsVisible={() => setConfirmModalIsVisible(false)}
+        imgUrl={sendingUrl}
+        toastFromConfirmModal={handleDeleteConfirmed}
+      />
+      <Header>
+        <h1 style={{ fontSize: '26px', color: 'white' }}>Galeria de fotos</h1>
+        <IoClose size={45} onClick={setModalIsVisible} color="white" />
+      </Header>
+      <p style={{ fontSize: '18px', color: 'white' }}>
+        Toque na foto para remover
+      </p>
+      <IMGWrapper>
+        <ImageList
+          sx={{
+            width: '100%',
+            height: 'fit-content',
+          }}
+          cols={2}
+        >
+          {imgsUrls.map((url: string) => (
+            <div className="imageWrapper" key={url}>
+              <img
+                src={url}
+                loading="lazy"
+                onClick={() => handleConfirmModalCall(url)}
+              />
+            </div>
+          ))}
+        </ImageList>
+      </IMGWrapper>
+      <FileInputComponent userID={userID} />
+    </Container>
+  );
 }
 
 export { Modal };
-
 
 const Container = styled.section`
   position: fixed;
@@ -109,14 +113,14 @@ const Container = styled.section`
   pointer-events: none;
   transform: translateY(50px);
 
-  transition: .5s;
+  transition: 0.5s;
 
   > svg {
     position: absolute;
     top: 1rem;
     right: 1rem;
     transform: rotate(45deg);
-    transition: .7s;
+    transition: 0.7s;
   }
 
   nav {
@@ -126,22 +130,24 @@ const Container = styled.section`
     flex-direction: column;
     gap: 2rem;
     transform: scale(0.7);
-    transition: .7s;
+    transition: 0.7s;
   }
 
-  ${({ isVisible }: any) => isVisible && css`
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0px);
+  ${({ isVisible }: any) =>
+    isVisible &&
+    css`
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0px);
 
-    > svg {
-      transform: rotate(0deg);
-    }
+      > svg {
+        transform: rotate(0deg);
+      }
 
-    nav {
-      transform: scale(1);
-    }
-  `}
+      nav {
+        transform: scale(1);
+      }
+    `}
 `;
 
 const Header = styled.div`

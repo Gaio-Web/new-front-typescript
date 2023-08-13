@@ -9,17 +9,17 @@ interface ILoadingProps {
 }
 
 function LoadingComponent({ loading, component, height, width = '100%' }: ILoadingProps): JSX.Element {
-    return (
+  return (
+    <>
+      { loading ? (
         <>
-            { loading ? (
-                <>
-                    <Skeleton variant="rectangular" width={width} height={height} />
-                </>
-            ):(
-                component
-            )}
+          <Skeleton variant="rectangular" width={width} height={height} />
         </>
-    );
+      ):(
+        component
+      )}
+    </>
+  );
 }
 
 export { LoadingComponent };

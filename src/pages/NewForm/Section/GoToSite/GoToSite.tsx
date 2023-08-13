@@ -8,23 +8,23 @@ interface IGoToSiteProps {
 }
 
 function GoToSite({ convertedName }: IGoToSiteProps ): JSX.Element {
-    return (
-        <Container>
-            <a
-                href={`https://meusiteai.com/${convertedName}`}
-                target="blank"
-                style={{
-                    textDecoration: 'none'
-                }}
-            >
-                <StyledButton
-                    children={'Visite o seu site'}
-                    icon={ <FaExternalLinkAlt /> }
-                    w="larger"
-                />
-            </a>
-        </Container>
-    );
+  return (
+    <Container>
+      <a
+        href={`https://meusiteai.com/${convertedName}`}
+        target="blank"
+        style={{
+          textDecoration: 'none'
+        }}
+      >
+        <StyledButton
+          children={'Visite o seu site'}
+          icon={ <FaExternalLinkAlt /> }
+          w="larger"
+        />
+      </a>
+    </Container>
+  );
 }
 
 export { GoToSite };
