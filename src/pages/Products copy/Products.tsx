@@ -256,7 +256,7 @@ function FindByPhone(): JSX.Element {
       urls = await Promise.all(res.items.map(getDownloadURL));
       result = urls;
     } catch (error) {
-      console.log('Erro ao listar imagens:', error);
+      console.log('Erro ao listar imagens:');
     } finally {
       // eslint-disable-next-line no-unsafe-finally
       return result;
@@ -270,8 +270,6 @@ function FindByPhone(): JSX.Element {
         setImagesurls(urls);
         setImagesLoaded(true);
         setHaveURL(urls.length);
-        console.log(`length: ${urls.length}`);
-        console.log(`HaveURL: ${urls.length}`);
       }
     });
   }, [data]);
