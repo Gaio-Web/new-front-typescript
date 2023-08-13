@@ -44,7 +44,7 @@ function Calendar({
   mainColor,
   secondaryColor,
   isAutonomous,
-}: ICalendar): JSX.Element {
+}: ICalendar) {
   const { id } = useParams();
 
   const [data, setData] = useState<Contact | null>(null);
@@ -59,6 +59,7 @@ function Calendar({
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
+      console.log('id: ', id);
       try {
         const response = await axios.get<Contact>(
           `${
@@ -67,7 +68,7 @@ function Calendar({
         );
         setData(response.data);
       } catch (error) {
-        console.log('error');
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -75,7 +76,7 @@ function Calendar({
 
     fetchData()
       .then(() => console.log('Data fetched successfully!'))
-      .catch((error) => console.log('error'));
+      .catch((error) => console.error(error));
   }, []);
 
   return (
