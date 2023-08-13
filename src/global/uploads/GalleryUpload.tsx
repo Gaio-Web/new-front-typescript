@@ -17,7 +17,7 @@ import imageCompression from 'browser-image-compression';
 
 type FileInputProps = {
   userID: string | undefined;
-  onValueChange: (value: boolean | undefined) => void;
+  onValueChange?: (value: boolean | undefined) => void;
 };
 
 function FileInputComponent({
