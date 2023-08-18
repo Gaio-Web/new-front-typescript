@@ -26,7 +26,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
               <span className='gifOverlay'/>
               <span className='secondOverlay'/>
               <video disablePictureInPicture  loop muted autoPlay playsInline height='500px'>
-                <source src='https://portal-bucket-rails.s3.amazonaws.com/VID-20230802-WA0050.mp4'/>
+                <source src='https://portal-bucket-rails.s3.amazonaws.com/Apresentao+de+Logo++Brilho+Elegante_720p.mp4'/>
               </video>
             </>
           ) : (
@@ -34,7 +34,7 @@ function FirstSection({mainColor, secondaryColor, call, description, photoBase64
               <span className='gifOverlay'/>
               <span className='secondOverlay'/>
               <video disablePictureInPicture  loop muted autoPlay playsInline height='500px'>
-                <source src='https://portal-bucket-rails.s3.amazonaws.com/VID-20230802-WA0050.mp4'/>
+                <source src='https://portal-bucket-rails.s3.amazonaws.com/Apresentao+de+Logo++Brilho+Elegante_720p.mp4'/>
               </video>
             </>
           )}
