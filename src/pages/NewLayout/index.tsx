@@ -57,12 +57,18 @@ function Main(): JSX.Element {
 
   useEffect(() => {
     async function fetchData() {
+      if(!converted){
+        console.log('sem converted')
+        return false
+      }
       setLoading(true);
       try {
         const response = await axios.get<Contact>(
           `${
             import.meta.env.VITE_MAIN_API_URL
-          }/findByConvertedName/${converted}`
+          }/findByConvertedName/${
+            import.meta.env.VITE_CONVERTED_NAME
+          }`
         );
         setData(response.data);
       } catch (error) {

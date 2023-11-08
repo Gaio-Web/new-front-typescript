@@ -27,7 +27,9 @@ export default function AnimatedRoutes() {
         const response = await axios.get<Contact>(
           `${
             import.meta.env.VITE_MAIN_API_URL
-          }/findByConvertedName/${location.pathname.replace(/^\/(.*)/, '$1')}`
+          }/findByConvertedName/${
+            import.meta.env.VITE_CONVERTED_NAME
+          }`
         );
         setData(response.data);
       } catch (error) {

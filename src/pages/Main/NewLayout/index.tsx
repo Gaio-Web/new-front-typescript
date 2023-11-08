@@ -41,6 +41,10 @@ function NewLayout(): JSX.Element {
 
   useEffect(() => {
     async function fetchData() {
+      if(!import.meta.env.VITE_CONVERTED_NAME){
+        console.log('sem nome')
+        return false
+      }
       setLoading(true);
       try {
         const response = await axios.get<Contact>(
@@ -49,6 +53,7 @@ function NewLayout(): JSX.Element {
           }`
         );
         setData(response.data);
+        // return response.data
       } catch (error) {
         console.log('erro');
       } finally {
@@ -57,8 +62,9 @@ function NewLayout(): JSX.Element {
     }
 
     fetchData()
-      .then(() => {
+      .then((data) => {
         console.log('Data fetched successfully!');
+        // console.log(data)
       })
       .catch((error) => console.log('error'))
       .finally(() => listAllImagesFromFolder());
@@ -288,7 +294,7 @@ function NewLayout(): JSX.Element {
               />
             }
           >
-            {data.photos.schedules.base64 === '' ? (
+            {!data.photos.schedules || data.photos.schedules.base64 === '' ? (
               <NewCalendar
                 segunda={`${data.segunda}`}
                 terca={`${data.terca}`}
