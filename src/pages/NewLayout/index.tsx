@@ -58,7 +58,7 @@ function Main(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       if(!converted){
-        console.log('sem converted')
+        console.log('sem nome')
         return false
       }
       setLoading(true);
@@ -66,9 +66,7 @@ function Main(): JSX.Element {
         const response = await axios.get<Contact>(
           `${
             import.meta.env.VITE_MAIN_API_URL
-          }/findByConvertedName/${
-            import.meta.env.VITE_CONVERTED_NAME
-          }`
+          }/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {

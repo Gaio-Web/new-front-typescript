@@ -207,9 +207,7 @@ function FindByPhone(): JSX.Element {
         const response = await axios.get<Contact>(
           `${
             import.meta.env.VITE_MAIN_API_URL
-          }/findByConvertedName/${
-            import.meta.env.VITE_CONVERTED_NAME
-          }`
+          }/findByConvertedName/${converted}`
         );
         setData(response.data);
       } catch (error) {

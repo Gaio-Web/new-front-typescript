@@ -20,16 +20,19 @@ export default function AnimatedRoutes() {
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const id = location.pathname.replace(/^\/(.*)/, '$1')
   useEffect(() => {
     async function fetchData() {
+      // if(!id){
+      //   console.log('sem id', id)
+      //   return false
+      // }
       setLoading(true);
       try {
         const response = await axios.get<Contact>(
           `${
             import.meta.env.VITE_MAIN_API_URL
-          }/findByConvertedName/${
-            import.meta.env.VITE_CONVERTED_NAME
-          }`
+          }/findByConvertedName/${id}`
         );
         setData(response.data);
       } catch (error) {
