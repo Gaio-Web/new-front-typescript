@@ -62,7 +62,9 @@ export default function AnimatedRoutes() {
         <Route path="/:id" element={<PaginaLegado />} />
       ) : data?.origin === 'vize-2' ? (
         <Route path="/:id" element={<NewBannerSite />} />
-      ) : null}
+      ) : (
+        <Route path="/:id" element={<NewLayout />} />
+      )}
       <Route path="/forms/:id" element={<NewForm />} />
       <Route path="/" element={<GaioMainPage />} />
     </Routes>
