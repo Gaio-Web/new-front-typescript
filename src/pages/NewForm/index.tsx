@@ -184,7 +184,7 @@ function NewForm(): JSX.Element {
 
             <FormHeader
               name={data?.name}
-              img={data?.photos.logo.base64}
+              img={data?.photos.logo && data?.photos.logo.base64}
               isLoading={loading}
               userID={data?.phone}
               toast={() => handleToast('Logo enviada com sucesso!')}
@@ -216,7 +216,7 @@ function NewForm(): JSX.Element {
               userID={data?.phone}
               call={data?.call}
               description={data?.description}
-              img={data?.photos.photo1.base64}
+              img={data?.photos.photo1 &&data?.photos.photo1.base64}
               isLoading={loading}
               toast={() => handleToast('Foto enviada com sucesso!')}
               btnToast={() => handleToast(ButtonMessage)}
@@ -230,7 +230,7 @@ function NewForm(): JSX.Element {
               userID={data?.phone}
               secondTitle={data?.secondTitle}
               products={data?.products}
-              img={data?.photos.photo3.base64}
+              img={data?.photos.photo3 && data?.photos.photo3.base64}
               isLoading={loading}
               toast={() => handleToast('Foto enviada com sucesso!')}
               toastFromModal={() =>
@@ -273,7 +273,7 @@ function NewForm(): JSX.Element {
             <FifthSection
               call={data?.call}
               history={data?.history}
-              img={data?.photos.photo2.base64}
+              img={data?.photos.photo2 && data?.photos.photo2.base64}
               isLoading={loading}
               userID={data?.phone}
               title={data?.fifthTitle}
@@ -287,7 +287,7 @@ function NewForm(): JSX.Element {
               userID={data?.phone}
               call={data?.call}
               description={data?.description}
-              img={data?.photos.schedules.base64}
+              img={data?.photos.schedules && data?.photos.schedules.base64}
               isLoading={loading}
               toast={() => handleToast('Horários atualizados com sucesso!')}
               segunda={data?.segunda}

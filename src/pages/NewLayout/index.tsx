@@ -158,7 +158,7 @@ function Main(): JSX.Element {
           <meta
             name="image:secure_url"
             itemProp="image"
-            content={data.photos.logo.base64}
+            content={data.photos.logo && data.photos.logo.base64}
           />
 
           <meta name="og:title" content={data.name} />
@@ -166,13 +166,13 @@ function Main(): JSX.Element {
           <meta
             name="og:image:secure_url"
             itemProp="image"
-            content={data.photos.logo.base64}
+            content={data.photos.logo && data.photos.logo.base64}
           />
           <meta property="og:type" content="website" />
         </Helmet>
 
         <HeaderSection
-          photoBase64={data.photos.logo.base64}
+          photoBase64={data.photos.logo && data.photos.logo.base64}
           name={data.name}
           insta={data.instagram}
           color={data.color}
@@ -183,7 +183,7 @@ function Main(): JSX.Element {
           secondaryColor={data.secondaryColor}
           call={data.call.replace(/^"|"$/g, '')}
           description={data.description}
-          photoBase64={data.photos.photo1.base64}
+          photoBase64={data.photos.photo1 && data.photos.photo1.base64}
           src={Photo1}
           coverKeyWords={data.coverKeyWords}
           onClick={handleWhatsClick}
@@ -207,7 +207,7 @@ function Main(): JSX.Element {
             mainColor={data.mainColor}
             accentColor={data.accentColor}
             products={data.products}
-            photoBase64={data.photos.photo3.base64}
+            photoBase64={data.photos.photo3 && data.photos.photo3.base64}
             src={Photo3}
             onClick={handleWhatsClick}
             coverKeyWords={data.coverKeyWords}
@@ -314,7 +314,7 @@ function Main(): JSX.Element {
             mainColor={data.mainColor}
             accentColor={data.accentColor}
             history={data.history.replace(/^"|"$/g, '')}
-            photoBase64={data.photos.photo2.base64}
+            photoBase64={data.photos.photo2 && data.photos.photo2.base64}
             src={Photo2}
             onClick={handleWhatsClick}
             coverKeyWords={data.coverKeyWords}
@@ -336,7 +336,7 @@ function Main(): JSX.Element {
                 />
               }
             >
-              {data.photos.schedules.base64 === '' ? (
+              {!data.photos.schedules || data.photos.schedules.base64 === '' ? (
                 <NewCalendar
                   segunda={`${data.segunda}`}
                   terca={`${data.terca}`}

@@ -136,7 +136,7 @@ function NewLayout(): JSX.Element {
         <meta
           name="image:secure_url"
           itemProp="image"
-          content={data.photos.logo.base64}
+          content={data.photos.logo && data.photos.logo.base64}
         />
 
         <meta name="og:title" content={data.name} />
@@ -144,13 +144,13 @@ function NewLayout(): JSX.Element {
         <meta
           name="og:image:secure_url"
           itemProp="image"
-          content={data.photos.logo.base64}
+          content={data.photos.logo && data.photos.logo.base64}
         />
         <meta property="og:type" content="website" />
       </Helmet>
 
       <HeaderSection
-        photoBase64={data.photos.logo.base64}
+        photoBase64={data.photos.logo && data.photos.logo.base64}
         name={data.name}
         insta={data.instagram}
         color={data.color}
@@ -165,7 +165,7 @@ function NewLayout(): JSX.Element {
         secondaryColor={data.secondaryColor}
         call={data?.call.replace(/^"|"$/g, '')}
         description={data.description}
-        photoBase64={data.photos.photo1.base64}
+        photoBase64={data.photos.photo1 && data.photos.photo1.base64}
         coverKeyWords={data.coverKeyWords}
         onClick={handleWhatsClick}
         isVideo={data.isVideo}
@@ -186,7 +186,7 @@ function NewLayout(): JSX.Element {
           mainColor={data.mainColor}
           accentColor={data.accentColor}
           products={data.products}
-          photoBase64={data.photos.photo3.base64}
+          photoBase64={data.photos.photo3 && data.photos.photo3.base64}
           onClick={handleWhatsClick}
           coverKeyWords={data.coverKeyWords}
           secondTitle={data.secondTitle}
@@ -275,7 +275,7 @@ function NewLayout(): JSX.Element {
           mainColor={data.mainColor}
           accentColor={data.accentColor}
           history={data?.history.replace(/^"|"$/g, '')}
-          photoBase64={data.photos.photo2.base64}
+          photoBase64={data.photos.photo2 && data.photos.photo2.base64}
           onClick={handleWhatsClick}
           coverKeyWords={data.coverKeyWords}
           fifthTitle={data.fifthTitle}
