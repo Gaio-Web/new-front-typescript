@@ -184,7 +184,7 @@ function NewForm(): JSX.Element {
 
             <FormHeader
               name={data?.name}
-              img={data?.photos.logo && data?.photos.logo.base64}
+              img={data?.photos.logo && data?.photos?.logo.base64}
               isLoading={loading}
               userID={data?.phone}
               toast={() => handleToast('Logo enviada com sucesso!')}

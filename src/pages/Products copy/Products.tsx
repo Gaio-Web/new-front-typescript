@@ -294,7 +294,7 @@ function FindByPhone(): JSX.Element {
         <meta
           name="image:secure_url"
           itemProp="image"
-          content={data.photos.logo && data.photos.logo.base64}
+          content={data.photos && data.photos.logo && data.photos.logo.base64}
         />
 
         <meta name="og:title" content={data.name} />
@@ -302,13 +302,13 @@ function FindByPhone(): JSX.Element {
         <meta
           name="og:image:secure_url"
           itemProp="image"
-          content={data.photos.logo && data.photos.logo.base64}
+          content={data.photos && data.photos.logo && data.photos.logo.base64}
         />
         <meta property="og:type" content="website" />
       </Helmet>
 
       <HeaderSection
-        photoBase64={data.photos.logo && data.photos.logo.base64}
+        photoBase64={data.photos && data.photos.logo && data.photos.logo.base64}
         // name={data.name} retirado a pedido da VIZE para teste
         secondaryColor={data.secondaryColor}
         navColor={data.color}
